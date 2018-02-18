@@ -9,6 +9,10 @@
 #import "Loginvc.h"
 #import "Macros.h"
 
+@interface Loginvc()
+
+@end
+
 @implementation Loginvc
 
 
