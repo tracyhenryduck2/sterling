@@ -1,6 +1,6 @@
 platform :ios, '7.0'
 
-target "mytest4" do
+target "Siterwell_familywell" do
 
 #pod 'HekrSDK',:subspecs => ['Core','socialWeibo'], :podspec => 'https://raw.githubusercontent.com/HEKR-Cloud/HEKR-IOS-SDK/3.0/HekrSDK.podspec'
 

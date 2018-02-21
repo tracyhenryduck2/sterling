@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "88A5AE0F2026A87D00F89C51"
-               BuildableName = "mytest4.app"
-               BlueprintName = "mytest4"
-               ReferencedContainer = "container:mytest4.xcodeproj">
+               BuildableName = "Siterwell_familywell.app"
+               BlueprintName = "Siterwell_familywell"
+               ReferencedContainer = "container:Siterwell_familywell.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88A5AE0F2026A87D00F89C51"
-            BuildableName = "mytest4.app"
-            BlueprintName = "mytest4"
-            ReferencedContainer = "container:mytest4.xcodeproj">
+            BuildableName = "Siterwell_familywell.app"
+            BlueprintName = "Siterwell_familywell"
+            ReferencedContainer = "container:Siterwell_familywell.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88A5AE0F2026A87D00F89C51"
-            BuildableName = "mytest4.app"
-            BlueprintName = "mytest4"
-            ReferencedContainer = "container:mytest4.xcodeproj">
+            BuildableName = "Siterwell_familywell.app"
+            BlueprintName = "Siterwell_familywell"
+            ReferencedContainer = "container:Siterwell_familywell.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88A5AE0F2026A87D00F89C51"
-            BuildableName = "mytest4.app"
-            BlueprintName = "mytest4"
-            ReferencedContainer = "container:mytest4.xcodeproj">
+            BuildableName = "Siterwell_familywell.app"
+            BlueprintName = "Siterwell_familywell"
+            ReferencedContainer = "container:Siterwell_familywell.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A0C002D19581179C794739B /* libPods-mytest4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA6143DB3D7E7F4E3D8995F /* libPods-mytest4.a */; };
 		883D1627203D5BAA007001A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 883D1626203D5BAA007001A2 /* Assets.xcassets */; };
 		888BF278203B9BF5008E2A37 /* SiterTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BF277203B9BF5008E2A37 /* SiterTools.m */; };
 		88A5AE152026A87D00F89C51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE142026A87D00F89C51 /* AppDelegate.m */; };
@@ -301,6 +300,7 @@
 		88B762A82029DDD200FC87A0 /* BaseNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B762A42029DDD200FC87A0 /* BaseNC.m */; };
 		88B762AB2029E1D800FC87A0 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B762AA2029E1D800FC87A0 /* Register.m */; };
 		88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B90D32203D50AA007E2A9C /* ResetCode.m */; };
+		D373E6B030D3F6F2C9516C53 /* libPods-Siterwell_familywell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -321,21 +321,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1EA6143DB3D7E7F4E3D8995F /* libPods-mytest4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mytest4.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Siterwell_familywell.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5A5466EAA653BA67BD8EA3 /* Pods-Siterwell_familywell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siterwell_familywell.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell.debug.xcconfig"; sourceTree = "<group>"; };
+		631FF296BBCFBC9DC1F7B501 /* Pods-Siterwell_familywell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siterwell_familywell.release.xcconfig"; path = "Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell.release.xcconfig"; sourceTree = "<group>"; };
 		883D1626203D5BAA007001A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		888BF277203B9BF5008E2A37 /* SiterTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SiterTools.m; sourceTree = "<group>"; };
 		888BF279203B9C08008E2A37 /* SiterTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiterTools.h; sourceTree = "<group>"; };
-		88A5AE102026A87D00F89C51 /* mytest4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mytest4.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A5AE102026A87D00F89C51 /* Siterwell_familywell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siterwell_familywell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A5AE132026A87D00F89C51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88A5AE142026A87D00F89C51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		88A5AE1A2026A87D00F89C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88A5AE1F2026A87D00F89C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88A5AE212026A87D00F89C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88A5AE222026A87D00F89C51 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		88A5AE282026A87D00F89C51 /* mytest4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mytest4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A5AE282026A87D00F89C51 /* Siterwell_familywellTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Siterwell_familywellTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A5AE2C2026A87D00F89C51 /* mytest4Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mytest4Tests.m; sourceTree = "<group>"; };
 		88A5AE2E2026A87D00F89C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88A5AE332026A87D00F89C51 /* mytest4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mytest4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A5AE332026A87D00F89C51 /* Siterwell_familywellUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Siterwell_familywellUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A5AE372026A87D00F89C51 /* mytest4UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mytest4UITests.m; sourceTree = "<group>"; };
 		88A5AE392026A87D00F89C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88B03641203583DD00F18EFE /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
@@ -915,8 +917,6 @@
 		88B90D32203D50AA007E2A9C /* ResetCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetCode.m; sourceTree = "<group>"; };
 		88B90D34203D50BF007E2A9C /* ResetCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetCode.h; sourceTree = "<group>"; };
 		88B90D35203D573C007E2A9C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		8A8EC901CCCF5D9BD9A9872F /* Pods-mytest4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mytest4.release.xcconfig"; path = "Pods/Target Support Files/Pods-mytest4/Pods-mytest4.release.xcconfig"; sourceTree = "<group>"; };
-		F7B9EE84A70E4E19D44CE987 /* Pods-mytest4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mytest4.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mytest4/Pods-mytest4.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -924,7 +924,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0C002D19581179C794739B /* libPods-mytest4.a in Frameworks */,
+				D373E6B030D3F6F2C9516C53 /* libPods-Siterwell_familywell.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,7 +956,7 @@
 		88A5AE072026A87D00F89C51 = {
 			isa = PBXGroup;
 			children = (
-				88A5AE122026A87D00F89C51 /* mytest4 */,
+				88A5AE122026A87D00F89C51 /* Siterwell_familywell */,
 				88A5AE2B2026A87D00F89C51 /* mytest4Tests */,
 				88A5AE362026A87D00F89C51 /* mytest4UITests */,
 				88A5AE112026A87D00F89C51 /* Products */,
@@ -968,14 +968,14 @@
 		88A5AE112026A87D00F89C51 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				88A5AE102026A87D00F89C51 /* mytest4.app */,
-				88A5AE282026A87D00F89C51 /* mytest4Tests.xctest */,
-				88A5AE332026A87D00F89C51 /* mytest4UITests.xctest */,
+				88A5AE102026A87D00F89C51 /* Siterwell_familywell.app */,
+				88A5AE282026A87D00F89C51 /* Siterwell_familywellTests.xctest */,
+				88A5AE332026A87D00F89C51 /* Siterwell_familywellUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		88A5AE122026A87D00F89C51 /* mytest4 */ = {
+		88A5AE122026A87D00F89C51 /* Siterwell_familywell */ = {
 			isa = PBXGroup;
 			children = (
 				883D1625203D5B84007001A2 /* Resource */,
@@ -990,7 +990,7 @@
 				88A5AE212026A87D00F89C51 /* Info.plist */,
 				88A5AE222026A87D00F89C51 /* main.m */,
 			);
-			path = mytest4;
+			path = Siterwell_familywell;
 			sourceTree = "<group>";
 		};
 		88A5AE2B2026A87D00F89C51 /* mytest4Tests */ = {
@@ -2332,7 +2332,7 @@
 		9303C050240E8A60FAE5E25B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1EA6143DB3D7E7F4E3D8995F /* libPods-mytest4.a */,
+				38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2340,8 +2340,8 @@
 		BDC65201EF7594B9111998FB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F7B9EE84A70E4E19D44CE987 /* Pods-mytest4.debug.xcconfig */,
-				8A8EC901CCCF5D9BD9A9872F /* Pods-mytest4.release.xcconfig */,
+				5F5A5466EAA653BA67BD8EA3 /* Pods-Siterwell_familywell.debug.xcconfig */,
+				631FF296BBCFBC9DC1F7B501 /* Pods-Siterwell_familywell.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2349,9 +2349,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		88A5AE0F2026A87D00F89C51 /* mytest4 */ = {
+		88A5AE0F2026A87D00F89C51 /* Siterwell_familywell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88A5AE3C2026A87D00F89C51 /* Build configuration list for PBXNativeTarget "mytest4" */;
+			buildConfigurationList = 88A5AE3C2026A87D00F89C51 /* Build configuration list for PBXNativeTarget "Siterwell_familywell" */;
 			buildPhases = (
 				AFF19C1663BCD3DE014DFEFD /* [CP] Check Pods Manifest.lock */,
 				88A5AE0C2026A87D00F89C51 /* Sources */,
@@ -2364,14 +2364,14 @@
 			);
 			dependencies = (
 			);
-			name = mytest4;
+			name = Siterwell_familywell;
 			productName = mytest4;
-			productReference = 88A5AE102026A87D00F89C51 /* mytest4.app */;
+			productReference = 88A5AE102026A87D00F89C51 /* Siterwell_familywell.app */;
 			productType = "com.apple.product-type.application";
 		};
-		88A5AE272026A87D00F89C51 /* mytest4Tests */ = {
+		88A5AE272026A87D00F89C51 /* Siterwell_familywellTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88A5AE3F2026A87D00F89C51 /* Build configuration list for PBXNativeTarget "mytest4Tests" */;
+			buildConfigurationList = 88A5AE3F2026A87D00F89C51 /* Build configuration list for PBXNativeTarget "Siterwell_familywellTests" */;
 			buildPhases = (
 				88A5AE242026A87D00F89C51 /* Sources */,
 				88A5AE252026A87D00F89C51 /* Frameworks */,
@@ -2382,14 +2382,14 @@
 			dependencies = (
 				88A5AE2A2026A87D00F89C51 /* PBXTargetDependency */,
 			);
-			name = mytest4Tests;
+			name = Siterwell_familywellTests;
 			productName = mytest4Tests;
-			productReference = 88A5AE282026A87D00F89C51 /* mytest4Tests.xctest */;
+			productReference = 88A5AE282026A87D00F89C51 /* Siterwell_familywellTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		88A5AE322026A87D00F89C51 /* mytest4UITests */ = {
+		88A5AE322026A87D00F89C51 /* Siterwell_familywellUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88A5AE422026A87D00F89C51 /* Build configuration list for PBXNativeTarget "mytest4UITests" */;
+			buildConfigurationList = 88A5AE422026A87D00F89C51 /* Build configuration list for PBXNativeTarget "Siterwell_familywellUITests" */;
 			buildPhases = (
 				88A5AE2F2026A87D00F89C51 /* Sources */,
 				88A5AE302026A87D00F89C51 /* Frameworks */,
@@ -2400,9 +2400,9 @@
 			dependencies = (
 				88A5AE352026A87D00F89C51 /* PBXTargetDependency */,
 			);
-			name = mytest4UITests;
+			name = Siterwell_familywellUITests;
 			productName = mytest4UITests;
-			productReference = 88A5AE332026A87D00F89C51 /* mytest4UITests.xctest */;
+			productReference = 88A5AE332026A87D00F89C51 /* Siterwell_familywellUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -2430,7 +2430,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 88A5AE0B2026A87D00F89C51 /* Build configuration list for PBXProject "mytest4" */;
+			buildConfigurationList = 88A5AE0B2026A87D00F89C51 /* Build configuration list for PBXProject "Siterwell_familywell" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -2442,9 +2442,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				88A5AE0F2026A87D00F89C51 /* mytest4 */,
-				88A5AE272026A87D00F89C51 /* mytest4Tests */,
-				88A5AE322026A87D00F89C51 /* mytest4UITests */,
+				88A5AE0F2026A87D00F89C51 /* Siterwell_familywell */,
+				88A5AE272026A87D00F89C51 /* Siterwell_familywellTests */,
+				88A5AE322026A87D00F89C51 /* Siterwell_familywellUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -2494,7 +2494,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mytest4/Pods-mytest4-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ADAF06D980A63F0655118DC3 /* [CP] Copy Pods Resources */ = {
@@ -2503,7 +2503,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-mytest4/Pods-mytest4-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle",
 				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
 				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
@@ -2514,7 +2514,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mytest4/Pods-mytest4-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AFF19C1663BCD3DE014DFEFD /* [CP] Check Pods Manifest.lock */ = {
@@ -2528,7 +2528,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-mytest4-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Siterwell_familywell-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2849,12 +2849,12 @@
 /* Begin PBXTargetDependency section */
 		88A5AE2A2026A87D00F89C51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 88A5AE0F2026A87D00F89C51 /* mytest4 */;
+			target = 88A5AE0F2026A87D00F89C51 /* Siterwell_familywell */;
 			targetProxy = 88A5AE292026A87D00F89C51 /* PBXContainerItemProxy */;
 		};
 		88A5AE352026A87D00F89C51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 88A5AE0F2026A87D00F89C51 /* mytest4 */;
+			target = 88A5AE0F2026A87D00F89C51 /* Siterwell_familywell */;
 			targetProxy = 88A5AE342026A87D00F89C51 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2989,14 +2989,14 @@
 		};
 		88A5AE3D2026A87D00F89C51 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7B9EE84A70E4E19D44CE987 /* Pods-mytest4.debug.xcconfig */;
+			baseConfigurationReference = 5F5A5466EAA653BA67BD8EA3 /* Pods-Siterwell_familywell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A47HEQQHQU;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INFOPLIST_FILE = mytest4/Info.plist;
+				INFOPLIST_FILE = Siterwell_familywell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.siterwell.mytest4;
@@ -3010,14 +3010,14 @@
 		};
 		88A5AE3E2026A87D00F89C51 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A8EC901CCCF5D9BD9A9872F /* Pods-mytest4.release.xcconfig */;
+			baseConfigurationReference = 631FF296BBCFBC9DC1F7B501 /* Pods-Siterwell_familywell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A47HEQQHQU;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INFOPLIST_FILE = mytest4/Info.plist;
+				INFOPLIST_FILE = Siterwell_familywell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.siterwell.mytest4;
@@ -3039,7 +3039,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.siterwell.mytest4Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mytest4.app/mytest4";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Siterwell_familywell.app/Siterwell_familywell";
 			};
 			name = Debug;
 		};
@@ -3054,7 +3054,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.siterwell.mytest4Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mytest4.app/mytest4";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Siterwell_familywell.app/Siterwell_familywell";
 			};
 			name = Release;
 		};
@@ -3089,7 +3089,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		88A5AE0B2026A87D00F89C51 /* Build configuration list for PBXProject "mytest4" */ = {
+		88A5AE0B2026A87D00F89C51 /* Build configuration list for PBXProject "Siterwell_familywell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88A5AE3A2026A87D00F89C51 /* Debug */,
@@ -3098,7 +3098,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88A5AE3C2026A87D00F89C51 /* Build configuration list for PBXNativeTarget "mytest4" */ = {
+		88A5AE3C2026A87D00F89C51 /* Build configuration list for PBXNativeTarget "Siterwell_familywell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88A5AE3D2026A87D00F89C51 /* Debug */,
@@ -3107,7 +3107,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88A5AE3F2026A87D00F89C51 /* Build configuration list for PBXNativeTarget "mytest4Tests" */ = {
+		88A5AE3F2026A87D00F89C51 /* Build configuration list for PBXNativeTarget "Siterwell_familywellTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88A5AE402026A87D00F89C51 /* Debug */,
@@ -3116,7 +3116,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88A5AE422026A87D00F89C51 /* Build configuration list for PBXNativeTarget "mytest4UITests" */ = {
+		88A5AE422026A87D00F89C51 /* Build configuration list for PBXNativeTarget "Siterwell_familywellUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88A5AE432026A87D00F89C51 /* Debug */,
