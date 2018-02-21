@@ -8,6 +8,6 @@
 
 #import "BaseVC.h"
 
-@interface Detail : BaseVC
+@interface Register : BaseVC
 
 @end
