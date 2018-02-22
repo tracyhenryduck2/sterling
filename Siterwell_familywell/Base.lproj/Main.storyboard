@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,31 +22,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w06-q8-tsb" userLabel="ResetCode">
-                                <rect key="frame" x="27" y="617" width="72" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="重置密码">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="cuo-c6-wO7" kind="show" id="Mi5-lq-CKG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2j-mc-Mna" userLabel="Register">
-                                <rect key="frame" x="301" y="617" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2j-mc-Mna" userLabel="Register">
+                                <rect key="frame" x="323" y="627" width="31" height="30"/>
                                 <state key="normal" title="注册"/>
                                 <connections>
                                     <segue destination="vHU-Vx-wLU" kind="show" id="hBI-zd-5WT"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ChS-kp-DX5">
+                                <rect key="frame" x="88.692068132899749" y="404" width="196" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kJ2-Bs-IWg">
+                                <rect key="frame" x="89.355570333040987" y="457" width="196.00000000000011" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tyi-sC-W5r">
+                                <rect key="frame" x="21" y="627" width="62" height="30"/>
+                                <state key="normal" title="重置密码"/>
+                                <connections>
+                                    <segue destination="cuo-c6-wO7" kind="show" id="c0a-Bn-ogv"/>
+                                </connections>
+                            </button>
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="EVZ-VI-Y1R">
+                                <rect key="frame" x="136" y="164" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="sRk-KB-dpH"/>
+                                    <constraint firstAttribute="height" constant="120" id="vat-d8-oNX"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94905769819999997" green="0.94899761680000005" blue="0.96078383919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="MIp-Nd-pIz" firstAttribute="top" secondItem="Tyi-sC-W5r" secondAttribute="bottom" constant="10" id="8t3-4E-9YJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Z2j-mc-Mna" secondAttribute="trailing" constant="5" id="H6l-5N-BZx"/>
+                            <constraint firstItem="EVZ-VI-Y1R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hog-Gt-1mg"/>
+                            <constraint firstItem="EVZ-VI-Y1R" firstAttribute="top" secondItem="TAL-1P-3oW" secondAttribute="bottom" constant="100" id="aVW-XD-UKI"/>
+                            <constraint firstItem="Tyi-sC-W5r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="w83-VZ-jhx"/>
+                            <constraint firstItem="MIp-Nd-pIz" firstAttribute="top" secondItem="Z2j-mc-Mna" secondAttribute="bottom" constant="10" id="wqg-JW-xM3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aHu-Kg-3Hv"/>
                     <connections>
-                        <outlet property="test1" destination="w06-q8-tsb" id="sii-J4-soQ"/>
                         <outlet property="test2" destination="Z2j-mc-Mna" id="5yq-1Q-QUo"/>
                     </connections>
                 </viewController>
@@ -199,4 +223,7 @@
             <point key="canvasLocation" x="87" y="132"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="512" height="512"/>
+    </resources>
 </document>

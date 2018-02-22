@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8829C5E9203D875D007B1A5B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8829C5E8203D875D007B1A5B /* Images.xcassets */; };
 		883D1627203D5BAA007001A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 883D1626203D5BAA007001A2 /* Assets.xcassets */; };
 		888BF278203B9BF5008E2A37 /* SiterTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BF277203B9BF5008E2A37 /* SiterTools.m */; };
 		88A5AE152026A87D00F89C51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE142026A87D00F89C51 /* AppDelegate.m */; };
@@ -324,6 +325,7 @@
 		38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Siterwell_familywell.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A5466EAA653BA67BD8EA3 /* Pods-Siterwell_familywell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siterwell_familywell.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell.debug.xcconfig"; sourceTree = "<group>"; };
 		631FF296BBCFBC9DC1F7B501 /* Pods-Siterwell_familywell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siterwell_familywell.release.xcconfig"; path = "Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell.release.xcconfig"; sourceTree = "<group>"; };
+		8829C5E8203D875D007B1A5B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		883D1626203D5BAA007001A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		888BF277203B9BF5008E2A37 /* SiterTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SiterTools.m; sourceTree = "<group>"; };
 		888BF279203B9C08008E2A37 /* SiterTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiterTools.h; sourceTree = "<group>"; };
@@ -916,7 +918,6 @@
 		88B762AA2029E1D800FC87A0 /* Register.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
 		88B90D32203D50AA007E2A9C /* ResetCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetCode.m; sourceTree = "<group>"; };
 		88B90D34203D50BF007E2A9C /* ResetCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetCode.h; sourceTree = "<group>"; };
-		88B90D35203D573C007E2A9C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -949,6 +950,7 @@
 			isa = PBXGroup;
 			children = (
 				883D1626203D5BAA007001A2 /* Assets.xcassets */,
+				8829C5E8203D875D007B1A5B /* Images.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2454,6 +2456,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8829C5E9203D875D007B1A5B /* Images.xcassets in Resources */,
 				88A5AE202026A87D00F89C51 /* LaunchScreen.storyboard in Resources */,
 				88B03C162035E5E000F18EFE /* NSDateTimeAgo.bundle in Resources */,
 				88B03CF12035E5E000F18EFE /* addressData.plist in Resources */,
@@ -2864,7 +2867,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				88A5AE1A2026A87D00F89C51 /* Base */,
-				88B90D35203D573C007E2A9C /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

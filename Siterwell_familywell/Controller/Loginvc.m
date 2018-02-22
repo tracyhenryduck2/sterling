@@ -26,6 +26,8 @@
     
     self.navigationItem.rightBarButtonItem =  [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"确定", nil) withTintColor:RGB(53, 167, 255)];
     self.navigationItem.rightBarButtonItem.enabled = YES;
+//    self.navigationController.navigationBarHidden = YES;
+    self.navigationItem.title = @"ddd";
 }
 
 
