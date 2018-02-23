@@ -11,7 +11,7 @@
 		883D1627203D5BAA007001A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 883D1626203D5BAA007001A2 /* Assets.xcassets */; };
 		888BF278203B9BF5008E2A37 /* SiterTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BF277203B9BF5008E2A37 /* SiterTools.m */; };
 		88A5AE152026A87D00F89C51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE142026A87D00F89C51 /* AppDelegate.m */; };
-		88A5AE1B2026A87D00F89C51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A5AE192026A87D00F89C51 /* Main.storyboard */; };
+		88A5AE1B2026A87D00F89C51 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A5AE192026A87D00F89C51 /* User.storyboard */; };
 		88A5AE202026A87D00F89C51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A5AE1E2026A87D00F89C51 /* LaunchScreen.storyboard */; };
 		88A5AE232026A87D00F89C51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE222026A87D00F89C51 /* main.m */; };
 		88A5AE2D2026A87D00F89C51 /* mytest4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE2C2026A87D00F89C51 /* mytest4Tests.m */; };
@@ -301,6 +301,10 @@
 		88B762A82029DDD200FC87A0 /* BaseNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B762A42029DDD200FC87A0 /* BaseNC.m */; };
 		88B762AB2029E1D800FC87A0 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B762AA2029E1D800FC87A0 /* Register.m */; };
 		88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B90D32203D50AA007E2A9C /* ResetCode.m */; };
+		C43D517A203FD54E00DE5FF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43D5179203FD54E00DE5FF3 /* Main.storyboard */; };
+		C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5181203FDD1800DE5FF3 /* HomeVC.m */; };
+		C43D5187203FE6D200DE5FF3 /* SceneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5184203FE6D200DE5FF3 /* SceneVC.m */; };
+		C43D5188203FE6D200DE5FF3 /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5185203FE6D200DE5FF3 /* DeviceVC.m */; };
 		D373E6B030D3F6F2C9516C53 /* libPods-Siterwell_familywell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */; };
 /* End PBXBuildFile section */
 
@@ -332,7 +336,7 @@
 		88A5AE102026A87D00F89C51 /* Siterwell_familywell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siterwell_familywell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A5AE132026A87D00F89C51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88A5AE142026A87D00F89C51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		88A5AE1A2026A87D00F89C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88A5AE1A2026A87D00F89C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
 		88A5AE1F2026A87D00F89C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88A5AE212026A87D00F89C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88A5AE222026A87D00F89C51 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -918,6 +922,13 @@
 		88B762AA2029E1D800FC87A0 /* Register.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
 		88B90D32203D50AA007E2A9C /* ResetCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetCode.m; sourceTree = "<group>"; };
 		88B90D34203D50BF007E2A9C /* ResetCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetCode.h; sourceTree = "<group>"; };
+		C43D5179203FD54E00DE5FF3 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C43D5180203FDD1800DE5FF3 /* HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		C43D5181203FDD1800DE5FF3 /* HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
+		C43D5183203FE6D200DE5FF3 /* DeviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceVC.h; sourceTree = "<group>"; };
+		C43D5184203FE6D200DE5FF3 /* SceneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneVC.m; sourceTree = "<group>"; };
+		C43D5185203FE6D200DE5FF3 /* DeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
+		C43D5186203FE6D200DE5FF3 /* SceneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneVC.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -980,17 +991,19 @@
 		88A5AE122026A87D00F89C51 /* Siterwell_familywell */ = {
 			isa = PBXGroup;
 			children = (
+				C43D517B203FDC9700DE5FF3 /* Home */,
 				883D1625203D5B84007001A2 /* Resource */,
 				88B039902035E5DF00F18EFE /* Expand */,
 				88B0363F203583B100F18EFE /* Vender */,
 				88B7629E2029DCF800FC87A0 /* Base */,
-				88B7629A2029D33F00FC87A0 /* Controller */,
+				88B7629A2029D33F00FC87A0 /* User */,
 				88A5AE132026A87D00F89C51 /* AppDelegate.h */,
 				88A5AE142026A87D00F89C51 /* AppDelegate.m */,
-				88A5AE192026A87D00F89C51 /* Main.storyboard */,
+				88A5AE192026A87D00F89C51 /* User.storyboard */,
 				88A5AE1E2026A87D00F89C51 /* LaunchScreen.storyboard */,
 				88A5AE212026A87D00F89C51 /* Info.plist */,
 				88A5AE222026A87D00F89C51 /* main.m */,
+				C43D5179203FD54E00DE5FF3 /* Main.storyboard */,
 			);
 			path = Siterwell_familywell;
 			sourceTree = "<group>";
@@ -2295,17 +2308,14 @@
 			path = YYFPSLabel;
 			sourceTree = "<group>";
 		};
-		88B7629A2029D33F00FC87A0 /* Controller */ = {
+		88B7629A2029D33F00FC87A0 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				88B7629B2029D3BC00FC87A0 /* Loginvc.h */,
-				88B7629C2029D3BC00FC87A0 /* Loginvc.m */,
-				88B762A92029E1D800FC87A0 /* Register.h */,
-				88B762AA2029E1D800FC87A0 /* Register.m */,
-				88B90D32203D50AA007E2A9C /* ResetCode.m */,
-				88B90D34203D50BF007E2A9C /* ResetCode.h */,
+				C43D5178203FAA3000DE5FF3 /* View */,
+				C43D5177203FAA2500DE5FF3 /* Model */,
+				C43D5176203F9E7800DE5FF3 /* Controller */,
 			);
-			path = Controller;
+			path = User;
 			sourceTree = "<group>";
 		};
 		88B7629E2029DCF800FC87A0 /* Base */ = {
@@ -2346,6 +2356,71 @@
 				631FF296BBCFBC9DC1F7B501 /* Pods-Siterwell_familywell.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C43D5176203F9E7800DE5FF3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				88B7629B2029D3BC00FC87A0 /* Loginvc.h */,
+				88B7629C2029D3BC00FC87A0 /* Loginvc.m */,
+				88B762A92029E1D800FC87A0 /* Register.h */,
+				88B762AA2029E1D800FC87A0 /* Register.m */,
+				88B90D32203D50AA007E2A9C /* ResetCode.m */,
+				88B90D34203D50BF007E2A9C /* ResetCode.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C43D5177203FAA2500DE5FF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C43D5178203FAA3000DE5FF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		C43D517B203FDC9700DE5FF3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C43D517E203FDCAF00DE5FF3 /* View */,
+				C43D517D203FDCA800DE5FF3 /* Model */,
+				C43D517C203FDC9F00DE5FF3 /* Controller */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C43D517C203FDC9F00DE5FF3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C43D5183203FE6D200DE5FF3 /* DeviceVC.h */,
+				C43D5185203FE6D200DE5FF3 /* DeviceVC.m */,
+				C43D5186203FE6D200DE5FF3 /* SceneVC.h */,
+				C43D5184203FE6D200DE5FF3 /* SceneVC.m */,
+				C43D5180203FDD1800DE5FF3 /* HomeVC.h */,
+				C43D5181203FDD1800DE5FF3 /* HomeVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C43D517D203FDCA800DE5FF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C43D517E203FDCAF00DE5FF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2457,12 +2532,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8829C5E9203D875D007B1A5B /* Images.xcassets in Resources */,
+				C43D517A203FD54E00DE5FF3 /* Main.storyboard in Resources */,
 				88A5AE202026A87D00F89C51 /* LaunchScreen.storyboard in Resources */,
 				88B03C162035E5E000F18EFE /* NSDateTimeAgo.bundle in Resources */,
 				88B03CF12035E5E000F18EFE /* addressData.plist in Resources */,
 				88B03CF32035E5E000F18EFE /* city_province.plist in Resources */,
 				88B03CF42035E5E000F18EFE /* street.plist in Resources */,
-				88A5AE1B2026A87D00F89C51 /* Main.storyboard in Resources */,
+				88A5AE1B2026A87D00F89C51 /* User.storyboard in Resources */,
 				883D1627203D5BAA007001A2 /* Assets.xcassets in Resources */,
 				88B03666203583DD00F18EFE /* EspTouchDemo-Info.plist in Resources */,
 			);
@@ -2614,6 +2690,7 @@
 				88B03C572035E5E000F18EFE /* MKMapView+ZoomLevel.m in Sources */,
 				88B03CAC2035E5E000F18EFE /* UIScrollView+APParallaxHeader.m in Sources */,
 				88B03C822035E5E000F18EFE /* UIFont-TTF.m in Sources */,
+				C43D5187203FE6D200DE5FF3 /* SceneVC.m in Sources */,
 				88B03C192035E5E000F18EFE /* NSDictionary+JSONString.m in Sources */,
 				88B03BFE2035E5E000F18EFE /* NSManagedObjectContext+ObjectClear.m in Sources */,
 				88B03CB72035E5E000F18EFE /* UITableViewCell+NIB.m in Sources */,
@@ -2660,6 +2737,7 @@
 				88B03C2B2035E5E000F18EFE /* NSObject+AddProperty.m in Sources */,
 				88B03667203583DD00F18EFE /* ESPTouchGenerator.m in Sources */,
 				88B03C392035E5E000F18EFE /* NSString+ArryValue.m in Sources */,
+				C43D5188203FE6D200DE5FF3 /* DeviceVC.m in Sources */,
 				88B03C872035E5E000F18EFE /* UIImage+Capture.m in Sources */,
 				88B03CDA2035E5E000F18EFE /* UIWebView+Alert.m in Sources */,
 				88B03CA12035E5E000F18EFE /* UINavigationController+KeyboardFix.m in Sources */,
@@ -2707,6 +2785,7 @@
 				88B03664203583DD00F18EFE /* ESPDatumCode.m in Sources */,
 				88B03C0E2035E5E000F18EFE /* NSData+zlib.m in Sources */,
 				88B03CC12035E5E000F18EFE /* UIView+BlockGesture.m in Sources */,
+				C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */,
 				88B03C8D2035E5E000F18EFE /* UIImage+Orientation.m in Sources */,
 				88B03C7C2035E5E000F18EFE /* UIControl+ActionBlocks.m in Sources */,
 				88B03C092035E5E000F18EFE /* NSData+CRC16.m in Sources */,
@@ -2863,12 +2942,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		88A5AE192026A87D00F89C51 /* Main.storyboard */ = {
+		88A5AE192026A87D00F89C51 /* User.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				88A5AE1A2026A87D00F89C51 /* Base */,
 			);
-			name = Main.storyboard;
+			name = User.storyboard;
 			sourceTree = "<group>";
 		};
 		88A5AE1E2026A87D00F89C51 /* LaunchScreen.storyboard */ = {

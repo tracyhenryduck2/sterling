@@ -14,6 +14,7 @@
 @interface Loginvc()
 @property (nonatomic,weak) IBOutlet UIButton *test1;
 @property (nonatomic,weak) IBOutlet UIButton *test2;
+@property (nonatomic,weak) IBOutlet UIButton *login;
 @end
 
 @implementation Loginvc
@@ -37,10 +38,13 @@
 //   
 //}
 
-////记住密码
-//- (IBAction)gotoaa:(id)sender {
-//      NSLog(@"翻转");
-//    [self performSegueWithIdentifier:@"Detail" sender:nil];
-//}
+//登录主界面
+- (IBAction)Login:(id)sender {
+    
+    UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController* test2obj = [uistoryboard instantiateViewControllerWithIdentifier:@"testvc"];  //HomeVC为viewcontroller的StoryboardId
+    [self.navigationController pushViewController:test2obj animated:NO];
+
+}
 
 @end
