@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreText/CoreText.h>
-#import <UIKit/UIKit.h>
+
 @interface NSString (Additions)
 
 //计算大小带间距

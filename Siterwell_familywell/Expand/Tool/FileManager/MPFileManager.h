@@ -11,7 +11,7 @@
 #import <AssetsLibrary/ALAssetsLibrary.h>
 #import <AssetsLibrary/ALAssetsGroup.h>
 #import <AssetsLibrary/ALAssetRepresentation.h>
-#import <UIKit/UIKit.h>
+
 @interface MPFileManager : NSObject
 
 + (MPFileManager *)sharedManager;

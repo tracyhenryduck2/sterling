@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIImageView+WebCache.h"
+
 @interface UITapImageView : UIImageView
 
 - (void)addTapBlock:(void(^)(id obj))tapAction;

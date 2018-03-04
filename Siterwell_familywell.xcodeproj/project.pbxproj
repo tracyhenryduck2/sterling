@@ -346,6 +346,7 @@
 		88A5AE332026A87D00F89C51 /* Siterwell_familywellUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Siterwell_familywellUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A5AE372026A87D00F89C51 /* mytest4UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mytest4UITests.m; sourceTree = "<group>"; };
 		88A5AE392026A87D00F89C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88AAE3E2204C123300D5A3A5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		88B03641203583DD00F18EFE /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
 		88B03642203583DD00F18EFE /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
 		88B03643203583DD00F18EFE /* ESP_CRC8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_CRC8.h; sourceTree = "<group>"; };
@@ -960,6 +961,7 @@
 		883D1625203D5B84007001A2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				88AAE3E2204C123300D5A3A5 /* PrefixHeader.pch */,
 				883D1626203D5BAA007001A2 /* Assets.xcassets */,
 				8829C5E8203D875D007B1A5B /* Images.xcassets */,
 			);
@@ -2583,9 +2585,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle",
-				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
+				"$PODS_CONFIGURATION_BUILD_DIR/HekrSDK/JSSDK.bundle",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle",
 				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
+				"${PODS_ROOT}/WebViewJavascriptBridge/WebViewJavascriptBridge/WebViewJavascriptBridge.js.txt",
+				"${PODS_ROOT}/WeiboSDK/libWeiboSDK/WeiboSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -3000,6 +3005,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Siterwell_familywell/Resource/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3054,6 +3060,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Siterwell_familywell/Resource/PrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

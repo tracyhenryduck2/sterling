@@ -15,8 +15,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "Macros.h"
 
 #import "MBProgressHUD.h"
 
