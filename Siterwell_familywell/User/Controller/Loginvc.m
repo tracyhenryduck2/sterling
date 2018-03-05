@@ -7,8 +7,7 @@
 //
 
 #import "Loginvc.h"
-#import "Macros.h"
-#import "CocoaLumberjack.h"
+#import "AppDelegate.h"
 #import "SiterTools.h"
 
 @interface Loginvc()
@@ -29,6 +28,7 @@
     self.navigationItem.rightBarButtonItem.enabled = YES;
 //    self.navigationController.navigationBarHidden = YES;
     self.navigationItem.title = @"ddd";
+    DDLogError(@"eeee");
 }
 
 
@@ -42,9 +42,9 @@
 - (IBAction)Login:(id)sender {
     
     UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController* test2obj = [uistoryboard instantiateViewControllerWithIdentifier:@"testvc"];  //HomeVC为viewcontroller的StoryboardId
-    [self.navigationController pushViewController:test2obj animated:NO];
-
+    UIViewController* test2obj = [uistoryboard instantiateViewControllerWithIdentifier:@"testvc"];  //
+    AppDelegate* appDelagete = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelagete.window.rootViewController = test2obj;
 }
 
 @end
