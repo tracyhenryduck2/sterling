@@ -9,5 +9,9 @@
 #import "SceneVC.h"
 
 @implementation SceneVC
-
+-(void)viewDidLoad{
+    
+    self.title = NSLocalizedString(@"scene", nil);
+    
+}
 @end

@@ -305,6 +305,7 @@
 		C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5181203FDD1800DE5FF3 /* HomeVC.m */; };
 		C43D5187203FE6D200DE5FF3 /* SceneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5184203FE6D200DE5FF3 /* SceneVC.m */; };
 		C43D5188203FE6D200DE5FF3 /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5185203FE6D200DE5FF3 /* DeviceVC.m */; };
+		C4438E61204F8181004D0FBA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4438E5F204F8181004D0FBA /* Localizable.strings */; };
 		D373E6B030D3F6F2C9516C53 /* libPods-Siterwell_familywell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */; };
 /* End PBXBuildFile section */
 
@@ -930,6 +931,9 @@
 		C43D5184203FE6D200DE5FF3 /* SceneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneVC.m; sourceTree = "<group>"; };
 		C43D5185203FE6D200DE5FF3 /* DeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
 		C43D5186203FE6D200DE5FF3 /* SceneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneVC.h; sourceTree = "<group>"; };
+		C4438E5D204F8176004D0FBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/User.strings"; sourceTree = "<group>"; };
+		C4438E5E204F8177004D0FBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		C4438E60204F8181004D0FBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -993,6 +997,7 @@
 		88A5AE122026A87D00F89C51 /* Siterwell_familywell */ = {
 			isa = PBXGroup;
 			children = (
+				C4438E59204F8021004D0FBA /* Support Files */,
 				C43D517B203FDC9700DE5FF3 /* Home */,
 				883D1625203D5B84007001A2 /* Resource */,
 				88B039902035E5DF00F18EFE /* Expand */,
@@ -1003,8 +1008,6 @@
 				88A5AE142026A87D00F89C51 /* AppDelegate.m */,
 				88A5AE192026A87D00F89C51 /* User.storyboard */,
 				88A5AE1E2026A87D00F89C51 /* LaunchScreen.storyboard */,
-				88A5AE212026A87D00F89C51 /* Info.plist */,
-				88A5AE222026A87D00F89C51 /* main.m */,
 				C43D5179203FD54E00DE5FF3 /* Main.storyboard */,
 			);
 			path = Siterwell_familywell;
@@ -2425,6 +2428,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C4438E59204F8021004D0FBA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C4438E5F204F8181004D0FBA /* Localizable.strings */,
+				88A5AE212026A87D00F89C51 /* Info.plist */,
+				88A5AE222026A87D00F89C51 /* main.m */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2515,6 +2528,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 88A5AE072026A87D00F89C51;
 			productRefGroup = 88A5AE112026A87D00F89C51 /* Products */;
@@ -2535,6 +2549,7 @@
 			files = (
 				8829C5E9203D875D007B1A5B /* Images.xcassets in Resources */,
 				C43D517A203FD54E00DE5FF3 /* Main.storyboard in Resources */,
+				C4438E61204F8181004D0FBA /* Localizable.strings in Resources */,
 				88A5AE202026A87D00F89C51 /* LaunchScreen.storyboard in Resources */,
 				88B03C162035E5E000F18EFE /* NSDateTimeAgo.bundle in Resources */,
 				88B03CF12035E5E000F18EFE /* addressData.plist in Resources */,
@@ -2585,9 +2600,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/HekrSDK/JSSDK.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/HekrSDK/JSSDK.bundle,
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
 				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
 				"${PODS_ROOT}/WebViewJavascriptBridge/WebViewJavascriptBridge/WebViewJavascriptBridge.js.txt",
 				"${PODS_ROOT}/WeiboSDK/libWeiboSDK/WeiboSDK.bundle",
@@ -2951,6 +2966,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				88A5AE1A2026A87D00F89C51 /* Base */,
+				C4438E5D204F8176004D0FBA /* zh-Hans */,
 			);
 			name = User.storyboard;
 			sourceTree = "<group>";
@@ -2959,8 +2975,17 @@
 			isa = PBXVariantGroup;
 			children = (
 				88A5AE1F2026A87D00F89C51 /* Base */,
+				C4438E5E204F8177004D0FBA /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C4438E5F204F8181004D0FBA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4438E60204F8181004D0FBA /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

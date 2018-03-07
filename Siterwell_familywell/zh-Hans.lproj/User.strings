@@ -1,0 +1,24 @@
+
+/* Class = "UIViewController"; title = "Login"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "Login";
+
+/* Class = "UITextField"; text = "dddd"; ObjectID = "QDQ-el-kfc"; */
+"QDQ-el-kfc.text" = "dddd";
+
+/* Class = "UITextField"; text = "ddsads"; ObjectID = "Rad-f7-58D"; */
+"Rad-f7-58D.text" = "ddsads";
+
+/* Class = "UIButton"; normalTitle = "重置密码"; ObjectID = "Tyi-sC-W5r"; */
+"Tyi-sC-W5r.normalTitle" = "重置密码";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "Z2j-mc-Mna"; */
+"Z2j-mc-Mna.normalTitle" = "注册";
+
+/* Class = "UIViewController"; title = "重置密码"; ObjectID = "cuo-c6-wO7"; */
+"cuo-c6-wO7.title" = "重置密码";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tYc-fM-CMH"; */
+"tYc-fM-CMH.normalTitle" = "Button";
+
+/* Class = "UIViewController"; title = "注册"; ObjectID = "vHU-Vx-wLU"; */
+"vHU-Vx-wLU.title" = "注册";

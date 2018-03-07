@@ -10,4 +10,8 @@
 
 @implementation HomeVC
 
+-(void)viewDidLoad{
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
 @end
