@@ -1,4 +1,7 @@
 
+/* Class = "UIButton"; normalTitle = "button"; ObjectID = "ATl-Df-m7X"; */
+"ATl-Df-m7X.normalTitle" = "登录";
+
 /* Class = "UIViewController"; title = "Login"; ObjectID = "BYZ-38-t0r"; */
 "BYZ-38-t0r.title" = "Login";
 
@@ -14,11 +17,14 @@
 /* Class = "UIButton"; normalTitle = "注册"; ObjectID = "Z2j-mc-Mna"; */
 "Z2j-mc-Mna.normalTitle" = "注册";
 
+/* Class = "UITextField"; placeholder = "请输入密码"; ObjectID = "ZIo-XC-EIj"; */
+"ZIo-XC-EIj.placeholder" = "请输入密码";
+
 /* Class = "UIViewController"; title = "重置密码"; ObjectID = "cuo-c6-wO7"; */
 "cuo-c6-wO7.title" = "重置密码";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tYc-fM-CMH"; */
-"tYc-fM-CMH.normalTitle" = "Button";
-
 /* Class = "UIViewController"; title = "注册"; ObjectID = "vHU-Vx-wLU"; */
 "vHU-Vx-wLU.title" = "注册";
+
+/* Class = "UITextField"; placeholder = "请输入手机号"; ObjectID = "whg-Ga-ZSY"; */
+"whg-Ga-ZSY.placeholder" = "请输入手机号";

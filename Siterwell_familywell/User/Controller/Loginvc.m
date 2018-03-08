@@ -14,6 +14,8 @@
 @property (nonatomic,weak) IBOutlet UIButton *test1;
 @property (nonatomic,weak) IBOutlet UIButton *test2;
 @property (nonatomic,weak) IBOutlet UIButton *login;
+@property (nonatomic,weak) IBOutlet UITextField *username;
+@property (nonatomic,weak) IBOutlet UITextField *pwd;
 @end
 
 @implementation Loginvc
@@ -22,12 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"语言", nil);
-    
     self.navigationItem.rightBarButtonItem =  [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"ok", nil) withTintColor:RGB(53, 167, 255)];
     self.navigationItem.rightBarButtonItem.enabled = YES;
     self.navigationItem.title = @"ddd";
     _login.layer.cornerRadius = 17.5f;
+    [_pwd setSecureTextEntry:YES];
 }
 
 
