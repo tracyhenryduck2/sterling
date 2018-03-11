@@ -36,6 +36,10 @@
     [_savePsdbtn setSelected:YES];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:YES];
+    NSLog(@"哈哈哈");
+}
 
 //记住密码
 - (IBAction)savePasswordAction:(id)sender {

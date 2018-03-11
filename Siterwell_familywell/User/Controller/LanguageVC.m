@@ -9,6 +9,18 @@
 #import "LanguageVC.h"
 @implementation LanguageVC
 
+-(void)viewDidLoad{
+
+      [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(dsa) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
+    
+}
+
+-(void)dsa{
+    [self.navigationController popViewControllerAnimated:YES];
+    NSLog(@"test");
+}
+
 #pragma mark - Table view data source
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 4;
