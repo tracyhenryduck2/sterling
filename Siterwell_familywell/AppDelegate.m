@@ -21,9 +21,11 @@
     
     // Standard lumberjack initialization
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    
+
     // And then enable colors
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+
+    self.window.backgroundColor=[UIColor whiteColor];
     return YES;
 }
 

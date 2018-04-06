@@ -7,11 +7,18 @@
 //
 
 #import "HomeVC.h"
-
+#import "DeviceListVC.h"
 @implementation HomeVC
 
 -(void)viewDidLoad{
     [self.navigationController setNavigationBarHidden:YES];
+}
+
+//登录主界面
+- (IBAction)ToDeviceList:(id)sender {
+    
+    DeviceListVC *devcelistvc = [[DeviceListVC alloc] init];
+    [self.navigationController pushViewController:devcelistvc animated:YES];
 }
 
 @end
