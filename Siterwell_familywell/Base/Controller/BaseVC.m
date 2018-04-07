@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(finish) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
     
 }
 
@@ -65,4 +66,8 @@
     return [[UIBarButtonItem alloc] initWithCustomView:btn];
 }
 
+#pragma mark - m
+-(void)finish{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

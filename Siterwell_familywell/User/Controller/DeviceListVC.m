@@ -19,9 +19,9 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-       NSLog(@"viewDidLoad");
-    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:nil image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
-    self.navigationItem.rightBarButtonItem =  [super itemWithTarget:self action:nil Title:NSLocalizedString(@"确定", nil) withTintColor:RGB(53, 167, 255)];
+       NSLog(@"viewDidLoad2");
+//    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(finish) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
+//    self.navigationItem.rightBarButtonItem =  [super itemWithTarget:self action:nil Title:NSLocalizedString(@"确定", nil) withTintColor:RGB(53, 167, 255)];
 }
 -(void)viewWillAppear:(BOOL)animated{
       [super viewWillAppear:animated];
@@ -104,4 +104,8 @@
     return _noDataLb;
 }
 
+#pragma mark - m
+-(void)finish{
+        [self.navigationController popViewControllerAnimated:YES];
+}
 @end

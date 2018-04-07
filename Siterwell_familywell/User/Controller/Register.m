@@ -12,8 +12,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-//    self.navigationItem.rightBarButtonItem =  [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"确定", nil) withTintColor:RGB(53, 167, 255)];
-//    self.navigationItem.leftBarButtonItem = [super itemWithTarget:self action:@selector(back) Title:NSLocalizedString(@"确定", nil) withTintColor:RGB(0, 0, 0)];
+
 }
 
 

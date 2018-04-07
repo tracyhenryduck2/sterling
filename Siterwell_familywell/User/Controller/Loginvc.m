@@ -24,9 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem =  [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"ok", nil) withTintColor:RGB(53, 167, 255)];
-    self.navigationItem.rightBarButtonItem.enabled = YES;
-    self.navigationItem.title = @"ddd";
+//    self.navigationItem.rightBarButtonItem =  [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"ok", nil) withTintColor:RGB(53, 167, 255)];
+//    self.navigationItem.rightBarButtonItem.enabled = YES;
+//    self.navigationItem.title = @"ddd";
     [self.navigationController setNavigationBarHidden:YES];
     _login.layer.cornerRadius = 17.5f;
     [_pwd setSecureTextEntry:YES];

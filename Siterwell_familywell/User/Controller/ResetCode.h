@@ -8,9 +8,6 @@
 
 #ifndef ResetCode_h
 #define ResetCode_h
-#import <UIKit/UIKit.h>
-#import "AFNetworking.h"
-#import "BaseVC.h"
 @interface ResetCode : BaseVC
 
 @end
