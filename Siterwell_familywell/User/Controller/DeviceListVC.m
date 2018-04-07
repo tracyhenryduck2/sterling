@@ -19,7 +19,6 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-       NSLog(@"viewDidLoad2");
 //    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(finish) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
 //    self.navigationItem.rightBarButtonItem =  [super itemWithTarget:self action:nil Title:NSLocalizedString(@"确定", nil) withTintColor:RGB(53, 167, 255)];
 }
