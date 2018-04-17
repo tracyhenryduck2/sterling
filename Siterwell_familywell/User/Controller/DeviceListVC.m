@@ -102,6 +102,25 @@
     }
     return _noDataLb;
 }
+-(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+        @weakify(self)
+    UITableViewRowAction * rdsa = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:NSLocalizedString(@"fan", nil) handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        @strongify(self)
+//        [self deleteAction:indexPath];
+    }];
+    
+    UITableViewRowAction * rdsa2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:NSLocalizedString(@"fan2", nil) handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        @strongify(self)
+        //        [self deleteAction:indexPath];
+    }];
+    
+    return @[rdsa,rdsa2];
+    
+}
+
+//-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return NSLocalizedString(@"删除", nil);
+//}
 
 #pragma mark - m
 -(void)finish{

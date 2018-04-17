@@ -16,6 +16,7 @@
 		88A5AE232026A87D00F89C51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE222026A87D00F89C51 /* main.m */; };
 		88A5AE2D2026A87D00F89C51 /* mytest4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE2C2026A87D00F89C51 /* mytest4Tests.m */; };
 		88A5AE382026A87D00F89C51 /* mytest4UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE372026A87D00F89C51 /* mytest4UITests.m */; };
+		88A7CFD22054FE3B00F82C96 /* LanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A7CFD12054FE3B00F82C96 /* LanguageVC.m */; };
 		88B0365F203583DD00F18EFE /* ESP_ByteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03642203583DD00F18EFE /* ESP_ByteUtil.m */; };
 		88B03660203583DD00F18EFE /* ESP_CRC8.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03644203583DD00F18EFE /* ESP_CRC8.m */; };
 		88B03661203583DD00F18EFE /* ESP_NetUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03646203583DD00F18EFE /* ESP_NetUtil.m */; };
@@ -301,11 +302,12 @@
 		88B762A82029DDD200FC87A0 /* BaseNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B762A42029DDD200FC87A0 /* BaseNC.m */; };
 		88B762AB2029E1D800FC87A0 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B762AA2029E1D800FC87A0 /* Register.m */; };
 		88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B90D32203D50AA007E2A9C /* ResetCode.m */; };
+		88DF4FAD20763A2800232BF8 /* DeviceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FAC20763A2800232BF8 /* DeviceListVC.m */; };
+		88DF4FB22076537300232BF8 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FB12076537300232BF8 /* DeviceModel.m */; };
 		C43D517A203FD54E00DE5FF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43D5179203FD54E00DE5FF3 /* Main.storyboard */; };
 		C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5181203FDD1800DE5FF3 /* HomeVC.m */; };
 		C43D5187203FE6D200DE5FF3 /* SceneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5184203FE6D200DE5FF3 /* SceneVC.m */; };
 		C43D5188203FE6D200DE5FF3 /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5185203FE6D200DE5FF3 /* DeviceVC.m */; };
-		C4438E61204F8181004D0FBA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4438E5F204F8181004D0FBA /* Localizable.strings */; };
 		D373E6B030D3F6F2C9516C53 /* libPods-Siterwell_familywell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */; };
 /* End PBXBuildFile section */
 
@@ -347,6 +349,8 @@
 		88A5AE332026A87D00F89C51 /* Siterwell_familywellUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Siterwell_familywellUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A5AE372026A87D00F89C51 /* mytest4UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mytest4UITests.m; sourceTree = "<group>"; };
 		88A5AE392026A87D00F89C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88A7CFD12054FE3B00F82C96 /* LanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageVC.m; sourceTree = "<group>"; };
+		88A7CFD32054FE4E00F82C96 /* LanguageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageVC.h; sourceTree = "<group>"; };
 		88AAE3E2204C123300D5A3A5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		88B03641203583DD00F18EFE /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
 		88B03642203583DD00F18EFE /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
@@ -924,6 +928,10 @@
 		88B762AA2029E1D800FC87A0 /* Register.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
 		88B90D32203D50AA007E2A9C /* ResetCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetCode.m; sourceTree = "<group>"; };
 		88B90D34203D50BF007E2A9C /* ResetCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetCode.h; sourceTree = "<group>"; };
+		88DF4FAC20763A2800232BF8 /* DeviceListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceListVC.m; sourceTree = "<group>"; };
+		88DF4FAE20763A3C00232BF8 /* DeviceListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceListVC.h; sourceTree = "<group>"; };
+		88DF4FB02076536300232BF8 /* DeviceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceModel.h; sourceTree = "<group>"; };
+		88DF4FB12076537300232BF8 /* DeviceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceModel.m; sourceTree = "<group>"; };
 		C43D5179203FD54E00DE5FF3 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C43D5180203FDD1800DE5FF3 /* HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		C43D5181203FDD1800DE5FF3 /* HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
@@ -931,9 +939,6 @@
 		C43D5184203FE6D200DE5FF3 /* SceneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneVC.m; sourceTree = "<group>"; };
 		C43D5185203FE6D200DE5FF3 /* DeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
 		C43D5186203FE6D200DE5FF3 /* SceneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneVC.h; sourceTree = "<group>"; };
-		C4438E5D204F8176004D0FBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/User.strings"; sourceTree = "<group>"; };
-		C4438E5E204F8177004D0FBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		C4438E60204F8181004D0FBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -970,6 +975,22 @@
 				8829C5E8203D875D007B1A5B /* Images.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		88694BAC2075B5050092B6A8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		88694BAD2075B5100092B6A8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88DF4FB02076536300232BF8 /* DeviceModel.h */,
+				88DF4FB12076537300232BF8 /* DeviceModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		88A5AE072026A87D00F89C51 = {
@@ -2316,8 +2337,8 @@
 		88B7629A2029D33F00FC87A0 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				C43D5178203FAA3000DE5FF3 /* View */,
-				C43D5177203FAA2500DE5FF3 /* Model */,
+				88DF4FAB207639B700232BF8 /* View */,
+				88DF4FA72076399E00232BF8 /* Model */,
 				C43D5176203F9E7800DE5FF3 /* Controller */,
 			);
 			path = User;
@@ -2346,6 +2367,22 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		88DF4FA72076399E00232BF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = Siterwell_familywell/Home/Model;
+			sourceTree = SOURCE_ROOT;
+		};
+		88DF4FAB207639B700232BF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			path = Siterwell_familywell/Home/View;
+			sourceTree = SOURCE_ROOT;
+		};
 		9303C050240E8A60FAE5E25B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2372,30 +2409,19 @@
 				88B762AA2029E1D800FC87A0 /* Register.m */,
 				88B90D32203D50AA007E2A9C /* ResetCode.m */,
 				88B90D34203D50BF007E2A9C /* ResetCode.h */,
+				88A7CFD12054FE3B00F82C96 /* LanguageVC.m */,
+				88A7CFD32054FE4E00F82C96 /* LanguageVC.h */,
+				88DF4FAC20763A2800232BF8 /* DeviceListVC.m */,
+				88DF4FAE20763A3C00232BF8 /* DeviceListVC.h */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		C43D5177203FAA2500DE5FF3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C43D5178203FAA3000DE5FF3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		C43D517B203FDC9700DE5FF3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C43D517E203FDCAF00DE5FF3 /* View */,
-				C43D517D203FDCA800DE5FF3 /* Model */,
+				88694BAD2075B5100092B6A8 /* Model */,
+				88694BAC2075B5050092B6A8 /* View */,
 				C43D517C203FDC9F00DE5FF3 /* Controller */,
 			);
 			path = Home;
@@ -2414,24 +2440,9 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		C43D517D203FDCA800DE5FF3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C43D517E203FDCAF00DE5FF3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		C4438E59204F8021004D0FBA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				C4438E5F204F8181004D0FBA /* Localizable.strings */,
 				88A5AE212026A87D00F89C51 /* Info.plist */,
 				88A5AE222026A87D00F89C51 /* main.m */,
 			);
@@ -2528,7 +2539,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
-				"zh-Hans",
 			);
 			mainGroup = 88A5AE072026A87D00F89C51;
 			productRefGroup = 88A5AE112026A87D00F89C51 /* Products */;
@@ -2549,7 +2559,6 @@
 			files = (
 				8829C5E9203D875D007B1A5B /* Images.xcassets in Resources */,
 				C43D517A203FD54E00DE5FF3 /* Main.storyboard in Resources */,
-				C4438E61204F8181004D0FBA /* Localizable.strings in Resources */,
 				88A5AE202026A87D00F89C51 /* LaunchScreen.storyboard in Resources */,
 				88B03C162035E5E000F18EFE /* NSDateTimeAgo.bundle in Resources */,
 				88B03CF12035E5E000F18EFE /* addressData.plist in Resources */,
@@ -2645,6 +2654,7 @@
 				88B03C832035E5E000F18EFE /* UIImage+Alpha.m in Sources */,
 				88B03CBE2035E5E000F18EFE /* UITextView+PlaceHolder.m in Sources */,
 				88B03BFB2035E5E000F18EFE /* NSManagedObjectContext+Extensions.m in Sources */,
+				88DF4FAD20763A2800232BF8 /* DeviceListVC.m in Sources */,
 				88B03C022035E5E000F18EFE /* NSArray+Block.m in Sources */,
 				88B03C252035E5E000F18EFE /* NSNotificationCenter+MainThread.m in Sources */,
 				88B03CE92035E5E000F18EFE /* YTKBatchRequest.m in Sources */,
@@ -2696,6 +2706,7 @@
 				88B03C812035E5E000F18EFE /* UIFont+WDCustomLoader.m in Sources */,
 				88B0366B203583DD00F18EFE /* ESPUDPSocketClient.m in Sources */,
 				88B03C672035E5E000F18EFE /* UIApplication+KeyboardFrame.m in Sources */,
+				88A7CFD22054FE3B00F82C96 /* LanguageVC.m in Sources */,
 				88B03C0D2035E5E000F18EFE /* NSData+SDDataCache.m in Sources */,
 				88B03C072035E5E000F18EFE /* NSData+APNSToken.m in Sources */,
 				88B03CBC2035E5E000F18EFE /* UITextField+Shake.m in Sources */,
@@ -2829,6 +2840,7 @@
 				88B03C532035E5E000F18EFE /* NSUserDefaults+iCloudSync.m in Sources */,
 				88B03C3E2035E5E000F18EFE /* NSString+Encrypt.m in Sources */,
 				88B03C9B2035E5E000F18EFE /* UILabel+ESAdjustableLabel.m in Sources */,
+				88DF4FB22076537300232BF8 /* DeviceModel.m in Sources */,
 				88B03C692035E5E000F18EFE /* UIApplication+Permissions.m in Sources */,
 				88B03C772035E5E000F18EFE /* UIColor+Gradient.m in Sources */,
 				88B03C522035E5E000F18EFE /* NSURLRequest+ParamsFromDictionary.m in Sources */,
@@ -2966,7 +2978,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				88A5AE1A2026A87D00F89C51 /* Base */,
-				C4438E5D204F8176004D0FBA /* zh-Hans */,
 			);
 			name = User.storyboard;
 			sourceTree = "<group>";
@@ -2975,17 +2986,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				88A5AE1F2026A87D00F89C51 /* Base */,
-				C4438E5E204F8177004D0FBA /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		C4438E5F204F8181004D0FBA /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C4438E60204F8181004D0FBA /* zh-Hans */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
