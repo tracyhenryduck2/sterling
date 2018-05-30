@@ -7,7 +7,6 @@
 //
 
 #import "Loginvc.h"
-#import "AppDelegate.h"
 #import "SiterTools.h"
 
 @interface Loginvc()
@@ -53,8 +52,7 @@
     
     UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController* test2obj = [uistoryboard instantiateViewControllerWithIdentifier:@"testvc"];  //
-    AppDelegate* appDelagete = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    appDelagete.window.rootViewController = test2obj;
+    AppDelegateInstance.window.rootViewController = test2obj;
 }
 
 @end

@@ -161,6 +161,8 @@
 #define kGtAppId           @"iohOusgIfuA57fOVfndY39"
 #define kGtAppKey          @"sHJQ7JmNYoAopfRTrwPu2A"
 #define kGtAppSecret       @"YbY7j0nDX58m2kkoG8CMB8"
+
+#define ISNullStr(originalStr) (!originalStr || [originalStr isKindOfClass:[NSNull class]] || [originalStr isKindOfClass:[NSNull class]] || [[originalStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0 || originalStr == nil)
 #endif
 
 
