@@ -11,7 +11,10 @@
 @interface DeviceModel:JSONModel
 
 @property(strong,nonatomic) NSString * devicename;
-@property(nonatomic,copy) NSNumber *eqid;
+@property(nonatomic)        NSInteger    eqid;
+@property(nonatomic,assign) NSString * devicetype;
+@property(nonatomic,assign) NSString * devicestatus;
+@property(nonatomic,assign) NSString * devTid;
 @end
 
 #endif /* DeviceModel_h */

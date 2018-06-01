@@ -12,6 +12,8 @@
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) NSMutableArray<DeviceModel *> *deviceList;
 @property (nonatomic) UILabel *noDataLb;
+@property (nonatomic,assign) int dsa;
+@property (nonatomic) NSTimer *timer;
 @end
 @implementation DeviceListVC
 
@@ -21,6 +23,12 @@
     [super viewDidLoad];
 //    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(finish) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
 //    self.navigationItem.rightBarButtonItem =  [super itemWithTarget:self action:nil Title:NSLocalizedString(@"确定", nil) withTintColor:RGB(53, 167, 255)];
+   _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(adddone) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:UITrackingRunLoopMode];
+    NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+      NSString *  _statusArray = [[dic objectForKey:@"names"] objectForKey:@"001"];
+    NSLog(@"设备列表：%@",_statusArray);
 }
 -(void)viewWillAppear:(BOOL)animated{
       [super viewWillAppear:animated];
@@ -125,5 +133,14 @@
 #pragma mark - m
 -(void)finish{
         [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) adddone{
+    _dsa ++ ;
+    NSLog(@"技术：%d",_dsa);
+    if(_dsa == 10)
+    {
+        [_timer invalidate];
+    }
 }
 @end

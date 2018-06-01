@@ -304,6 +304,9 @@
 		88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B90D32203D50AA007E2A9C /* ResetCode.m */; };
 		88DF4FAD20763A2800232BF8 /* DeviceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FAC20763A2800232BF8 /* DeviceListVC.m */; };
 		88DF4FB22076537300232BF8 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FB12076537300232BF8 /* DeviceModel.m */; };
+		C42E6BBB20C1249D00784B75 /* device.plist in Resources */ = {isa = PBXBuildFile; fileRef = C42E6BBA20C1249D00784B75 /* device.plist */; };
+		C42E6BBF20C12F0A00784B75 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E6BBD20C12F0900784B75 /* DBManager.m */; };
+		C42E6BC120C1327500784B75 /* DBDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E6BC020C1327500784B75 /* DBDeviceManager.m */; };
 		C43D517A203FD54E00DE5FF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43D5179203FD54E00DE5FF3 /* Main.storyboard */; };
 		C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5181203FDD1800DE5FF3 /* HomeVC.m */; };
 		C43D5187203FE6D200DE5FF3 /* SceneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5184203FE6D200DE5FF3 /* SceneVC.m */; };
@@ -932,6 +935,11 @@
 		88DF4FAE20763A3C00232BF8 /* DeviceListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceListVC.h; sourceTree = "<group>"; };
 		88DF4FB02076536300232BF8 /* DeviceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceModel.h; sourceTree = "<group>"; };
 		88DF4FB12076537300232BF8 /* DeviceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceModel.m; sourceTree = "<group>"; };
+		C42E6BBA20C1249D00784B75 /* device.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = device.plist; sourceTree = "<group>"; };
+		C42E6BBD20C12F0900784B75 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		C42E6BBE20C12F0900784B75 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		C42E6BC020C1327500784B75 /* DBDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBDeviceManager.m; sourceTree = "<group>"; };
+		C42E6BC220C1328400784B75 /* DBDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBDeviceManager.h; sourceTree = "<group>"; };
 		C43D5179203FD54E00DE5FF3 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C43D5180203FDD1800DE5FF3 /* HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		C43D5181203FDD1800DE5FF3 /* HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
@@ -939,6 +947,7 @@
 		C43D5184203FE6D200DE5FF3 /* SceneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneVC.m; sourceTree = "<group>"; };
 		C43D5185203FE6D200DE5FF3 /* DeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
 		C43D5186203FE6D200DE5FF3 /* SceneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneVC.h; sourceTree = "<group>"; };
+		C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2347,6 +2356,7 @@
 		88B7629E2029DCF800FC87A0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C42E6BBC20C12EE500784B75 /* Storage */,
 				88B7629F2029DD6B00FC87A0 /* Controller */,
 			);
 			path = Base;
@@ -2386,6 +2396,7 @@
 		9303C050240E8A60FAE5E25B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */,
 				38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */,
 			);
 			name = Frameworks;
@@ -2398,6 +2409,17 @@
 				631FF296BBCFBC9DC1F7B501 /* Pods-Siterwell_familywell.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C42E6BBC20C12EE500784B75 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				C42E6BBE20C12F0900784B75 /* DBManager.h */,
+				C42E6BBD20C12F0900784B75 /* DBManager.m */,
+				C42E6BC020C1327500784B75 /* DBDeviceManager.m */,
+				C42E6BC220C1328400784B75 /* DBDeviceManager.h */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		C43D5176203F9E7800DE5FF3 /* Controller */ = {
@@ -2443,6 +2465,7 @@
 		C4438E59204F8021004D0FBA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				C42E6BBA20C1249D00784B75 /* device.plist */,
 				88A5AE212026A87D00F89C51 /* Info.plist */,
 				88A5AE222026A87D00F89C51 /* main.m */,
 			);
@@ -2460,7 +2483,6 @@
 				88A5AE0C2026A87D00F89C51 /* Sources */,
 				88A5AE0D2026A87D00F89C51 /* Frameworks */,
 				88A5AE0E2026A87D00F89C51 /* Resources */,
-				3EF3872B21A4177F65DBAA4C /* [CP] Embed Pods Frameworks */,
 				ADAF06D980A63F0655118DC3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -2567,6 +2589,7 @@
 				88A5AE1B2026A87D00F89C51 /* User.storyboard in Resources */,
 				883D1627203D5BAA007001A2 /* Assets.xcassets in Resources */,
 				88B03666203583DD00F18EFE /* EspTouchDemo-Info.plist in Resources */,
+				C42E6BBB20C1249D00784B75 /* device.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2587,21 +2610,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3EF3872B21A4177F65DBAA4C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ADAF06D980A63F0655118DC3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2609,16 +2617,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/HekrSDK/JSSDK.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/HekrSDK/JSSDK.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
 				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
-				"${PODS_ROOT}/WebViewJavascriptBridge/WebViewJavascriptBridge/WebViewJavascriptBridge.js.txt",
 				"${PODS_ROOT}/WeiboSDK/libWeiboSDK/WeiboSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JSSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SAMKeychain.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2853,6 +2864,7 @@
 				88B03662203583DD00F18EFE /* ESP_WifiUtil.m in Sources */,
 				88B03C032035E5E000F18EFE /* NSArray+JSONString.m in Sources */,
 				88B03CD52035E5E000F18EFE /* UIViewController+DDPopUpViewController.m in Sources */,
+				C42E6BC120C1327500784B75 /* DBDeviceManager.m in Sources */,
 				88B03665203583DD00F18EFE /* ESPGuideCode.m in Sources */,
 				88B03C112035E5E000F18EFE /* NSDate+Formatter.m in Sources */,
 				88B03C3D2035E5E000F18EFE /* NSString+Emoji.m in Sources */,
@@ -2873,6 +2885,7 @@
 				88B03CBB2035E5E000F18EFE /* UITextField+Select.m in Sources */,
 				88B03C652035E5E000F18EFE /* UIAlertView+Block.m in Sources */,
 				88B03C1F2035E5E000F18EFE /* NSFileHandle+readLine.m in Sources */,
+				C42E6BBF20C12F0A00784B75 /* DBManager.m in Sources */,
 				88B03C292035E5E000F18EFE /* NSNumber+RomanNumerals.m in Sources */,
 				88B03CB82035E5E000F18EFE /* UITableViewCell+TS_delaysContentTouches.m in Sources */,
 				88B03CAE2035E5E000F18EFE /* UIScrollView+Pages.m in Sources */,
@@ -3146,7 +3159,6 @@
 		88A5AE402026A87D00F89C51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A47HEQQHQU;
 				INFOPLIST_FILE = mytest4Tests/Info.plist;
@@ -3161,7 +3173,6 @@
 		88A5AE412026A87D00F89C51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A47HEQQHQU;
 				INFOPLIST_FILE = mytest4Tests/Info.plist;
