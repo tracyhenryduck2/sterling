@@ -12,6 +12,7 @@ static NSString *deviceTable = @"device_table";
 
 @implementation DBDeviceManager
 
+#pragma mark -sharesInstance
 + (instancetype)sharedInstanced {
     static DBDeviceManager* dbManager;
     static dispatch_once_t once;
@@ -22,8 +23,9 @@ static NSString *deviceTable = @"device_table";
     return dbManager;
 }
 
+#pragma mark -method
 - (void)createDeviceTable{
-    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(id integer primary key AUTOINCREMENT,name varchar(200) NOT NULL, eqid integer default(0),equipmenttype varchar(20),status varchar(20),equipmentdesc varchar(200),packageid integer default (0),sort integer,devTid varchar(30),CONSTRAINT uc_DevID UNIQUE (eqid,devTid))", deviceTable];
+    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(name varchar(200) NOT NULL, eqid integer default(0),equipmenttype varchar(20),status varchar(20),equipmentdesc varchar(200),packageid integer default (0),sort integer,devTid varchar(30),primary key(eqid,devTid))", deviceTable];
     [[DBManager sharedInstanced] createTable:deviceTable sql:sql];
  
 }
@@ -33,14 +35,14 @@ static NSString *deviceTable = @"device_table";
     
     NSMutableArray *allDevice = [NSMutableArray array];
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where packageid = 0 and deviceid =%@ group by eqid order by sort,eqid",deviceTable,devTid]];
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where packageid = 0 and devTid = '%@' group by eqid order by sort,eqid",deviceTable,devTid]];
         while ([rs next]) {
             DeviceModel *deviceModel = [[DeviceModel alloc] init];
             deviceModel.devicename = [rs stringForColumn:@"name"];
             deviceModel.eqid = [rs intForColumn:@"eqid"];
             deviceModel.devicetype = [rs stringForColumn:@"equipmenttype"];
-            deviceModel.devTid = [rs stringForColumn:@"deviceid"];
-            deviceModel.devicestatus = [rs stringForColumn:@"stauts"];
+            deviceModel.devTid = [rs stringForColumn:@"devTid"];
+            deviceModel.devicestatus = [rs stringForColumn:@"status"];
             [allDevice addObject:deviceModel];
         }
     }];
@@ -69,6 +71,14 @@ static NSString *deviceTable = @"device_table";
             NSLog(@"insertDevices : isSuccess=%d",isSuccess);
         }
         [db commit];
+    }];
+}
+
+- (void)deleteDevice:(NSString *)eqid withDevTid:(NSString *)devTid{
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ where sid = '%@' and devTid = '%@' ", deviceTable, eqid,devTid];
+        [db executeUpdate:sql];
     }];
 }
 

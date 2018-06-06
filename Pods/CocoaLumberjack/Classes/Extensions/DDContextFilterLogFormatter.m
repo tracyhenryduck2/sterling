@@ -14,7 +14,7 @@
 //   prior written permission of Deusty, LLC.
 
 #import "DDContextFilterLogFormatter.h"
-#import <pthread/pthread.h>
+#import <libkern/OSAtomic.h>
 
 #if !__has_feature(objc_arc)
 #error This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -131,7 +131,7 @@
 
 
 @interface DDLoggingContextSet () {
-    pthread_mutex_t _mutex;
+    OSSpinLock _lock;
     NSMutableSet *_set;
 }
 
@@ -143,40 +143,36 @@
 - (instancetype)init {
     if ((self = [super init])) {
         _set = [[NSMutableSet alloc] init];
-        pthread_mutex_init(&_mutex, NULL);
+        _lock = OS_SPINLOCK_INIT;
     }
 
     return self;
 }
 
-- (void)dealloc {
-    pthread_mutex_destroy(&_mutex);
-}
-
 - (void)addToSet:(NSUInteger)loggingContext {
-    pthread_mutex_lock(&_mutex);
+    OSSpinLockLock(&_lock);
     {
         [_set addObject:@(loggingContext)];
     }
-    pthread_mutex_unlock(&_mutex);
+    OSSpinLockUnlock(&_lock);
 }
 
 - (void)removeFromSet:(NSUInteger)loggingContext {
-    pthread_mutex_lock(&_mutex);
+    OSSpinLockLock(&_lock);
     {
         [_set removeObject:@(loggingContext)];
     }
-    pthread_mutex_unlock(&_mutex);
+    OSSpinLockUnlock(&_lock);
 }
 
 - (NSArray *)currentSet {
     NSArray *result = nil;
 
-    pthread_mutex_lock(&_mutex);
+    OSSpinLockLock(&_lock);
     {
         result = [_set allObjects];
     }
-    pthread_mutex_unlock(&_mutex);
+    OSSpinLockUnlock(&_lock);
 
     return result;
 }
@@ -184,11 +180,11 @@
 - (BOOL)isInSet:(NSUInteger)loggingContext {
     BOOL result = NO;
 
-    pthread_mutex_lock(&_mutex);
+    OSSpinLockLock(&_lock);
     {
         result = [_set containsObject:@(loggingContext)];
     }
-    pthread_mutex_unlock(&_mutex);
+    OSSpinLockUnlock(&_lock);
 
     return result;
 }

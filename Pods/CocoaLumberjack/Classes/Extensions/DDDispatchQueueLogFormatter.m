@@ -14,8 +14,9 @@
 //   prior written permission of Deusty, LLC.
 
 #import "DDDispatchQueueLogFormatter.h"
-#import <pthread/pthread.h>
+#import <libkern/OSAtomic.h>
 #import <objc/runtime.h>
+
 
 #if !__has_feature(objc_arc)
 #error This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -28,7 +29,7 @@
     int32_t _atomicLoggerCount;
     NSDateFormatter *_threadUnsafeDateFormatter; // Use [self stringFromDate]
     
-    pthread_mutex_t _mutex;
+    OSSpinLock _lock;
     
     NSUInteger _minQueueLength;           // _prefix == Only access via atomic property
     NSUInteger _maxQueueLength;           // _prefix == Only access via atomic property
@@ -62,7 +63,7 @@
 
         _minQueueLength = 0;
         _maxQueueLength = 0;
-        pthread_mutex_init(&_mutex, NULL);
+        _lock = OS_SPINLOCK_INIT;
         _replacements = [[NSMutableDictionary alloc] init];
 
         // Set default replacements:
@@ -80,10 +81,6 @@
     return self;
 }
 
-- (void)dealloc {
-    pthread_mutex_destroy(&_mutex);
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Configuration
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,17 +91,17 @@
 - (NSString *)replacementStringForQueueLabel:(NSString *)longLabel {
     NSString *result = nil;
 
-    pthread_mutex_lock(&_mutex);
+    OSSpinLockLock(&_lock);
     {
         result = _replacements[longLabel];
     }
-    pthread_mutex_unlock(&_mutex);
+    OSSpinLockUnlock(&_lock);
 
     return result;
 }
 
 - (void)setReplacementString:(NSString *)shortLabel forQueueLabel:(NSString *)longLabel {
-    pthread_mutex_lock(&_mutex);
+    OSSpinLockLock(&_lock);
     {
         if (shortLabel) {
             _replacements[longLabel] = shortLabel;
@@ -112,7 +109,7 @@
             [_replacements removeObjectForKey:longLabel];
         }
     }
-    pthread_mutex_unlock(&_mutex);
+    OSSpinLockUnlock(&_lock);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,11 +214,11 @@
             fullLabel = logMessage->_threadName;
         }
 
-        pthread_mutex_lock(&_mutex);
+        OSSpinLockLock(&_lock);
         {
             abrvLabel = _replacements[fullLabel];
         }
-        pthread_mutex_unlock(&_mutex);
+        OSSpinLockUnlock(&_lock);
 
         if (abrvLabel) {
             queueThreadLabel = abrvLabel;

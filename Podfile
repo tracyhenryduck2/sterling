@@ -2,12 +2,9 @@ platform :ios, '8.0'
 
 target "Siterwell_familywell" do
 
-#pod 'HekrSDK',:subspecs => ['Core','socialWeibo'], :podspec => 'https://raw.githubusercontent.com/HEKR-Cloud/HEKR-IOS-SDK/3.0/HekrSDK.podspec'
+pod 'HekrSDK',:subspecs => ['Core','socialWeibo'], :podspec => 'https://raw.githubusercontent.com/HEKR-Cloud/HEKR-IOS-SDK/global/HekrSDK.podspec'
 
-pod 'HekrSDK',:subspecs => ['Core','socialWeibo'], :path => './SDK_171026'
 
-#pod 'CocoaLumberjack'
-#pod 'AFNetworking', '~> 3.0'
 pod 'ReactiveCocoa', '~> 2.5'
 pod 'SDWebImage', '~> 3.7.5'
 pod 'JSONModel', '~> 1.0.1'

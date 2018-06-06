@@ -45,12 +45,7 @@
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];
         
-//        UIView *selBgView = [[UIView alloc] init];
-//        selBgView.backgroundColor = LC_ACTION_SHEET_BG_COLOR_HIGHLIGHTED;
-//        self.selectedBackgroundView = selBgView;
-        
-        
-        UIView *highlightedView = [[UIView alloc] init];
+        UIView *highlightedView  = [[UIView alloc] init];
         highlightedView.backgroundColor = self.cellSeparatorColor;
         highlightedView.clipsToBounds   = YES;
         highlightedView.hidden          = YES;
@@ -69,7 +64,7 @@
             make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 10.0f, 0, 10.0f));
         }];
         
-        UIView *lineView = [[UIView alloc] init];
+        UIView *lineView  = [[UIView alloc] init];
         lineView.backgroundColor = self.cellSeparatorColor;
         lineView.contentMode   = UIViewContentModeBottom;
         lineView.clipsToBounds = YES;

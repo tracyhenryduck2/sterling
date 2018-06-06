@@ -48,7 +48,7 @@ extern const char* const kDDASLDDLogValue;
  *
  *  @return the shared instance
  */
-@property (class, readonly, strong) DDASLLogger *sharedInstance;
++ (instancetype)sharedInstance;
 
 // Inherited from DDAbstractLogger
 

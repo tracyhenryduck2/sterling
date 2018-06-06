@@ -1,5 +1,5 @@
 //
-//  MASViewConstraint.m
+//  MASConstraint.m
 //  Masonry
 //
 //  Created by Jonas Budelmann on 20/07/13.
@@ -252,10 +252,6 @@ static char kInstalledConstraintsKey;
         default:
             break;
     }
-}
-
-- (void)setInset:(CGFloat)inset {
-    [self setInsets:(MASEdgeInsets){.top = inset, .left = inset, .bottom = inset, .right = inset}];
 }
 
 - (void)setOffset:(CGFloat)offset {

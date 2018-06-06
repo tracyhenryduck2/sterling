@@ -141,7 +141,7 @@ In me the tiger sniffs the rose.
     actionSheet.autoHideWhenDeviceRotated = YES;
 
     // V 3.2.4+
-    actionSheet.numberOfTitleLines = 2;
+    actionSheet.titleLinesNumber = 2;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         // [actionSheet appendButtonWithTitle:@"WoW" atIndex:7];
@@ -298,38 +298,6 @@ In me the tiger sniffs the rose.
 ## 版本 ChangeLog
 
 
-### [V 3.3.2](https://github.com/iTofu/LCActionSheet/releases/tag/3.3.2) (2017.10.26)
-
-* 修复一个小问题 for iPhone Ⅹ —— [PR49](https://github.com/iTofu/LCActionSheet/pull/49) by [lhnoah](https://github.com/lhnoah)。
-
-
-### [V 3.3.1](https://github.com/iTofu/LCActionSheet/releases/tag/3.3.1) (2017.10.10)
-
-* 适配 iPhone Ⅹ。
-
-### [V 3.3.0](https://github.com/iTofu/LCActionSheet/releases/tag/3.3.0) (2017.09.25)
-
-* 新增属性 `numberOfTitleLines` 取代原来的 `titleLinesNumber`：
-
-  ```objc
-  @interface LCActionSheetConfig : NSObject
-
-  @property (nonatomic, assign) NSInteger titleLinesNumber;
-  // ->
-  @property (nonatomic, assign) NSInteger numberOfTitleLines;
-
-  @end
-
-
-  @interface LCActionSheet : NSObject
-
-  @property (nonatomic, assign) NSInteger titleLinesNumber;
-  // ->
-  @property (nonatomic, assign) NSInteger numberOfTitleLines;
-
-  @end
-  ```
-
 ### [V 3.2.4](https://github.com/iTofu/LCActionSheet/releases/tag/3.2.4) (2017.06.29)
 
 * 添加属性来控制 title 的 numberOfLines，[#45](https://github.com/iTofu/LCActionSheet/pull/45) by [iOSleep](https://github.com/iOSleep)：
@@ -341,7 +309,6 @@ In me the tiger sniffs the rose.
   @property (nonatomic, assign) NSInteger titleLinesNumber;
 
   @end
-
 
   @interface LCActionSheet : UIView
 

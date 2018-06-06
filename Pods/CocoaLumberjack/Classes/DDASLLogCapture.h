@@ -33,9 +33,16 @@
 + (void)stop;
 
 /**
- *  The current capture level.
+ *  Returns the current capture level.
  *  @note Default log level: DDLogLevelVerbose (i.e. capture all ASL messages).
  */
-@property (class) DDLogLevel captureLevel;
++ (DDLogLevel)captureLevel;
+
+/**
+ *  Set the capture level
+ *
+ *  @param level new level
+ */
++ (void)setCaptureLevel:(DDLogLevel)level;
 
 @end

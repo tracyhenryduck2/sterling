@@ -68,7 +68,7 @@ static DDASLLogger *sharedInstance;
 
     NSString * message = _logFormatter ? [_logFormatter formatLogMessage:logMessage] : logMessage->_message;
 
-    if (message) {
+    if (logMessage) {
         const char *msg = [message UTF8String];
 
         size_t aslLogLevel;
@@ -90,7 +90,7 @@ static DDASLLogger *sharedInstance;
 
         char readUIDString[16];
 #ifndef NS_BLOCK_ASSERTIONS
-        size_t l = snprintf(readUIDString, sizeof(readUIDString), "%d", readUID);
+        int l = snprintf(readUIDString, sizeof(readUIDString), "%d", readUID);
 #else
         snprintf(readUIDString, sizeof(readUIDString), "%d", readUID);
 #endif

@@ -4,128 +4,128 @@
 <dict>
 	<key>pictures</key>
 	<dict>
-		<key>214</key>
+		<key>0214</key>
 		<string>%@_jtbj_icon</string>
-		<key>201</key>
+		<key>0201</key>
 		<string>%@_dtdzncz_icon</string>
-		<key>213</key>
+		<key>0213</key>
 		<string>%@_fm_icon</string>
-		<key>301</key>
+		<key>0301</key>
 		<string>%@_switch_icon</string>
-		<key>305</key>
+		<key>0305</key>
 		<string>%@_btn_icon</string>
-		<key>006</key>
+		<key>0006</key>
 		<string>%@_qtjc_icon</string>
-		<key>109</key>
+		<key>0109</key>
 		<string>%@_smbjq_icon</string>
-		<key>005</key>
+		<key>0005</key>
 		<string>%@_smbjq_icon</string>
-		<key>002</key>
+		<key>0002</key>
 		<string>%@_qtjc_icon</string>
-		<key>004</key>
+		<key>0004</key>
 		<string>%@_sgbjq_icon</string>
-		<key>200</key>
+		<key>0200</key>
 		<string>%@_dtdzncz_icon</string>
-		<key>400</key>
+		<key>0400</key>
 		<string>%@_wgjd_icon</string>
-		<key>100</key>
+		<key>0100</key>
 		<string>%@_pirtcq_icon</string>
-		<key>101</key>
+		<key>0101</key>
 		<string>%@_mc_icon</string>
-		<key>300</key>
+		<key>0300</key>
 		<string>%@_sosbtn_icon</string>
-		<key>000</key>
+		<key>0000</key>
 		<string>%@_cobjq_icon</string>
-		<key>001</key>
+		<key>0001</key>
 		<string>%@_smbjq_icon</string>
-		<key>102</key>
+		<key>0102</key>
 		<string>%@_wsdjcy_icon</string>
-		<key>003</key>
+		<key>0003</key>
 		<string>%@_rg_icon</string>
-		<key>20A</key>
+		<key>020A</key>
 		<string>%@_lamp_icon</string>
-		<key>20D</key>
+		<key>020D</key>
 		<string>%@_jtbj_icon</string>
-		<key>209</key>
+		<key>0209</key>
 		<string>%@_cl_icon</string>
-		<key>210</key>
+		<key>0210</key>
 		<string>%@_mj_icon</string>
-		<key>208</key>
+		<key>0208</key>
 		<string>%@_fm_icon</string>
-		<key>302</key>
+		<key>0302</key>
 		<string>%@_btn_icon</string>
-		<key>303</key>
+		<key>0303</key>
 		<string>%@_btn_icon</string>
-		<key>304</key>
+		<key>0304</key>
 		<string>%@_btn_icon</string>
-		<key>306</key>
+		<key>0306</key>
 		<string>%@_btn_icon</string>
-		<key>307</key>
+		<key>0307</key>
 		<string>%@_btn_icon</string>
-		<key>308</key>
+		<key>0308</key>
 		<string>%@_btn_icon</string>
 	</dict>
 	<key>names</key>
 	<dict>
-		<key>214</key>
+		<key>0214</key>
 		<string>调光模块</string>
-		<key>201</key>
+		<key>0201</key>
 		<string>双路开关</string>
-		<key>213</key>
+		<key>0213</key>
 		<string>门锁</string>
-		<key>305</key>
+		<key>0305</key>
 		<string>情景开关</string>
-		<key>301</key>
+		<key>0301</key>
 		<string>按键</string>
-		<key>006</key>
+		<key>0006</key>
 		<string>气体探测器</string>
-		<key>109</key>
+		<key>0109</key>
 		<string>复合型烟感</string>
-		<key>005</key>
+		<key>0005</key>
 		<string>复合型烟感</string>
-		<key>002</key>
+		<key>0002</key>
 		<string>气体探测器</string>
-		<key>004</key>
+		<key>0004</key>
 		<string>水感报警器</string>
-		<key>200</key>
+		<key>0200</key>
 		<string>智能插座</string>
-		<key>400</key>
+		<key>0400</key>
 		<string>网关</string>
-		<key>100</key>
+		<key>0100</key>
 		<string>PIR探测器</string>
-		<key>101</key>
+		<key>0101</key>
 		<string>门磁</string>
-		<key>300</key>
+		<key>0300</key>
 		<string>SOS按钮</string>
-		<key>000</key>
+		<key>0000</key>
 		<string>CO报警器</string>
-		<key>001</key>
+		<key>0001</key>
 		<string>SM报警器</string>
-		<key>102</key>
+		<key>0102</key>
 		<string>温湿度探测器</string>
-		<key>003</key>
+		<key>0003</key>
 		<string>热感报警器</string>
-		<key>20A</key>
+		<key>020A</key>
 		<string>灯</string>
-		<key>20D</key>
+		<key>020D</key>
 		<string>室内警笛</string>
-		<key>209</key>
+		<key>0209</key>
 		<string>窗帘</string>
-		<key>210</key>
+		<key>0210</key>
 		<string>门禁</string>
-		<key>208</key>
+		<key>0208</key>
 		<string>阀门</string>
-		<key>302</key>
+		<key>0302</key>
 		<string>2扭按键</string>
-		<key>303</key>
+		<key>0303</key>
 		<string>3扭按键</string>
-		<key>304</key>
+		<key>0304</key>
 		<string>4扭按键</string>
-		<key>306</key>
+		<key>0306</key>
 		<string>6扭按键</string>
-		<key>307</key>
+		<key>0307</key>
 		<string>7扭按键</string>
-		<key>308</key>
+		<key>0308</key>
 		<string>8扭按键</string>
 	</dict>
 </dict>
