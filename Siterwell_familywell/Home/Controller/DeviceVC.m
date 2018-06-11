@@ -25,7 +25,6 @@
 -(void)viewDidLoad{
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:nil Title:NSLocalizedString(@"新增",nil) withTintColor:RGB(53, 167, 255)];
     
-    self.title = NSLocalizedString(@"设备",nil);
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 144)];
     backView.backgroundColor = [UIColor whiteColor];

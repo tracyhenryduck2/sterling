@@ -354,6 +354,18 @@
 		C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5181203FDD1800DE5FF3 /* HomeVC.m */; };
 		C43D5187203FE6D200DE5FF3 /* SceneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5184203FE6D200DE5FF3 /* SceneVC.m */; };
 		C43D5188203FE6D200DE5FF3 /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5185203FE6D200DE5FF3 /* DeviceVC.m */; };
+		C4C5B9E120CE092B009A3E2D /* ArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E020CE092B009A3E2D /* ArrayTool.m */; };
+		C4C5B9E920CE0DC9009A3E2D /* BaseDriveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */; };
+		C4C5B9FE20CE1757009A3E2D /* deleteDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9ED20CE1755009A3E2D /* deleteDeviceApi.m */; };
+		C4C5B9FF20CE1757009A3E2D /* RenameDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9EE20CE1755009A3E2D /* RenameDeviceApi.m */; };
+		C4C5BA0020CE1757009A3E2D /* replaceDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9EF20CE1755009A3E2D /* replaceDeviceApi.m */; };
+		C4C5BA0120CE1757009A3E2D /* GetDeviceStatusApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F220CE1755009A3E2D /* GetDeviceStatusApi.m */; };
+		C4C5BA0220CE1757009A3E2D /* CancelAddingApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F620CE1756009A3E2D /* CancelAddingApi.m */; };
+		C4C5BA0320CE1757009A3E2D /* AddDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F720CE1756009A3E2D /* AddDeviceApi.m */; };
+		C4C5BA0420CE1757009A3E2D /* ScynDeviceName.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F920CE1756009A3E2D /* ScynDeviceName.m */; };
+		C4C5BA0820CE5577009A3E2D /* WarnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5BA0720CE5577009A3E2D /* WarnModel.m */; };
+		C4C5BA0A20CE5B37009A3E2D /* DBWarnManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5BA0920CE5B37009A3E2D /* DBWarnManager.m */; };
+		C4C5BA0E20CE7AE0009A3E2D /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5BA0C20CE7AE0009A3E2D /* UserInfoModel.m */; };
 		D373E6B030D3F6F2C9516C53 /* libPods-Siterwell_familywell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */; };
 /* End PBXBuildFile section */
 
@@ -1072,6 +1084,30 @@
 		C43D5185203FE6D200DE5FF3 /* DeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
 		C43D5186203FE6D200DE5FF3 /* SceneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneVC.h; sourceTree = "<group>"; };
 		C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4C5B9DF20CE092B009A3E2D /* ArrayTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayTool.h; sourceTree = "<group>"; };
+		C4C5B9E020CE092B009A3E2D /* ArrayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayTool.m; sourceTree = "<group>"; };
+		C4C5B9E720CE0DC9009A3E2D /* BaseDriveApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDriveApi.h; sourceTree = "<group>"; };
+		C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDriveApi.m; sourceTree = "<group>"; };
+		C4C5B9EC20CE1755009A3E2D /* deleteDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteDeviceApi.h; sourceTree = "<group>"; };
+		C4C5B9ED20CE1755009A3E2D /* deleteDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteDeviceApi.m; sourceTree = "<group>"; };
+		C4C5B9EE20CE1755009A3E2D /* RenameDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameDeviceApi.m; sourceTree = "<group>"; };
+		C4C5B9EF20CE1755009A3E2D /* replaceDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = replaceDeviceApi.m; sourceTree = "<group>"; };
+		C4C5B9F020CE1755009A3E2D /* CancelAddingApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelAddingApi.h; sourceTree = "<group>"; };
+		C4C5B9F120CE1755009A3E2D /* RenameDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameDeviceApi.h; sourceTree = "<group>"; };
+		C4C5B9F220CE1755009A3E2D /* GetDeviceStatusApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetDeviceStatusApi.m; sourceTree = "<group>"; };
+		C4C5B9F320CE1755009A3E2D /* ScynDeviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScynDeviceName.h; sourceTree = "<group>"; };
+		C4C5B9F620CE1756009A3E2D /* CancelAddingApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelAddingApi.m; sourceTree = "<group>"; };
+		C4C5B9F720CE1756009A3E2D /* AddDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceApi.m; sourceTree = "<group>"; };
+		C4C5B9F820CE1756009A3E2D /* replaceDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = replaceDeviceApi.h; sourceTree = "<group>"; };
+		C4C5B9F920CE1756009A3E2D /* ScynDeviceName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScynDeviceName.m; sourceTree = "<group>"; };
+		C4C5B9FB20CE1756009A3E2D /* GetDeviceStatusApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDeviceStatusApi.h; sourceTree = "<group>"; };
+		C4C5B9FC20CE1757009A3E2D /* AddDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceApi.h; sourceTree = "<group>"; };
+		C4C5BA0620CE555D009A3E2D /* WarnModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarnModel.h; sourceTree = "<group>"; };
+		C4C5BA0720CE5577009A3E2D /* WarnModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarnModel.m; sourceTree = "<group>"; };
+		C4C5BA0920CE5B37009A3E2D /* DBWarnManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBWarnManager.m; sourceTree = "<group>"; };
+		C4C5BA0B20CE5B47009A3E2D /* DBWarnManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBWarnManager.h; sourceTree = "<group>"; };
+		C4C5BA0C20CE7AE0009A3E2D /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		C4C5BA0D20CE7AE0009A3E2D /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1129,6 +1165,8 @@
 				C438467A20C6656300FF8725 /* GatewayModel+Siterwell.m */,
 				C438467C20C66A8E00FF8725 /* TimerModel.m */,
 				C438467E20C66A9B00FF8725 /* TimerModel.h */,
+				C4C5BA0620CE555D009A3E2D /* WarnModel.h */,
+				C4C5BA0720CE5577009A3E2D /* WarnModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1158,6 +1196,7 @@
 		88A5AE122026A87D00F89C51 /* Siterwell_familywell */ = {
 			isa = PBXGroup;
 			children = (
+				C4C5B9E320CE0CE3009A3E2D /* Device */,
 				C43A055720C7D56E00B2E5FC /* Siterwell_familywell.entitlements */,
 				C4438E59204F8021004D0FBA /* Support Files */,
 				C43D517B203FDC9700DE5FF3 /* Home */,
@@ -2514,6 +2553,8 @@
 		88DF4FA72076399E00232BF8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C4C5BA0D20CE7AE0009A3E2D /* UserInfoModel.h */,
+				C4C5BA0C20CE7AE0009A3E2D /* UserInfoModel.m */,
 			);
 			name = Model;
 			path = Siterwell_familywell/Home/Model;
@@ -2560,6 +2601,8 @@
 				C438466D20C650E300FF8725 /* DBSceneManager.m */,
 				C438467320C65BDB00FF8725 /* DBGatewayManager.m */,
 				C438467520C65BE700FF8725 /* DBGatewayManager.h */,
+				C4C5BA0920CE5B37009A3E2D /* DBWarnManager.m */,
+				C4C5BA0B20CE5B47009A3E2D /* DBWarnManager.h */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -2711,6 +2754,7 @@
 		C43D517B203FDC9700DE5FF3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C4C5B9DE20CE092B009A3E2D /* Service */,
 				C438469920C677D900FF8725 /* View */,
 				88694BAD2075B5100092B6A8 /* Model */,
 				C43D517C203FDC9F00DE5FF3 /* Controller */,
@@ -2741,6 +2785,54 @@
 			name = "Support Files";
 			sourceTree = "<group>";
 		};
+		C4C5B9DE20CE092B009A3E2D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C4C5B9E720CE0DC9009A3E2D /* BaseDriveApi.h */,
+				C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */,
+				C4C5B9DF20CE092B009A3E2D /* ArrayTool.h */,
+				C4C5B9E020CE092B009A3E2D /* ArrayTool.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C4C5B9E320CE0CE3009A3E2D /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				C4C5B9E620CE0D00009A3E2D /* Controller */,
+				C4C5B9E420CE0CED009A3E2D /* Service */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		C4C5B9E420CE0CED009A3E2D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C4C5B9FC20CE1757009A3E2D /* AddDeviceApi.h */,
+				C4C5B9F720CE1756009A3E2D /* AddDeviceApi.m */,
+				C4C5B9F020CE1755009A3E2D /* CancelAddingApi.h */,
+				C4C5B9F620CE1756009A3E2D /* CancelAddingApi.m */,
+				C4C5B9EC20CE1755009A3E2D /* deleteDeviceApi.h */,
+				C4C5B9ED20CE1755009A3E2D /* deleteDeviceApi.m */,
+				C4C5B9FB20CE1756009A3E2D /* GetDeviceStatusApi.h */,
+				C4C5B9F220CE1755009A3E2D /* GetDeviceStatusApi.m */,
+				C4C5B9F120CE1755009A3E2D /* RenameDeviceApi.h */,
+				C4C5B9EE20CE1755009A3E2D /* RenameDeviceApi.m */,
+				C4C5B9F820CE1756009A3E2D /* replaceDeviceApi.h */,
+				C4C5B9EF20CE1755009A3E2D /* replaceDeviceApi.m */,
+				C4C5B9F320CE1755009A3E2D /* ScynDeviceName.h */,
+				C4C5B9F920CE1756009A3E2D /* ScynDeviceName.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C4C5B9E620CE0D00009A3E2D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2753,7 +2845,6 @@
 				88A5AE0D2026A87D00F89C51 /* Frameworks */,
 				88A5AE0E2026A87D00F89C51 /* Resources */,
 				ADAF06D980A63F0655118DC3 /* [CP] Copy Pods Resources */,
-				B54E48E86AAE631D20FEDD53 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2899,15 +2990,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/HekrSDK/JSSDK.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/HekrSDK/JSSDK.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
 				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
 				"${PODS_ROOT}/WeiboSDK/libWeiboSDK/WeiboSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JSSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SAMKeychain.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2930,21 +3025,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B54E48E86AAE631D20FEDD53 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2989,11 +3069,13 @@
 				88B03C272035E5E000F18EFE /* NSDecimalNumber+Extensions.m in Sources */,
 				88B03C9F2035E5E000F18EFE /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				88B03C972035E5E000F18EFE /* UIImageView+Letters.m in Sources */,
+				C4C5B9E920CE0DC9009A3E2D /* BaseDriveApi.m in Sources */,
 				88B03C942035E5E000F18EFE /* UIImageView+BetterFace.m in Sources */,
 				88B03C342035E5E000F18EFE /* NSObject+Reflection.m in Sources */,
 				88B03C622035E5E000F18EFE /* CAMediaTimingFunction+AdditionalEquations.m in Sources */,
 				88B03CD62035E5E000F18EFE /* UIViewController+MJPopupViewController.m in Sources */,
 				88A5AE232026A87D00F89C51 /* main.m in Sources */,
+				C4C5BA0120CE1757009A3E2D /* GetDeviceStatusApi.m in Sources */,
 				88B03CA02035E5E000F18EFE /* UINavigationController+JZExtension.m in Sources */,
 				88B03C3F2035E5E000F18EFE /* NSString+Hash.m in Sources */,
 				88B03C152035E5E000F18EFE /* NSDate+Utilities.m in Sources */,
@@ -3022,6 +3104,7 @@
 				88B03C072035E5E000F18EFE /* NSData+APNSToken.m in Sources */,
 				88B03CBC2035E5E000F18EFE /* UITextField+Shake.m in Sources */,
 				88B03C382035E5E000F18EFE /* NSMutableString+Ruby.m in Sources */,
+				C4C5B9FF20CE1757009A3E2D /* RenameDeviceApi.m in Sources */,
 				88B03C3B2035E5E000F18EFE /* NSString+Contains.m in Sources */,
 				88B03CB12035E5E000F18EFE /* UITableView+iOS7Style.m in Sources */,
 				88B03C842035E5E000F18EFE /* UIImage+animatedGIF.m in Sources */,
@@ -3037,6 +3120,7 @@
 				88B03C192035E5E000F18EFE /* NSDictionary+JSONString.m in Sources */,
 				88B03BFE2035E5E000F18EFE /* NSManagedObjectContext+ObjectClear.m in Sources */,
 				88B03CB72035E5E000F18EFE /* UITableViewCell+NIB.m in Sources */,
+				C4C5B9E120CE092B009A3E2D /* ArrayTool.m in Sources */,
 				88B03C442035E5E000F18EFE /* NSString+RemoveEmoji.m in Sources */,
 				88B03C122035E5E000F18EFE /* NSDate+InternetDateTime.m in Sources */,
 				88B03CED2035E5E000F18EFE /* YTKNetworkAgent.m in Sources */,
@@ -3067,6 +3151,7 @@
 				88B03C232035E5E000F18EFE /* NSInvocation+Bb.m in Sources */,
 				88B03C1E2035E5E000F18EFE /* NSException+Trace.m in Sources */,
 				88B03C5F2035E5E000F18EFE /* CAAnimation+Blocks.m in Sources */,
+				C4C5BA0020CE1757009A3E2D /* replaceDeviceApi.m in Sources */,
 				88B03CE52035E5E000F18EFE /* HekrConfig.m in Sources */,
 				88B03CE02035E5E000F18EFE /* UIWebView+Style.m in Sources */,
 				88B03C102035E5E000F18EFE /* NSDate+Extension.m in Sources */,
@@ -3076,11 +3161,13 @@
 				88B03C1C2035E5E000F18EFE /* NSDictionary+URL.m in Sources */,
 				88B03CC82035E5E000F18EFE /* UIView+Frame.m in Sources */,
 				88B03669203583DD00F18EFE /* ESPTouchTask.m in Sources */,
+				C4C5B9FE20CE1757009A3E2D /* deleteDeviceApi.m in Sources */,
 				88B03C2F2035E5E000F18EFE /* NSObject+Blocks.m in Sources */,
 				88B03CDD2035E5E000F18EFE /* UIWebView+JS.m in Sources */,
 				C43A055020C76D8F00B2E5FC /* MJRefreshNormalHeader.m in Sources */,
 				88B03CA72035E5E000F18EFE /* UIResponder+Chain.m in Sources */,
 				88B03C5B2035E5E000F18EFE /* JRSwizzle.m in Sources */,
+				C4C5BA0220CE1757009A3E2D /* CancelAddingApi.m in Sources */,
 				88B03C982035E5E000F18EFE /* UIImageView+Reflect.m in Sources */,
 				88B03CD42035E5E000F18EFE /* UIViewController+BlockSegue.m in Sources */,
 				C438468120C66C7800FF8725 /* DBTimerManager.m in Sources */,
@@ -3126,6 +3213,7 @@
 				88B03C0C2035E5E000F18EFE /* NSData+Hash.m in Sources */,
 				88B03C9A2035E5E000F18EFE /* UILabel+AutoSize.m in Sources */,
 				88B03C642035E5E000F18EFE /* CATransaction+AnimateWithDuration.m in Sources */,
+				C4C5BA0A20CE5B37009A3E2D /* DBWarnManager.m in Sources */,
 				88B03C402035E5E000F18EFE /* NSString+Matcher.m in Sources */,
 				88B03CFE2035E5E000F18EFE /* YYFPSLabel.m in Sources */,
 				88B03CF52035E5E000F18EFE /* MPFileManager.m in Sources */,
@@ -3134,6 +3222,7 @@
 				88B03C4A2035E5E000F18EFE /* NSString+UUID.m in Sources */,
 				88B03CD12035E5E000F18EFE /* UIViewController+BackButtonHandler.m in Sources */,
 				88B03CA22035E5E000F18EFE /* UINavigationController+StackManager.m in Sources */,
+				C4C5BA0E20CE7AE0009A3E2D /* UserInfoModel.m in Sources */,
 				88B03C4B2035E5E000F18EFE /* NSString+XML.m in Sources */,
 				88B03664203583DD00F18EFE /* ESPDatumCode.m in Sources */,
 				88B03C0E2035E5E000F18EFE /* NSData+zlib.m in Sources */,
@@ -3189,6 +3278,7 @@
 				88B03C3D2035E5E000F18EFE /* NSString+Emoji.m in Sources */,
 				88B03C052035E5E000F18EFE /* NSBundle+AppIcon.m in Sources */,
 				88B03CB42035E5E000F18EFE /* UITableView+FDKeyedHeightCache.m in Sources */,
+				C4C5BA0420CE1757009A3E2D /* ScynDeviceName.m in Sources */,
 				88B03CE42035E5E000F18EFE /* AppStatusHelp.m in Sources */,
 				88B03C6F2035E5E000F18EFE /* UIBezierPath+Symbol.m in Sources */,
 				88B03CFC2035E5E000F18EFE /* BatterHelp.m in Sources */,
@@ -3198,6 +3288,7 @@
 				88B03CB22035E5E000F18EFE /* UITableView+NoData.m in Sources */,
 				88B03C722035E5E000F18EFE /* UIButton+CountDown.m in Sources */,
 				88B03CB92035E5E000F18EFE /* UITextField+Blocks.m in Sources */,
+				C4C5BA0320CE1757009A3E2D /* AddDeviceApi.m in Sources */,
 				88B03C1D2035E5E000F18EFE /* NSDictionary+XML.m in Sources */,
 				88B03CE32035E5E000F18EFE /* UIWindow+Hierarchy.m in Sources */,
 				88B03C8E2035E5E000F18EFE /* UIImage+PDF.m in Sources */,
@@ -3230,6 +3321,7 @@
 				88B03CB62035E5E000F18EFE /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				88B03C922035E5E000F18EFE /* UIImage+Vector.m in Sources */,
 				C438466520C6278000FF8725 /* DBSystemSceneManager.m in Sources */,
+				C4C5BA0820CE5577009A3E2D /* WarnModel.m in Sources */,
 				88B03CFD2035E5E000F18EFE /* TimeHelper.m in Sources */,
 				88B03C452035E5E000F18EFE /* NSString+Ruby.m in Sources */,
 				88B03CD72035E5E000F18EFE /* UIViewController+StoreKit.m in Sources */,

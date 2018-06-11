@@ -9,9 +9,28 @@
 #import "SceneVC.h"
 
 @implementation SceneVC
+
+#pragma -mark life
+
 -(void)viewDidLoad{
+        NSLog(@"viewDidLoad");
     
-    self.title = NSLocalizedString(@"scene", nil);
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"viewWillAppear");
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"viewDidAppear");
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+     NSLog(@"viewWillDisappear");
+}
+
+
+-(void)viewDidDisappear:(BOOL)animated{
+     NSLog(@"viewDidDisappear");
 }
 @end
