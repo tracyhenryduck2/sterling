@@ -9,10 +9,12 @@
 #import "DeviceVC.h"
 #import "BookShelfMainView.h"
 #import "ItemData.h"
+#import "ArrayTool.h"
 
 @interface DeviceVC ()
 @property (nonatomic, strong) NSMutableArray *modelSource;
 @property (nonatomic, weak)   BookShelfMainView *bookShelfMainView;
+@property (nonatomic,strong) NSMutableArray<ItemData *> *initdataArray;
 @end
 
 
@@ -110,6 +112,7 @@
     }];
     
     [bookShelfView initWithData:self.modelSource];
+    [self.bookShelfMainView.model addObserver:self forKeyPath:@"itemsDataArr" options:NSKeyValueObservingOptionNew context:nil];
     
 }
 
@@ -127,20 +130,37 @@
 
 -(void)loadData{
   
-    if (!self.modelSource) {
-        self.modelSource = [[NSMutableArray alloc]init];
-        ItemData * itemdata = [[ItemData alloc] initWithTitle:@"dsa" DevID:[@1 integerValue] DevType:@"0300" Code:@"04645501"];
-                ItemData * itemdata2 = [[ItemData alloc] initWithTitle:@"dsa" DevID:[@2 integerValue] DevType:@"0006" Code:@"04645501"];
-                ItemData * itemdata3 = [[ItemData alloc] initWithTitle:@"dsa" DevID:[@3 integerValue] DevType:@"0109" Code:@"04645501"];
+    if(!_initdataArray){
+        _initdataArray = [[NSMutableArray<ItemData *> alloc] init];
+        ItemData * itemdata = [[ItemData alloc] initWithTitle:@"dsa" DevID:1 DevType:@"0300" Code:@"04645501"];
+        ItemData * itemdata2 = [[ItemData alloc] initWithTitle:@"dsa" DevID:2 DevType:@"0006" Code:@"04645501"];
+        ItemData * itemdata3 = [[ItemData alloc] initWithTitle:@"dsa" DevID:3 DevType:@"0109" Code:@"04645501"];
         
-        [self.modelSource addObject:itemdata];
-              [self.modelSource addObject:itemdata2];
-              [self.modelSource addObject:itemdata3];
+        [_initdataArray addObject:itemdata];
+        [_initdataArray addObject:itemdata2];
+        [_initdataArray addObject:itemdata3];
     }
     
+    if (!self.modelSource) {
+        self.modelSource = [[NSMutableArray alloc]init];
+
+    }
+    self.modelSource  = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/devices.archiver"]];
+    
+    self.modelSource = [ArrayTool addJudgeArr:self.modelSource UpdateArr:_initdataArray];
+    self.modelSource = [ArrayTool deletJundgeArr:self.modelSource UpdateArr:_initdataArray];
+    self.modelSource = [ArrayTool updateJundgeArr:self.modelSource UpdateArr:_initdataArray];
     
     [self.bookShelfMainView initWithData:self.modelSource];
     [self.bookShelfMainView reloadData];
+}
+
+
+/**
+ KVO
+ */
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void *)context{
+    [NSKeyedArchiver archiveRootObject:_bookShelfMainView.model.itemsDataArr toFile:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/devices.archiver"]];
 }
 
 @end
