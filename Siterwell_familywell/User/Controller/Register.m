@@ -126,7 +126,12 @@
         return;
     }
     
-    if(![NSString  isPhoneNumber:_number.text]){
+    if (flag_register_type&&_number.text.length == 0) {
+        [MBProgressHUD showMessage:NSLocalizedString(@"请输入邮箱号", nil) ToView:self.view RemainTime:1.1f];
+        return;
+    }
+    
+    if(!flag_register_type&&![NSString  isPhoneNumber:_number.text]){
         [MBProgressHUD showMessage:NSLocalizedString(@"手机号非法格式", nil) ToView:self.view RemainTime:1.1f];
         return;
     }
@@ -137,7 +142,33 @@
     [alert cy_clickCancelButton:^{
         
     } determineButton:^{
-        //[self checkCaptchaCode:alert.captchaTF.text];
+        [self checkCaptchaCode:alert.captchaTF.text];
+    }];
+}
+
+- (void)checkCaptchaCode:(NSString *)code {
+
+    [[[Hekr sharedInstance] sessionWithDefaultAuthorization] GET:[NSString stringWithFormat:Hekr_checkCode,ApiMap[@"uaa-openapi.hekr.me"],Hekr_rid,code] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         [self getVerifyCode:responseObject[@"captchaToken"] withNumber:_number.text];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSString* errResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+        ErrorModel *model = [[ErrorModel alloc] initWithString:errResponse error:nil];
+        [MBProgressHUD showError:[ErrorCodeUtil getMessageWithCode:model.code] ToView:self.view];
+    }];
+}
+
+
+- (void)getVerifyCode:(NSString *)token withNumber:(NSString *)number {
+    
+    NSString * type = flag_register_type? Hekr_getEmailVerifyCode:Hekr_getSmsVerifyCode;
+    
+    [[Hekr sharedInstance].sessionWithDefaultAuthorization GET:[NSString stringWithFormat:type,ApiMap[@"uaa-openapi.hekr.me"],number,HekrPID,Hekr_REGISTER,token] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD showMessage:NSLocalizedString(@"发送成功", nil) ToView:self.view RemainTime:1.1];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSString* errResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+        ErrorModel *model = [[ErrorModel alloc] initWithString:errResponse error:nil];
+        [MBProgressHUD showError:[ErrorCodeUtil getMessageWithCode:model.code] ToView:self.view];
     }];
 }
 

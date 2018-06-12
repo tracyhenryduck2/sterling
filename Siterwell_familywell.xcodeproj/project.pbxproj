@@ -370,6 +370,8 @@
 		C4FF15E920CFB13900DA3026 /* VerifyCodeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15E820CFB13800DA3026 /* VerifyCodeAlertView.m */; };
 		C4FF15EC20CFB27800DA3026 /* NSString+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15EB20CFB27800DA3026 /* NSString+JJ.m */; };
 		C4FF15EF20CFC42A00DA3026 /* ResetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15EE20CFC42A00DA3026 /* ResetCell.m */; };
+		C4FF15F220CFD78D00DA3026 /* ErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15F120CFD78C00DA3026 /* ErrorModel.m */; };
+		C4FF15F520CFD82200DA3026 /* ErrorCodeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15F420CFD82200DA3026 /* ErrorCodeUtil.m */; };
 		D373E6B030D3F6F2C9516C53 /* libPods-Siterwell_familywell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */; };
 /* End PBXBuildFile section */
 
@@ -1121,6 +1123,10 @@
 		C4FF15EB20CFB27800DA3026 /* NSString+JJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJ.m"; sourceTree = "<group>"; };
 		C4FF15ED20CFC42900DA3026 /* ResetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetCell.h; sourceTree = "<group>"; };
 		C4FF15EE20CFC42A00DA3026 /* ResetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetCell.m; sourceTree = "<group>"; };
+		C4FF15F020CFD78C00DA3026 /* ErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorModel.h; sourceTree = "<group>"; };
+		C4FF15F120CFD78C00DA3026 /* ErrorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorModel.m; sourceTree = "<group>"; };
+		C4FF15F320CFD82200DA3026 /* ErrorCodeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCodeUtil.h; sourceTree = "<group>"; };
+		C4FF15F420CFD82200DA3026 /* ErrorCodeUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorCodeUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2568,6 +2574,8 @@
 		88DF4FA72076399E00232BF8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C4FF15F020CFD78C00DA3026 /* ErrorModel.h */,
+				C4FF15F120CFD78C00DA3026 /* ErrorModel.m */,
 				C4C5BA0D20CE7AE0009A3E2D /* UserInfoModel.h */,
 				C4C5BA0C20CE7AE0009A3E2D /* UserInfoModel.m */,
 			);
@@ -2809,6 +2817,8 @@
 		C4C5B9DE20CE092B009A3E2D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				C4FF15F320CFD82200DA3026 /* ErrorCodeUtil.h */,
+				C4FF15F420CFD82200DA3026 /* ErrorCodeUtil.m */,
 				C4FF15E320CF935300DA3026 /* HekrHttpsApi.h */,
 				C4C5B9E720CE0DC9009A3E2D /* BaseDriveApi.h */,
 				C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */,
@@ -3346,6 +3356,7 @@
 				88B03CB62035E5E000F18EFE /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				88B03C922035E5E000F18EFE /* UIImage+Vector.m in Sources */,
 				C438466520C6278000FF8725 /* DBSystemSceneManager.m in Sources */,
+				C4FF15F520CFD82200DA3026 /* ErrorCodeUtil.m in Sources */,
 				C4C5BA0820CE5577009A3E2D /* WarnModel.m in Sources */,
 				88B03CFD2035E5E000F18EFE /* TimeHelper.m in Sources */,
 				88B03C452035E5E000F18EFE /* NSString+Ruby.m in Sources */,
@@ -3394,6 +3405,7 @@
 				88B03BFC2035E5E000F18EFE /* NSManagedObjectContext+Fetching.m in Sources */,
 				88B03CDF2035E5E000F18EFE /* UIWebView+MetaParser.m in Sources */,
 				88B03C462035E5E000F18EFE /* NSString+Score.m in Sources */,
+				C4FF15F220CFD78D00DA3026 /* ErrorModel.m in Sources */,
 				88B03CE12035E5E000F18EFE /* UIWebVIew+SwipeGesture.m in Sources */,
 				C43A054E20C76D8F00B2E5FC /* MJRefreshBackStateFooter.m in Sources */,
 				88B03C9E2035E5E000F18EFE /* UINavigationController+BATransitions.m in Sources */,

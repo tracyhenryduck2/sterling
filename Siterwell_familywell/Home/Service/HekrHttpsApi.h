@@ -17,6 +17,7 @@
 #define Hekr_Reset_by_Phone @"%@/resetPassword?type=phone"
 #define Hekr_Reset_by_Email @"%@/resetPassword?type=email_verify_code"
 #define Hekr_getImage @"%@/images/getImgCaptcha?rid=%@"
+#define Hekr_checkCode @"%@/images/checkCaptcha?rid=%@&code=%@"
 #define Hekr_getSmsVerifyCode @"%@/sms/getVerifyCode?phoneNumber=%@&pid=%@&type=%@&token=%@"
 #define Hekr_getEmailVerifyCode @"%@/email/getVerifyCode?email=%@&pid=%@&type=%@&token=%@"
 #endif /* HekrServiceApi_h */
