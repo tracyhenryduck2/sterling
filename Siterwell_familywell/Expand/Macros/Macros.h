@@ -80,6 +80,8 @@
 
 #define COLOR_RGB(rgbValue,a) [UIColor colorWithRed:((float)(((rgbValue) & 0xFF0000) >> 16))/255.0 green:((float)(((rgbValue) & 0xFF00)>>8))/255.0 blue: ((float)((rgbValue) & 0xFF))/255.0 alpha:(a)]
 
+#define ThemeColor RGB(53, 167, 255)
+#define GrayColor  RGB(239, 239, 243)
 
 //App版本号
 #define appMPVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
@@ -135,7 +137,7 @@
 
 //个推 cid
 #define AppClientID @"appClientID"
-
+#define HekrPID @"01808478427"
 #define AppStatus @"appStatus"
 #define IntranetAppStatus @"intranetAppStatus"//内网
 #define NetworkAppStatus @"networkAppStatus"//外网
@@ -143,11 +145,8 @@
 #define Devices @"devices"
 #define DeviceInfo @"deviceInfo"
 #define UserInfos @"userInfo"
-#define UserEmergentPhone @"emergentphone"
 
 #define DeviceSycStatus @"deviceSycStatus"
-
-
 
 #define selectSystemItem @"selectSystemItem"
 

@@ -10,7 +10,7 @@
 
 static NSString * const warninfotable = @"noticetable";
 
-@implementation DBWarnManager 
+@implementation DBWarnManager
 
 #pragma mark -sharesInstance
 + (instancetype)sharedInstanced {
@@ -18,20 +18,20 @@ static NSString * const warninfotable = @"noticetable";
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         dbwarnmanager = [[DBWarnManager alloc] init];
-        [dbwarnmanager createGatewayTable];
+        [dbwarnmanager createWarnInfoTable];
     });
     return dbwarnmanager;
 }
 
 
 #pragma mark -method
-- (void)createGatewayTable{
+- (void)createWarnInfoTable{
     NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(warnid integer,type varchar(5),mid varchar(40),eqid integer default(0),equipmenttype varchar(10),eqstatus varchar(10),activitytime date,desc varchar(100),devTid varchar(30),name varchar(150),primary key(warnid,devTid))", warninfotable];
     [[DBManager sharedInstanced] createTable:warninfotable sql:sql];
     
 }
 
-- (void)insertDevice:(WarnModel *) warnModel{
+- (void)insertWarnInfo:(WarnModel *) warnModel{
     
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         NSString *sql = [NSString stringWithFormat:@"insert into %@ (warnid,type,mid,eqid,equipmenttype,eqstatus,activitytime,devTid) VALUES ('%d','%@','%@','%d','%@','%@','%@','%@')",warninfotable,(int)warnModel.warnid,
@@ -40,7 +40,7 @@ static NSString * const warninfotable = @"noticetable";
     }];
 }
 
-- (void)insertDevices:(NSArray *)warnModels {
+- (void)insertWarnInfos:(NSArray *)warnModels {
     
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         [db beginTransaction];

@@ -8,13 +8,17 @@
 
 #import "AppDelegate.h"
 #import "GeTuiSdk.h"
-
+#import "HekrAPI.h"
+#import <HekrSimpleTcpClient.h>
 // iOS10 及以上需导入 UserNotifications.framework
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
 #endif
 @interface AppDelegate ()<GeTuiSdkDelegate, UNUserNotificationCenterDelegate>
+
+
+@property (nonatomic) HekrSimpleTcpClient *tcpClient;
 
 @end
 
@@ -35,6 +39,42 @@
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
     
     [self registerRemoteNotification];
+    
+
+    self.tcpClient = [[HekrSimpleTcpClient alloc] init];
+    [self.tcpClient createTcpSocket:@"info.hekr.me" onPort:91 connect:^(HekrSimpleTcpClient *client ,BOOL isConnect) {
+        if (isConnect) {
+            [client writeDict:@{@"action":@"getAppDomain"}];
+        }else{
+            //            NSLog(@"get domain error:TCP连接不成功");
+                NSUserDefaults *config =  [NSUserDefaults standardUserDefaults];
+           NSString *ds =  [config objectForKey:@"domain"];
+            if(ds==nil || ds.length ==0){
+                //        自己本地保存domain的参数
+                [[NSUserDefaults standardUserDefaults] setObject:@"hekr.me" forKey:@"hekr_domain"];
+                
+                ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:@"hekr.me"],
+                           @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:@"hekr.me"],
+                           @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:@"hekr.me"]};
+                
+              [[NSUserDefaults standardUserDefaults] setObject:@"hekr.me" forKey:@"hekr_domain"];
+            }else{
+                ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:ds],
+                           @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:ds],
+                           @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:ds]};
+            }
+        }
+    } successCallback:^(HekrSimpleTcpClient *client, NSDictionary *data) {
+        NSString* domain = [[data objectForKey:@"dcInfo"] objectForKey:@"domain"];
+        //        自己本地保存domain的参数
+        [[NSUserDefaults standardUserDefaults] setObject:domain forKey:@"hekr_domain"];
+        
+        ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:domain],
+                   @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:domain],
+                   @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:domain]};
+    }];
+    
+    
     return YES;
 }
 
@@ -64,6 +104,32 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    [[Hekr sharedInstance] didRegisterUserNotificationSettings:notificationSettings];
+}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    // 向个推服务器注册deviceToken
+    [GeTuiSdk registerDeviceToken:token];
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    /// Background Fetch 恢复SDK 运行
+    [GeTuiSdk resume];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    [[Hekr sharedInstance] didReceiveRemoteNotification:userInfo];
+}
+
+- (BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [[Hekr sharedInstance] openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
+
+
 #pragma mark 键盘收回管理
 -(void)configureBoardManager
 {
@@ -76,11 +142,6 @@
 }
 
 #pragma mark - getui
-- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    /// Background Fetch 恢复SDK 运行
-    [GeTuiSdk resume];
-    completionHandler(UIBackgroundFetchResultNewData);
-}
 
 -(void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId{
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:payloadData options:NSJSONReadingMutableContainers error:nil];

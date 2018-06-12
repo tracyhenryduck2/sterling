@@ -37,7 +37,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:YES];
-    DDLogWarn(@"哈哈哈");
 }
 
 //记住密码

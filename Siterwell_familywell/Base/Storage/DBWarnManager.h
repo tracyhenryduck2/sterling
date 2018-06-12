@@ -12,8 +12,11 @@
 #import "DBManager.h"
 #import "WarnModel.h"
 
-@interface DBWarnManager : NSObject
-
+@interface DBWarnManager:NSObject
++ (instancetype)sharedInstanced;
+- (void)insertWarnInfo:(WarnModel *) warnModel;
+- (void)insertWarnInfos:(NSArray *)warnModels;
+- (NSMutableArray *)queryAllWarnInfo:(NSString *)devTid;
 @end
 
 #endif /* DBWarnManager_h */

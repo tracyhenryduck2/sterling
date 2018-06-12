@@ -7,3 +7,7 @@
 //
 
 #import "WarnModel.h"
+
+@implementation WarnModel
+
+@end

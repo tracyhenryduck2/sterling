@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+extern NSDictionary * ApiMap;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

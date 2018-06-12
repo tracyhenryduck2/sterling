@@ -10,7 +10,7 @@
 #define WarnModel_h
 @interface WarnModel:JSONModel
 
-@property (nonatomic, strong) NSInteger warnid;
+@property (nonatomic, assign) NSInteger warnid;
 
 @property (nonatomic, strong) NSString *type;
 
@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) NSDate *time;
 
-@property (nonatomic, assign) NSString *mid;
+@property (nonatomic, strong) NSString *mid;
 
 @property (nonatomic, strong) NSString *devTid;
 @end
