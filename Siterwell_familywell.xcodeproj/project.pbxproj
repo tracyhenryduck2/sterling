@@ -307,6 +307,10 @@
 		C42E6BBB20C1249D00784B75 /* device.plist in Resources */ = {isa = PBXBuildFile; fileRef = C42E6BBA20C1249D00784B75 /* device.plist */; };
 		C42E6BBF20C12F0A00784B75 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E6BBD20C12F0900784B75 /* DBManager.m */; };
 		C42E6BC120C1327500784B75 /* DBDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E6BC020C1327500784B75 /* DBDeviceManager.m */; };
+		C43412F820F34D030006F207 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = C43412F720F34D030006F207 /* WeatherView.m */; };
+		C43412FB20F34D840006F207 /* NewWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C43412FA20F34D840006F207 /* NewWeatherModel.m */; };
+		C43412FE20F351250006F207 /* TempAndHumView.m in Sources */ = {isa = PBXBuildFile; fileRef = C43412FD20F351250006F207 /* TempAndHumView.m */; };
+		C434130120F353F20006F207 /* CYMarquee.m in Sources */ = {isa = PBXBuildFile; fileRef = C434130020F353F20006F207 /* CYMarquee.m */; };
 		C438466520C6278000FF8725 /* DBSystemSceneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C438466420C6278000FF8725 /* DBSystemSceneManager.m */; };
 		C438466720C62CDA00FF8725 /* SystemSceneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C438466620C62CDA00FF8725 /* SystemSceneModel.m */; };
 		C438466A20C62DA900FF8725 /* SceneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C438466920C62DA900FF8725 /* SceneModel.m */; };
@@ -1001,6 +1005,14 @@
 		C42E6BBE20C12F0900784B75 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		C42E6BC020C1327500784B75 /* DBDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBDeviceManager.m; sourceTree = "<group>"; };
 		C42E6BC220C1328400784B75 /* DBDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBDeviceManager.h; sourceTree = "<group>"; };
+		C43412F620F34CCE0006F207 /* WeatherView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
+		C43412F720F34D030006F207 /* WeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
+		C43412F920F34D840006F207 /* NewWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWeatherModel.h; sourceTree = "<group>"; };
+		C43412FA20F34D840006F207 /* NewWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWeatherModel.m; sourceTree = "<group>"; };
+		C43412FC20F351240006F207 /* TempAndHumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempAndHumView.h; sourceTree = "<group>"; };
+		C43412FD20F351250006F207 /* TempAndHumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempAndHumView.m; sourceTree = "<group>"; };
+		C43412FF20F353F20006F207 /* CYMarquee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMarquee.h; sourceTree = "<group>"; };
+		C434130020F353F20006F207 /* CYMarquee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMarquee.m; sourceTree = "<group>"; };
 		C438466320C6276E00FF8725 /* DBSystemSceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSystemSceneManager.h; sourceTree = "<group>"; };
 		C438466420C6278000FF8725 /* DBSystemSceneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBSystemSceneManager.m; sourceTree = "<group>"; };
 		C438466620C62CDA00FF8725 /* SystemSceneModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSceneModel.m; sourceTree = "<group>"; };
@@ -1170,6 +1182,8 @@
 		88694BAD2075B5100092B6A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C43412F920F34D840006F207 /* NewWeatherModel.h */,
+				C43412FA20F34D840006F207 /* NewWeatherModel.m */,
 				C43846A520C6789500FF8725 /* ItemData.h */,
 				C43846A420C6789500FF8725 /* ItemData.m */,
 				88DF4FB02076536300232BF8 /* DeviceModel.h */,
@@ -2660,12 +2674,18 @@
 		C438469920C677D900FF8725 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C43412FF20F353F20006F207 /* CYMarquee.h */,
+				C434130020F353F20006F207 /* CYMarquee.m */,
+				C43412FC20F351240006F207 /* TempAndHumView.h */,
+				C43412FD20F351250006F207 /* TempAndHumView.m */,
+				C43412F720F34D030006F207 /* WeatherView.m */,
 				C438469A20C6780A00FF8725 /* BookCollectionViewCell.h */,
 				C438469C20C6780A00FF8725 /* BookCollectionViewCell.m */,
 				C438469B20C6780A00FF8725 /* BookCollectionViewCell.xib */,
 				C438469F20C6780A00FF8725 /* BookGroupCollectionViewCell.h */,
 				C438469E20C6780A00FF8725 /* BookGroupCollectionViewCell.m */,
 				C438469D20C6780A00FF8725 /* BookGroupCollectionViewCell.xib */,
+				C43412F620F34CCE0006F207 /* WeatherView.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3199,6 +3219,7 @@
 				C4C5B9FE20CE1757009A3E2D /* deleteDeviceApi.m in Sources */,
 				88B03C2F2035E5E000F18EFE /* NSObject+Blocks.m in Sources */,
 				88B03CDD2035E5E000F18EFE /* UIWebView+JS.m in Sources */,
+				C43412FE20F351250006F207 /* TempAndHumView.m in Sources */,
 				C43A055020C76D8F00B2E5FC /* MJRefreshNormalHeader.m in Sources */,
 				88B03CA72035E5E000F18EFE /* UIResponder+Chain.m in Sources */,
 				88B03C5B2035E5E000F18EFE /* JRSwizzle.m in Sources */,
@@ -3219,6 +3240,7 @@
 				88B03CDE2035E5E000F18EFE /* UIWebView+Load.m in Sources */,
 				88B03C312035E5E000F18EFE /* NSObject+GCD.m in Sources */,
 				88B03C352035E5E000F18EFE /* NSObject+Runtime.m in Sources */,
+				C43412F820F34D030006F207 /* WeatherView.m in Sources */,
 				88B039882035DA6800F18EFE /* GVUserDefaults.m in Sources */,
 				88B03C702035E5E000F18EFE /* UIButton+BackgroundColor.m in Sources */,
 				88B03CD32035E5E000F18EFE /* UIViewController+BackButtonTouched.m in Sources */,
@@ -3260,6 +3282,7 @@
 				88B03C4B2035E5E000F18EFE /* NSString+XML.m in Sources */,
 				88B03664203583DD00F18EFE /* ESPDatumCode.m in Sources */,
 				88B03C0E2035E5E000F18EFE /* NSData+zlib.m in Sources */,
+				C43412FB20F34D840006F207 /* NewWeatherModel.m in Sources */,
 				88B03CC12035E5E000F18EFE /* UIView+BlockGesture.m in Sources */,
 				C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */,
 				88B03C8D2035E5E000F18EFE /* UIImage+Orientation.m in Sources */,
@@ -3310,6 +3333,7 @@
 				88B03C112035E5E000F18EFE /* NSDate+Formatter.m in Sources */,
 				C43A054820C76D8F00B2E5FC /* MJRefreshHeader.m in Sources */,
 				C438466E20C650E300FF8725 /* DBSceneManager.m in Sources */,
+				C434130120F353F20006F207 /* CYMarquee.m in Sources */,
 				88B03C3D2035E5E000F18EFE /* NSString+Emoji.m in Sources */,
 				88B03C052035E5E000F18EFE /* NSBundle+AppIcon.m in Sources */,
 				88B03CB42035E5E000F18EFE /* UITableView+FDKeyedHeightCache.m in Sources */,
