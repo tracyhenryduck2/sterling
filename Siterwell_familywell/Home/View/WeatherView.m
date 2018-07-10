@@ -74,7 +74,6 @@
 }
 
 - (void)setModel:(NewWeatherModel *)model {
-    self.model = model;
     [weaIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/%@.png", model.icon]] placeholderImage:[UIImage imageNamed:@"weather_icon"]];
     lb1.text = model.weather;
     lb2.text = [NSString stringWithFormat:NSLocalizedString(@"空气湿度：%@%%", nil), model.humidity];

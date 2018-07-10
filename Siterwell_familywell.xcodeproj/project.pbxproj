@@ -370,6 +370,10 @@
 		C4C5BA0420CE1757009A3E2D /* ScynDeviceName.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F920CE1756009A3E2D /* ScynDeviceName.m */; };
 		C4C5BA0820CE5577009A3E2D /* WarnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5BA0720CE5577009A3E2D /* WarnModel.m */; };
 		C4C5BA0E20CE7AE0009A3E2D /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5BA0C20CE7AE0009A3E2D /* UserInfoModel.m */; };
+		C4E35C2220F4A34F00B806C8 /* BaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C1E20F4A34E00B806C8 /* BaseNetManager.m */; };
+		C4E35C2320F4A34F00B806C8 /* DevNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C1F20F4A34E00B806C8 /* DevNetManager.m */; };
+		C4E35C2620F4A42400B806C8 /* CYNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C2420F4A42400B806C8 /* CYNetManager.m */; };
+		C4E35C2920F4A49E00B806C8 /* DevVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */; };
 		C4FF15E620CF936A00DA3026 /* DBWarnManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15E520CF936A00DA3026 /* DBWarnManager.m */; };
 		C4FF15E920CFB13900DA3026 /* VerifyCodeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15E820CFB13800DA3026 /* VerifyCodeAlertView.m */; };
 		C4FF15EC20CFB27800DA3026 /* NSString+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15EB20CFB27800DA3026 /* NSString+JJ.m */; };
@@ -1126,6 +1130,14 @@
 		C4C5BA0720CE5577009A3E2D /* WarnModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarnModel.m; sourceTree = "<group>"; };
 		C4C5BA0C20CE7AE0009A3E2D /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		C4C5BA0D20CE7AE0009A3E2D /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		C4E35C1E20F4A34E00B806C8 /* BaseNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetManager.m; sourceTree = "<group>"; };
+		C4E35C1F20F4A34E00B806C8 /* DevNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevNetManager.m; sourceTree = "<group>"; };
+		C4E35C2020F4A34F00B806C8 /* DevNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevNetManager.h; sourceTree = "<group>"; };
+		C4E35C2120F4A34F00B806C8 /* BaseNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetManager.h; sourceTree = "<group>"; };
+		C4E35C2420F4A42400B806C8 /* CYNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYNetManager.m; sourceTree = "<group>"; };
+		C4E35C2520F4A42400B806C8 /* CYNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNetManager.h; sourceTree = "<group>"; };
+		C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevVersionModel.m; sourceTree = "<group>"; };
+		C4E35C2820F4A49E00B806C8 /* DevVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevVersionModel.h; sourceTree = "<group>"; };
 		C4FF15E320CF935300DA3026 /* HekrHttpsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HekrHttpsApi.h; sourceTree = "<group>"; };
 		C4FF15E420CF936A00DA3026 /* DBWarnManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBWarnManager.h; sourceTree = "<group>"; };
 		C4FF15E520CF936A00DA3026 /* DBWarnManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBWarnManager.m; sourceTree = "<group>"; };
@@ -1182,6 +1194,8 @@
 		88694BAD2075B5100092B6A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C4E35C2820F4A49E00B806C8 /* DevVersionModel.h */,
+				C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */,
 				C43412F920F34D840006F207 /* NewWeatherModel.h */,
 				C43412FA20F34D840006F207 /* NewWeatherModel.m */,
 				C43846A520C6789500FF8725 /* ItemData.h */,
@@ -2564,6 +2578,7 @@
 		88B7629E2029DCF800FC87A0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C4E35C1D20F4A0FF00B806C8 /* HTTP */,
 				C42E6BBC20C12EE500784B75 /* Storage */,
 				88B7629F2029DD6B00FC87A0 /* Controller */,
 			);
@@ -2883,6 +2898,19 @@
 			children = (
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		C4E35C1D20F4A0FF00B806C8 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				C4E35C2520F4A42400B806C8 /* CYNetManager.h */,
+				C4E35C2420F4A42400B806C8 /* CYNetManager.m */,
+				C4E35C2120F4A34F00B806C8 /* BaseNetManager.h */,
+				C4E35C1E20F4A34E00B806C8 /* BaseNetManager.m */,
+				C4E35C2020F4A34F00B806C8 /* DevNetManager.h */,
+				C4E35C1F20F4A34E00B806C8 /* DevNetManager.m */,
+			);
+			path = HTTP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3252,6 +3280,7 @@
 				88B03661203583DD00F18EFE /* ESP_NetUtil.m in Sources */,
 				C438469120C676A300FF8725 /* BookshelfCollectionViewFlowLayout.m in Sources */,
 				88B03C322035E5E000F18EFE /* NSObject+KVOBlocks.m in Sources */,
+				C4E35C2220F4A34F00B806C8 /* BaseNetManager.m in Sources */,
 				88B03660203583DD00F18EFE /* ESP_CRC8.m in Sources */,
 				88B03CA52035E5E000F18EFE /* UINavigationItem+Margin.m in Sources */,
 				88B0366C203583DD00F18EFE /* ESPUDPSocketServer.m in Sources */,
@@ -3333,6 +3362,7 @@
 				88B03C112035E5E000F18EFE /* NSDate+Formatter.m in Sources */,
 				C43A054820C76D8F00B2E5FC /* MJRefreshHeader.m in Sources */,
 				C438466E20C650E300FF8725 /* DBSceneManager.m in Sources */,
+				C4E35C2320F4A34F00B806C8 /* DevNetManager.m in Sources */,
 				C434130120F353F20006F207 /* CYMarquee.m in Sources */,
 				88B03C3D2035E5E000F18EFE /* NSString+Emoji.m in Sources */,
 				88B03C052035E5E000F18EFE /* NSBundle+AppIcon.m in Sources */,
@@ -3347,6 +3377,7 @@
 				88B03CB22035E5E000F18EFE /* UITableView+NoData.m in Sources */,
 				88B03C722035E5E000F18EFE /* UIButton+CountDown.m in Sources */,
 				88B03CB92035E5E000F18EFE /* UITextField+Blocks.m in Sources */,
+				C4E35C2620F4A42400B806C8 /* CYNetManager.m in Sources */,
 				C4C5BA0320CE1757009A3E2D /* AddDeviceApi.m in Sources */,
 				88B03C1D2035E5E000F18EFE /* NSDictionary+XML.m in Sources */,
 				88B03CE32035E5E000F18EFE /* UIWindow+Hierarchy.m in Sources */,
@@ -3414,6 +3445,7 @@
 				88B0365F203583DD00F18EFE /* ESP_ByteUtil.m in Sources */,
 				88B03CAA2035E5E000F18EFE /* UIScreen+Frame.m in Sources */,
 				C43A054F20C76D8F00B2E5FC /* MJRefreshGifHeader.m in Sources */,
+				C4E35C2920F4A49E00B806C8 /* DevVersionModel.m in Sources */,
 				88B03CBF2035E5E000F18EFE /* UITextView+Select.m in Sources */,
 				88B7629D2029D3BC00FC87A0 /* Loginvc.m in Sources */,
 				88B03C4D2035E5E000F18EFE /* NSTimer+Blocks.m in Sources */,
