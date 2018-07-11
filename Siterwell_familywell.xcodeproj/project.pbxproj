@@ -374,6 +374,11 @@
 		C4E35C2320F4A34F00B806C8 /* DevNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C1F20F4A34E00B806C8 /* DevNetManager.m */; };
 		C4E35C2620F4A42400B806C8 /* CYNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C2420F4A42400B806C8 /* CYNetManager.m */; };
 		C4E35C2920F4A49E00B806C8 /* DevVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */; };
+		C4ED2EBF20F5CBD300B4E008 /* ModeCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED2EBE20F5CBD300B4E008 /* ModeCircleView.m */; };
+		C4ED2EC520F5CDD000B4E008 /* AutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED2EC220F5CDD000B4E008 /* AutoScrollLabel.m */; };
+		C4ED2EC620F5CDD000B4E008 /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED2EC420F5CDD000B4E008 /* KYCircleMenu.m */; };
+		C4ED2EC920F5F20D00B4E008 /* CircleMenuVc.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED2EC720F5F20D00B4E008 /* CircleMenuVc.m */; };
+		C4ED2ECC20F5FC1900B4E008 /* HomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED2ECA20F5FC1900B4E008 /* HomeHeadView.m */; };
 		C4FF15E620CF936A00DA3026 /* DBWarnManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15E520CF936A00DA3026 /* DBWarnManager.m */; };
 		C4FF15E920CFB13900DA3026 /* VerifyCodeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15E820CFB13800DA3026 /* VerifyCodeAlertView.m */; };
 		C4FF15EC20CFB27800DA3026 /* NSString+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FF15EB20CFB27800DA3026 /* NSString+JJ.m */; };
@@ -1138,6 +1143,16 @@
 		C4E35C2520F4A42400B806C8 /* CYNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNetManager.h; sourceTree = "<group>"; };
 		C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevVersionModel.m; sourceTree = "<group>"; };
 		C4E35C2820F4A49E00B806C8 /* DevVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevVersionModel.h; sourceTree = "<group>"; };
+		C4ED2EBD20F5CBC600B4E008 /* ModeCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModeCircleView.h; sourceTree = "<group>"; };
+		C4ED2EBE20F5CBD300B4E008 /* ModeCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModeCircleView.m; sourceTree = "<group>"; };
+		C4ED2EC120F5CDD000B4E008 /* AutoScrollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoScrollLabel.h; sourceTree = "<group>"; };
+		C4ED2EC220F5CDD000B4E008 /* AutoScrollLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoScrollLabel.m; sourceTree = "<group>"; };
+		C4ED2EC320F5CDD000B4E008 /* KYCircleMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCircleMenu.h; sourceTree = "<group>"; };
+		C4ED2EC420F5CDD000B4E008 /* KYCircleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYCircleMenu.m; sourceTree = "<group>"; };
+		C4ED2EC720F5F20D00B4E008 /* CircleMenuVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleMenuVc.m; sourceTree = "<group>"; };
+		C4ED2EC820F5F20D00B4E008 /* CircleMenuVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleMenuVc.h; sourceTree = "<group>"; };
+		C4ED2ECA20F5FC1900B4E008 /* HomeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadView.m; sourceTree = "<group>"; };
+		C4ED2ECB20F5FC1900B4E008 /* HomeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadView.h; sourceTree = "<group>"; };
 		C4FF15E320CF935300DA3026 /* HekrHttpsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HekrHttpsApi.h; sourceTree = "<group>"; };
 		C4FF15E420CF936A00DA3026 /* DBWarnManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBWarnManager.h; sourceTree = "<group>"; };
 		C4FF15E520CF936A00DA3026 /* DBWarnManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBWarnManager.m; sourceTree = "<group>"; };
@@ -1282,6 +1297,7 @@
 		88B0363F203583B100F18EFE /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				C4ED2EC020F5CDD000B4E008 /* KYCircleMenu */,
 				C43A051720C76D8E00B2E5FC /* MJRefresh */,
 				C438468220C676A300FF8725 /* GroupView */,
 				88B039892035E04400F18EFE /* UIPlaceHolderTextView */,
@@ -2689,6 +2705,8 @@
 		C438469920C677D900FF8725 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C4ED2ECB20F5FC1900B4E008 /* HomeHeadView.h */,
+				C4ED2ECA20F5FC1900B4E008 /* HomeHeadView.m */,
 				C43412FF20F353F20006F207 /* CYMarquee.h */,
 				C434130020F353F20006F207 /* CYMarquee.m */,
 				C43412FC20F351240006F207 /* TempAndHumView.h */,
@@ -2701,6 +2719,8 @@
 				C438469E20C6780A00FF8725 /* BookGroupCollectionViewCell.m */,
 				C438469D20C6780A00FF8725 /* BookGroupCollectionViewCell.xib */,
 				C43412F620F34CCE0006F207 /* WeatherView.h */,
+				C4ED2EBD20F5CBC600B4E008 /* ModeCircleView.h */,
+				C4ED2EBE20F5CBD300B4E008 /* ModeCircleView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2829,6 +2849,8 @@
 		C43D517C203FDC9F00DE5FF3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C4ED2EC820F5F20D00B4E008 /* CircleMenuVc.h */,
+				C4ED2EC720F5F20D00B4E008 /* CircleMenuVc.m */,
 				C43D5183203FE6D200DE5FF3 /* DeviceVC.h */,
 				C43D5185203FE6D200DE5FF3 /* DeviceVC.m */,
 				C43D5186203FE6D200DE5FF3 /* SceneVC.h */,
@@ -2911,6 +2933,17 @@
 				C4E35C1F20F4A34E00B806C8 /* DevNetManager.m */,
 			);
 			path = HTTP;
+			sourceTree = "<group>";
+		};
+		C4ED2EC020F5CDD000B4E008 /* KYCircleMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C4ED2EC120F5CDD000B4E008 /* AutoScrollLabel.h */,
+				C4ED2EC220F5CDD000B4E008 /* AutoScrollLabel.m */,
+				C4ED2EC320F5CDD000B4E008 /* KYCircleMenu.h */,
+				C4ED2EC420F5CDD000B4E008 /* KYCircleMenu.m */,
+			);
+			path = KYCircleMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3204,6 +3237,7 @@
 				C4C5B9E120CE092B009A3E2D /* ArrayTool.m in Sources */,
 				88B03C442035E5E000F18EFE /* NSString+RemoveEmoji.m in Sources */,
 				88B03C122035E5E000F18EFE /* NSDate+InternetDateTime.m in Sources */,
+				C4ED2EC920F5F20D00B4E008 /* CircleMenuVc.m in Sources */,
 				88B03CED2035E5E000F18EFE /* YTKNetworkAgent.m in Sources */,
 				C438467D20C66A8E00FF8725 /* TimerModel.m in Sources */,
 				88B03CE72035E5E000F18EFE /* ScanDevice.m in Sources */,
@@ -3300,7 +3334,9 @@
 				88B03C9A2035E5E000F18EFE /* UILabel+AutoSize.m in Sources */,
 				88B03C642035E5E000F18EFE /* CATransaction+AnimateWithDuration.m in Sources */,
 				88B03C402035E5E000F18EFE /* NSString+Matcher.m in Sources */,
+				C4ED2EC520F5CDD000B4E008 /* AutoScrollLabel.m in Sources */,
 				88B03CFE2035E5E000F18EFE /* YYFPSLabel.m in Sources */,
+				C4ED2EC620F5CDD000B4E008 /* KYCircleMenu.m in Sources */,
 				88B03CF52035E5E000F18EFE /* MPFileManager.m in Sources */,
 				88B03CF72035E5E000F18EFE /* MyFileLogger.m in Sources */,
 				88B03C6D2035E5E000F18EFE /* UIBezierPath+LxThroughPointsBezier.m in Sources */,
@@ -3369,6 +3405,7 @@
 				88B03CB42035E5E000F18EFE /* UITableView+FDKeyedHeightCache.m in Sources */,
 				C4C5BA0420CE1757009A3E2D /* ScynDeviceName.m in Sources */,
 				88B03CE42035E5E000F18EFE /* AppStatusHelp.m in Sources */,
+				C4ED2EBF20F5CBD300B4E008 /* ModeCircleView.m in Sources */,
 				88B03C6F2035E5E000F18EFE /* UIBezierPath+Symbol.m in Sources */,
 				88B03CFC2035E5E000F18EFE /* BatterHelp.m in Sources */,
 				C438469820C676A300FF8725 /* UICollectionView+MathIndexPath.m in Sources */,
@@ -3437,6 +3474,7 @@
 				88B03CCA2035E5E000F18EFE /* UIView+Nib.m in Sources */,
 				C438469220C676A300FF8725 /* BookShelfGroupMainView.m in Sources */,
 				88B03C7A2035E5E000F18EFE /* UIColor+Random.m in Sources */,
+				C4ED2ECC20F5FC1900B4E008 /* HomeHeadView.m in Sources */,
 				88B03C6C2035E5E000F18EFE /* UIBezierPath+Length.m in Sources */,
 				88B03C682035E5E000F18EFE /* UIApplication+NetworkActivityIndicator.m in Sources */,
 				88B03C612035E5E000F18EFE /* CALayer+UIColor.m in Sources */,

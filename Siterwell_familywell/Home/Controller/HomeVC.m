@@ -10,19 +10,28 @@
 #import "DeviceListVC.h"
 #import "CYMarquee.h"
 #import "CYNetManager.h"
+#import "ModeCircleView.h"
+#import "CircleMenuVc.h"
 #import <CoreLocation/CoreLocation.h>
 @interface HomeVC()<CLLocationManagerDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
-
+@property (nonatomic,strong) ModeCircleView *modecirleView;
+@property (strong, nonatomic) CircleMenuVc *menuVc;
 @end
 
 
-@implementation HomeVC
+@implementation HomeVC{
+    BOOL flag;
+    NSMutableArray <SystemSceneModel *>* _systemSceneListArray;
+}
 
 
 #pragma mark -life
 -(void)viewDidLoad{
+
+    
+    
     NewWeatherModel *model = [[NewWeatherModel alloc] init];
     model.weather = @"天晴";
     model.humidity = @"10";
@@ -41,7 +50,7 @@
     }
     self.weather_marquee.tempAndHumArray=dsa;
     
-    self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:nil image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
+    self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(test) image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
 
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -53,23 +62,49 @@
     
     self.navigationController.navigationBar.titleTextAttributes= dict;
     [self initLocation];
+    
+
+    [self modecirleView];
+    
+
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    _systemSceneListArray = [[NSMutableArray alloc] init];;
+    for(int i=0;i<3;i++){
+        SystemSceneModel * itemdata = [[SystemSceneModel alloc] init];
+        [_systemSceneListArray addObject:itemdata];
+    }
+    //圆形菜单
+    _menuVc = [[CircleMenuVc alloc] initWithButtonCount:_systemSceneListArray.count
+                                               menuSize:kKYCircleMenuSize
+                                             buttonSize:kKYCircleMenuButtonSize
+                                  buttonImageNameFormat:kKYICircleMenuButtonImageNameFormat
+                                       centerButtonSize:kKYCircleMenuCenterButtonSize
+                                  centerButtonImageName:kKYICircleMenuCenterButton
+                        centerButtonBackgroundImageName:kKYICircleMenuCenterButtonBackground
+                                            centerPoint:_modecirleView.center
+                                           sysSceneArry:_systemSceneListArray];
+    _menuVc.view.frame = self.tabBarController.view.frame;
+    [[UIApplication sharedApplication].keyWindow addSubview:_menuVc.view];
     
+    _menuVc.view.hidden = YES;
     
+    __weak typeof (self) weakSelf = self;
+    _menuVc.closedCircleMenu = ^{
+        weakSelf.menuVc.view.hidden = YES;
+    };
+    _menuVc.clickedMenu = ^(NSInteger tag) {
+        
+        weakSelf.menuVc.view.hidden = YES;
+    };
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-//登录主界面
-- (IBAction)ToDeviceList:(id)sender {
-    
-    DeviceListVC *devcelistvc = [[DeviceListVC alloc] init];
-    [self.navigationController pushViewController:devcelistvc animated:YES];
-}
 
 
 #pragma mark -lazy
@@ -80,6 +115,22 @@
         [self.view addSubview:_weather_marquee];
     }
     return _weather_marquee;
+}
+
+-(ModeCircleView *)modecirleView{
+    if(!_modecirleView){
+        _modecirleView = [[ModeCircleView alloc]init];
+        [self.view addSubview:_modecirleView];
+        [_modecirleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(60, 60));
+            make.bottom.mas_equalTo(self.weather_marquee.mas_bottom).offset(30);
+            make.centerX.equalTo(0);
+        }];
+        [_modecirleView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCircleMenu)]];
+        _modecirleView.userInteractionEnabled = YES;
+        
+    }
+    return _modecirleView;
 }
 
 
@@ -141,6 +192,22 @@
         } else {
         }
     }];
+}
+
+-(void)test{
+    if(!flag){
+        flag = YES;
+          [_modecirleView setText:@"在家"];
+    }else{
+          flag = NO;
+               [_modecirleView setText:@"自定义情景模式111"];
+    }
+
+}
+
+- (void)showCircleMenu{
+    _menuVc.view.hidden = NO;
+    [_menuVc open];
 }
 
 #pragma mark -delegate

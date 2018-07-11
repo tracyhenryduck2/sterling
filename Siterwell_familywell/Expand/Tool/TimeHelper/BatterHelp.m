@@ -288,6 +288,11 @@ static unsigned char auchCRCLo[] = {
         
         binaryString = [NSString stringWithFormat:@"%@%@",binaryString,[NSString stringWithFormat:@"%@",[hexDic objectForKey:key]]];
     }
+    
+    for (int i = 0 ; i < (8 - (int)binaryString.length); i++) {
+        binaryString = [@"0" stringByAppendingString:binaryString];
+    }
+    
     return binaryString;
 }
 
