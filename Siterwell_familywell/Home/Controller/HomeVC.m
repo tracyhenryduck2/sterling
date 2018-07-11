@@ -33,6 +33,14 @@
     self.weather_marquee.model = model;
     self.weather_marquee.address = address;
     
+    NSMutableArray <ItemData *> *dsa = [[NSMutableArray alloc] init];
+    
+    for(int i=0;i<3;i++){
+      ItemData * itemdata = [[ItemData alloc] initWithTitle:@"dsa" DevID:(i+1) DevType:@"0102" Code:@"04645501"];
+        [dsa addObject:itemdata];
+    }
+    self.weather_marquee.tempAndHumArray=dsa;
+    
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:nil image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
 
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];

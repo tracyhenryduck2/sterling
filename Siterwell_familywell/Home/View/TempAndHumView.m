@@ -38,7 +38,7 @@
     tempLb.font = [UIFont systemFontOfSize:40];
     [self addSubview:tempLb];
     [tempLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(nameLb.mas_bottom).offset(20);
+        make.centerY.equalTo(40);
         make.right.equalTo(-50);
     }];
     
@@ -47,15 +47,15 @@
     humLb.textColor = [UIColor whiteColor];
     [self addSubview:humLb];
     [humLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(tempLb);
+        make.centerY.equalTo(40);
         make.left.equalTo(50);
     }];
 }
 
 - (void)setItemData:(ItemData *)itemData {
     
-    if([itemData.customTitle isEqualToString:@""]){
-        nameLb.text  = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(itemData.title, nil),itemData.devID];
+    if([NSString isBlankString:itemData.customTitle]){
+        nameLb.text  = [NSString stringWithFormat:@"%@ %ld", NSLocalizedString(itemData.title, nil),itemData.devID];
     }else{
         nameLb.text = itemData.customTitle;
     }
