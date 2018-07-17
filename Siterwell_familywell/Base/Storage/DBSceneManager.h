@@ -13,6 +13,6 @@
 
 @interface DBSceneManager:NSObject
 + (instancetype)sharedInstanced;
-- (NSMutableArray *)queryAllScene:(NSString *)sid withDevTid:(NSString *)devTid;
+- (NSMutableArray *)queryAllScenewithDevTid:(NSString *)devTid;
 @end
 #endif /* DBSceneManager_h */

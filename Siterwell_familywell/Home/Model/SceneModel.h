@@ -13,7 +13,6 @@
 @property(strong,nonatomic) NSString * scenename;
 @property(nonatomic,assign) NSString * code;
 @property(nonatomic,assign) NSString * mid;
-@property(nonatomic,assign) NSString * sid;
 @property(nonatomic,assign) NSString * devTid;
 @property(nonatomic,assign) NSString * desc;
 @end

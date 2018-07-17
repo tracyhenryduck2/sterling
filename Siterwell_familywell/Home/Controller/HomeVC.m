@@ -12,12 +12,14 @@
 #import "CYNetManager.h"
 #import "ModeCircleView.h"
 #import "CircleMenuVc.h"
+#import "HomeHeadView.h"
 #import <CoreLocation/CoreLocation.h>
-@interface HomeVC()<CLLocationManagerDelegate>
+@interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
 @property (nonatomic,strong) ModeCircleView *modecirleView;
-@property (strong, nonatomic) CircleMenuVc *menuVc;
+@property (nonatomic,strong) CircleMenuVc *menuVc;
+@property (nonatomic,strong) HomeHeadView *videoView;
 @end
 
 
@@ -66,7 +68,8 @@
 
     [self modecirleView];
     
-
+    NSArray * ds = @[@{@"devid":@"lbt_01",@"name":@"嘿嘿嘿"}];
+    [self.videoView setVideoArray:ds];
     
 }
 
@@ -133,6 +136,19 @@
     return _modecirleView;
 }
 
+-(HomeHeadView *)videoView{
+    if(!_videoView){
+        _videoView = [[HomeHeadView alloc] init];
+        [self.view addSubview:_videoView];
+        [_videoView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(Main_Screen_Width, Main_Screen_Width*79/108));
+            make.top.equalTo(_weather_marquee.bottom);
+            
+        }];
+        [self.view bringSubviewToFront:_modecirleView];
+    }
+    return _videoView;
+}
 
 #pragma mark -method
 -(void)initLocation{
@@ -223,5 +239,10 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     [self getLocationWeather];
 }
+
+- (void)cycleScrollView:(HomeHeadView *)cycleScrollView didSelectImageView:(NSInteger)index videoInfos:(NSArray *)videosArray {
+    
+}
+
 
 @end

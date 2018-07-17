@@ -10,5 +10,11 @@
 
 @implementation GatewayModel (Siterwell)
 
+-(void) setIsChoice:(NSInteger)IsChoice{
+    self.IsChoice = IsChoice;
+}
 
+-(NSInteger)IsChoice{
+    return self.IsChoice;
+}
 @end

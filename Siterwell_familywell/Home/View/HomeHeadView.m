@@ -15,15 +15,24 @@
     NSMutableArray *_curImageArray; //当前显示的图片数组
     NSInteger          _curPage;    //当前显示的图片位置
 //    NSTimer           *_timer;      //定时器
-    UIView          *_subview;
 }
 
 -(id)initWithSubView:(UIView *)view{
     if (self = [super init]) {
-        _subview = view;
-
         [self setupUI];
 
+        //初始化数据，当前图片默认位置是0
+        _curImageArray = [[NSMutableArray alloc] initWithCapacity:0];
+        _curPage = 0;
+    }
+    return self;
+}
+
+-(instancetype)init{
+    if (self = [super init]) {
+        
+        [self setupUI];
+        
         //初始化数据，当前图片默认位置是0
         _curImageArray = [[NSMutableArray alloc] initWithCapacity:0];
         _curPage = 0;

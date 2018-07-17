@@ -358,6 +358,8 @@
 		C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5181203FDD1800DE5FF3 /* HomeVC.m */; };
 		C43D5187203FE6D200DE5FF3 /* SceneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5184203FE6D200DE5FF3 /* SceneVC.m */; };
 		C43D5188203FE6D200DE5FF3 /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5185203FE6D200DE5FF3 /* DeviceVC.m */; };
+		C46BDCC820FDBEA700796E61 /* DBGS584RelationShipManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C46BDCC720FDBEA700796E61 /* DBGS584RelationShipManager.m */; };
+		C46BDCCE20FDC5C800796E61 /* DBSceneReManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C46BDCCD20FDC5C800796E61 /* DBSceneReManager.m */; };
 		C4A176B720CF720F002AE3F7 /* RegistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A176B620CF720F002AE3F7 /* RegistCell.m */; };
 		C4C5B9E120CE092B009A3E2D /* ArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E020CE092B009A3E2D /* ArrayTool.m */; };
 		C4C5B9E920CE0DC9009A3E2D /* BaseDriveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */; };
@@ -370,6 +372,8 @@
 		C4C5BA0420CE1757009A3E2D /* ScynDeviceName.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F920CE1756009A3E2D /* ScynDeviceName.m */; };
 		C4C5BA0820CE5577009A3E2D /* WarnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5BA0720CE5577009A3E2D /* WarnModel.m */; };
 		C4C5BA0E20CE7AE0009A3E2D /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5BA0C20CE7AE0009A3E2D /* UserInfoModel.m */; };
+		C4C9D9A920FDB68600C89AD9 /* GS584RelationShip.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C9D9A820FDB68600C89AD9 /* GS584RelationShip.m */; };
+		C4C9D9AC20FDB7C800C89AD9 /* SceneRelationShip.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C9D9AB20FDB7C800C89AD9 /* SceneRelationShip.m */; };
 		C4E35C2220F4A34F00B806C8 /* BaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C1E20F4A34E00B806C8 /* BaseNetManager.m */; };
 		C4E35C2320F4A34F00B806C8 /* DevNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C1F20F4A34E00B806C8 /* DevNetManager.m */; };
 		C4E35C2620F4A42400B806C8 /* CYNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C2420F4A42400B806C8 /* CYNetManager.m */; };
@@ -1110,6 +1114,9 @@
 		C43D5184203FE6D200DE5FF3 /* SceneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneVC.m; sourceTree = "<group>"; };
 		C43D5185203FE6D200DE5FF3 /* DeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
 		C43D5186203FE6D200DE5FF3 /* SceneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneVC.h; sourceTree = "<group>"; };
+		C46BDCC720FDBEA700796E61 /* DBGS584RelationShipManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBGS584RelationShipManager.m; sourceTree = "<group>"; };
+		C46BDCCC20FDC5A800796E61 /* DBSceneReManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSceneReManager.h; sourceTree = "<group>"; };
+		C46BDCCD20FDC5C800796E61 /* DBSceneReManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBSceneReManager.m; sourceTree = "<group>"; };
 		C4A176B520CF71FB002AE3F7 /* RegistCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistCell.h; sourceTree = "<group>"; };
 		C4A176B620CF720F002AE3F7 /* RegistCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistCell.m; sourceTree = "<group>"; };
 		C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1135,6 +1142,11 @@
 		C4C5BA0720CE5577009A3E2D /* WarnModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarnModel.m; sourceTree = "<group>"; };
 		C4C5BA0C20CE7AE0009A3E2D /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		C4C5BA0D20CE7AE0009A3E2D /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		C4C9D9A720FDB66F00C89AD9 /* GS584RelationShip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GS584RelationShip.h; sourceTree = "<group>"; };
+		C4C9D9A820FDB68600C89AD9 /* GS584RelationShip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GS584RelationShip.m; sourceTree = "<group>"; };
+		C4C9D9AA20FDB7B700C89AD9 /* SceneRelationShip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneRelationShip.h; sourceTree = "<group>"; };
+		C4C9D9AB20FDB7C800C89AD9 /* SceneRelationShip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneRelationShip.m; sourceTree = "<group>"; };
+		C4C9D9B020FDBC5F00C89AD9 /* DBGS584RelationShipManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBGS584RelationShipManager.h; sourceTree = "<group>"; };
 		C4E35C1E20F4A34E00B806C8 /* BaseNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetManager.m; sourceTree = "<group>"; };
 		C4E35C1F20F4A34E00B806C8 /* DevNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevNetManager.m; sourceTree = "<group>"; };
 		C4E35C2020F4A34F00B806C8 /* DevNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevNetManager.h; sourceTree = "<group>"; };
@@ -1229,6 +1241,10 @@
 				C438467E20C66A9B00FF8725 /* TimerModel.h */,
 				C4C5BA0620CE555D009A3E2D /* WarnModel.h */,
 				C4C5BA0720CE5577009A3E2D /* WarnModel.m */,
+				C4C9D9A720FDB66F00C89AD9 /* GS584RelationShip.h */,
+				C4C9D9A820FDB68600C89AD9 /* GS584RelationShip.m */,
+				C4C9D9AA20FDB7B700C89AD9 /* SceneRelationShip.h */,
+				C4C9D9AB20FDB7C800C89AD9 /* SceneRelationShip.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2677,6 +2693,10 @@
 				C438466D20C650E300FF8725 /* DBSceneManager.m */,
 				C438467320C65BDB00FF8725 /* DBGatewayManager.m */,
 				C438467520C65BE700FF8725 /* DBGatewayManager.h */,
+				C4C9D9B020FDBC5F00C89AD9 /* DBGS584RelationShipManager.h */,
+				C46BDCC720FDBEA700796E61 /* DBGS584RelationShipManager.m */,
+				C46BDCCC20FDC5A800796E61 /* DBSceneReManager.h */,
+				C46BDCCD20FDC5C800796E61 /* DBSceneReManager.m */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -3247,6 +3267,7 @@
 				88B03BFF2035E5E000F18EFE /* NSPersistentStoreCoordinator+Custom.m in Sources */,
 				88B03BF82035E5E000F18EFE /* NSFetchRequest+Extensions.m in Sources */,
 				88B03C9D2035E5E000F18EFE /* UINavigationBar+Awesome.m in Sources */,
+				C4C9D9A920FDB68600C89AD9 /* GS584RelationShip.m in Sources */,
 				C43A054420C76D8F00B2E5FC /* MJRefreshAutoFooter.m in Sources */,
 				88B03CEA2035E5E000F18EFE /* YTKBatchRequestAgent.m in Sources */,
 				88B03BFA2035E5E000F18EFE /* NSManagedObject+Extensions.m in Sources */,
@@ -3320,10 +3341,12 @@
 				88B0366C203583DD00F18EFE /* ESPUDPSocketServer.m in Sources */,
 				88B03C632035E5E000F18EFE /* CAShapeLayer+UIBezierPath.m in Sources */,
 				88B03C512035E5E000F18EFE /* NSMutableURLRequest+Upload.m in Sources */,
+				C4C9D9AC20FDB7C800C89AD9 /* SceneRelationShip.m in Sources */,
 				88B03C8A2035E5E000F18EFE /* UIImage+FX.m in Sources */,
 				88B03C782035E5E000F18EFE /* UIColor+HEX.m in Sources */,
 				88B03CAF2035E5E000F18EFE /* UISearchBar+Blocks.m in Sources */,
 				88B03CBD2035E5E000F18EFE /* UITextView+PinchZoom.m in Sources */,
+				C46BDCCE20FDC5C800796E61 /* DBSceneReManager.m in Sources */,
 				88B03C302035E5E000F18EFE /* NSObject+EasyCopy.m in Sources */,
 				88B03C592035E5E000F18EFE /* MBProgressHUD+MP.m in Sources */,
 				88B03C372035E5E000F18EFE /* NSSet+Block.m in Sources */,
@@ -3338,6 +3361,7 @@
 				88B03CFE2035E5E000F18EFE /* YYFPSLabel.m in Sources */,
 				C4ED2EC620F5CDD000B4E008 /* KYCircleMenu.m in Sources */,
 				88B03CF52035E5E000F18EFE /* MPFileManager.m in Sources */,
+				C46BDCC820FDBEA700796E61 /* DBGS584RelationShipManager.m in Sources */,
 				88B03CF72035E5E000F18EFE /* MyFileLogger.m in Sources */,
 				88B03C6D2035E5E000F18EFE /* UIBezierPath+LxThroughPointsBezier.m in Sources */,
 				88B03C4A2035E5E000F18EFE /* NSString+UUID.m in Sources */,
