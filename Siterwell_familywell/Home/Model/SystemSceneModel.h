@@ -9,7 +9,7 @@
 #ifndef SystemSceneModel_h
 #define SystemSceneModel_h
 @interface SystemSceneModel:JSONModel
-
+@property (nonatomic, strong) NSString *answer_content;
 @property(strong,nonatomic) NSString * systemname;
 @property(nonatomic)        NSInteger   choice;
 @property(nonatomic,assign) NSString * sid;

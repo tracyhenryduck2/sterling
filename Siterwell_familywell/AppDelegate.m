@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GeTuiSdk.h"
 #import "HekrAPI.h"
+#import "NSBundle+Language.h"
 #import <HekrSimpleTcpClient.h>
 // iOS10 及以上需导入 UserNotifications.framework
 
@@ -26,6 +27,30 @@
 
 #pragma mark - life
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSString *lan;
+    NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+    NSString *languageName = [appLanguages objectAtIndex:0];
+    if ([languageName containsString:@"zh"]) {
+        lan = @"zh";
+    } else if ([languageName containsString:@"de"]) {
+        lan = @"de";
+    } else if ([languageName containsString:@"fr"]) {
+        lan = @"fr";
+    }else if ([languageName containsString:@"es"]) {
+        lan = @"es";
+    } else {
+        lan = @"en";
+    }
+    [NSBundle setLanguage:lan];
+    
+    
+    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"json"]];
+    NSDictionary *config = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableLeaves error:nil];
+    
+    [[Hekr sharedInstance] config:config startPage:nil launchOptions:launchOptions];
+    [[Hekr sharedInstance] firstPage];
+    
     // Override point for customization after application launch.
     [self configureBoardManager];
     

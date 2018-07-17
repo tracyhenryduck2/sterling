@@ -360,6 +360,7 @@
 		C43D5188203FE6D200DE5FF3 /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D5185203FE6D200DE5FF3 /* DeviceVC.m */; };
 		C46BDCC820FDBEA700796E61 /* DBGS584RelationShipManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C46BDCC720FDBEA700796E61 /* DBGS584RelationShipManager.m */; };
 		C46BDCCE20FDC5C800796E61 /* DBSceneReManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C46BDCCD20FDC5C800796E61 /* DBSceneReManager.m */; };
+		C46BDCD020FDE90800796E61 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = C46BDCCF20FDE90700796E61 /* config.json */; };
 		C4A176B720CF720F002AE3F7 /* RegistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A176B620CF720F002AE3F7 /* RegistCell.m */; };
 		C4C5B9E120CE092B009A3E2D /* ArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E020CE092B009A3E2D /* ArrayTool.m */; };
 		C4C5B9E920CE0DC9009A3E2D /* BaseDriveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */; };
@@ -1117,6 +1118,7 @@
 		C46BDCC720FDBEA700796E61 /* DBGS584RelationShipManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBGS584RelationShipManager.m; sourceTree = "<group>"; };
 		C46BDCCC20FDC5A800796E61 /* DBSceneReManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSceneReManager.h; sourceTree = "<group>"; };
 		C46BDCCD20FDC5C800796E61 /* DBSceneReManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBSceneReManager.m; sourceTree = "<group>"; };
+		C46BDCCF20FDE90700796E61 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		C4A176B520CF71FB002AE3F7 /* RegistCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistCell.h; sourceTree = "<group>"; };
 		C4A176B620CF720F002AE3F7 /* RegistCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistCell.m; sourceTree = "<group>"; };
 		C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2884,6 +2886,7 @@
 		C4438E59204F8021004D0FBA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				C46BDCCF20FDE90700796E61 /* config.json */,
 				C42E6BBA20C1249D00784B75 /* device.plist */,
 				88A5AE212026A87D00F89C51 /* Info.plist */,
 				88A5AE222026A87D00F89C51 /* main.m */,
@@ -3037,8 +3040,11 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -3087,6 +3093,7 @@
 				88B03CF12035E5E000F18EFE /* addressData.plist in Resources */,
 				88B03CF32035E5E000F18EFE /* city_province.plist in Resources */,
 				C43A055220C76D8F00B2E5FC /* MJRefresh.bundle in Resources */,
+				C46BDCD020FDE90800796E61 /* config.json in Resources */,
 				88B03CF42035E5E000F18EFE /* street.plist in Resources */,
 				C438467020C658A300FF8725 /* Device.xcassets in Resources */,
 				88A5AE1B2026A87D00F89C51 /* User.storyboard in Resources */,
@@ -3697,6 +3704,7 @@
 			baseConfigurationReference = 5F5A5466EAA653BA67BD8EA3 /* Pods-Siterwell_familywell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Siterwell_familywell/Siterwell_familywell.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A47HEQQHQU;
@@ -3719,6 +3727,7 @@
 			baseConfigurationReference = 631FF296BBCFBC9DC1F7B501 /* Pods-Siterwell_familywell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Siterwell_familywell/Siterwell_familywell.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A47HEQQHQU;
