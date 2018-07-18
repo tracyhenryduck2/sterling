@@ -19,13 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"设置", nil);
-    self.titles = @[NSLocalizedString(@"序列号", nil), NSLocalizedString(@"设备型号", nil), NSLocalizedString(@"网络模式", nil), NSLocalizedString(@"云连接状态", nil), ];
+    self.title = NSLocalizedString(@"配置", nil);
+    self.titles = @[NSLocalizedString(@"当前网关", nil), NSLocalizedString(@"修改密码", nil), NSLocalizedString(@"网关配置", nil), NSLocalizedString(@"定位设置", nil),NSLocalizedString(@"紧急号码", nil),NSLocalizedString(@"新增摄像头", nil),NSLocalizedString(@"系统说明书", nil),NSLocalizedString(@"关于", nil) ];
     [self table];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    
+
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
 }
 
@@ -37,34 +36,69 @@
 #pragma mark -delegate
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    NSString *cellId = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+    if(indexPath.section == 0){
+        NSString *cellId = @"cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont systemFontOfSize:16];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:13.5];
+        cell.textLabel.text = self.titles[indexPath.row];
+        if (indexPath.row == 0) {
+            cell.detailTextLabel.text = @"aaa";
+        }
+        
+        return cell;
+    }else{
+        NSString *cellId = @"loginoutCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        }
+        cell.textLabel.textAlignment=UITextAlignmentCenter;
+        cell.textLabel.font = [UIFont systemFontOfSize:16];
+        cell.textLabel.text = NSLocalizedString(@"退出登录", nil);
+        
+        return cell;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.detailTextLabel.textColor = RGB(28, 140, 249);
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:13.5];
-    cell.textLabel.text = self.titles[indexPath.row];
-    //    cell.detailTextLabel.text = self.details[indexPath.row];
-    if (indexPath.row == 0) {
-        cell.detailTextLabel.text = @"aaa";
+
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.section == 0){
+        NSLog(@"di");
     }
-    else if (indexPath.row == 1) {
-        cell.detailTextLabel.text = @"aaa";
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return  [[UIView alloc] init];
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return 20;
     }
-    else if (indexPath.row == 2) {
-        cell.detailTextLabel.text = @"aaa";
-    }
-    else if (indexPath.row == 3) {
-        cell.detailTextLabel.text = @"aaa";
-    }
-    return cell;
+    return 10;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    
+    if(section == 0){
+        return _titles.count;
+    }else {
+        return 1;
+    }
+  
 }
 
 #pragma mark -lazy

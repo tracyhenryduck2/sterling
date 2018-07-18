@@ -16,6 +16,8 @@
 - (NSMutableArray *)queryAllGateway;
 - (void)deleteGateway:(NSString *)devTid;
 - (void)updateGatewayName:(NSString *)name withDevTid:(NSString *)DevTid;
+-(GatewayModel *)queryForChosedGateway;
+- (void)deleteGatewayTable;
 @end
 
 #endif /* DBGatewayManager_h */

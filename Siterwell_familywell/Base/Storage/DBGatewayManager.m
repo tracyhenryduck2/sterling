@@ -54,6 +54,28 @@ static NSString * const gatewaytable = @"gatewaytable";
     return allGateway;
 }
 
+-(GatewayModel *)queryForChosedGateway{
+    __block GatewayModel *gatewayModel = nil;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where choice =1 limit 1",gatewaytable]];
+        while ([rs next]) {
+            gatewayModel = [[GatewayModel alloc] init];
+            gatewayModel.IsChoice = [rs intForColumn:@"choice"];
+            gatewayModel.devTid = [rs stringForColumn:@"devTid"];
+            gatewayModel.bindKey = [rs stringForColumn:@"bindKey"];
+            gatewayModel.ctrlKey = [rs stringForColumn:@"ctrlKey"];
+            gatewayModel.deviceName = [rs stringForColumn:@"deviceName"];
+            gatewayModel.productPublicKey = [rs stringForColumn:@"productPublicKey"];
+            gatewayModel.connectHost = [rs stringForColumn:@"domain"];
+            gatewayModel.ssid = [rs stringForColumn:@"ssid"];
+            gatewayModel.binVersion = [rs stringForColumn:@"binVersion"];
+            gatewayModel.binType = [rs stringForColumn:@"binType"];
+            gatewayModel.online = [rs stringForColumn:@"status"];
+        }
+    }];
+    return gatewayModel;
+}
+
 - (void)deleteGateway:(NSString *)devTid{
     
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
@@ -70,4 +92,11 @@ static NSString * const gatewaytable = @"gatewaytable";
     }];
 }
 
+
+- (void)deleteGatewayTable {
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ ", gatewaytable];
+        [db executeUpdate:sql];
+    }];
+}
 @end

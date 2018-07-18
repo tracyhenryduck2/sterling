@@ -9,7 +9,7 @@
 #import "Loginvc.h"
 #import "SiterTools.h"
 #import "Register.h"
-
+#import "InitController.h"
 @interface Loginvc()
 @property (nonatomic,weak) IBOutlet UIButton *savePsdbtn;
 @property (nonatomic,weak) IBOutlet UIButton *login;
@@ -91,8 +91,8 @@
                 [config setObject:@0 forKey:@"RememberLoginPasswd"];
             }
             [config synchronize];
-            UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController* test2obj = [uistoryboard instantiateViewControllerWithIdentifier:@"testvc"];
+            InitController* test2obj = [[InitController alloc] init];
+            test2obj.flag_login = YES;
             AppDelegateInstance.window.rootViewController = test2obj;
 
         }

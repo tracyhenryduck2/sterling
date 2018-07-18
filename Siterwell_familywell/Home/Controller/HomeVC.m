@@ -71,7 +71,7 @@
     [self.videoView setVideoArray:ds];
     
     NSDictionary *dic2 = @{
-                           @"action" : @"heartbeatResp",
+                           @"action":@"devSend"
                            };
     @weakify(self)
     [[Hekr sharedInstance] recv:dic2 obj:self callback:^(id obj, id data, NSError *error) {
