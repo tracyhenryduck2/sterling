@@ -71,21 +71,23 @@
 
 - (UITableView *)table {
     
-    UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    table.dataSource = self;
-    table.delegate = self;
-    table.rowHeight = 50;
-    table.bounces = NO;
-    table.separatorInset = UIEdgeInsetsZero;
-    table.tableFooterView = [[UIView alloc] init];
-    [self.view addSubview:table];
-    [table mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(0);
-        make.top.equalTo(64);
-        //        make.height.equalTo(Main_Screen_Width/2 + 50*4+64);
-    }];
-    
-    return table;
+    if(!_table){
+        _table= [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _table.dataSource = self;
+        _table.delegate = self;
+        _table.rowHeight = 50;
+        _table.bounces = NO;
+        _table.separatorInset = UIEdgeInsetsZero;
+        _table.tableFooterView = [[UIView alloc] init];
+        [self.view addSubview:_table];
+        [_table mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(0);
+            make.top.equalTo(64);
+            //        make.height.equalTo(Main_Screen_Width/2 + 50*4+64);
+        }];
+    }
+
+    return _table;
 }
 
 

@@ -60,9 +60,7 @@
     self.navigationController.navigationBar.translucent = YES;
     self.title = @"我的家";
     UIColor* color = [UIColor whiteColor];
-    
     NSDictionary* dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
-    
     self.navigationController.navigationBar.titleTextAttributes= dict;
     [self initLocation];
     
