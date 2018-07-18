@@ -71,6 +71,17 @@
     NSArray * ds = @[@{@"devid":@"lbt_01",@"name":@"嘿嘿嘿"}];
     [self.videoView setVideoArray:ds];
     
+    NSDictionary *dic2 = @{
+                           @"action" : @"heartbeatResp",
+                           };
+    @weakify(self)
+    [[Hekr sharedInstance] recv:dic2 obj:self callback:^(id obj, id data, NSError *error) {
+        @strongify(self)
+        if (!error) {
+            NSLog(@"收到数据为%@",data);
+        }
+    }];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

@@ -221,6 +221,8 @@
             return NSLocalizedString(@"登录信息过期，请重新登录！", nil);
         case 2:
             return NSLocalizedString(@"未知错误！", nil);
+        case 400014:
+            return NSLocalizedString(@"密码必须至少六位数", nil);
         case 400016:
             return NSLocalizedString(@"操作过于频繁,请稍候再试", nil);
         case 400017:

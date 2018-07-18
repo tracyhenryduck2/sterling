@@ -8,13 +8,14 @@
 
 #import "Loginvc.h"
 #import "SiterTools.h"
+#import "Register.h"
 
 @interface Loginvc()
-@property (nonatomic,weak) IBOutlet UIButton *test1;
 @property (nonatomic,weak) IBOutlet UIButton *savePsdbtn;
 @property (nonatomic,weak) IBOutlet UIButton *login;
 @property (nonatomic,weak) IBOutlet UITextField *username;
 @property (nonatomic,weak) IBOutlet UITextField *pwd;
+@property (nonatomic,weak) IBOutlet UIButton *seePwd;
 @end
 
 @implementation Loginvc
@@ -29,6 +30,8 @@
     [_savePsdbtn setImage:[UIImage imageNamed:@"select_remember"] forState:UIControlStateSelected];
     [_savePsdbtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, -10, 0.0, 0.0)];
 
+    [_seePwd setImage:[UIImage imageNamed:@"close_eyes_icon"] forState:UIControlStateNormal];
+    [_seePwd setImage:[UIImage imageNamed:@"eyes_icon"] forState:UIControlStateSelected];
     
     NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
     NSString *username = [config objectForKey:@"UserName"];
@@ -48,6 +51,19 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO];
+    
+}
+
+//切换密码可见
+- (IBAction)seePasswordAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    
+    self.pwd.secureTextEntry = !sender.selected;
+    
 }
 
 //记住密码
@@ -75,7 +91,9 @@
                 [config setObject:@0 forKey:@"RememberLoginPasswd"];
             }
             [config synchronize];
-            
+            UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController* test2obj = [uistoryboard instantiateViewControllerWithIdentifier:@"testvc"];
+            AppDelegateInstance.window.rootViewController = test2obj;
 
         }
         else{
@@ -91,9 +109,20 @@
     }];
     
     
-    UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController* test2obj = [uistoryboard instantiateViewControllerWithIdentifier:@"testvc"];  //
-    AppDelegateInstance.window.rootViewController = test2obj;
+
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"toRegister"]){
+        
+        Register *resetcodeviewcontroller = segue.destinationViewController;
+        resetcodeviewcontroller.refresh =^(NSString *value, NSString *value2){
+            _username.text = value;
+            _pwd.text = value2;
+        };
+    }
+
 }
 
 @end

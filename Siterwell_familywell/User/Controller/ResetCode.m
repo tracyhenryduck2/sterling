@@ -10,6 +10,7 @@
 #import "Macros.h"
 #import "ResetCell.h"
 #import "VerifyCodeAlertView.h"
+#import "HekrHttpsApi.h"
 
 @interface ResetCode()
 
@@ -19,6 +20,7 @@
 @property (nonatomic,weak) UITextField *verifycode2;
 @property (nonatomic,weak) UITextField *passwd2;
 @property (nonatomic,weak) UITextField *passwdcofirm2;
+@property (nonatomic,strong) UIButton *resetBtn;
 @end
 
 
@@ -97,6 +99,24 @@
     return cell;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView  *view = [[UIView alloc] init];
+    self.resetBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.resetBtn.layer.cornerRadius = 17.5f;
+    self.resetBtn.backgroundColor = RGB(53, 167, 255);
+    [self.resetBtn setTitle:NSLocalizedString(@"重置", nil) forState:UIControlStateNormal];
+    [self.resetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.resetBtn addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.resetBtn];
+    
+    [self.resetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(view.mas_left).offset(26);
+        make.right.equalTo(view.mas_right).offset(-26);
+        make.top.equalTo(view.mas_top).offset(13);
+        make.height.equalTo(@35);
+    }];
+    return view;
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
@@ -127,7 +147,7 @@
         return;
     }
     
-    if(![NSString  isPhoneNumber:_number2.text]){
+    if((!flag_register_type)&&(![NSString  isPhoneNumber:_number2.text]) ){
         [MBProgressHUD showMessage:NSLocalizedString(@"手机号非法格式", nil) ToView:self.view RemainTime:1.1f];
         return;
     }
@@ -168,4 +188,67 @@
     }];
 }
 
+-(void)reset{
+    [self.view endEditing:YES];
+    [MBProgressHUD showMessage:NSLocalizedString(@"请稍后...", nil) ToView:self.view];
+    if([NSString isBlankString:self.number2.text] || [NSString isBlankString:self.verifycode2.text]
+       || [NSString isBlankString:self.passwd2.text] || [NSString isBlankString:self.passwdcofirm2.text]){
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showError:NSLocalizedString(@"请输入完整信息", nil) ToView:self.view];
+        return;
+    }
+    
+    
+    //邮箱正则表达判断
+    NSString *regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES%@", regex];
+    if (![predicate evaluateWithObject:_number2.text] && flag_register_type){
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showError:NSLocalizedString(@"邮箱格式错误", nil) ToView:self.view];
+        return;
+    }
+    
+    if(![self.passwd2.text isEqualToString:self.passwdcofirm2.text]){
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showError:NSLocalizedString(@"密码输入不一致", nil) ToView:self.view];
+        return;
+    }
+    
+    
+    NSDictionary *param1 = @{
+                             @"pid" :HekrPID,
+                             @"phoneNumber": self.number2.text,
+                             @"password" :self.passwd2.text,
+                             @"verifyCode" : self.verifycode2.text
+                             };
+    NSDictionary *param2 = @{
+                             @"pid" :HekrPID,
+                             @"email": self.number2.text,
+                             @"password" :self.passwd2.text,
+                             @"verifyCode" : self.verifycode2.text
+                             };
+    NSString *url = (flag_register_type?Hekr_Reset_by_Email:Hekr_Reset_by_Phone);
+    @weakify(self)
+    [[[Hekr sharedInstance] sessionWithDefaultAuthorization] POST:[NSString stringWithFormat:url, ApiMap[@"uaa-openapi.hekr.me"]] parameters:(flag_register_type?param2:param1) progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @strongify(self)
+        NSLog(@"%@",responseObject);
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showSuccess:NSLocalizedString(@"重置成功", nil) ToView:GetWindow];
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+        [MBProgressHUD hideHUDForView:self.view];
+        NSString* errResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+        ErrorModel *model = [[ErrorModel alloc] initWithString:errResponse error:nil];
+        
+        UIAlertController *alertVc =[UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:[ErrorCodeUtil getMessageWithCode:model.code] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertVc addAction:action1];
+        [self presentViewController:alertVc animated:YES completion:nil];
+    }];
+    
+    
+}
 @end

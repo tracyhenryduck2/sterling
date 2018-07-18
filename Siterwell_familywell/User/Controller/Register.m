@@ -14,11 +14,12 @@
 @interface Register()
 
 @property (nonatomic,weak) IBOutlet UITableView *uitable1;
-
+@property (strong, nonatomic)  YYLabel *RuleLabel;
 @property (nonatomic,weak) UITextField *number;
 @property (nonatomic,weak) UITextField *verifycode;
 @property (nonatomic,weak) UITextField *passwd;
 @property (nonatomic,weak) UITextField *passwdcofirm;
+@property (nonatomic,strong) UIButton *registBtn;
 @end
 
 
@@ -30,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(switchRegisterType) Title:NSLocalizedString(@"邮箱注册",nil) withTintColor:RGB(53, 167, 255)];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -97,6 +99,58 @@
     return cell;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView  *view = [[UIView alloc] init];
+    self.registBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.registBtn.layer.cornerRadius = 17.5f;
+    self.registBtn.backgroundColor = RGB(53, 167, 255);
+    [self.registBtn setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
+    [self.registBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.registBtn addTarget:self action:@selector(registers) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.registBtn];
+    
+    [self.registBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(view.mas_left).offset(26);
+        make.right.equalTo(view.mas_right).offset(-26);
+        make.top.equalTo(view.mas_top).offset(13);
+        make.height.equalTo(@35);
+    }];
+    
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"注册即视为同意服务条款", nil)];
+    text.yy_font = [UIFont systemFontOfSize:13];
+    text.yy_color = [UIColor darkGrayColor];
+    
+    
+    YYTextHighlight *highlight = [YYTextHighlight new];
+    [highlight setColor:RGB(198, 198, 198)];
+    [highlight setFont:[UIFont boldSystemFontOfSize:13]];
+    [highlight setUnderline:[YYTextDecoration decorationWithStyle:YYTextLineStyleSingle]];
+    highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
+        [self performSegueWithIdentifier:@"toInstruction" sender:nil];
+    };
+    [text yy_setColor:RGB(51, 51, 51) range:NSMakeRange(0, text.length)];
+    [text yy_setFont:[UIFont boldSystemFontOfSize:13] range:NSMakeRange(0, text.length)];
+    [text yy_setTextUnderline:[YYTextDecoration decorationWithStyle:YYTextLineStyleSingle] range:NSMakeRange(0, text.length)];
+    [text yy_setTextHighlight:highlight range:NSMakeRange(0, text.length)];
+    
+    self.RuleLabel = [YYLabel new];
+    self.RuleLabel.attributedText = text;
+    self.RuleLabel.numberOfLines = 2;
+    self.RuleLabel.backgroundColor = [UIColor clearColor];
+    self.RuleLabel.textAlignment = NSTextAlignmentCenter;
+    self.RuleLabel.userInteractionEnabled = YES;
+    [view addSubview:self.RuleLabel];
+    
+    WS(ws)
+    [self.RuleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(15);
+        make.right.equalTo(-15);
+        make.top.equalTo(ws.registBtn.mas_bottom).offset(13);
+        make.height.equalTo(@60);
+    }];
+    
+    return view;
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
@@ -172,5 +226,67 @@
     }];
 }
 
+-(void)registers{
+    [self.view endEditing:YES];
+    [MBProgressHUD showMessage:NSLocalizedString(@"请稍后...", nil) ToView:self.view];
+    if([NSString isBlankString:self.number.text] || [NSString isBlankString:self.verifycode.text]
+       || [NSString isBlankString:self.passwd.text] || [NSString isBlankString:self.passwdcofirm.text]){
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showError:NSLocalizedString(@"请输入完整信息", nil) ToView:self.view];
+        return;
+    }
 
+
+    //邮箱正则表达判断
+    NSString *regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES%@", regex];
+    if (![predicate evaluateWithObject:_number.text] && flag_register_type){
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showError:NSLocalizedString(@"邮箱格式错误", nil) ToView:self.view];
+        return;
+    }
+
+    if(![self.passwd.text isEqualToString:self.passwdcofirm.text]){
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showError:NSLocalizedString(@"密码输入不一致", nil) ToView:self.view];
+        return;
+    }
+
+
+    NSDictionary *param1 = @{
+                             @"pid" :HekrPID,
+                             @"phoneNumber": self.number.text,
+                             @"password" :self.passwd.text,
+                             @"code" : self.verifycode.text
+                             };
+    NSDictionary *param2 = @{
+                             @"pid" :HekrPID,
+                             @"email": self.number.text,
+                             @"password" :self.passwd.text,
+                             @"code" : self.verifycode.text
+                             };
+    NSString *url = (flag_register_type?Hekr_Register_by_Email:Hekr_Register_by_Phone);
+    @weakify(self)
+    [[[Hekr sharedInstance] sessionWithDefaultAuthorization] POST:[NSString stringWithFormat:url, ApiMap[@"uaa-openapi.hekr.me"]] parameters:(flag_register_type?param2:param1) progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @strongify(self)
+        NSLog(@"%@",responseObject);
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showSuccess:NSLocalizedString(@"注册成功", nil) ToView:GetWindow];
+        self.refresh(self.number.text, self.passwd.text);
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+        [MBProgressHUD hideHUDForView:self.view];
+        NSString* errResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+        ErrorModel *model = [[ErrorModel alloc] initWithString:errResponse error:nil];
+
+        UIAlertController *alertVc =[UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:[ErrorCodeUtil getMessageWithCode:model.code] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+        }];
+        [alertVc addAction:action1];
+        [self presentViewController:alertVc animated:YES completion:nil];
+    }];
+    
+}
 @end

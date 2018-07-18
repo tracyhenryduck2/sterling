@@ -126,6 +126,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.21453554229999999" green="0.70533130300000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="epH-DM-pYS" kind="relationship" relationship="viewControllers" id="zV2-Uu-a00"/>
@@ -146,4 +147,5 @@
         <image name="bottom_scene" width="22" height="22"/>
         <image name="bottom_scene_hover" width="22" height="22"/>
     </resources>
+    <color key="tintColor" red="0.21453554229999999" green="0.70533130300000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

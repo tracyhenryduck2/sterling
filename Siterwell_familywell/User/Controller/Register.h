@@ -7,7 +7,9 @@
 //
 
 #import "BaseVC.h"
+//用block回传给上一个页面
+typedef void(^valueBlock)(NSString *value,NSString *value2);
 
 @interface Register : BaseVC
-
+@property (nonatomic,strong) valueBlock refresh;
 @end
