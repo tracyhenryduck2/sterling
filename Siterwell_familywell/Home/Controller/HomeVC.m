@@ -13,6 +13,7 @@
 #import "ModeCircleView.h"
 #import "CircleMenuVc.h"
 #import "HomeHeadView.h"
+#import "SettingController.h"
 #import <CoreLocation/CoreLocation.h>
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
@@ -82,6 +83,19 @@
         }
     }];
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    //设置透明标题栏
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -222,13 +236,8 @@
 }
 
 -(void)test{
-    if(!flag){
-        flag = YES;
-          [_modecirleView setText:@"在家"];
-    }else{
-          flag = NO;
-               [_modecirleView setText:@"自定义情景模式111"];
-    }
+    SettingController * vc = [[SettingController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 
 }
 
