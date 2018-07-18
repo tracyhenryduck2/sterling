@@ -361,6 +361,18 @@
 		C46BDCC820FDBEA700796E61 /* DBGS584RelationShipManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C46BDCC720FDBEA700796E61 /* DBGS584RelationShipManager.m */; };
 		C46BDCCE20FDC5C800796E61 /* DBSceneReManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C46BDCCD20FDC5C800796E61 /* DBSceneReManager.m */; };
 		C46BDCD020FDE90800796E61 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = C46BDCCF20FDE90700796E61 /* config.json */; };
+		C46C23B220FF2A1200D9350F /* TimerEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23B120FF2A1200D9350F /* TimerEditController.m */; };
+		C46C23B620FF2A4500D9350F /* TimerListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23B520FF2A4500D9350F /* TimerListController.m */; };
+		C46C23B920FF2AA200D9350F /* SystemSceneEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23B820FF2AA200D9350F /* SystemSceneEditController.m */; };
+		C46C23BC20FF2ABB00D9350F /* SceneEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23BB20FF2ABB00D9350F /* SceneEditController.m */; };
+		C46C23BF20FF2B0900D9350F /* DeviceChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23BE20FF2B0900D9350F /* DeviceChooseController.m */; };
+		C46C23C320FF2D3C00D9350F /* SetTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23C220FF2D3C00D9350F /* SetTimeController.m */; };
+		C46C23C620FF2D5F00D9350F /* SetDelayController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23C520FF2D5F00D9350F /* SetDelayController.m */; };
+		C46C23C920FF2DE500D9350F /* SingleSocketController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23C820FF2DE500D9350F /* SingleSocketController.m */; };
+		C46C23CC20FF2E0100D9350F /* DoubleSocketController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23CB20FF2E0100D9350F /* DoubleSocketController.m */; };
+		C46C23CF20FF2E4800D9350F /* CollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23CE20FF2E4800D9350F /* CollectionController.m */; };
+		C46C23D220FF2E6E00D9350F /* GS240SetController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23D120FF2E6E00D9350F /* GS240SetController.m */; };
+		C46C23D520FF308900D9350F /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23D420FF308900D9350F /* SettingController.m */; };
 		C4A176B720CF720F002AE3F7 /* RegistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A176B620CF720F002AE3F7 /* RegistCell.m */; };
 		C4C5B9E120CE092B009A3E2D /* ArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E020CE092B009A3E2D /* ArrayTool.m */; };
 		C4C5B9E920CE0DC9009A3E2D /* BaseDriveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */; };
@@ -1119,6 +1131,30 @@
 		C46BDCCC20FDC5A800796E61 /* DBSceneReManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSceneReManager.h; sourceTree = "<group>"; };
 		C46BDCCD20FDC5C800796E61 /* DBSceneReManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBSceneReManager.m; sourceTree = "<group>"; };
 		C46BDCCF20FDE90700796E61 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		C46C23B120FF2A1200D9350F /* TimerEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerEditController.m; sourceTree = "<group>"; };
+		C46C23B320FF2A1F00D9350F /* TimerEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerEditController.h; sourceTree = "<group>"; };
+		C46C23B420FF2A3A00D9350F /* TimerListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerListController.h; sourceTree = "<group>"; };
+		C46C23B520FF2A4500D9350F /* TimerListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerListController.m; sourceTree = "<group>"; };
+		C46C23B720FF2A9900D9350F /* SystemSceneEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSceneEditController.h; sourceTree = "<group>"; };
+		C46C23B820FF2AA200D9350F /* SystemSceneEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSceneEditController.m; sourceTree = "<group>"; };
+		C46C23BA20FF2AB100D9350F /* SceneEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneEditController.h; sourceTree = "<group>"; };
+		C46C23BB20FF2ABB00D9350F /* SceneEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneEditController.m; sourceTree = "<group>"; };
+		C46C23BD20FF2AFF00D9350F /* DeviceChooseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceChooseController.h; sourceTree = "<group>"; };
+		C46C23BE20FF2B0900D9350F /* DeviceChooseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceChooseController.m; sourceTree = "<group>"; };
+		C46C23C120FF2D2E00D9350F /* SetTimeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetTimeController.h; sourceTree = "<group>"; };
+		C46C23C220FF2D3C00D9350F /* SetTimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetTimeController.m; sourceTree = "<group>"; };
+		C46C23C420FF2D5600D9350F /* SetDelayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDelayController.h; sourceTree = "<group>"; };
+		C46C23C520FF2D5F00D9350F /* SetDelayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetDelayController.m; sourceTree = "<group>"; };
+		C46C23C720FF2DD900D9350F /* SingleSocketController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleSocketController.h; sourceTree = "<group>"; };
+		C46C23C820FF2DE500D9350F /* SingleSocketController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleSocketController.m; sourceTree = "<group>"; };
+		C46C23CA20FF2DF800D9350F /* DoubleSocketController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoubleSocketController.h; sourceTree = "<group>"; };
+		C46C23CB20FF2E0100D9350F /* DoubleSocketController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoubleSocketController.m; sourceTree = "<group>"; };
+		C46C23CD20FF2E3E00D9350F /* CollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionController.h; sourceTree = "<group>"; };
+		C46C23CE20FF2E4800D9350F /* CollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionController.m; sourceTree = "<group>"; };
+		C46C23D020FF2E6400D9350F /* GS240SetController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GS240SetController.h; sourceTree = "<group>"; };
+		C46C23D120FF2E6E00D9350F /* GS240SetController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GS240SetController.m; sourceTree = "<group>"; };
+		C46C23D320FF307F00D9350F /* SettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		C46C23D420FF308900D9350F /* SettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		C4A176B520CF71FB002AE3F7 /* RegistCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistCell.h; sourceTree = "<group>"; };
 		C4A176B620CF720F002AE3F7 /* RegistCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistCell.m; sourceTree = "<group>"; };
 		C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1276,6 +1312,7 @@
 		88A5AE122026A87D00F89C51 /* Siterwell_familywell */ = {
 			isa = PBXGroup;
 			children = (
+				C46C23AE20FF29A300D9350F /* Scene */,
 				C4C5B9E320CE0CE3009A3E2D /* Device */,
 				C43A055720C7D56E00B2E5FC /* Siterwell_familywell.entitlements */,
 				C4438E59204F8021004D0FBA /* Support Files */,
@@ -2879,6 +2916,8 @@
 				C43D5184203FE6D200DE5FF3 /* SceneVC.m */,
 				C43D5180203FDD1800DE5FF3 /* HomeVC.h */,
 				C43D5181203FDD1800DE5FF3 /* HomeVC.m */,
+				C46C23D320FF307F00D9350F /* SettingController.h */,
+				C46C23D420FF308900D9350F /* SettingController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2892,6 +2931,59 @@
 				88A5AE222026A87D00F89C51 /* main.m */,
 			);
 			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		C46C23AE20FF29A300D9350F /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				C46C23B020FF29C700D9350F /* Controller */,
+				C46C23AF20FF29BC00D9350F /* View */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		C46C23AF20FF29BC00D9350F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C46C23B020FF29C700D9350F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C46C23C020FF2C0B00D9350F /* StatusChoose */,
+				C46C23B120FF2A1200D9350F /* TimerEditController.m */,
+				C46C23B320FF2A1F00D9350F /* TimerEditController.h */,
+				C46C23B420FF2A3A00D9350F /* TimerListController.h */,
+				C46C23B520FF2A4500D9350F /* TimerListController.m */,
+				C46C23B720FF2A9900D9350F /* SystemSceneEditController.h */,
+				C46C23B820FF2AA200D9350F /* SystemSceneEditController.m */,
+				C46C23BA20FF2AB100D9350F /* SceneEditController.h */,
+				C46C23BB20FF2ABB00D9350F /* SceneEditController.m */,
+				C46C23BD20FF2AFF00D9350F /* DeviceChooseController.h */,
+				C46C23BE20FF2B0900D9350F /* DeviceChooseController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C46C23C020FF2C0B00D9350F /* StatusChoose */ = {
+			isa = PBXGroup;
+			children = (
+				C46C23C120FF2D2E00D9350F /* SetTimeController.h */,
+				C46C23C220FF2D3C00D9350F /* SetTimeController.m */,
+				C46C23C420FF2D5600D9350F /* SetDelayController.h */,
+				C46C23C520FF2D5F00D9350F /* SetDelayController.m */,
+				C46C23C720FF2DD900D9350F /* SingleSocketController.h */,
+				C46C23C820FF2DE500D9350F /* SingleSocketController.m */,
+				C46C23CA20FF2DF800D9350F /* DoubleSocketController.h */,
+				C46C23CB20FF2E0100D9350F /* DoubleSocketController.m */,
+				C46C23CD20FF2E3E00D9350F /* CollectionController.h */,
+				C46C23CE20FF2E4800D9350F /* CollectionController.m */,
+				C46C23D020FF2E6400D9350F /* GS240SetController.h */,
+				C46C23D120FF2E6E00D9350F /* GS240SetController.m */,
+			);
+			path = StatusChoose;
 			sourceTree = "<group>";
 		};
 		C4C5B9DE20CE092B009A3E2D /* Service */ = {
@@ -3206,11 +3298,13 @@
 				88B03CAB2035E5E000F18EFE /* UIScrollView+Addition.m in Sources */,
 				88B03C932035E5E000F18EFE /* UIImageView+Addition.m in Sources */,
 				88B03BF92035E5E000F18EFE /* NSManagedObject+DictionaryExport.m in Sources */,
+				C46C23C620FF2D5F00D9350F /* SetDelayController.m in Sources */,
 				88B03CE22035E5E000F18EFE /* WebView+Debug.m in Sources */,
 				88B03C272035E5E000F18EFE /* NSDecimalNumber+Extensions.m in Sources */,
 				88B03C9F2035E5E000F18EFE /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				88B03C972035E5E000F18EFE /* UIImageView+Letters.m in Sources */,
 				C4C5B9E920CE0DC9009A3E2D /* BaseDriveApi.m in Sources */,
+				C46C23B220FF2A1200D9350F /* TimerEditController.m in Sources */,
 				88B03C942035E5E000F18EFE /* UIImageView+BetterFace.m in Sources */,
 				88B03C342035E5E000F18EFE /* NSObject+Reflection.m in Sources */,
 				88B03C622035E5E000F18EFE /* CAMediaTimingFunction+AdditionalEquations.m in Sources */,
@@ -3285,13 +3379,16 @@
 				88B03C362035E5E000F18EFE /* NSRunLoop+PerformBlock.m in Sources */,
 				88A5AE152026A87D00F89C51 /* AppDelegate.m in Sources */,
 				88B762A72029DDD200FC87A0 /* BaseVC.m in Sources */,
+				C46C23CC20FF2E0100D9350F /* DoubleSocketController.m in Sources */,
 				88B03C0B2035E5E000F18EFE /* NSData+Gzip.m in Sources */,
 				88B03C172035E5E000F18EFE /* NSDateFormatter+Make.m in Sources */,
 				88B03C4E2035E5E000F18EFE /* NSURL+Param.m in Sources */,
+				C46C23D220FF2E6E00D9350F /* GS240SetController.m in Sources */,
 				88B03CC52035E5E000F18EFE /* UIView+draggable.m in Sources */,
 				88B03CE82035E5E000F18EFE /* YTKBaseRequest.m in Sources */,
 				C438469420C676A300FF8725 /* BookShelfGroupViewFlowLayout.m in Sources */,
 				C4FF15EC20CFB27800DA3026 /* NSString+JJ.m in Sources */,
+				C46C23CF20FF2E4800D9350F /* CollectionController.m in Sources */,
 				88B03C232035E5E000F18EFE /* NSInvocation+Bb.m in Sources */,
 				88B03C1E2035E5E000F18EFE /* NSException+Trace.m in Sources */,
 				88B03C5F2035E5E000F18EFE /* CAAnimation+Blocks.m in Sources */,
@@ -3360,8 +3457,10 @@
 				88B03C862035E5E000F18EFE /* UIImage+Blur.m in Sources */,
 				88B03C3C2035E5E000F18EFE /* NSString+DictionaryValue.m in Sources */,
 				88B03CEE2035E5E000F18EFE /* YTKNetworkConfig.m in Sources */,
+				C46C23C920FF2DE500D9350F /* SingleSocketController.m in Sources */,
 				88B03C0C2035E5E000F18EFE /* NSData+Hash.m in Sources */,
 				88B03C9A2035E5E000F18EFE /* UILabel+AutoSize.m in Sources */,
+				C46C23B620FF2A4500D9350F /* TimerListController.m in Sources */,
 				88B03C642035E5E000F18EFE /* CATransaction+AnimateWithDuration.m in Sources */,
 				88B03C402035E5E000F18EFE /* NSString+Matcher.m in Sources */,
 				C4ED2EC520F5CDD000B4E008 /* AutoScrollLabel.m in Sources */,
@@ -3377,6 +3476,7 @@
 				C4C5BA0E20CE7AE0009A3E2D /* UserInfoModel.m in Sources */,
 				88B03C4B2035E5E000F18EFE /* NSString+XML.m in Sources */,
 				88B03664203583DD00F18EFE /* ESPDatumCode.m in Sources */,
+				C46C23C320FF2D3C00D9350F /* SetTimeController.m in Sources */,
 				88B03C0E2035E5E000F18EFE /* NSData+zlib.m in Sources */,
 				C43412FB20F34D840006F207 /* NewWeatherModel.m in Sources */,
 				88B03CC12035E5E000F18EFE /* UIView+BlockGesture.m in Sources */,
@@ -3402,6 +3502,7 @@
 				C438467420C65BDB00FF8725 /* DBGatewayManager.m in Sources */,
 				88B03C482035E5E000F18EFE /* NSString+Trims.m in Sources */,
 				88B03C2E2035E5E000F18EFE /* NSObject+AutoCoding.m in Sources */,
+				C46C23B920FF2AA200D9350F /* SystemSceneEditController.m in Sources */,
 				C438466720C62CDA00FF8725 /* SystemSceneModel.m in Sources */,
 				88B03C142035E5E000F18EFE /* NSDate+TimeAgo.m in Sources */,
 				88B03CC02035E5E000F18EFE /* UIView+Animation.m in Sources */,
@@ -3415,6 +3516,7 @@
 				88B03C522035E5E000F18EFE /* NSURLRequest+ParamsFromDictionary.m in Sources */,
 				88B03C8B2035E5E000F18EFE /* UIImage+GIF.m in Sources */,
 				C4FF15E620CF936A00DA3026 /* DBWarnManager.m in Sources */,
+				C46C23BC20FF2ABB00D9350F /* SceneEditController.m in Sources */,
 				88B03CF62035E5E000F18EFE /* MPLoggerFormatter.m in Sources */,
 				88B03C542035E5E000F18EFE /* NSUserDefaults+SafeAccess.m in Sources */,
 				88B0366A203583DD00F18EFE /* ESPTouchTaskParameter.m in Sources */,
@@ -3441,6 +3543,7 @@
 				88B03CFC2035E5E000F18EFE /* BatterHelp.m in Sources */,
 				C438469820C676A300FF8725 /* UICollectionView+MathIndexPath.m in Sources */,
 				88B03CD92035E5E000F18EFE /* UIViewController+Visible.m in Sources */,
+				C46C23BF20FF2B0900D9350F /* DeviceChooseController.m in Sources */,
 				88B03C012035E5E000F18EFE /* CLLocationManager+Blocks.m in Sources */,
 				88B03CB22035E5E000F18EFE /* UITableView+NoData.m in Sources */,
 				88B03C722035E5E000F18EFE /* UIButton+CountDown.m in Sources */,
@@ -3473,6 +3576,7 @@
 				88B03CE62035E5E000F18EFE /* NetWorkBaseUrlConfig.m in Sources */,
 				C43A054520C76D8F00B2E5FC /* MJRefreshBackFooter.m in Sources */,
 				C43A055520C76D8F00B2E5FC /* UIScrollView+MJRefresh.m in Sources */,
+				C46C23D520FF308900D9350F /* SettingController.m in Sources */,
 				88B03CA32035E5E000F18EFE /* UINavigationItem+Loading.m in Sources */,
 				88B03CA42035E5E000F18EFE /* UINavigationItem+Lock.m in Sources */,
 				88B03C182035E5E000F18EFE /* NSDictionary+Block.m in Sources */,
