@@ -79,8 +79,7 @@
 
 - (void)stopScycn{
     [self.collectionView.mj_header endRefreshing];
-    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
-    [config removeObjectForKey:DeviceSycStatus];
+
 }
 
 - (void)initWithData:(NSArray *)itemDatas{

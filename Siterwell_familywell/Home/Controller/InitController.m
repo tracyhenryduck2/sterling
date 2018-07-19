@@ -11,6 +11,7 @@
 @interface InitController()
 @property (nonatomic,strong) UIImage * LogoImage;
 @property (nonatomic,assign) NSInteger flag;
+@property (nonatomic,strong) NSMutableArray <GatewayModel *> * gateways;
 @end
 
 @implementation InitController
@@ -26,6 +27,7 @@
 //        }
 //
 //    });
+    _gateways = [[NSMutableArray alloc] init];
     NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
     NSString *username = [config objectForKey:@"UserName"];
     if(username.length>0){
@@ -56,6 +58,7 @@
             }];
         }
     }else{
+        [_gateways removeAllObjects];
         [self getGateways];
     }
 
@@ -81,21 +84,72 @@
 
 -(void)getGateways{
     @weakify(self)
-    GatewayModel *da = [[DBGatewayManager sharedInstanced] queryForChosedGateway];
-    
+
     [[[Hekr sharedInstance] sessionWithDefaultAuthorization] GET:[NSString stringWithFormat:@"%@/device", ApiMap[@"user-openapi.hekr.me"]] parameters:@{@"page":@(0),@"size":@(20)} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @strongify(self)
         NSArray *arr = responseObject;
         if (arr.count>0) {
-            if(da==nil){
-                
+            for(int i=0;i<arr.count;i++){
+                GatewayModel * ds = [[GatewayModel alloc] initWithDictionary:[arr objectAtIndex:i] error:nil];
+                ds.domain = [arr objectAtIndex:i][@"dcInfo"][@"domain"];
+                [_gateways addObject:ds];
+            }
+            if(arr.count == 20){
+                [self getGateways];
+            }else{
+              [self getChooseGateway];
             }
         }else{
-            [[DBGatewayManager sharedInstanced] deleteGatewayTable];
+            [self getChooseGateway];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //        [MBProgressHUD showError:NSLocalizedString(@"网络错误", nil) ToView:self.view];
+        [self getChooseGateway];
     }];
+}
+
+
+-(void)getChooseGateway{
+    
+    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway = [config objectForKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
+    
+    if([NSString isBlankString:currentgateway]){
+        if(_gateways.count>0){
+            for(GatewayModel *d in _gateways){
+                if([d.online isEqualToString:@"1"]){
+                    [config setObject:d.devTid forKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
+                    break;
+                }
+            }
+        }
+    }else{
+        if(_gateways.count>0){
+            BOOL flag_contain = NO;
+            NSString * will = nil;
+            for(GatewayModel *d in _gateways){
+                
+                if([d.online isEqualToString:@"1"] && will == nil){
+                    will = d.devTid;
+                }
+                
+                if([d.devTid isEqualToString:currentgateway]){
+                    flag_contain = YES;
+                    break;
+                }
+            }
+            
+            if(!flag_contain){
+                
+                if(will == nil){
+                    will = [_gateways objectAtIndex:0].devTid;
+                }
+               [config setObject:will forKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
+            }
+        }
+    }
+    [config synchronize];
+
+    [_gateways removeAllObjects];
 }
 @end
 

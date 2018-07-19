@@ -138,15 +138,12 @@
 //个推 cid
 #define AppClientID @"appClientID"
 #define HekrPID @"01808478427"
-#define AppStatus @"appStatus"
 #define IntranetAppStatus @"intranetAppStatus"//内网
 #define NetworkAppStatus @"networkAppStatus"//外网
-
+#define CurrentGateway @"%@_devTid"
 #define Devices @"devices"
-#define DeviceInfo @"deviceInfo"
 #define UserInfos @"userInfo"
 
-#define DeviceSycStatus @"deviceSycStatus"
 
 #define selectSystemItem @"selectSystemItem"
 

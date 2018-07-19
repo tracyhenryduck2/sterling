@@ -24,7 +24,7 @@ static NSString * const gatewaytable = @"gatewaytable";
 
 #pragma mark -method
 - (void)createGatewayTable{
-    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(devTid varchar(30),bindKey varchar(100),ctrlKey varchar(100),deviceName varchar(100),choice integer,status varchar(10),productPublicKey varchar(100),domain varchar(50),ssid varchar(50),binVersion varchar(50),binType varchar(50),longtitude varchar(50),latitude varchar(50),reserve varchar(100),primary key(devTid))", gatewaytable];
+    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(devTid varchar(30),bindKey varchar(100),ctrlKey varchar(100),deviceName varchar(100),choice integer,online varchar(10),productPublicKey varchar(100),domain varchar(50),ssid varchar(50),binVersion varchar(50),binType varchar(50),longtitude varchar(50),latitude varchar(50),reserve varchar(100),primary key(devTid))", gatewaytable];
     [[DBManager sharedInstanced] createTable:gatewaytable sql:sql];
     
 }
@@ -37,40 +37,40 @@ static NSString * const gatewaytable = @"gatewaytable";
         FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@  order by devTid",gatewaytable]];
         while ([rs next]) {
             GatewayModel * gatewayModel = [[GatewayModel alloc] init];
-            gatewayModel.IsChoice = [rs intForColumn:@"choice"];
+//            gatewayModel.IsChoice = [rs intForColumn:@"choice"];
             gatewayModel.devTid = [rs stringForColumn:@"devTid"];
             gatewayModel.bindKey = [rs stringForColumn:@"bindKey"];
             gatewayModel.ctrlKey = [rs stringForColumn:@"ctrlKey"];
             gatewayModel.deviceName = [rs stringForColumn:@"deviceName"];
             gatewayModel.productPublicKey = [rs stringForColumn:@"productPublicKey"];
-            gatewayModel.connectHost = [rs stringForColumn:@"domain"];
+            gatewayModel.domain = [rs stringForColumn:@"domain"];
             gatewayModel.ssid = [rs stringForColumn:@"ssid"];
             gatewayModel.binVersion = [rs stringForColumn:@"binVersion"];
             gatewayModel.binType = [rs stringForColumn:@"binType"];
-            gatewayModel.online = [rs stringForColumn:@"status"];
+            gatewayModel.online = [rs stringForColumn:@"online"];
             [allGateway addObject:gatewayModel];
         }
     }];
     return allGateway;
 }
 
--(GatewayModel *)queryForChosedGateway{
+-(GatewayModel *)queryForChosedGateway:(NSString *)devTid{
     __block GatewayModel *gatewayModel = nil;
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where choice =1 limit 1",gatewaytable]];
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where devTid ='%@' limit 1",gatewaytable,devTid]];
         while ([rs next]) {
             gatewayModel = [[GatewayModel alloc] init];
-            gatewayModel.IsChoice = [rs intForColumn:@"choice"];
+//            gatewayModel.IsChoice = [rs intForColumn:@"choice"];
             gatewayModel.devTid = [rs stringForColumn:@"devTid"];
             gatewayModel.bindKey = [rs stringForColumn:@"bindKey"];
             gatewayModel.ctrlKey = [rs stringForColumn:@"ctrlKey"];
             gatewayModel.deviceName = [rs stringForColumn:@"deviceName"];
             gatewayModel.productPublicKey = [rs stringForColumn:@"productPublicKey"];
-            gatewayModel.connectHost = [rs stringForColumn:@"domain"];
+            gatewayModel.domain = [rs stringForColumn:@"domain"];
             gatewayModel.ssid = [rs stringForColumn:@"ssid"];
             gatewayModel.binVersion = [rs stringForColumn:@"binVersion"];
             gatewayModel.binType = [rs stringForColumn:@"binType"];
-            gatewayModel.online = [rs stringForColumn:@"status"];
+            gatewayModel.online = [rs stringForColumn:@"online"];
         }
     }];
     return gatewayModel;

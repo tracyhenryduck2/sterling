@@ -12,11 +12,7 @@
 
 @property(nonatomic , strong) NSString *deviceName;
 
-@property(nonatomic , strong) NSString<Optional> *tokenType;
-
 @property(nonatomic , strong) NSString *devTid;
-
-@property(nonatomic , strong) NSString<Optional> *currentLoginTime;
 
 @property(nonatomic , strong) NSString *ssid;
 
@@ -32,6 +28,6 @@
 
 @property(nonatomic , strong) NSString *online;
 
-@property (nonatomic) NSString<Optional> *connectHost;
+@property (nonatomic) NSString<Optional> *domain;
 @end
 #endif /* GatewayModel_h */

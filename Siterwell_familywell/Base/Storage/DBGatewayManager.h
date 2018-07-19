@@ -9,14 +9,14 @@
 #ifndef DBGatewayManager_h
 #define DBGatewayManager_h
 #import "DBManager.h"
-#import "GatewayModel+Siterwell.h"
+#import "GatewayModel.h"
 
 @interface DBGatewayManager:NSObject
 + (instancetype)sharedInstanced;
 - (NSMutableArray *)queryAllGateway;
 - (void)deleteGateway:(NSString *)devTid;
 - (void)updateGatewayName:(NSString *)name withDevTid:(NSString *)DevTid;
--(GatewayModel *)queryForChosedGateway;
+-(GatewayModel *)queryForChosedGateway:(NSString *)devTid;
 - (void)deleteGatewayTable;
 @end
 

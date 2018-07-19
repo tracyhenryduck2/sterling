@@ -95,10 +95,7 @@
     [bookShelfView.delegate subscribeNext:^(id x) {
         //同步
         //@strongify(self)
-        //        NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
-        //        DeviceListModel *model = [[DeviceListModel alloc] initWithDictionary:[config objectForKey:DeviceInfo] error:nil];
-        //氦氪云接口获取设备状态
-        //[self deviceSycn];
+
     }];
     [self.view addSubview:bookShelfView];
     self.bookShelfMainView = bookShelfView;
