@@ -137,7 +137,8 @@
 
 //个推 cid
 #define AppClientID @"appClientID"
-#define HekrPID @"01808478427"
+//#define HekrPID @"01808478427"
+#define HekrPID @"01850775038"
 #define IntranetAppStatus @"intranetAppStatus"//内网
 #define NetworkAppStatus @"networkAppStatus"//外网
 #define CurrentGateway @"%@_devTid"

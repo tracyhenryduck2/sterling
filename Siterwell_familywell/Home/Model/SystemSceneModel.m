@@ -13,10 +13,14 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err{
     
     if (self = [super initWithDictionary:dict error:err]) {
-        if (self.answer_content.length >= 32) {
+        if (self.sence_group!=nil && (self.answer_content.length >= 32 || (self.answer_content.length == 6 && [[self.answer_content substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"0000"]))) {
             self.systemname = [self getNameFromContent];
             self.sid = [self getSidFromContent];
             self.color = [self getSceneColor];
+            self.dev584Count = [self getDev584_countFromContent];
+            self.dev584List = [self getDev584List:self.dev584Count];
+            self.sceneCount = [self getSceneCountFromContent];
+            self.sceneRelationShip = [self getSceneRelationShipList:self.sceneCount withGS584Count:self.dev584Count];
         }
     }
     return self;
@@ -24,13 +28,17 @@
 
 
 - (NSString *)getNameFromContent{
-    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-    
-    NSString *nameString = [self.answer_content substringWithRange:NSMakeRange(6, 32)];
-    NSData *data = [self hexStringToData:nameString];
-    NSString *result = [[NSString alloc] initWithData:data encoding:enc];
-    result = [result stringByReplacingOccurrencesOfString:@"@" withString:@""];
-    result = [result stringByReplacingOccurrencesOfString:@"$" withString:@""];
+    NSString *result = @"";
+    if (self.answer_content.length >= 32){
+        NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        
+        NSString *nameString = [self.answer_content substringWithRange:NSMakeRange(6, 32)];
+        NSData *data = [self hexStringToData:nameString];
+        result = [[NSString alloc] initWithData:data encoding:enc];
+        result = [result stringByReplacingOccurrencesOfString:@"@" withString:@""];
+        result = [result stringByReplacingOccurrencesOfString:@"$" withString:@""];
+
+    }
     return result;
 }
 
@@ -81,6 +89,8 @@
 
 - (NSString *)getSceneColor{
     
+    if(self.answer_content.length >= 32){
+    
     NSNumber *count = [BatterHelp numberHexString:[self.answer_content substringWithRange:NSMakeRange(38, 4)]];
     
     int lenth = [count intValue]*2;
@@ -93,10 +103,91 @@
         if ([colors rangeOfString:color].location != NSNotFound) {
             return color;
         }else{
-            return nil;
+            return  [@"F0F1F2F3F4F5F6F7F8" substringWithRange:NSMakeRange(2*[self.sence_group intValue], 2)];
         }
     }else{
-        return nil;
+        return  [@"F0F1F2F3F4F5F6F7F8" substringWithRange:NSMakeRange(2*[self.sence_group intValue], 2)];
+    }
+    }else{
+        return  [@"F0F1F2F3F4F5F6F7F8" substringWithRange:NSMakeRange(2*[self.sence_group intValue], 2)];
+    }
+}
+
+- (NSNumber *)getDev584_countFromContent {
+    if(self.answer_content.length >= 32){
+        NSString *count = [self.answer_content substringWithRange:NSMakeRange(38, 2)];
+        count = [NSString stringWithFormat:@"%lu",strtoul([[count substringWithRange:NSMakeRange(0, 2)] UTF8String], 0, 16)];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+        NSNumber *numTemp = [numberFormatter numberFromString:count];
+        return numTemp;
+    }else{
+        return [NSNumber numberWithInt:0];
+    }
+
+}
+
+- (NSNumber *)getSceneCountFromContent {
+    if(self.answer_content.length >= 32){
+        NSString *count = [self.answer_content substringWithRange:NSMakeRange(40, 2)];
+        count = [NSString stringWithFormat:@"%lu",strtoul([[count substringWithRange:NSMakeRange(0, 2)] UTF8String], 0, 16)];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+        NSNumber *numTemp = [numberFormatter numberFromString:count];
+        return numTemp;
+    }else{
+        return [NSNumber numberWithInt:0];
+    }
+
+}
+
+-(NSMutableArray <GS584RelationShip *>*)getDev584List:(NSNumber *)count{
+    if(self.answer_content.length>=42 && count >0){
+        NSMutableArray<GS584RelationShip *> *ds = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [count intValue]; i++) {
+            GS584RelationShip * ship = [[GS584RelationShip alloc] init];
+            [ship setSid:self.sence_group];
+            NSString *gs584 = [self.answer_content substringWithRange:NSMakeRange(42+14*i, 14)];
+            NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+            [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+            NSNumber *numTemp = [numberFormatter numberFromString:[NSString stringWithFormat:@"%lu",strtoul([[gs584 substringWithRange:NSMakeRange(0, 4)] UTF8String], 0, 16)]];
+            [ship setEqid:numTemp];
+
+
+            [ship setAction:[NSString stringWithFormat:@"%lu",strtoul([[gs584 substringWithRange:NSMakeRange(4, 8)] UTF8String], 0, 16)]];
+            [ship setDelay:0];
+            [ds addObject:ship];
+        }
+        return ds;
+    }else{
+        return [[NSMutableArray alloc] init];
+    }
+}
+
+-(NSMutableArray <SceneRelationShip *>*) getSceneRelationShipList:(NSNumber *) count withGS584Count:(NSNumber *)gs584count{
+    if(self.answer_content.length>=42 && count >0){
+        NSMutableArray<SceneRelationShip *> *ds = [[NSMutableArray alloc] init];
+        for(int i = 0; i < [count intValue]; i++){
+
+
+            if (42+[gs584count intValue]*14+i*2+2 <= self.answer_content.length) {
+                SceneRelationShip *ship = [[SceneRelationShip alloc] init];
+                [ship setSid:self.sence_group];
+                NSString *scene_id = [self.answer_content substringWithRange:NSMakeRange(6+32+4+([gs584count intValue]*14)+(i*2), 2)];
+                scene_id = [NSString stringWithFormat:@"%lu",strtoul([[scene_id substringWithRange:NSMakeRange(0, 2)] UTF8String], 0, 16)];
+                [ship setMid:scene_id];
+                [ds addObject:ship];
+            }
+
+        }
+        return ds;
+    }else{
+
+        return  [[NSMutableArray alloc] init];
     }
 }
 

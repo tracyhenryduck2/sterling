@@ -8,16 +8,28 @@
 
 #import "InitController.h"
 #import "DBGatewayManager.h"
-@interface InitController()
+#import "SiterwellReceiver.h"
+#import "SycnSceneApi.h"
+#import "ChooseSystemSceneApi.h"
+@interface InitController()<SiterwellDelegate>
 @property (nonatomic,strong) UIImage * LogoImage;
 @property (nonatomic,assign) NSInteger flag;
 @property (nonatomic,strong) NSMutableArray <GatewayModel *> * gateways;
+@property (nonatomic) SiterwellReceiver *siter;
+@property (nonatomic) NSObject *testobj;
 @end
 
 @implementation InitController
 
+#pragma mark -life
 -(void)viewDidLoad {
     [self SetView];
+    _siter =  [[SiterwellReceiver alloc] init];
+    _testobj = [[NSObject alloc] init];
+    [_siter recv:_testobj callback:^(id obj, id data, NSError *error) {
+
+    }];
+    _siter.siterwelldelegate = self;
  //   _flag = 0;
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        if(_flag == 0){
@@ -69,6 +81,18 @@
     
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"viewDidDisappear");
+    //_testobj = nil;
+}
+
+
+-(void) dealloc{
+    NSLog(@"dealloc");
+}
+
+
+#pragma mark - method
 -(void)SetView{
     //[self.navigationController.navigationBar setTranslucent:NO];
     self.view.backgroundColor = RGB(255, 255, 255);
@@ -91,7 +115,7 @@
         if (arr.count>0) {
             for(int i=0;i<arr.count;i++){
                 GatewayModel * ds = [[GatewayModel alloc] initWithDictionary:[arr objectAtIndex:i] error:nil];
-                ds.domain = [arr objectAtIndex:i][@"dcInfo"][@"domain"];
+                ds.connectHost = [arr objectAtIndex:i][@"dcInfo"][@"connectHost"];
                 [_gateways addObject:ds];
             }
             if(arr.count == 20){
@@ -109,7 +133,7 @@
 
 
 -(void)getChooseGateway{
-    
+    [[DBGatewayManager sharedInstanced] insertDevices:_gateways];
     NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway = [config objectForKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
     
@@ -148,8 +172,38 @@
         }
     }
     [config synchronize];
-
     [_gateways removeAllObjects];
+    
+//    UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    AppDelegateInstance.window.rootViewController = [uistoryboard instantiateInitialViewController];
+    
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    
+    
+
+    
+    SycnSceneApi * sy = [[SycnSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:@"0" answerContent:@"000851B168EF4FEF" SceneContent:@"00043FCA"];
+    [sy startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+        NSLog(@"得到数据为%@",data);
+    }];
+
+//    ChooseSystemSceneApi *api = [[ChooseSystemSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:@"2"];
+//    [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+//                NSLog(@"得到数据为%@",data);
+//    }];
+    
+    
 }
+- (void)onlinestatus:(NSString *)devTid {
+        NSLog(@"onlinestatus");
+}
+
+-(void)onUpdateOnSystemScene:(SystemSceneModel *)systemscenemodel{
+    NSLog(@"onUpdateOnSystemScene%@",systemscenemodel);
+}
+
+
 @end
 

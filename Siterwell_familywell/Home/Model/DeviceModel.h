@@ -8,6 +8,7 @@
 
 #ifndef DeviceModel_h
 #define DeviceModel_h
+#import "JSONModel+HekrDic.h"
 @interface DeviceModel:JSONModel
 
 @property(strong,nonatomic) NSString * devicename;

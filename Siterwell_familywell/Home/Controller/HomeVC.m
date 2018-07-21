@@ -14,6 +14,7 @@
 #import "CircleMenuVc.h"
 #import "HomeHeadView.h"
 #import "SettingController.h"
+#import "DBGatewayManager.h"
 #import <CoreLocation/CoreLocation.h>
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
@@ -33,7 +34,8 @@
 #pragma mark -life
 -(void)viewDidLoad{
 
-    
+    NSMutableArray <GatewayModel *> *gatewaysa = [[DBGatewayManager sharedInstanced] queryAllGateway];
+    NSLog(@"缓存中的网关列表%@",gatewaysa);
     
     NewWeatherModel *model = [[NewWeatherModel alloc] init];
     model.weather = @"天晴";
@@ -70,16 +72,6 @@
     NSArray * ds = @[@{@"devid":@"lbt_01",@"name":@"嘿嘿嘿"}];
     [self.videoView setVideoArray:ds];
     
-    NSDictionary *dic2 = @{
-                           @"action":@"devSend"
-                           };
-    @weakify(self)
-    [[Hekr sharedInstance] recv:dic2 obj:self callback:^(id obj, id data, NSError *error) {
-        @strongify(self)
-        if (!error) {
-            NSLog(@"收到数据为%@",data);
-        }
-    }];
     
 }
 

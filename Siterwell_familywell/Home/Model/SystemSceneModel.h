@@ -8,13 +8,25 @@
 
 #ifndef SystemSceneModel_h
 #define SystemSceneModel_h
+#import "JSONModel+HekrDic.h"
+#import "GS584RelationShip.h"
+#import "SceneRelationShip.h"
 @interface SystemSceneModel:JSONModel
 @property (nonatomic, strong) NSString *answer_content;
-@property(strong,nonatomic) NSString * systemname;
-@property(nonatomic)        NSInteger   choice;
-@property(nonatomic,assign) NSString * sid;
-@property(nonatomic,assign) NSString * color;
-@property(nonatomic,assign) NSString * devTid;
+@property (nonatomic, strong) NSString *sence_group;
+@property(strong,nonatomic) NSString<Ignore> * systemname;
+@property(nonatomic)        NSNumber<Ignore> *choice;
+@property(nonatomic,assign) NSString<Ignore>  * sid;
+@property(nonatomic,assign) NSString<Ignore>  * color;
+@property(nonatomic,assign) NSString<Ignore>  * devTid;
+
+@property (nonatomic) NSNumber<Ignore> *dev584Count;
+
+@property (nonatomic) NSMutableArray<Ignore> *dev584List;
+
+@property (nonatomic) NSNumber<Ignore> *sceneCount;
+
+@property (nonatomic) NSMutableArray<Ignore> *sceneRelationShip;
 @end
 
 #endif /* SystemSceneModel_h */

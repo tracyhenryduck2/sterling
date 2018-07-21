@@ -40,7 +40,7 @@ static NSString * const gs584relationshiptable = @"gs584relationtable";
             GS584RelationShip *gs584RelationShip = [[GS584RelationShip alloc] init];
             gs584RelationShip.sid = [rs stringForColumn:@"sid"];
             gs584RelationShip.action = [rs stringForColumn:@"action"];
-            gs584RelationShip.eqid = [rs intForColumn:@"eqid"];
+            gs584RelationShip.eqid = [NSNumber numberWithInt:[rs intForColumn:@"eqid"]];
             gs584RelationShip.delay = [rs intForColumn:@"delay"];
             gs584RelationShip.devTid = [rs stringForColumn:@"devTid"];
             [allScene addObject:gs584RelationShip];

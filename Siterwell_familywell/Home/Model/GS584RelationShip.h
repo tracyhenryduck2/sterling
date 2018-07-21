@@ -12,7 +12,7 @@
 
 @property(copy,nonatomic)   NSString * devTid;
 @property(nonatomic,copy)   NSString * sid;
-@property(nonatomic,assign) NSInteger   eqid;
+@property(nonatomic,assign) NSNumber * eqid;
 @property(nonatomic,copy)   NSString  * action;
 @property(nonatomic,assign) NSInteger delay;
 @end

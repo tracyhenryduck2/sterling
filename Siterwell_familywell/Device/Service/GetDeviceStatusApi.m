@@ -41,7 +41,7 @@
              };
 }
 
--(NSString *) requestArgumentHost{
+- (id)requestArgumentConnectHost{
     return _connecthost;
 }
 

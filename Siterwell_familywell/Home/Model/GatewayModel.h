@@ -28,6 +28,6 @@
 
 @property(nonatomic , strong) NSString *online;
 
-@property (nonatomic) NSString<Optional> *domain;
+@property (nonatomic) NSString<Optional> *connectHost;
 @end
 #endif /* GatewayModel_h */

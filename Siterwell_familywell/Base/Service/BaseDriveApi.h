@@ -10,11 +10,11 @@
 
 @interface BaseDriveApi : NSObject
 
-- (NSString *)requestArgumentHost;
+- (id)requestArgumentConnectHost;
 
 - (id)requestArgumentCommand;
 
--(void)startWithObject:(id)obj CompletionBlockWithSuccess:(void(^)(id data,NSError* error))success failure:(void(^)(id data,NSError* error))failure;
+-(void)startWithObject:(id)obj CompletionBlockWithSuccess:(void(^)(id data,NSError* error))success;
 
 - (void)startUdpObj:(id)obj CompletionBlockWithSuccess:(void(^)(id data,NSError* error))success failure:(void(^)(id data,NSError* error))failure;
 

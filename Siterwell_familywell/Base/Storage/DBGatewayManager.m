@@ -24,9 +24,27 @@ static NSString * const gatewaytable = @"gatewaytable";
 
 #pragma mark -method
 - (void)createGatewayTable{
-    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(devTid varchar(30),bindKey varchar(100),ctrlKey varchar(100),deviceName varchar(100),choice integer,online varchar(10),productPublicKey varchar(100),domain varchar(50),ssid varchar(50),binVersion varchar(50),binType varchar(50),longtitude varchar(50),latitude varchar(50),reserve varchar(100),primary key(devTid))", gatewaytable];
+    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(devTid varchar(30),bindKey varchar(100),ctrlKey varchar(100),deviceName varchar(100),choice integer default(0),online varchar(10),productPublicKey varchar(100),connectHost varchar(50),ssid varchar(50),binVersion varchar(50),binType varchar(50),longtitude varchar(50),latitude varchar(50),reserve varchar(100),primary key(devTid,bindKey,ctrlKey))", gatewaytable];
     [[DBManager sharedInstanced] createTable:gatewaytable sql:sql];
     
+}
+
+
+
+- (void)insertDevices:(NSArray *)gatewayModels {
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        [db beginTransaction];
+        for (GatewayModel *f in gatewayModels) {
+            if(![f isKindOfClass:[GatewayModel class]])
+                continue;
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (devTid,bindKey,ctrlKey,deviceName,online,productPublicKey,connectHost,ssid,binVersion,binType) VALUES ('%@', '%@','%@','%@','%@','%@','%@','%@','%@','%@')",gatewaytable,
+                             f.devTid,f.bindKey,f.ctrlKey,f.deviceName,f.online,f.productPublicKey,f.connectHost,f.ssid,f.binVersion,f.binType];
+            BOOL isSuccess = [db executeUpdate:sql];
+            NSLog(@"insertGateways : isSuccess=%d",isSuccess);
+        }
+        [db commit];
+    }];
 }
 
 - (NSMutableArray *)queryAllGateway{
@@ -43,7 +61,7 @@ static NSString * const gatewaytable = @"gatewaytable";
             gatewayModel.ctrlKey = [rs stringForColumn:@"ctrlKey"];
             gatewayModel.deviceName = [rs stringForColumn:@"deviceName"];
             gatewayModel.productPublicKey = [rs stringForColumn:@"productPublicKey"];
-            gatewayModel.domain = [rs stringForColumn:@"domain"];
+            gatewayModel.connectHost = [rs stringForColumn:@"connectHost"];
             gatewayModel.ssid = [rs stringForColumn:@"ssid"];
             gatewayModel.binVersion = [rs stringForColumn:@"binVersion"];
             gatewayModel.binType = [rs stringForColumn:@"binType"];
@@ -66,7 +84,7 @@ static NSString * const gatewaytable = @"gatewaytable";
             gatewayModel.ctrlKey = [rs stringForColumn:@"ctrlKey"];
             gatewayModel.deviceName = [rs stringForColumn:@"deviceName"];
             gatewayModel.productPublicKey = [rs stringForColumn:@"productPublicKey"];
-            gatewayModel.domain = [rs stringForColumn:@"domain"];
+            gatewayModel.connectHost = [rs stringForColumn:@"connectHost"];
             gatewayModel.ssid = [rs stringForColumn:@"ssid"];
             gatewayModel.binVersion = [rs stringForColumn:@"binVersion"];
             gatewayModel.binType = [rs stringForColumn:@"binType"];

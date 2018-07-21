@@ -8,7 +8,7 @@
 
 #ifndef SceneModel_h
 #define SceneModel_h
-
+#import "JSONModel+HekrDic.h"
 @interface SceneModel:JSONModel
 @property(strong,nonatomic) NSString * scenename;
 @property(nonatomic,assign) NSString * code;

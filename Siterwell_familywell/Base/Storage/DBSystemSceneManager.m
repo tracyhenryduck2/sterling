@@ -39,7 +39,7 @@ static NSString * const systemScenetable = @"sysmodle";
         while ([rs next]) {
             SystemSceneModel *systemSceneModel = [[SystemSceneModel alloc] init];
             systemSceneModel.systemname = [rs stringForColumn:@"name"];
-            systemSceneModel.choice = [rs intForColumn:@"choice"];
+            systemSceneModel.choice =[NSNumber numberWithInt:[rs intForColumn:@"choice"]];
             systemSceneModel.sid = [rs stringForColumn:@"sid"];
             systemSceneModel.devTid = [rs stringForColumn:@"devTid"];
             systemSceneModel.color = [rs stringForColumn:@"color"];
@@ -54,7 +54,7 @@ static NSString * const systemScenetable = @"sysmodle";
     
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,choice,sid,devTid,color) VALUES ('%@', %d,'%@','%@','%@')",systemScenetable,
-                         systemsceneModel.systemname,(int)systemsceneModel.choice,systemsceneModel.sid,systemsceneModel.devTid,systemsceneModel.color];
+                         systemsceneModel.systemname,[systemsceneModel.choice intValue],systemsceneModel.sid,systemsceneModel.devTid,systemsceneModel.color];
         [db executeUpdate:sql];
     }];
 }
@@ -67,7 +67,7 @@ static NSString * const systemScenetable = @"sysmodle";
             if(![f isKindOfClass:[SystemSceneModel class]])
                 continue;
             NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,choice,sid,devTid,color) VALUES ('%@', %d,'%@','%@','%@')",systemScenetable,
-                             f.systemname,(int)f.choice,f.sid,f.devTid,f.color];
+                             f.systemname,[f.choice intValue],f.sid,f.devTid,f.color];
             BOOL isSuccess = [db executeUpdate:sql];
             NSLog(@"insertSystemScenes : isSuccess=%d",isSuccess);
         }

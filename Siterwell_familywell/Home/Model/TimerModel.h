@@ -8,6 +8,7 @@
 
 #ifndef TimerModel_h
 #define TimerModel_h
+#import "JSONModel+HekrDic.h"
 @interface TimerModel:JSONModel
 
 @property (nonatomic, strong) NSString *timerid;
