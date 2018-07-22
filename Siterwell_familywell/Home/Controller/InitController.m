@@ -83,7 +83,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     NSLog(@"viewDidDisappear");
-    //_testobj = nil;
+    _testobj = nil;
 }
 
 
@@ -109,7 +109,10 @@
 -(void)getGateways{
     @weakify(self)
 
-    [[[Hekr sharedInstance] sessionWithDefaultAuthorization] GET:[NSString stringWithFormat:@"%@/device", ApiMap[@"user-openapi.hekr.me"]] parameters:@{@"page":@(0),@"size":@(20)} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+     NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+    NSString *currentdomain = [config objectForKey:@"hekr_domain"];
+    NSString *baseurl = [NSString isBlankString:currentdomain]?@"https://user-openapi.hekr.me":[NSString stringWithFormat:@"%@%@",@"https://user-openapi.",currentdomain];
+    [[[Hekr sharedInstance] sessionWithDefaultAuthorization] GET:[NSString stringWithFormat:@"%@/device", baseurl] parameters:@{@"page":@(0),@"size":@(20)} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @strongify(self)
         NSArray *arr = responseObject;
         if (arr.count>0) {
@@ -179,21 +182,19 @@
     
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
     
-    
+    if([NSString isBlankString:currentgateway2]){
+        
+    }else{
+        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+        
+        SycnSceneApi * sy = [[SycnSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:@"0" answerContent:@"000851B168EF4FEF" SceneContent:@"00043FCA"];
+        [sy startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+            NSLog(@"得到数据为%@",data);
+        }];
+    }
 
-    
-    SycnSceneApi * sy = [[SycnSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:@"0" answerContent:@"000851B168EF4FEF" SceneContent:@"00043FCA"];
-    [sy startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
-        NSLog(@"得到数据为%@",data);
-    }];
 
-//    ChooseSystemSceneApi *api = [[ChooseSystemSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:@"2"];
-//    [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
-//                NSLog(@"得到数据为%@",data);
-//    }];
-    
     
 }
 - (void)onlinestatus:(NSString *)devTid {
