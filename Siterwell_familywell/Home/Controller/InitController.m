@@ -205,6 +205,9 @@
     NSLog(@"onUpdateOnSystemScene%@",systemscenemodel);
 }
 
+-(void)onUpdateOnScene:(SceneModel *)scenemodel{
+    
+}
 
 @end
 

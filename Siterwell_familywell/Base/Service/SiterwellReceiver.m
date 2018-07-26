@@ -25,12 +25,15 @@
     [[Hekr sharedInstance] recv:dic obj:obj callback:^(id obj,id data,NSError* error){
         
         if(!error){
-            NSNumber *ds = data[@"params"][@"data"][@"cmdId"];
+            NSNumber *cmd = data[@"params"][@"data"][@"cmdId"];
             
-            if([ds intValue] == SCENE_MODE_UPLOAD){
+            if([cmd intValue] == SCENE_MODE_UPLOAD){
                 SystemSceneModel *model = [[SystemSceneModel alloc] initWithHekrDictionary:data error:nil];
                 [self.siterwelldelegate onUpdateOnSystemScene:model];
-            }else if([ds intValue] == SCENE_UPLOAD){
+            }else if([cmd intValue] == SCENE_UPLOAD){
+                SceneModel *scenemodel = [[SceneModel alloc] initWithHekrDictionary:data error:nil];
+                [self.siterwelldelegate onUpdateOnScene:scenemodel];
+            }else if([cmd intValue] == CURRENT_SCENE_UPLOAD){
                 
             }
             block(obj,data,error);

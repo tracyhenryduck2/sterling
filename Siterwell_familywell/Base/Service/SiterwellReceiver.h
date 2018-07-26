@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "BatterHelp.h"
 #import "SystemSceneModel.h"
+#import "SceneModel.h"
+#import "DeviceModel.h"
 #import <HekrAPI.h>
 
 #define ANWSER_OK  11
@@ -37,4 +39,7 @@
 
 -(void) onUpdateOnSystemScene:(SystemSceneModel *) systemscenemodel;
 
+-(void) onUpdateOnScene:(SceneModel *)scenemodel;
+
+-(void) onUpdateOnCurrentSystemScene:(NSString *)currentmodel;
 @end
