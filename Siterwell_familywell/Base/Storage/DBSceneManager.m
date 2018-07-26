@@ -38,9 +38,9 @@ static NSString * const scenetable = @"scenetable";
         FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where devTid = '%@' order by mid",scenetable,devTid]];
         while ([rs next]) {
             SceneModel *sceneModel = [[SceneModel alloc] init];
-            sceneModel.scenename = [rs stringForColumn:@"name"];
-            sceneModel.code = [rs stringForColumn:@"code"];
-            sceneModel.mid = [rs stringForColumn:@"mid"];
+            sceneModel.scene_name = [rs stringForColumn:@"name"];
+            sceneModel.scene_content = [rs stringForColumn:@"code"];
+            sceneModel.scene_type = [rs stringForColumn:@"mid"];
             sceneModel.devTid = [rs stringForColumn:@"devTid"];
             [allScene addObject:sceneModel];
         }

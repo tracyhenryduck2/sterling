@@ -10,11 +10,18 @@
 #define SceneModel_h
 #import "JSONModel+HekrDic.h"
 @interface SceneModel:JSONModel
-@property(strong,nonatomic) NSString * scenename;
-@property(nonatomic,assign) NSString * code;
-@property(nonatomic,assign) NSString * mid;
-@property(nonatomic,assign) NSString * devTid;
-@property(nonatomic,assign) NSString * desc;
+@property(nonatomic,assign) NSString * scene_content;
+@property(nonatomic,assign) NSString * scene_type;
+
+@property(nonatomic,assign) NSString<Ignore>* devTid;
+
+@property (nonatomic, strong) NSString<Ignore> *scene_name;
+@property (nonatomic, strong) NSString<Ignore> *isShouldClick;
+
+@property (nonatomic, strong) NSMutableArray<Ignore> *scene_outdevice_array;
+
+@property (nonatomic, strong) NSMutableArray<Ignore> *scene_indevice_array;
+@property (nonatomic, strong) NSString<Ignore> *scene_select_type;
 @end
 
 #endif /* SceneModel_h */

@@ -304,9 +304,18 @@
 		88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B90D32203D50AA007E2A9C /* ResetCode.m */; };
 		88DF4FAD20763A2800232BF8 /* DeviceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FAC20763A2800232BF8 /* DeviceListVC.m */; };
 		88DF4FB22076537300232BF8 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FB12076537300232BF8 /* DeviceModel.m */; };
+		C408076A21070DDF0064F4B7 /* BaseDriveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408076321070DDF0064F4B7 /* BaseDriveApi.m */; };
+		C408077621070FD20064F4B7 /* ChooseSystemSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408077021070FD00064F4B7 /* ChooseSystemSceneApi.m */; };
+		C408077721070FD20064F4B7 /* SycnSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408077321070FD10064F4B7 /* SycnSceneApi.m */; };
+		C408077A210712F90064F4B7 /* InitController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4080778210712F40064F4B7 /* InitController.m */; };
+		C408077D210713750064F4B7 /* SiterwellReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = C408077C210713750064F4B7 /* SiterwellReceiver.m */; };
+		C4080780210714470064F4B7 /* JSONModel+HekrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = C408077F210714470064F4B7 /* JSONModel+HekrDic.m */; };
 		C42E6BBB20C1249D00784B75 /* device.plist in Resources */ = {isa = PBXBuildFile; fileRef = C42E6BBA20C1249D00784B75 /* device.plist */; };
 		C42E6BBF20C12F0A00784B75 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E6BBD20C12F0900784B75 /* DBManager.m */; };
 		C42E6BC120C1327500784B75 /* DBDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E6BC020C1327500784B75 /* DBDeviceManager.m */; };
+		C43158EC2109BA5A0089A222 /* TimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C43158EB2109BA590089A222 /* TimeModel.m */; };
+		C43158EF2109BF600089A222 /* SceneListItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = C43158ED2109BF5F0089A222 /* SceneListItemData.m */; };
+		C43158F32109C6920089A222 /* ItemDataHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = C43158F22109C6920089A222 /* ItemDataHelp.m */; };
 		C43412F820F34D030006F207 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = C43412F720F34D030006F207 /* WeatherView.m */; };
 		C43412FB20F34D840006F207 /* NewWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C43412FA20F34D840006F207 /* NewWeatherModel.m */; };
 		C43412FE20F351250006F207 /* TempAndHumView.m in Sources */ = {isa = PBXBuildFile; fileRef = C43412FD20F351250006F207 /* TempAndHumView.m */; };
@@ -319,7 +328,6 @@
 		C438467220C6597600FF8725 /* Main.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C438467120C6597600FF8725 /* Main.xcassets */; };
 		C438467420C65BDB00FF8725 /* DBGatewayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C438467320C65BDB00FF8725 /* DBGatewayManager.m */; };
 		C438467720C65C4100FF8725 /* GatewayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C438467620C65C4100FF8725 /* GatewayModel.m */; };
-		C438467B20C6656300FF8725 /* GatewayModel+Siterwell.m in Sources */ = {isa = PBXBuildFile; fileRef = C438467A20C6656300FF8725 /* GatewayModel+Siterwell.m */; };
 		C438467D20C66A8E00FF8725 /* TimerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C438467C20C66A8E00FF8725 /* TimerModel.m */; };
 		C438468120C66C7800FF8725 /* DBTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C438468020C66C7800FF8725 /* DBTimerManager.m */; };
 		C438469120C676A300FF8725 /* BookshelfCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C438468420C676A300FF8725 /* BookshelfCollectionViewFlowLayout.m */; };
@@ -375,7 +383,6 @@
 		C46C23D520FF308900D9350F /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23D420FF308900D9350F /* SettingController.m */; };
 		C4A176B720CF720F002AE3F7 /* RegistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A176B620CF720F002AE3F7 /* RegistCell.m */; };
 		C4C5B9E120CE092B009A3E2D /* ArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E020CE092B009A3E2D /* ArrayTool.m */; };
-		C4C5B9E920CE0DC9009A3E2D /* BaseDriveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */; };
 		C4C5B9FE20CE1757009A3E2D /* deleteDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9ED20CE1755009A3E2D /* deleteDeviceApi.m */; };
 		C4C5B9FF20CE1757009A3E2D /* RenameDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9EE20CE1755009A3E2D /* RenameDeviceApi.m */; };
 		C4C5BA0020CE1757009A3E2D /* replaceDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9EF20CE1755009A3E2D /* replaceDeviceApi.m */; };
@@ -1026,11 +1033,29 @@
 		88DF4FAE20763A3C00232BF8 /* DeviceListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceListVC.h; sourceTree = "<group>"; };
 		88DF4FB02076536300232BF8 /* DeviceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceModel.h; sourceTree = "<group>"; };
 		88DF4FB12076537300232BF8 /* DeviceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceModel.m; sourceTree = "<group>"; };
+		C408076221070DDF0064F4B7 /* BaseDriveApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDriveApi.h; sourceTree = "<group>"; };
+		C408076321070DDF0064F4B7 /* BaseDriveApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDriveApi.m; sourceTree = "<group>"; };
+		C408077021070FD00064F4B7 /* ChooseSystemSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSystemSceneApi.m; sourceTree = "<group>"; };
+		C408077121070FD10064F4B7 /* SycnSceneApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SycnSceneApi.h; sourceTree = "<group>"; };
+		C408077221070FD10064F4B7 /* ChooseSystemSceneApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSystemSceneApi.h; sourceTree = "<group>"; };
+		C408077321070FD10064F4B7 /* SycnSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SycnSceneApi.m; sourceTree = "<group>"; };
+		C4080778210712F40064F4B7 /* InitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitController.m; sourceTree = "<group>"; };
+		C4080779210712F80064F4B7 /* InitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitController.h; sourceTree = "<group>"; };
+		C408077B210713740064F4B7 /* SiterwellReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiterwellReceiver.h; sourceTree = "<group>"; };
+		C408077C210713750064F4B7 /* SiterwellReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiterwellReceiver.m; sourceTree = "<group>"; };
+		C408077E210714460064F4B7 /* JSONModel+HekrDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONModel+HekrDic.h"; sourceTree = "<group>"; };
+		C408077F210714470064F4B7 /* JSONModel+HekrDic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONModel+HekrDic.m"; sourceTree = "<group>"; };
 		C42E6BBA20C1249D00784B75 /* device.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = device.plist; sourceTree = "<group>"; };
 		C42E6BBD20C12F0900784B75 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		C42E6BBE20C12F0900784B75 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		C42E6BC020C1327500784B75 /* DBDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBDeviceManager.m; sourceTree = "<group>"; };
 		C42E6BC220C1328400784B75 /* DBDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBDeviceManager.h; sourceTree = "<group>"; };
+		C43158EA2109BA590089A222 /* TimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeModel.h; sourceTree = "<group>"; };
+		C43158EB2109BA590089A222 /* TimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeModel.m; sourceTree = "<group>"; };
+		C43158ED2109BF5F0089A222 /* SceneListItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneListItemData.m; sourceTree = "<group>"; };
+		C43158EE2109BF5F0089A222 /* SceneListItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneListItemData.h; sourceTree = "<group>"; };
+		C43158F12109C6920089A222 /* ItemDataHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDataHelp.h; sourceTree = "<group>"; };
+		C43158F22109C6920089A222 /* ItemDataHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDataHelp.m; sourceTree = "<group>"; };
 		C43412F620F34CCE0006F207 /* WeatherView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
 		C43412F720F34D030006F207 /* WeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
 		C43412F920F34D840006F207 /* NewWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWeatherModel.h; sourceTree = "<group>"; };
@@ -1053,8 +1078,6 @@
 		C438467520C65BE700FF8725 /* DBGatewayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBGatewayManager.h; sourceTree = "<group>"; };
 		C438467620C65C4100FF8725 /* GatewayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GatewayModel.m; sourceTree = "<group>"; };
 		C438467820C65C5500FF8725 /* GatewayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GatewayModel.h; sourceTree = "<group>"; };
-		C438467920C6656300FF8725 /* GatewayModel+Siterwell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GatewayModel+Siterwell.h"; sourceTree = "<group>"; };
-		C438467A20C6656300FF8725 /* GatewayModel+Siterwell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GatewayModel+Siterwell.m"; sourceTree = "<group>"; };
 		C438467C20C66A8E00FF8725 /* TimerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerModel.m; sourceTree = "<group>"; };
 		C438467E20C66A9B00FF8725 /* TimerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerModel.h; sourceTree = "<group>"; };
 		C438467F20C66C7700FF8725 /* DBTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTimerManager.h; sourceTree = "<group>"; };
@@ -1160,8 +1183,6 @@
 		C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C5B9DF20CE092B009A3E2D /* ArrayTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayTool.h; sourceTree = "<group>"; };
 		C4C5B9E020CE092B009A3E2D /* ArrayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayTool.m; sourceTree = "<group>"; };
-		C4C5B9E720CE0DC9009A3E2D /* BaseDriveApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDriveApi.h; sourceTree = "<group>"; };
-		C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDriveApi.m; sourceTree = "<group>"; };
 		C4C5B9EC20CE1755009A3E2D /* deleteDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteDeviceApi.h; sourceTree = "<group>"; };
 		C4C5B9ED20CE1755009A3E2D /* deleteDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteDeviceApi.m; sourceTree = "<group>"; };
 		C4C5B9EE20CE1755009A3E2D /* RenameDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameDeviceApi.m; sourceTree = "<group>"; };
@@ -1259,6 +1280,10 @@
 		88694BAD2075B5100092B6A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C43158EE2109BF5F0089A222 /* SceneListItemData.h */,
+				C43158ED2109BF5F0089A222 /* SceneListItemData.m */,
+				C43158EA2109BA590089A222 /* TimeModel.h */,
+				C43158EB2109BA590089A222 /* TimeModel.m */,
 				C4E35C2820F4A49E00B806C8 /* DevVersionModel.h */,
 				C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */,
 				C43412F920F34D840006F207 /* NewWeatherModel.h */,
@@ -1273,8 +1298,6 @@
 				C438466B20C62DB400FF8725 /* SceneModel.h */,
 				C438467620C65C4100FF8725 /* GatewayModel.m */,
 				C438467820C65C5500FF8725 /* GatewayModel.h */,
-				C438467920C6656300FF8725 /* GatewayModel+Siterwell.h */,
-				C438467A20C6656300FF8725 /* GatewayModel+Siterwell.m */,
 				C438467C20C66A8E00FF8725 /* TimerModel.m */,
 				C438467E20C66A9B00FF8725 /* TimerModel.h */,
 				C4C5BA0620CE555D009A3E2D /* WarnModel.h */,
@@ -2505,6 +2528,8 @@
 		88B03BB72035E5DF00F18EFE /* Macros */ = {
 			isa = PBXGroup;
 			children = (
+				C408077E210714460064F4B7 /* JSONModel+HekrDic.h */,
+				C408077F210714470064F4B7 /* JSONModel+HekrDic.m */,
 				C4FF15EA20CFB27800DA3026 /* NSString+JJ.h */,
 				C4FF15EB20CFB27800DA3026 /* NSString+JJ.m */,
 				88B03BB82035E5DF00F18EFE /* Macros.h */,
@@ -2649,6 +2674,7 @@
 		88B7629E2029DCF800FC87A0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C408076121070DDF0064F4B7 /* Service */,
 				C4E35C1D20F4A0FF00B806C8 /* HTTP */,
 				C42E6BBC20C12EE500784B75 /* Storage */,
 				88B7629F2029DD6B00FC87A0 /* Controller */,
@@ -2715,6 +2741,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C408076121070DDF0064F4B7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C408077B210713740064F4B7 /* SiterwellReceiver.h */,
+				C408077C210713750064F4B7 /* SiterwellReceiver.m */,
+				C408076221070DDF0064F4B7 /* BaseDriveApi.h */,
+				C408076321070DDF0064F4B7 /* BaseDriveApi.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C408076E21070F8D0064F4B7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C408077221070FD10064F4B7 /* ChooseSystemSceneApi.h */,
+				C408077021070FD00064F4B7 /* ChooseSystemSceneApi.m */,
+				C408077121070FD10064F4B7 /* SycnSceneApi.h */,
+				C408077321070FD10064F4B7 /* SycnSceneApi.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		C42E6BBC20C12EE500784B75 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2738,6 +2786,15 @@
 				C46BDCCD20FDC5C800796E61 /* DBSceneReManager.m */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		C43158F02109C6920089A222 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				C43158F12109C6920089A222 /* ItemDataHelp.h */,
+				C43158F22109C6920089A222 /* ItemDataHelp.m */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		C438468220C676A300FF8725 /* GroupView */ = {
@@ -2908,6 +2965,8 @@
 		C43D517C203FDC9F00DE5FF3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C4080779210712F80064F4B7 /* InitController.h */,
+				C4080778210712F40064F4B7 /* InitController.m */,
 				C4ED2EC820F5F20D00B4E008 /* CircleMenuVc.h */,
 				C4ED2EC720F5F20D00B4E008 /* CircleMenuVc.m */,
 				C43D5183203FE6D200DE5FF3 /* DeviceVC.h */,
@@ -2936,6 +2995,8 @@
 		C46C23AE20FF29A300D9350F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C43158F02109C6920089A222 /* Other */,
+				C408076E21070F8D0064F4B7 /* Service */,
 				C46C23B020FF29C700D9350F /* Controller */,
 				C46C23AF20FF29BC00D9350F /* View */,
 			);
@@ -2992,8 +3053,6 @@
 				C4FF15F320CFD82200DA3026 /* ErrorCodeUtil.h */,
 				C4FF15F420CFD82200DA3026 /* ErrorCodeUtil.m */,
 				C4FF15E320CF935300DA3026 /* HekrHttpsApi.h */,
-				C4C5B9E720CE0DC9009A3E2D /* BaseDriveApi.h */,
-				C4C5B9E820CE0DC9009A3E2D /* BaseDriveApi.m */,
 				C4C5B9DF20CE092B009A3E2D /* ArrayTool.h */,
 				C4C5B9E020CE092B009A3E2D /* ArrayTool.m */,
 			);
@@ -3303,7 +3362,6 @@
 				88B03C272035E5E000F18EFE /* NSDecimalNumber+Extensions.m in Sources */,
 				88B03C9F2035E5E000F18EFE /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				88B03C972035E5E000F18EFE /* UIImageView+Letters.m in Sources */,
-				C4C5B9E920CE0DC9009A3E2D /* BaseDriveApi.m in Sources */,
 				C46C23B220FF2A1200D9350F /* TimerEditController.m in Sources */,
 				88B03C942035E5E000F18EFE /* UIImageView+BetterFace.m in Sources */,
 				88B03C342035E5E000F18EFE /* NSObject+Reflection.m in Sources */,
@@ -3346,6 +3404,7 @@
 				88B03C282035E5E000F18EFE /* NSNumber+CGFloat.m in Sources */,
 				88B03C7D2035E5E000F18EFE /* UIControl+Block.m in Sources */,
 				88B03CCC2035E5E000F18EFE /* UIView+Screenshot.m in Sources */,
+				C408077A210712F90064F4B7 /* InitController.m in Sources */,
 				88B03C562035E5E000F18EFE /* MKMapView+MoveLogo.m in Sources */,
 				88B03C572035E5E000F18EFE /* MKMapView+ZoomLevel.m in Sources */,
 				88B03CAC2035E5E000F18EFE /* UIScrollView+APParallaxHeader.m in Sources */,
@@ -3433,10 +3492,12 @@
 				88B03CD32035E5E000F18EFE /* UIViewController+BackButtonTouched.m in Sources */,
 				88B03CFB2035E5E000F18EFE /* UITapImageView.m in Sources */,
 				88B03CBA2035E5E000F18EFE /* UITextField+History.m in Sources */,
+				C408077621070FD20064F4B7 /* ChooseSystemSceneApi.m in Sources */,
 				88B03CF82035E5E000F18EFE /* MyMD5.m in Sources */,
 				88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */,
 				88B762AB2029E1D800FC87A0 /* Register.m in Sources */,
 				88B03661203583DD00F18EFE /* ESP_NetUtil.m in Sources */,
+				C43158EC2109BA5A0089A222 /* TimeModel.m in Sources */,
 				C438469120C676A300FF8725 /* BookshelfCollectionViewFlowLayout.m in Sources */,
 				88B03C322035E5E000F18EFE /* NSObject+KVOBlocks.m in Sources */,
 				C4E35C2220F4A34F00B806C8 /* BaseNetManager.m in Sources */,
@@ -3459,6 +3520,7 @@
 				88B03CEE2035E5E000F18EFE /* YTKNetworkConfig.m in Sources */,
 				C46C23C920FF2DE500D9350F /* SingleSocketController.m in Sources */,
 				88B03C0C2035E5E000F18EFE /* NSData+Hash.m in Sources */,
+				C43158F32109C6920089A222 /* ItemDataHelp.m in Sources */,
 				88B03C9A2035E5E000F18EFE /* UILabel+AutoSize.m in Sources */,
 				C46C23B620FF2A4500D9350F /* TimerListController.m in Sources */,
 				88B03C642035E5E000F18EFE /* CATransaction+AnimateWithDuration.m in Sources */,
@@ -3477,6 +3539,7 @@
 				88B03C4B2035E5E000F18EFE /* NSString+XML.m in Sources */,
 				88B03664203583DD00F18EFE /* ESPDatumCode.m in Sources */,
 				C46C23C320FF2D3C00D9350F /* SetTimeController.m in Sources */,
+				C408076A21070DDF0064F4B7 /* BaseDriveApi.m in Sources */,
 				88B03C0E2035E5E000F18EFE /* NSData+zlib.m in Sources */,
 				C43412FB20F34D840006F207 /* NewWeatherModel.m in Sources */,
 				88B03CC12035E5E000F18EFE /* UIView+BlockGesture.m in Sources */,
@@ -3486,6 +3549,7 @@
 				88B03C092035E5E000F18EFE /* NSData+CRC16.m in Sources */,
 				88B03C912035E5E000F18EFE /* UIImage+RoundedCorner.m in Sources */,
 				88B03C882035E5E000F18EFE /* UIImage+Color.m in Sources */,
+				C408077D210713750064F4B7 /* SiterwellReceiver.m in Sources */,
 				C438467720C65C4100FF8725 /* GatewayModel.m in Sources */,
 				88B03C6E2035E5E000F18EFE /* UIBezierPath+SVG.m in Sources */,
 				88B03C432035E5E000F18EFE /* NSString+RegexCategory.m in Sources */,
@@ -3512,7 +3576,6 @@
 				88DF4FB22076537300232BF8 /* DeviceModel.m in Sources */,
 				88B03C692035E5E000F18EFE /* UIApplication+Permissions.m in Sources */,
 				88B03C772035E5E000F18EFE /* UIColor+Gradient.m in Sources */,
-				C438467B20C6656300FF8725 /* GatewayModel+Siterwell.m in Sources */,
 				88B03C522035E5E000F18EFE /* NSURLRequest+ParamsFromDictionary.m in Sources */,
 				88B03C8B2035E5E000F18EFE /* UIImage+GIF.m in Sources */,
 				C4FF15E620CF936A00DA3026 /* DBWarnManager.m in Sources */,
@@ -3560,10 +3623,12 @@
 				88B03C1F2035E5E000F18EFE /* NSFileHandle+readLine.m in Sources */,
 				C42E6BBF20C12F0A00784B75 /* DBManager.m in Sources */,
 				88B03C292035E5E000F18EFE /* NSNumber+RomanNumerals.m in Sources */,
+				C43158EF2109BF600089A222 /* SceneListItemData.m in Sources */,
 				88B03CB82035E5E000F18EFE /* UITableViewCell+TS_delaysContentTouches.m in Sources */,
 				88B03CAE2035E5E000F18EFE /* UIScrollView+Pages.m in Sources */,
 				88B03C002035E5E000F18EFE /* CLLocation+CH1903.m in Sources */,
 				88B03C0A2035E5E000F18EFE /* NSData+Encrypt.m in Sources */,
+				C4080780210714470064F4B7 /* JSONModel+HekrDic.m in Sources */,
 				88B03C412035E5E000F18EFE /* NSString+MIME.m in Sources */,
 				88B03C7F2035E5E000F18EFE /* UIDevice+PasscodeStatus.m in Sources */,
 				88B03CA82035E5E000F18EFE /* UIResponder+FirstResponder.m in Sources */,
@@ -3584,6 +3649,7 @@
 				88B03C922035E5E000F18EFE /* UIImage+Vector.m in Sources */,
 				C438466520C6278000FF8725 /* DBSystemSceneManager.m in Sources */,
 				C4FF15F520CFD82200DA3026 /* ErrorCodeUtil.m in Sources */,
+				C408077721070FD20064F4B7 /* SycnSceneApi.m in Sources */,
 				C4C5BA0820CE5577009A3E2D /* WarnModel.m in Sources */,
 				88B03CFD2035E5E000F18EFE /* TimeHelper.m in Sources */,
 				88B03C452035E5E000F18EFE /* NSString+Ruby.m in Sources */,

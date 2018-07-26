@@ -191,4 +191,38 @@
     }
 }
 
++ (NSString *)getCRCFromContent:(NSString *)answer_content{
+    
+    if(answer_content.length <= 38){
+        return nil;
+    }else{
+        
+        int totalLengrh = (int)strtoul([[answer_content substringWithRange:NSMakeRange(0, 4)] UTF8String],0,16);
+        unsigned char byte[totalLengrh];
+        byte[0] = (unsigned char)strtoul([[answer_content substringWithRange:NSMakeRange(0, 2)] UTF8String],0,16);
+        byte[1] = (unsigned char)strtoul([[answer_content substringWithRange:NSMakeRange(2, 2)] UTF8String],0,16);
+        byte[2] = (unsigned char)strtoul([[answer_content substringWithRange:NSMakeRange(4, 2)] UTF8String],0,16);
+        
+        int j=3;
+        
+        NSString *name = [answer_content substringWithRange:NSMakeRange(6, 32)];
+        for(int i=0; i<[name length]; i++)
+        {
+            byte[j] = [name characterAtIndex:i];
+            j++;
+        }
+        
+        NSString *status = [answer_content substringWithRange:NSMakeRange(38, answer_content.length - 38)];
+        for (int i = 0; i < status.length/2; i++) {
+            byte[j] = (unsigned char)strtoul([[status substringWithRange:NSMakeRange(i*2, 2)] UTF8String],0,16);
+            j++;
+        }
+        
+        NSString *content = [BatterHelp getCRCCode:byte lenght:totalLengrh];
+        
+        return content;
+    }
+
+}
+
 @end
