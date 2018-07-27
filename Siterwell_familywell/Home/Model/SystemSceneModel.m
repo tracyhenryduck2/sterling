@@ -157,7 +157,7 @@
             NSNumber *numTemp = [numberFormatter numberFromString:[NSString stringWithFormat:@"%lu",strtoul([[gs584 substringWithRange:NSMakeRange(0, 4)] UTF8String], 0, 16)]];
             [ship setEqid:numTemp];
 
-
+            [ship setDevTid:self.devTid];
             [ship setAction:[NSString stringWithFormat:@"%lu",strtoul([[gs584 substringWithRange:NSMakeRange(4, 8)] UTF8String], 0, 16)]];
             [ship setDelay:0];
             [ds addObject:ship];
@@ -180,6 +180,7 @@
                 NSString *scene_id = [self.answer_content substringWithRange:NSMakeRange(6+32+4+([gs584count intValue]*14)+(i*2), 2)];
                 scene_id = [NSString stringWithFormat:@"%lu",strtoul([[scene_id substringWithRange:NSMakeRange(0, 2)] UTF8String], 0, 16)];
                 [ship setMid:scene_id];
+                [ship setDevTid:self.devTid];
                 [ds addObject:ship];
             }
 

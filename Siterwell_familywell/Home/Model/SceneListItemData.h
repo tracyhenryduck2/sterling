@@ -10,13 +10,13 @@
 
 @interface SceneListItemData : NSObject
 
-@property (nonatomic , strong) NSString *title;
+@property (nonatomic , strong) NSString *type;
 
 @property (nonatomic , strong) NSString *custmTitle;
 
 @property (nonatomic , strong) NSString *image;
 
-@property (nonatomic , assign) NSInteger eqid;
+@property (nonatomic , assign) NSNumber *eqid;
 
 @property (nonatomic , strong) NSString *hour;
 

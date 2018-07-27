@@ -11,11 +11,12 @@
 #import "JSONModel+HekrDic.h"
 @interface DeviceModel:JSONModel
 
-@property(strong,nonatomic) NSString * devicename;
-@property(nonatomic)        NSInteger    eqid;
-@property(nonatomic,assign) NSString * devicetype;
-@property(nonatomic,assign) NSString * devicestatus;
-@property(nonatomic,assign) NSString * devTid;
+
+@property(nonatomic)        NSNumber * device_ID;
+@property(nonatomic,assign) NSString * device_name;
+@property(nonatomic,assign) NSString * device_status;
+@property(strong,nonatomic) NSString<Ignore> * device_custom_name;
+@property(nonatomic,assign) NSString<Ignore> * devTid;
 @end
 
 #endif /* DeviceModel_h */

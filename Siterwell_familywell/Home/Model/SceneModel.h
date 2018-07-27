@@ -13,8 +13,7 @@
 @property(nonatomic,assign) NSString * scene_content;
 @property(nonatomic,assign) NSString * scene_type;
 
-@property(nonatomic,assign) NSString<Ignore>* devTid;
-
+@property(nonatomic,assign) NSString<Ignore> * devTid;
 @property (nonatomic, strong) NSString<Ignore> *scene_name;
 @property (nonatomic, strong) NSString<Ignore> *isShouldClick;
 

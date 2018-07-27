@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ItemData.h"
 #import "SceneListItemData.h"
+#import "BatterHelp.h"
+#import "DBSceneManager.h"
+#import "DeviceModel.h"
 
 @interface ItemDataHelp : NSObject
 
@@ -18,10 +20,10 @@
  @param data ItemData
  @return SceneListItem
  */
-+ (SceneListItemData *)ItemDataToSceneListItemData:(ItemData *)data;
++(SceneListItemData *)ItemDataToSceneListItemData:(DeviceModel *)data;
 
-+(NSString *)SceneContentWithOutputArray:(NSMutableArray *)outarray inputAraary:(NSMutableArray *)inarray type:(NSInteger)type name:(NSString *)name sceneid:(NSString *)sceneid;
++ (NSString *)SceneContentWithOutputArray:(NSMutableArray *)outarray inputAraary:(NSMutableArray *)inarray type:(NSInteger)type name:(NSString *)name sceneid:(NSString *)sceneid withDevTid:(NSString *)devTid;
 
-+ (BOOL)isAddSceneId:(NSString *)sceneId;
++ (BOOL)isAddSceneId:(NSString *)sceneId withDevTid:(NSString *)devTid;
 
 @end

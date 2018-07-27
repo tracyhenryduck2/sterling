@@ -7,105 +7,84 @@
 //
 
 #import "ItemDataHelp.h"
-#import "BatterHelp.h"
-#import "SceneDataBase.h"
+
 
 @implementation ItemDataHelp
-+(SceneListItemData *)ItemDataToSceneListItemData:(ItemData *)data{
++(SceneListItemData *)ItemDataToSceneListItemData:(DeviceModel *)data{
     SceneListItemData *item = [[SceneListItemData alloc] init];
-    item.title = data.title;
-    if([data.customTitle isEqualToString:@""]){
-        item.custmTitle = [NSString stringWithFormat:@"%@ %ld",NSLocalizedString(data.title, nil) ,data.devID];
+    item.eqid = data.device_ID;
+    item.type = data.device_name;
+    NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+    dic = [dic objectForKey:@"names"];
+    NSDictionary *dic_pics = [dic objectForKey:@"pictures"];
+    if([NSString isBlankString:data.device_custom_name ]){
+        item.custmTitle = [NSString stringWithFormat:@"%@ %d",NSLocalizedString([dic objectForKey:data.device_name], nil) ,[data.device_ID intValue]];
     }else{
-        item.custmTitle = data.customTitle;
+        item.custmTitle = data.device_custom_name;
     }
-    item.eqid = data.devID;
-    if ([data.title isEqualToString:@"定时"]) {
-        item.image = @"blue_clock_icon";
-    }else if ([data.title isEqualToString:@"点击执行"]){
-        item.image = @"blue_hand_icon";
-    }else if ([data.title isEqualToString:@"SM报警器"]){
-        item.image = @"blue_smbjq_icon";
-    }else if ([data.title isEqualToString:@"PIR探测器"]){
-        item.image = @"blue_pirtcq_icon";
-    }else if ([data.title isEqualToString:@"CO报警器"]){
-        item.image = @"blue_cobjq_icon";
-    }else if ([data.title isEqualToString:@"水感报警器"]){
-        item.image = @"blue_sgbjq_icon";
-    }else if ([data.title isEqualToString:@"门磁"]){
-        item.image = @"blue_mc_icon";
-    }else if ([data.title isEqualToString:@"SOS按钮"]){
-        item.image = @"blue_sosbtn_icon";
-    }else if ([data.title isEqualToString:@"智能插座"]){
-        item.image = @"blue_dtdzncz_icon";
-    }else if ([data.title isEqualToString:@"网关灯"]){
-        item.image = @"blue_wgjd_icon";
-    }else if([data.title isEqualToString:@"复合型烟感"]){
-        item.image = @"blue_smbjq_icon";
-    }else if([data.title isEqualToString:@"热感报警器"]){
-        item.image = @"blue_rg_icon";
-    }else if([data.title isEqualToString:@"气体探测器"]){
-        item.image = @"blue_qtjc_icon";
-    }else if ([data.title isEqualToString:@"情景开关"]) {
-        item.image = @"blue_btn_icon";
-    }else if ([data.title isEqualToString:@"按键"]) {
-        item.image = @"blue_switch_icon";
-    }else if ([data.title isEqualToString:@"温湿度探测器"]) {
-        item.image = @"blue_wsdjcy_icon";
-    }else if ([data.title isEqualToString:@"门锁"]) {
-        item.image = @"blue_fm_icon";
-    }else if ([data.title isEqualToString:@"双路开关"]) {
-        item.image = @"blue_dtdzncz_icon";
-    }else if ([data.title isEqualToString:@"调光模块"]) {
-        item.image = @"blue_jtbj_icon";
-    }
+        item.image = [NSString stringWithFormat:[dic_pics objectForKey:data.device_name],@"blue"];
     
     return item;
 }
 
 
-+ (NSString *)SceneContentWithOutputArray:(NSMutableArray *)outarray inputAraary:(NSMutableArray *)inarray type:(NSInteger)type name:(NSString *)name sceneid:(NSString *)sceneid{
++ (NSString *)SceneContentWithOutputArray:(NSMutableArray *)outarray inputAraary:(NSMutableArray *)inarray type:(NSInteger)type name:(NSString *)name sceneid:(NSString *)sceneid withDevTid:(NSString *)devTid{
     int contentLength = 2;
-
+    NSInteger new_mid;
     NSString *content;
     //自定义编号
     if (!sceneid) {
-        NSMutableArray *array = [[SceneDataBase sharedDataBase] selectScene];
-//        SceneModel *model = [array objectAtIndex:array.count-1];
-//        NSString *scene_id = [NSString stringWithFormat:@"%d",[model.scene_id intValue] + 1];
-//        while (YES) {
-//            if (![self isAddSceneId:scene_id]) {
-//                scene_id = [NSString stringWithFormat:@"%d",[scene_id intValue] + 1];
-//            }else{
-//                break;
-//            }
-//        }
-        
-        
-        int maxId = 1;
-        
-        for (SceneModel *model in array) {
-            if ([model.scene_id intValue] > maxId) {
-                maxId = [model.scene_id intValue];
+        NSMutableArray *array = [[DBSceneManager sharedInstanced] queryAllScenewithDevTid:devTid];
+        [array sortUsingComparator:^NSComparisonResult(__strong id obj1,__strong id obj2){
+            return [((SceneModel *)obj1).scene_type intValue] > [((SceneModel *)obj2).scene_type intValue];
+        }];
+
+        if(array.count==0){
+            new_mid = 1;
+        }else if(array.count==1){
+            if(  [((SceneModel *)array[0]).scene_type intValue] ==1){
+               new_mid = 2;
+            }else{
+                new_mid = 1;
             }
-        }
-        
-        NSString *scene_id = [NSString stringWithFormat:@"%d",maxId + 1];
-        
-        for (int i = 1 ; i <= maxId; i ++ ) {
-            if (![[SceneDataBase sharedDataBase] selectScene:[NSString stringWithFormat:@"%d",i]].scene_content) {
-                scene_id = [NSString stringWithFormat:@"%d",i];
-                break;
+        }else{
+            int m = 0;
+            for(int i=0;i<array.count-1;i++){
+                
+                
+                if(i==0){
+                    
+                    int d = [((SceneModel *)array[i]).scene_type intValue];
+                    if(d!=1){
+                        m = 1;
+                        break;
+                    }
+                    else {
+                        if(([((SceneModel *)array[i]).scene_type intValue] + 1) < [((SceneModel *)array[i+1]).scene_type intValue]){
+                            m = [((SceneModel *)array[i]).scene_type intValue]+1;
+                            break;
+                        }else{
+                            m = [((SceneModel *)array[i]).scene_type intValue]+2;
+                        }
+                    }
+                    
+                    
+                }else{
+                    if(([((SceneModel *)array[i]).scene_type intValue] + 1) < [((SceneModel *)array[i+1]).scene_type intValue]){
+                        m = [((SceneModel *)array[i]).scene_type intValue]+1;
+                        break;
+                    }else{
+                        m = [((SceneModel *)array[i]).scene_type intValue]+2;
+                    }
+                    
+                }
+                
+                
             }
+            new_mid = m;
         }
-        
-        NSLog(@"\n\n\n\n\n\n\n情景列表id %@\n\n\n\n\n\n\n",scene_id);
-        
-        if (array.count == 0) {
-            content = [BatterHelp gethexBybinary:1];
-        }else {
-            content = [BatterHelp gethexBybinary:[scene_id intValue]];
-        }
+        content = [NSString stringWithFormat:@"%ld",new_mid];
         
     }else{
         content = [BatterHelp gethexBybinary:[sceneid intValue]];
@@ -205,7 +184,7 @@
     //输入设备内容
     for (SceneListItemData *item in outarray) {
         if (item.eqid>=0) {
-            NSString *devieTanid = [BatterHelp gethexBybinary:item.eqid];
+            NSString *devieTanid = [BatterHelp gethexBybinary:[item.eqid intValue]];
             int length = (int)[devieTanid length];
             for (int i = length; i<4; i++) {
                 devieTanid = [@"0" stringByAppendingString:devieTanid];
@@ -247,7 +226,7 @@
             }
             contentLength += 2;
             
-            NSString *devieTanid = [BatterHelp gethexBybinary:item.eqid];
+            NSString *devieTanid = [BatterHelp gethexBybinary:[item.eqid intValue]];
             int length = (int)[devieTanid length];
             for (int i = length; i<4; i++) {
                 devieTanid = [@"0" stringByAppendingString:devieTanid];
@@ -272,10 +251,10 @@
 }
 
 
-+ (BOOL)isAddSceneId:(NSString *)sceneId{
-    NSMutableArray *array = [[SceneDataBase sharedDataBase] selectScene];
++ (BOOL)isAddSceneId:(NSString *)sceneId withDevTid:(NSString *)devTid{
+    NSMutableArray *array = [[DBSceneManager sharedInstanced] queryAllScenewithDevTid:devTid];
     for (SceneModel *model in array) {
-        if ([model.scene_id isEqualToString:sceneId]) {
+        if ([model.scene_type isEqualToString:sceneId]) {
             return NO;
         }
     }
@@ -284,7 +263,7 @@
 
 + (BOOL)isClickItem:(NSMutableArray *)array{
     for (SceneListItemData *item in array) {
-        if ([item.title isEqualToString:@"点击执行"]) {
+        if ([item.type isEqualToString:@"click"]) {
             return YES;
         }
     }
@@ -293,7 +272,7 @@
 
 + (BOOL)isPhoneItem:(NSMutableArray *)array{
     for (SceneListItemData *item in array) {
-        if ([item.title isEqualToString:@"通知手机"] ||[item.title isEqualToString:@"手机通知"]) {
+        if ([item.type isEqualToString:@"phone"]) {
             return YES;
         }
     }
@@ -324,7 +303,7 @@
 + (int)deviceNumbaer:(NSMutableArray *)array{
     int number = 0;
     for (SceneListItemData *item in array) {
-        if (item.deviceId && [item.deviceId intValue] >= 0) {
+        if (item.eqid >= 0) {
             number ++;
         }
     }

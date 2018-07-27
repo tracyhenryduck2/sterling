@@ -48,4 +48,23 @@ static NSString * const scenetable = @"scenetable";
     return allScene;
 }
 
+
+- (SceneModel *)querySceneModel:(NSString *)mid withDevTid:(NSString *)devTid{
+    
+    __block SceneModel *scenemodel = nil;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where mid = '%@' and devTid = '%@' ", scenetable,mid,devTid];
+        FMResultSet *rs = [db executeQuery:sql];
+        while (rs.next) {
+            scenemodel = [[SceneModel alloc] init];
+            scenemodel.scene_type = [rs stringForColumn:@"mid"];
+            scenemodel.scene_content = [rs stringForColumn:@"code"];
+            scenemodel.scene_name = [rs stringForColumn:@"name"];
+            scenemodel.devTid = [rs stringForColumn:@"devTid"];
+          
+        }
+    }];
+    return scenemodel;
+}
+
 @end

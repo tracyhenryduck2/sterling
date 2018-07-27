@@ -9,7 +9,8 @@
 #import "SceneModel.h"
 #import "BatterHelp.h"
 #import "SceneListItemData.h"
-#import "ItemData.h"
+#import "DBDeviceManager.h"
+#import "ItemDataHelp.h"
 @implementation SceneModel
 
 -(instancetype) initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err{
@@ -117,19 +118,21 @@
         timeItem.hour = [NSString stringWithFormat:@"%ld",strtoul([hour UTF8String],0,16)];
         timeItem.minute = [NSString stringWithFormat:@"%ld",strtoul([minute UTF8String],0,16)];
         timeItem.image = @"blue_clock_icon";
-        timeItem.title = [NSString stringWithFormat:@"%@:%@",timeItem.hour,timeItem.minute];
+        timeItem.type = @"time";
+        timeItem.custmTitle = [NSString stringWithFormat:@"%@:%@",timeItem.hour,timeItem.minute];
         [array addObject:timeItem];
     }
     
     NSString *click = [self.scene_content substringWithRange:NSMakeRange(46, 2)];
     if ([click isEqualToString:@"AB"]) {
         SceneListItemData *clickItem = [[SceneListItemData alloc] init];
-        clickItem.title = @"点击执行";
+        clickItem.type = @"click";
         clickItem.image = @"blue_hand_icon";
-        self.isShouldClick = @"1";
+        clickItem.custmTitle = NSLocalizedString(@"点击执行", nil);
+        self.isShouldClick = @"AB";
         [array addObject:clickItem];
     }else{
-        self.isShouldClick = @"0";
+        self.isShouldClick = @"00";
     }
     
     NSString *number = [self.scene_content substringWithRange:NSMakeRange(50, 2)];
@@ -137,10 +140,10 @@
     for (int i = 0; i<deviceNumber; i++) {
         NSString *deviceString = [self.scene_content substringWithRange:NSMakeRange(54+(i*12), 12)];
         NSString *deviceId = [deviceString substringWithRange:NSMakeRange(0, 4)];
-        deviceId = [NSString stringWithFormat:@"%ld",strtoul([deviceId UTF8String],0,16)];
+        NSInteger device_ID = strtoul([deviceId UTF8String],0,16);
         NSString *deviceCount = [deviceString substringWithRange:NSMakeRange(4, 8)];
-        ItemData *data = [[DeviceDataBase sharedDataBase] selectDevice:deviceId];
-        SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:data];
+        DeviceModel *devicemodel = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:device_ID] withDevTid:self.devTid];
+        SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:devicemodel];
         deviceItem.action = deviceCount;
         [array addObject:deviceItem];
     }
@@ -156,7 +159,8 @@
     NSString *noti = [self.scene_content substringWithRange:NSMakeRange(48, 2)];
     if ([noti isEqualToString:@"AC"]) {
         SceneListItemData *clickItem = [[SceneListItemData alloc] init];
-        clickItem.title = @"通知手机";
+        clickItem.type = @"phone";
+        clickItem.custmTitle = NSLocalizedString(@"手机通知", nil);
         clickItem.image = @"blue_phone_icon";
         [array addObject:clickItem];
     }
@@ -178,22 +182,27 @@
             delyItem.minute = [NSString stringWithFormat:@"%ld",strtoul([minute UTF8String],0,16)];
             delyItem.second = [NSString stringWithFormat:@"%ld",strtoul([second UTF8String],0,16)];
             delyItem.image = @"blue_ys_icon";
-            delyItem.title = [NSString stringWithFormat:@"%@:%@",delyItem.minute,delyItem.second];
+            delyItem.custmTitle = [NSString stringWithFormat:@"%@:%@",delyItem.minute,delyItem.second];
             [array addObject:delyItem];
         }
         NSString *deviceId = [deviceString substringWithRange:NSMakeRange(4, 4)];
-        deviceId = [NSString stringWithFormat:@"%ld",strtoul([deviceId UTF8String],0,16)];
+        NSInteger deviceId2 =strtoul([deviceId UTF8String],0,16);
         NSString *deviceCount = [deviceString substringWithRange:NSMakeRange(8, 8)];
-        ItemData *data;
         if ([deviceId isEqualToString:@"0"]) {
-            data = [[ItemData alloc] initWithTitle:@"网关灯" Status:@"FF" DevID:@"0" Images:@"" Code:nil];
+            SceneListItemData *deviceItem = [[SceneListItemData alloc] init];
+            deviceItem.type = @"gateway";
+            deviceItem.eqid = [NSNumber numberWithInt:0];
+            deviceItem.custmTitle = NSLocalizedString(@"网关", nil);
+            deviceItem.action = deviceCount;
+              [array addObject:deviceItem];
             
         }else{
-            data = [[DeviceDataBase sharedDataBase] selectDevice:deviceId];
+            DeviceModel * data = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:deviceId2] withDevTid:self.devTid];
+            SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:data];
+            deviceItem.action = deviceCount;
+            [array addObject:deviceItem];
         }
-        SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:data];
-        deviceItem.action = deviceCount;
-        [array addObject:deviceItem];
+
     }
     
     return array;

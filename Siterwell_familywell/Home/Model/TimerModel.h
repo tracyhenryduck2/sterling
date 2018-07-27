@@ -17,7 +17,7 @@
 @property (nonatomic,strong) NSString * week;
 @property (nonatomic,strong) NSString * hour;
 @property (nonatomic,strong) NSString * min;
-@property (nonatomic,strong) NSString * devTid;
+@property(nonatomic,assign) NSString<Ignore> * devTid;
 @end
 
 #endif /* TimerModel_h */

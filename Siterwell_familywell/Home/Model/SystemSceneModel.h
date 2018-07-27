@@ -18,8 +18,7 @@
 @property(nonatomic)        NSNumber<Ignore> *choice;
 @property(nonatomic,assign) NSString<Ignore>  * sid;
 @property(nonatomic,assign) NSString<Ignore>  * color;
-@property(nonatomic,assign) NSString<Ignore>  * devTid;
-
+@property(nonatomic,assign) NSString<Ignore> * devTid;
 @property (nonatomic) NSNumber<Ignore> *dev584Count;
 
 @property (nonatomic) NSMutableArray<Ignore> *dev584List;
