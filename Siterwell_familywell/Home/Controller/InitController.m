@@ -8,6 +8,7 @@
 
 #import "InitController.h"
 #import "DBGatewayManager.h"
+#import "DBDeviceManager.h"
 #import "SiterwellReceiver.h"
 #import "SycnSceneApi.h"
 #import "ChooseSystemSceneApi.h"
@@ -17,6 +18,8 @@
 @property (nonatomic,strong) NSMutableArray <GatewayModel *> * gateways;
 @property (nonatomic) SiterwellReceiver *siter;
 @property (nonatomic) NSObject *testobj;
+@property (nonatomic) NSTimer *timer;
+@property (nonatomic) NSInteger count;
 @end
 
 @implementation InitController
@@ -39,6 +42,10 @@
 //        }
 //
 //    });
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(adddone) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:UITrackingRunLoopMode];
+    
     _gateways = [[NSMutableArray alloc] init];
     NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
     NSString *username = [config objectForKey:@"UserName"];
@@ -184,7 +191,8 @@
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     
     if([NSString isBlankString:currentgateway2]){
-        
+                    UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    AppDelegateInstance.window.rootViewController = [uistoryboard instantiateInitialViewController];
     }else{
         GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
         
@@ -197,17 +205,41 @@
 
     
 }
+
+-(void) adddone{
+    _count ++ ;
+    NSLog(@"同步超时计数：%ld",_count);
+    if(_count == 5)
+    {
+        _count = 0;
+        [_timer invalidate];
+    }
+}
+
 - (void)onlinestatus:(NSString *)devTid {
         NSLog(@"onlinestatus");
 }
 
--(void)onUpdateOnSystemScene:(SystemSceneModel *)systemscenemodel{
+-(void)onUpdateOnSystemScene:(SystemSceneModel *)systemscenemodel withDevTid:(NSString *)devTid{
     NSLog(@"onUpdateOnSystemScene%@",systemscenemodel);
 }
 
--(void)onUpdateOnScene:(SceneModel *)scenemodel{
+-(void)onUpdateOnScene:(SceneModel *)scenemodel withDevTid:(NSString *)devTid{
     
 }
 
+-(void) onUpdateOnCurrentSystemScene:(NSString *)currentmodel withDevTid:(NSString *)devTid{
+    
+}
+
+-(void) onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid{
+    if([devicemodel.device_ID intValue] == 65535){
+        
+    }else{
+        [devicemodel setDevTid:devTid];
+        [[DBDeviceManager sharedInstanced] insertDevice:devicemodel];
+    }
+
+}
 @end
 

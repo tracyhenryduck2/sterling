@@ -105,7 +105,7 @@
     
 }
 
-- (NSMutableArray *)getInDeviceArray{
+- (NSMutableArray *)getInDeviceArray:(NSString *)devTid{
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     NSString *week = [self.scene_content substringWithRange:NSMakeRange(40, 2)];
@@ -142,7 +142,7 @@
         NSString *deviceId = [deviceString substringWithRange:NSMakeRange(0, 4)];
         NSInteger device_ID = strtoul([deviceId UTF8String],0,16);
         NSString *deviceCount = [deviceString substringWithRange:NSMakeRange(4, 8)];
-        DeviceModel *devicemodel = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:device_ID] withDevTid:self.devTid];
+        DeviceModel *devicemodel = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:device_ID] withDevTid:devTid];
         SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:devicemodel];
         deviceItem.action = deviceCount;
         [array addObject:deviceItem];
@@ -151,7 +151,7 @@
     return array;
 }
 
-- (NSMutableArray *)getOutDeviceArray{
+- (NSMutableArray *)getOutDeviceArray:(NSString *)devTid{
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
     
@@ -197,7 +197,7 @@
               [array addObject:deviceItem];
             
         }else{
-            DeviceModel * data = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:deviceId2] withDevTid:self.devTid];
+            DeviceModel * data = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:deviceId2] withDevTid:devTid];
             SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:data];
             deviceItem.action = deviceCount;
             [array addObject:deviceItem];

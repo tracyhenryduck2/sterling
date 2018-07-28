@@ -26,15 +26,19 @@
         
         if(!error){
             NSNumber *cmd = data[@"params"][@"data"][@"cmdId"];
-            
+            NSString *devTid = data[@"params"][@"devTid"];
             if([cmd intValue] == SCENE_MODE_UPLOAD){
                 SystemSceneModel *model = [[SystemSceneModel alloc] initWithHekrDictionary:data error:nil];
-                [self.siterwelldelegate onUpdateOnSystemScene:model];
+                [self.siterwelldelegate onUpdateOnSystemScene:model withDevTid:devTid];
             }else if([cmd intValue] == SCENE_UPLOAD){
                 SceneModel *scenemodel = [[SceneModel alloc] initWithHekrDictionary:data error:nil];
-                [self.siterwelldelegate onUpdateOnScene:scenemodel];
+                [self.siterwelldelegate onUpdateOnScene:scenemodel withDevTid:devTid];
             }else if([cmd intValue] == CURRENT_SCENE_UPLOAD){
-                
+                NSString *current_scenemode = data[@"params"][@"data"][@"scene_group"];
+                [self.siterwelldelegate onUpdateOnCurrentSystemScene:current_scenemode withDevTid:devTid];
+            }else if([cmd intValue] == DEVICE_STATUS_UPLOAD){
+                DeviceModel *devmodel = [[DeviceModel alloc] initWithHekrDictionary:data error:nil];
+                [self.siterwelldelegate onDeviceStatus:devmodel withDevTid:devTid];
             }
             block(obj,data,error);
         }

@@ -37,9 +37,11 @@
 
 -(void) onlinestatus:(NSString *)devTid;
 
--(void) onUpdateOnSystemScene:(SystemSceneModel *) systemscenemodel;
+-(void) onUpdateOnSystemScene:(SystemSceneModel *) systemscenemodel withDevTid:(NSString *)devTid;
 
--(void) onUpdateOnScene:(SceneModel *)scenemodel;
+-(void) onUpdateOnScene:(SceneModel *)scenemodel withDevTid:(NSString *)devTid;
 
--(void) onUpdateOnCurrentSystemScene:(NSString *)currentmodel;
+-(void) onUpdateOnCurrentSystemScene:(NSString *)currentmodel withDevTid:(NSString *)devTid;
+
+-(void) onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid;
 @end
