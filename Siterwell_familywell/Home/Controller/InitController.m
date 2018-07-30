@@ -11,7 +11,9 @@
 #import "DBDeviceManager.h"
 #import "SiterwellReceiver.h"
 #import "SycnSceneApi.h"
+#import "ScynDeviceApi.h"
 #import "ChooseSystemSceneApi.h"
+#import "CRCqueueHelp.h"
 @interface InitController()<SiterwellDelegate>
 @property (nonatomic,strong) UIImage * LogoImage;
 @property (nonatomic,assign) NSInteger flag;
@@ -20,6 +22,7 @@
 @property (nonatomic) NSObject *testobj;
 @property (nonatomic) NSTimer *timer;
 @property (nonatomic) NSInteger count;
+@property (nonatomic,assign)BOOL flag_timer;
 @end
 
 @implementation InitController
@@ -143,7 +146,7 @@
 
 
 -(void)getChooseGateway{
-    [[DBGatewayManager sharedInstanced] insertDevices:_gateways];
+    [[DBGatewayManager sharedInstanced] insertGateways:_gateways];
     NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway = [config objectForKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
     
@@ -196,8 +199,13 @@
     }else{
         GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
         
-        SycnSceneApi * sy = [[SycnSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:@"0" answerContent:@"000851B168EF4FEF" SceneContent:@"00043FCA"];
-        [sy startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+//        SycnSceneApi * sy = [[SycnSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:@"0" answerContent:@"000851B168EF4FEF" SceneContent:@"00043FCA"];
+//        [sy startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+//            NSLog(@"得到数据为%@",data);
+//        }];
+        
+        ScynDeviceApi *deviceApi = [[ScynDeviceApi alloc] initWithDrivce:gatewaymodel.devTid andCtrlKey:gatewaymodel.ctrlKey DeviceStatus:[CRCqueueHelp getDeviceCRCContent:[[DBDeviceManager sharedInstanced] queryAllDevice:gatewaymodel.devTid]] ConnectHost:gatewaymodel.connectHost];
+        [deviceApi startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
             NSLog(@"得到数据为%@",data);
         }];
     }
@@ -207,13 +215,17 @@
 }
 
 -(void) adddone{
-    _count ++ ;
-    NSLog(@"同步超时计数：%ld",_count);
-    if(_count == 5)
-    {
-        _count = 0;
-        [_timer invalidate];
+    if(_flag_timer == YES){
+        
+        _count ++ ;
+        NSLog(@"同步超时计数：%ld",_count);
+        if(_count == 5)
+        {
+            _count = 0;
+            [_timer invalidate];
+        }
     }
+
 }
 
 - (void)onlinestatus:(NSString *)devTid {
@@ -234,8 +246,15 @@
 
 -(void) onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid{
     if([devicemodel.device_ID intValue] == 65535){
-        
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+                SycnSceneApi * sy = [[SycnSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:@"0" answerContent:@"000851B168EF4FEF" SceneContent:@"00043FCA"];
+                [sy startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+                    NSLog(@"得到数据为%@",data);
+                }];
     }else{
+            NSLog(@"插入子设备%@",devicemodel);
         [devicemodel setDevTid:devTid];
         [[DBDeviceManager sharedInstanced] insertDevice:devicemodel];
     }

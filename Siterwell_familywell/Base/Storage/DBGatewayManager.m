@@ -29,19 +29,52 @@ static NSString * const gatewaytable = @"gatewaytable";
     
 }
 
+- (void)insertGateway:(GatewayModel *)gatewayModel{
+    
+    BOOL flag_has_gateway = [self HasGateway:gatewayModel.devTid];
 
+   
+        [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+             if(flag_has_gateway == NO){
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (devTid,bindKey,ctrlKey,deviceName,online,productPublicKey,connectHost,ssid,binVersion,binType) VALUES ('%@', '%@','%@','%@','%@','%@','%@','%@','%@','%@')",gatewaytable,
+                             gatewayModel.devTid,gatewayModel.bindKey,gatewayModel.ctrlKey,gatewayModel.deviceName,gatewayModel.online,gatewayModel.productPublicKey,gatewayModel.connectHost,gatewayModel.ssid,gatewayModel.binVersion,gatewayModel.binType];
+            [db executeUpdate:sql];
+             }else{
+                 NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET devTid='%@',bindKey='%@',ctrlKey='%@',deviceName='%@',online='%@',productPublicKey='%@',connectHost='%@',ssid='%@',binVersion='%@',binType='%@' WHERE devTid='%@'",gatewaytable,
+                                  gatewayModel.devTid,gatewayModel.bindKey,gatewayModel.ctrlKey,gatewayModel.deviceName,gatewayModel.online,gatewayModel.productPublicKey,gatewayModel.connectHost,gatewayModel.ssid,gatewayModel.binVersion,gatewayModel.binType,gatewayModel.devTid];
+                 [db executeUpdate:sql];
+             }
+        }];
 
-- (void)insertDevices:(NSArray *)gatewayModels {
+    
+}
+
+- (void)insertGateways:(NSArray *)gatewayModels {
     
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         [db beginTransaction];
-        for (GatewayModel *f in gatewayModels) {
-            if(![f isKindOfClass:[GatewayModel class]])
+        for (GatewayModel *gatewayModel in gatewayModels) {
+            if(![gatewayModel isKindOfClass:[GatewayModel class]])
                 continue;
-            NSString *sql = [NSString stringWithFormat:@"insert into %@ (devTid,bindKey,ctrlKey,deviceName,online,productPublicKey,connectHost,ssid,binVersion,binType) VALUES ('%@', '%@','%@','%@','%@','%@','%@','%@','%@','%@')",gatewaytable,
-                             f.devTid,f.bindKey,f.ctrlKey,f.deviceName,f.online,f.productPublicKey,f.connectHost,f.ssid,f.binVersion,f.binType];
-            BOOL isSuccess = [db executeUpdate:sql];
-            NSLog(@"insertGateways : isSuccess=%d",isSuccess);
+            BOOL flag_has_gateway = NO;
+            
+            NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where devTid = '%@'", gatewaytable,gatewayModel.devTid];
+            FMResultSet *rs = [db executeQuery:sql];
+            while ([rs next]) {
+                flag_has_gateway = YES;
+            }
+            
+            
+            if(flag_has_gateway == NO){
+                NSString *sql = [NSString stringWithFormat:@"insert into %@ (devTid,bindKey,ctrlKey,deviceName,online,productPublicKey,connectHost,ssid,binVersion,binType) VALUES ('%@', '%@','%@','%@','%@','%@','%@','%@','%@','%@')",gatewaytable,
+                                 gatewayModel.devTid,gatewayModel.bindKey,gatewayModel.ctrlKey,gatewayModel.deviceName,gatewayModel.online,gatewayModel.productPublicKey,gatewayModel.connectHost,gatewayModel.ssid,gatewayModel.binVersion,gatewayModel.binType];
+                [db executeUpdate:sql];
+            }else{
+                NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET devTid='%@',bindKey='%@',ctrlKey='%@',deviceName='%@',online='%@',productPublicKey='%@',connectHost='%@',ssid='%@',binVersion='%@',binType='%@' WHERE devTid='%@'",gatewaytable,
+                                 gatewayModel.devTid,gatewayModel.bindKey,gatewayModel.ctrlKey,gatewayModel.deviceName,gatewayModel.online,gatewayModel.productPublicKey,gatewayModel.connectHost,gatewayModel.ssid,gatewayModel.binVersion,gatewayModel.binType,gatewayModel.devTid];
+                [db executeUpdate:sql];
+            }
+            
         }
         [db commit];
     }];
@@ -117,4 +150,21 @@ static NSString * const gatewaytable = @"gatewaytable";
         [db executeUpdate:sql];
     }];
 }
+
+
+- (BOOL)HasGateway:(NSString *)devTid {
+    
+    __block BOOL flag = NO;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where devTid = '%@'", gatewaytable,devTid];
+        FMResultSet *rs = [db executeQuery:sql];
+        while ([rs next]) {
+            flag = YES;
+        }
+        [rs close];
+    }];
+    return flag;
+}
+
 @end

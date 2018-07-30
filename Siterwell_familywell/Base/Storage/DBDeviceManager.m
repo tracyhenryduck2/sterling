@@ -70,11 +70,20 @@ static NSString *deviceTable = @"device_table";
 
 - (void)insertDevice:(DeviceModel *)deviceModel{
 
-    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,eqid,equipment,equipmenttype,status,devTid) VALUES ('%@', %d,'%@','%@','%@')",deviceTable,
-                         deviceModel.device_custom_name,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid];
-        [db executeUpdate:sql];
-    }];
+   BOOL flag_has_device = [self HasDevice:deviceModel.device_ID withDevTid:deviceModel.devTid];
+    NSLog(@"是否含有该子设备%d",flag_has_device);
+
+        [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+                if(flag_has_device == NO){
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,eqid,equipmenttype,status,devTid) VALUES ('%@', %d,'%@','%@','%@')",deviceTable,
+                             deviceModel.device_custom_name,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid];
+            [db executeUpdate:sql];
+                }else{
+                    NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, deviceModel.device_custom_name,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid,[deviceModel.device_ID intValue],deviceModel.devTid];
+                    [db executeUpdate:sql];
+                }
+        }];
+
 }
 
 - (void)insertDevices:(NSArray *)deviceModels {
@@ -84,10 +93,20 @@ static NSString *deviceTable = @"device_table";
         for (DeviceModel *f in deviceModels) {
             if(![f isKindOfClass:[DeviceModel class]])
                 continue;
-            NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,eqid,equipment,equipmenttype,status,devTid) VALUES ('%@', %d,'%@','%@','%@')",deviceTable,
-                             f.device_custom_name,[f.device_ID intValue],f.device_name,f.device_status,f.devTid];
-            BOOL isSuccess = [db executeUpdate:sql];
-            NSLog(@"insertDevices : isSuccess=%d",isSuccess);
+            BOOL flag = NO;
+            NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where eqid = %d and devTid = '%@'", deviceTable,[f.device_ID intValue],f.devTid];
+            FMResultSet *rs = [db executeQuery:sql];
+            while ([rs next]) {
+                flag = YES;
+            }
+            if(flag == NO){
+                NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,eqid,equipmenttype,status,devTid) VALUES ('%@', %d,'%@','%@','%@')",deviceTable,
+                                 f.device_custom_name,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid];
+                [db executeUpdate:sql];
+            }else{
+                NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, f.device_custom_name,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid,[f.device_ID intValue],f.devTid];
+                [db executeUpdate:sql];
+            }
         }
         [db commit];
     }];
@@ -100,5 +119,22 @@ static NSString *deviceTable = @"device_table";
         [db executeUpdate:sql];
     }];
 }
+
+
+- (BOOL)HasDevice:(NSNumber *)eqid withDevTid:(NSString *)devTid {
+
+    __block BOOL flag = NO;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where eqid = %d and devTid = '%@'", deviceTable,[eqid intValue],devTid];
+        FMResultSet *rs = [db executeQuery:sql];
+        while ([rs next]) {
+            flag = YES;
+        }
+        [rs close];
+    }];
+    return flag;
+}
+
 
 @end

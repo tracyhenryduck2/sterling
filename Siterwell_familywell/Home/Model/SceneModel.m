@@ -74,7 +74,7 @@
 + (NSString *)getCRCFromContent:(NSString *)answer_content{
     
     if(answer_content.length <= 38){
-        return nil;
+        return @"0000";
     }else{
         
         int totalLengrh = (int)strtoul([[answer_content substringWithRange:NSMakeRange(0, 4)] UTF8String],0,16);

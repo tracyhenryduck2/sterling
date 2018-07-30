@@ -13,7 +13,7 @@
 
 @interface DBGatewayManager:NSObject
 + (instancetype)sharedInstanced;
-- (void)insertDevices:(NSArray *)gatewayModels;
+- (void)insertGateways:(NSArray *)gatewayModels;
 - (NSMutableArray *)queryAllGateway;
 - (void)deleteGateway:(NSString *)devTid;
 - (void)updateGatewayName:(NSString *)name withDevTid:(NSString *)DevTid;

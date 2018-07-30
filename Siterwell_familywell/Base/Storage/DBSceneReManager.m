@@ -48,4 +48,22 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
     return allScene;
 }
 
+
+- (NSMutableArray *)queryGS584RelationShip:(NSString *)sid withDevTid:(NSString *)devTid{
+    
+    
+    NSMutableArray *allScene = [NSMutableArray array];
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where sid ='%@' and devTid = '%@'",scenerelationshiptable,sid,devTid]];
+        while ([rs next]) {
+            SceneRelationShip *gs584RelationShip = [[SceneRelationShip alloc] init];
+            gs584RelationShip.sid = [rs stringForColumn:@"sid"];
+            gs584RelationShip.mid = [rs stringForColumn:@"mid"];
+            gs584RelationShip.devTid = [rs stringForColumn:@"devTid"];
+            [allScene addObject:gs584RelationShip];
+        }
+    }];
+    return allScene;
+}
+
 @end

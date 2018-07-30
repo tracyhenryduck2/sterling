@@ -49,6 +49,21 @@ static NSString * const systemScenetable = @"sysmodle";
     return allSystemScene;
 }
 
+- (NSString *)queryCurrentSystemScene:(NSString *)devTid{
+    
+    
+   __block NSString *current_mode;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select sid from %@ where  devTid = '%@' and choice = 1 limited 1",systemScenetable,devTid]];
+        while ([rs next]) {
+            
+            current_mode = [rs stringForColumn:@"sid"];
+            
+        }
+    }];
+    return current_mode;
+}
+
 
 - (void)insertSystemScene:(SystemSceneModel *)systemsceneModel{
     

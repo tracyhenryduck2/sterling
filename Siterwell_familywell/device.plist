@@ -24,7 +24,7 @@
 		<string>%@_qtjc_icon</string>
 		<key>0004</key>
 		<string>%@_sgbjq_icon</string>
-		<key>0200</key>
+		<key>1200</key>
 		<string>%@_dtdzncz_icon</string>
 		<key>0400</key>
 		<string>%@_wgjd_icon</string>
@@ -87,7 +87,7 @@
 		<string>气体探测器</string>
 		<key>0004</key>
 		<string>水感报警器</string>
-		<key>0200</key>
+		<key>1200</key>
 		<string>智能插座</string>
 		<key>0400</key>
 		<string>网关</string>

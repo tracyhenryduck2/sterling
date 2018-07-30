@@ -158,7 +158,7 @@
             [ship setEqid:numTemp];
 
             [ship setDevTid:self.devTid];
-            [ship setAction:[NSString stringWithFormat:@"%lu",strtoul([[gs584 substringWithRange:NSMakeRange(4, 8)] UTF8String], 0, 16)]];
+            [ship setAction:[NSString stringWithFormat:@"%lu",strtoul([[gs584 substringWithRange:NSMakeRange(4, 2)] UTF8String], 0, 16)]];
             [ship setDelay:0];
             [ds addObject:ship];
         }

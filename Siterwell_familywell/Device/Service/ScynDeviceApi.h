@@ -9,5 +9,5 @@
 #import "BaseDriveApi.h"
 
 @interface ScynDeviceApi : BaseDriveApi
--(id)initWithDrivce:(NSString *)devTid andCtrlKey:(NSString *)ctrlkey DeviceStatus:(NSArray *)device_status ConnectHost:(NSString *)connecthost;
+-(id)initWithDrivce:(NSString *)devTid andCtrlKey:(NSString *)ctrlkey DeviceStatus:(NSString *)device_status ConnectHost:(NSString *)connecthost;
 @end

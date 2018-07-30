@@ -123,14 +123,25 @@ static unsigned char auchCRCLo[] = {
 + (NSString *)getDeviceCRCCode:(NSString *)msg{
     unsigned char CRCHi = 0;
     unsigned char CRCLo = 0;
-    int msgLength = (int)msg.length;
-
+    int msgLength = (int)[msg length]/2;
+    char content[msgLength];
+    for(int i = 0; i< msgLength ; i ++){
+        
+        NSString * temp10 = [NSString stringWithFormat:@"%lu",strtoul([[msg substringWithRange:NSMakeRange(0,2)] UTF8String],0,16)];
+        
+        
+        int cycleNumber = [temp10 intValue];
+        content[i] = (char)cycleNumber;
+        
+        msg = [msg substringFromIndex:2];
+    }
+    
     int index = 0,CRCIndex;
     unsigned char uchCRCHi = 0xff;
     unsigned char uchCRCLo = 0xff;
     
     while (index<msgLength){
-        unsigned char charCode =  [msg characterAtIndex:index];
+        unsigned char charCode =  content[index];
         
         CRCIndex = uchCRCHi ^charCode;
         uchCRCHi = (unsigned char) (uchCRCLo ^auchCRCHi[CRCIndex]);

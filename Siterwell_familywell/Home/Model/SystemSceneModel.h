@@ -26,6 +26,7 @@
 @property (nonatomic) NSNumber<Ignore> *sceneCount;
 
 @property (nonatomic) NSMutableArray<Ignore> *sceneRelationShip;
++ (NSString *)getCRCFromContent:(NSString *)answer_content;
 @end
 
 #endif /* SystemSceneModel_h */

@@ -14,6 +14,7 @@
 @interface DBSceneReManager:NSObject
 + (instancetype)sharedInstanced;
 - (NSMutableArray *)queryAllGS584RelationShipwithDevTid:(NSString *)devTid;
+- (NSMutableArray *)queryGS584RelationShip:(NSString *)sid withDevTid:(NSString *)devTid;
 @end
 
 #endif /* DBSceneReManager_h */
