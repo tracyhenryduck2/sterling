@@ -11,6 +11,7 @@
 #import "BatterHelp.h"
 #import "DBSceneManager.h"
 #import "DeviceModel.h"
+#import "NameHelper.h"
 
 @interface ItemDataHelp : NSObject
 

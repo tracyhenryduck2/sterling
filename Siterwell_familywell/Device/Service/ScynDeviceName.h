@@ -7,6 +7,7 @@
 //
 
 #import "BaseDriveApi.h"
+#import "NameHelper.h"
 
 @interface ScynDeviceName : BaseDriveApi
 -(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Device:(NSMutableArray *)deviceArray ConnectHost:(NSString *)connecthost;

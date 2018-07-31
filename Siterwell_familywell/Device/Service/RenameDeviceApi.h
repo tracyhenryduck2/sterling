@@ -7,6 +7,7 @@
 //
 
 #import "BaseDriveApi.h"
+#import "NameHelper.h"
 
 @interface RenameDeviceApi : BaseDriveApi
 -(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey DeviceId:(int)deviceId DeviceName:(NSString *)deviceName ConnectHost:(NSString *)connecthost;

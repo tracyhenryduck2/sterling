@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) NSMutableArray<Ignore> *scene_indevice_array;
 @property (nonatomic, strong) NSString<Ignore> *scene_select_type;
+
++ (NSString *)getCRCFromContent:(NSString *)answer_content;
 @end
 
 #endif /* SceneModel_h */

@@ -130,25 +130,25 @@
                     sceneCode = [sceneCode stringByAppendingString: singleCode];
                 }
                 NSString * oooo = @"0";
-                if (Integer.toHexString(length + 32).length() < 4) {
-                    for (int k = 0; k < 4 - Integer.toHexString(length + 32).length() - 1; k++) {
-                        oooo += 0;
+                if ([BatterHelp gethexBybinary:(length + 32)].length < 4) {
+                    for (int k = 0; k < 4 - [BatterHelp gethexBybinary:(length + 32)].length - 1; k++) {
+                        oooo = [oooo stringByAppendingString:@"0"];
                     }
-                    oooo += Integer.toHexString(length + 32);
+                    oooo = [oooo stringByAppendingString:[BatterHelp gethexBybinary:(length + 32)]];
                 } else {
-                    oooo = Integer.toHexString(length + 32);
+                    oooo = [BatterHelp gethexBybinary:(length + 32)];
                 }
                 
-                String oo = "0";
-                if (Integer.toHexString(scene).length() < 2) {
-                    oo = oo + Integer.toHexString(scene);
+                NSString * oo = @"0";
+                if ([BatterHelp gethexBybinary:(scene)].length < 2) {
+                    oo = [oo stringByAppendingString:[BatterHelp gethexBybinary:(scene)]];
                 } else {
-                    oo = Integer.toHexString(scene);
+                    oo = [BatterHelp gethexBybinary:(scene)];
                 }
                 
-                String ds = CoderUtils.getAscii(name);
+                NSString * ds = [NameHelper getASCIIFromName:name];
                 
-                NSString * fullCode = [NSString initWithFormat:@"%@%@%@%@%@%@%@%@%@", oooo,@"0",id2,ds,btnNum,oo,shortcut,sceneCode,color ];
+                NSString * fullCode = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@", oooo,@"0",id2,ds,btnNum,oo,shortcut,sceneCode,color ];
                 getSceneGroupCRC = [getSceneGroupCRC stringByAppendingString:[SystemSceneModel getCRCFromContent:fullCode]];
                 
             }else {
@@ -157,22 +157,64 @@
         }
         NSString *oooo = @"0";
         int totalLength = codeLength ;
-        Integer.toHexString(totalLength);
-        if (Integer.toHexString(totalLength).length() < 4) {
-            for (int i = 0; i < 4 - Integer.toHexString(totalLength).length()-1; i++) {
-                oooo += 0;
+
+        if ([BatterHelp gethexBybinary:(totalLength)].length < 4) {
+            for (int i = 0; i < 4 - [BatterHelp gethexBybinary:(totalLength)].length-1; i++) {
+                oooo = [oooo stringByAppendingString:@"0"];
             }
-            num = oooo + Integer.toHexString(totalLength);
+            num = [oooo stringByAppendingString: [BatterHelp gethexBybinary:(totalLength)]];
         } else {
-            num = Integer.toHexString(codeLength);
+            num = [BatterHelp gethexBybinary:(totalLength)];
         }
-        return num + getSceneGroupCRC;
+        return [num stringByAppendingString:getSceneGroupCRC];
     }else{
         return @"00040000";
     }
 }
 
-+(NSString *)getSceneCRCContent:(NSMutableArray *)SceneArray {
++(NSString *)getSceneCRCContent:(NSMutableArray *)sceneList {
+    
+
+    if(sceneList != nil && sceneList.count>0) {
+        
+        NSString * oooo = @"0", *num = @"";
+        int codeLength = 2;
+
+        int listLength = [((SceneModel *)[sceneList objectAtIndex:(sceneList.count-1)]).scene_type intValue];
+        NSMutableArray * eqid = [[NSMutableArray alloc] init];
+        for (SceneModel *e in sceneList) {
+            [eqid addObject:e.scene_type];
+        }
+        NSString * sceneCRC = @"";
+        for (int i = 1; i <= listLength; i++) {
+            codeLength += 2;
+            if ([eqid containsObject:[NSString stringWithFormat:@"%d",i]]) {
+
+                NSString *ds =  ((SceneModel *)[sceneList objectAtIndex:[eqid indexOfObject:[NSString stringWithFormat:@"%d",i]]]).scene_content;
+                
+                NSString * crc = [SceneModel getCRCFromContent:ds];
+                sceneCRC = [sceneCRC stringByAppendingString: crc];
+            } else {
+               sceneCRC = [sceneCRC stringByAppendingString: @"0000"];
+            }
+        }
+
+        
+        int totalLength = codeLength ;
+
+        if ([BatterHelp gethexBybinary:totalLength].length< 4) {
+            for (int i = 0; i < 4 - [BatterHelp gethexBybinary:totalLength].length-1; i++) {
+                oooo = [oooo stringByAppendingString:@"0"];
+            }
+            num =[oooo stringByAppendingString:[BatterHelp gethexBybinary:totalLength]];
+        } else {
+            num = [BatterHelp gethexBybinary:totalLength];
+        }
+        return [num stringByAppendingString:sceneCRC];
+    }else {
+        return @"00040000";
+    }
+    
     return nil;
 }
 @end

@@ -13,7 +13,9 @@
 #import "DBGS584RelationShipManager.h"
 #import "DeviceModel.h"
 #import "SystemSceneModel.h"
+#import "SceneModel.h"
 #import "BatterHelp.h"
+#import "NameHelper.h"
 @interface CRCqueueHelp : NSObject
 
 +(NSString *)getDeviceCRCContent:(NSMutableArray *)deviceArray;

@@ -56,17 +56,8 @@
                     hasDevice = YES;
                     break;
                 }else{
-                    NSString *nameString = @"";
-                    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-                    NSData *namedata = [name dataUsingEncoding:enc];
-                    NSInteger countf = 15 - namedata.length;
-                    for(int i = 0 ; i < countf ; i++){
-                        nameString = [nameString stringByAppendingString:@"@"];
-                    }
-                    name = [NSString stringWithFormat:@"%@%@%@",nameString,name,@"$"];
-                    namedata = [name dataUsingEncoding:enc];
-                    name = [self convertDataToHexStr:namedata];
-                    
+                    name = [NameHelper getASCIIFromName:name];
+                
                     
                     unsigned char byte[name.length];
                     
@@ -113,25 +104,6 @@
     return _connecthost;
 }
 
-- (NSString *)convertDataToHexStr:(NSData *)data {
-    if (!data || [data length] == 0) {
-        return @"";
-    }
-    NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]];
-    
-    [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-        unsigned char *dataBytes = (unsigned char*)bytes;
-        for (NSInteger i = 0; i < byteRange.length; i++) {
-            NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
-            if ([hexStr length] == 2) {
-                [string appendString:hexStr];
-            } else {
-                [string appendFormat:@"0%@", hexStr];
-            }
-        }
-    }];
-    
-    return string;
-}
+
 
 @end
