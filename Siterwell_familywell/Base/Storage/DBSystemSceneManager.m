@@ -40,7 +40,7 @@ static NSString * const systemScenetable = @"sysmodle";
             SystemSceneModel *systemSceneModel = [[SystemSceneModel alloc] init];
             systemSceneModel.systemname = [rs stringForColumn:@"name"];
             systemSceneModel.choice =[NSNumber numberWithInt:[rs intForColumn:@"choice"]];
-            systemSceneModel.sid = [rs stringForColumn:@"sid"];
+            systemSceneModel.sence_group = [rs stringForColumn:@"sid"];
             systemSceneModel.devTid = [rs stringForColumn:@"devTid"];
             systemSceneModel.color = [rs stringForColumn:@"color"];
             [allSystemScene addObject:systemSceneModel];
@@ -52,9 +52,9 @@ static NSString * const systemScenetable = @"sysmodle";
 - (NSString *)queryCurrentSystemScene:(NSString *)devTid{
     
     
-   __block NSString *current_mode;
+   __block NSString *current_mode = @"9";
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select sid from %@ where  devTid = '%@' and choice = 1 limited 1",systemScenetable,devTid]];
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select sid from %@ where  devTid = '%@' and choice = 1 limit 1",systemScenetable,devTid]];
         while ([rs next]) {
             
             current_mode = [rs stringForColumn:@"sid"];
@@ -67,10 +67,20 @@ static NSString * const systemScenetable = @"sysmodle";
 
 - (void)insertSystemScene:(SystemSceneModel *)systemsceneModel{
     
+    BOOL flag_has = [self HasSystemScene:systemsceneModel.sence_group withDevTid:systemsceneModel.devTid];
+    
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,choice,sid,devTid,color) VALUES ('%@', %d,'%@','%@','%@')",systemScenetable,
-                         systemsceneModel.systemname,[systemsceneModel.choice intValue],systemsceneModel.sid,systemsceneModel.devTid,systemsceneModel.color];
-        [db executeUpdate:sql];
+        
+        if(flag_has == NO){
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,sid,devTid,color) VALUES ('%@','%@','%@','%@')",systemScenetable,
+                             systemsceneModel.systemname,systemsceneModel.sence_group,systemsceneModel.devTid,systemsceneModel.color];
+            [db executeUpdate:sql];
+        }else{
+            NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',sid='%@',devTid='%@',color='%@' WHERE sid='%@' and devTid='%@'",systemScenetable,
+                             systemsceneModel.systemname,systemsceneModel.sence_group,systemsceneModel.devTid,systemsceneModel.color,systemsceneModel.sence_group,systemsceneModel.devTid];
+            [db executeUpdate:sql];
+        }
+
     }];
 }
 
@@ -81,10 +91,46 @@ static NSString * const systemScenetable = @"sysmodle";
         for (SystemSceneModel *f in systemsceneModels) {
             if(![f isKindOfClass:[SystemSceneModel class]])
                 continue;
-            NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,choice,sid,devTid,color) VALUES ('%@', %d,'%@','%@','%@')",systemScenetable,
-                             f.systemname,[f.choice intValue],f.sid,f.devTid,f.color];
-            BOOL isSuccess = [db executeUpdate:sql];
-            NSLog(@"insertSystemScenes : isSuccess=%d",isSuccess);
+            
+            BOOL flag = NO;
+            NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where sid = '%@' and devTid = '%@'", systemScenetable,f.sence_group,f.devTid];
+            FMResultSet *rs = [db executeQuery:sql];
+            while ([rs next]) {
+                flag = YES;
+            }
+            if(flag == NO){
+                NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,sid,devTid,color) VALUES ('%@','%@','%@','%@')",systemScenetable,
+                                 f.systemname,f.sence_group,f.devTid,f.color];
+                [db executeUpdate:sql];
+            }else{
+                NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',sid='%@',devTid='%@',color='%@' WHERE sid='%@' and devTid='%@'",systemScenetable, f.systemname,f.sence_group,f.devTid,f.color,f.sence_group,f.devTid];
+                [db executeUpdate:sql];
+            }
+        }
+        [db commit];
+    }];
+}
+
+- (void)insertSystemScenesInit:(NSArray *)systemsceneModels {
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        [db beginTransaction];
+        for (SystemSceneModel *f in systemsceneModels) {
+            if(![f isKindOfClass:[SystemSceneModel class]])
+                continue;
+            
+            BOOL flag = NO;
+            NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where sid = '%@' and devTid = '%@'", systemScenetable,f.sence_group,f.devTid];
+            FMResultSet *rs = [db executeQuery:sql];
+            while ([rs next]) {
+                flag = YES;
+            }
+             [rs close];
+            if(flag == NO){
+                NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,choice,sid,devTid,color) VALUES ('%@', %d,'%@','%@','%@')",systemScenetable,
+                                 f.systemname,[f.choice intValue],f.sence_group,f.devTid,f.color];
+                [db executeUpdate:sql];
+            }
         }
         [db commit];
     }];
@@ -126,4 +172,18 @@ static NSString * const systemScenetable = @"sysmodle";
     }];
 }
 
+- (BOOL)HasSystemScene:(NSString *)sid withDevTid:(NSString *)devTid {
+    
+    __block BOOL flag = NO;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where sid = '%@' and devTid = '%@'", systemScenetable,sid,devTid];
+        FMResultSet *rs = [db executeQuery:sql];
+        while ([rs next]) {
+            flag = YES;
+        }
+        [rs close];
+    }];
+    return flag;
+}
 @end

@@ -34,7 +34,7 @@
                 SceneModel *scenemodel = [[SceneModel alloc] initWithHekrDictionary:data error:nil];
                 [self.siterwelldelegate onUpdateOnScene:scenemodel withDevTid:devTid];
             }else if([cmd intValue] == CURRENT_SCENE_UPLOAD){
-                NSString *current_scenemode = data[@"params"][@"data"][@"scene_group"];
+                NSString *current_scenemode = data[@"params"][@"data"][@"sence_group"];
                 [self.siterwelldelegate onUpdateOnCurrentSystemScene:current_scenemode withDevTid:devTid];
             }else if([cmd intValue] == DEVICE_STATUS_UPLOAD){
                 DeviceModel *devmodel = [[DeviceModel alloc] initWithHekrDictionary:data error:nil];

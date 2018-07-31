@@ -79,11 +79,11 @@
 
 -(void)setLabel:(SystemSceneModel *)sceneModel{
     
-    if([sceneModel.sid integerValue] == 0){
+    if([sceneModel.sence_group integerValue] == 0){
             [_img_label setImage:[UIImage imageNamed:@"home01_icon"]];
-    }else if([sceneModel.sid integerValue] == 1){
+    }else if([sceneModel.sence_group integerValue] == 1){
               [_img_label setImage:[UIImage imageNamed:@"away01_icon"]];
-    }else if([sceneModel.sid integerValue] == 2){
+    }else if([sceneModel.sence_group integerValue] == 2){
              [_img_label setImage:[UIImage imageNamed:@"sleep01_icon"]];
     }else{
            [_img_label setImage:[UIImage imageNamed:@"home01_icon"]];

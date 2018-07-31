@@ -49,4 +49,41 @@ static NSString * const gs584relationshiptable = @"gs584relationtable";
     return allScene;
 }
 
+- (void)insertGS584Relation:(GS584RelationShip *)gs584relationship{
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"insert into %@ (sid,action,eqid,delay,devTid) values ('%@','%@',%d,%ld,'%@')",gs584relationshiptable,
+                         gs584relationship.sid,gs584relationship.action,[gs584relationship.eqid intValue],gs584relationship.delay,gs584relationship.devTid];
+        [db executeUpdate:sql];
+        
+        
+    }];
+}
+
+- (void)insertGS584Relations:(NSArray *)gs584relationships{
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        [db beginTransaction];
+        for (GS584RelationShip *f in gs584relationships) {
+            if(![f isKindOfClass:[GS584RelationShip class]])
+                continue;
+            
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (sid,action,eqid,delay,devTid) values ('%@','%@',%d,%ld,'%@')",gs584relationshiptable,
+                             f.sid,f.action,[f.eqid intValue],f.delay,f.devTid];
+            [db executeUpdate:sql];
+            
+        }
+        [db commit];
+        
+    }];
+}
+
+-(void)deleteRelation:(NSString *)sid withDevTid:(NSString *)devTid{
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ where sid = '%@' and devTid = '%@' ", gs584relationshiptable, sid,devTid];
+        [db executeUpdate:sql];
+    }];
+}
+
 @end

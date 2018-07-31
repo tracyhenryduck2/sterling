@@ -99,6 +99,7 @@ static NSString *deviceTable = @"device_table";
             while ([rs next]) {
                 flag = YES;
             }
+            [rs close];
             if(flag == NO){
                 NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,eqid,equipmenttype,status,devTid) VALUES ('%@', %d,'%@','%@','%@')",deviceTable,
                                  f.device_custom_name,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid];

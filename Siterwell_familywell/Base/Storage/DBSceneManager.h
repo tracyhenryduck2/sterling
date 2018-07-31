@@ -15,5 +15,6 @@
 + (instancetype)sharedInstanced;
 - (NSMutableArray *)queryAllScenewithDevTid:(NSString *)devTid;
 - (SceneModel *)querySceneModel:(NSString *)mid withDevTid:(NSString *)devTid;
+- (void)insertScene:(SceneModel *)sceneModel;
 @end
 #endif /* DBSceneManager_h */

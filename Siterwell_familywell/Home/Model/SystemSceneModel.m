@@ -15,7 +15,6 @@
     if (self = [super initWithDictionary:dict error:err]) {
         if (self.sence_group!=nil && (self.answer_content.length >= 32 || (self.answer_content.length == 6 && [[self.answer_content substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"0000"]))) {
             self.systemname = [self getNameFromContent];
-            self.sid = [self getSidFromContent];
             self.color = [self getSceneColor];
             self.dev584Count = [self getDev584_countFromContent];
             self.dev584List = [self getDev584List:self.dev584Count];
@@ -37,7 +36,7 @@
         result = [[NSString alloc] initWithData:data encoding:enc];
         result = [result stringByReplacingOccurrencesOfString:@"@" withString:@""];
         result = [result stringByReplacingOccurrencesOfString:@"$" withString:@""];
-
+        result = [result stringByReplacingOccurrencesOfString:@"\0" withString:@""];
     }
     return result;
 }
@@ -224,6 +223,22 @@
         return content;
     }
 
+}
+
+-(void)settotalDevTid:(NSString<Ignore> *)devTid{
+    if(self.dev584List!=nil&&self.dev584List.count>0){
+        for(GS584RelationShip *g in self.dev584List){
+            [g setDevTid:devTid];
+        }
+    }
+
+    if(self.sceneRelationShip!=nil && self.sceneRelationShip.count >0){
+        for(SceneRelationShip *sre in self.sceneRelationShip){
+            [sre setDevTid:devTid];
+        }
+    }
+    
+    self.devTid = devTid;
 }
 
 @end

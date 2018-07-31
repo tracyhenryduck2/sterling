@@ -58,10 +58,11 @@
         int codeLength = 2;
         NSMutableArray * sid = [[NSMutableArray alloc] init];
         for(SystemSceneModel *e in slist){
-            [sid addObject:e.sid];
+            [sid addObject:e.sence_group];
             curr_devTid = e.devTid;
         }
-        for(int i = 0 ; i < [((SystemSceneModel *)sid[slist.count-1]).sid integerValue]+1; i++) {//for here come with "0" , used slist.size()
+        SystemSceneModel * dd = (SystemSceneModel *)[slist objectAtIndex:(slist.count-1)];
+        for(int i = 0 ; i < [dd.sence_group integerValue]+1; i++) {//for here come with "0" , used slist.size()
             codeLength += 2;
             if ([sid containsObject:[NSString stringWithFormat:@"%d",i]]) {
            
@@ -73,7 +74,7 @@
                 length = 0;
                 length += 2;//the total num length
                 
-                NSString * id2 = sysModelBean.sid;
+                NSString * id2 = sysModelBean.sence_group;
                 length += 1;//the scene id
                 
                 NSString * btnNum = @"";

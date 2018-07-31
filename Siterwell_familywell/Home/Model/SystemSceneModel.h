@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSString *sence_group;
 @property(strong,nonatomic) NSString<Ignore> * systemname;
 @property(nonatomic)        NSNumber<Ignore> *choice;
-@property(nonatomic,assign) NSString<Ignore>  * sid;
 @property(nonatomic,assign) NSString<Ignore>  * color;
 @property(nonatomic,assign) NSString<Ignore> * devTid;
 @property (nonatomic) NSNumber<Ignore> *dev584Count;
@@ -27,6 +26,7 @@
 
 @property (nonatomic) NSMutableArray<Ignore> *sceneRelationShip;
 + (NSString *)getCRCFromContent:(NSString *)answer_content;
+-(void)settotalDevTid:(NSString<Ignore> *)devTid;
 @end
 
 #endif /* SystemSceneModel_h */

@@ -67,4 +67,37 @@ static NSString * const scenetable = @"scenetable";
     return scenemodel;
 }
 
+- (void)insertScene:(SceneModel *)sceneModel{
+    
+    BOOL flag_has = [self HasScene:sceneModel.scene_type withDevTid:sceneModel.devTid];
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        if(flag_has == NO){
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,code,devTid,mid) VALUES ('%@','%@','%@','%@')",scenetable,
+                             sceneModel.scene_name,sceneModel.scene_content,sceneModel.devTid,sceneModel.scene_type];
+            [db executeUpdate:sql];
+        }else{
+            NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',code='%@',devTid='%@',mid='%@' WHERE mid='%@' and devTid='%@'",scenetable,
+                             sceneModel.scene_name,sceneModel.scene_content,sceneModel.devTid,sceneModel.scene_type,sceneModel.scene_type,sceneModel.devTid];
+            [db executeUpdate:sql];
+        }
+        
+    }];
+}
+
+- (BOOL)HasScene:(NSString *)mid withDevTid:(NSString *)devTid {
+    
+    __block BOOL flag = NO;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where mid = '%@' and devTid = '%@'", scenetable,mid,devTid];
+        FMResultSet *rs = [db executeQuery:sql];
+        while ([rs next]) {
+            flag = YES;
+        }
+        [rs close];
+    }];
+    return flag;
+}
 @end

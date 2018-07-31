@@ -66,4 +66,41 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
     return allScene;
 }
 
+
+- (void)insertRelation:(SceneRelationShip *)scenerelationship{
+
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (sid,mid,devTid) values ('%@','%@','%@')",scenerelationshiptable,
+                             scenerelationship.sid,scenerelationship.mid,scenerelationship.devTid];
+            [db executeUpdate:sql];
+    
+        
+    }];
+}
+
+- (void)insertRelations:(NSArray *)scenerelationships {
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        [db beginTransaction];
+        for (SceneRelationShip *f in scenerelationships) {
+            if(![f isKindOfClass:[SceneRelationShip class]])
+                continue;
+            
+                NSString *sql = [NSString stringWithFormat:@"insert into %@ (sid,mid,devTid) VALUES ('%@','%@','%@')",scenerelationshiptable,
+                                 f.sid,f.mid,f.devTid];
+                [db executeUpdate:sql];
+
+        }
+        [db commit];
+    }];
+}
+
+-(void)deleteRelation:(NSString *)sid withDevTid:(NSString *)devTid{
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ where sid = '%@' and devTid = '%@' ", scenerelationshiptable, sid,devTid];
+        [db executeUpdate:sql];
+    }];
+}
 @end
