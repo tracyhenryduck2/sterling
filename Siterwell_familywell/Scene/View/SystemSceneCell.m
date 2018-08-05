@@ -18,7 +18,6 @@
 
 -(void)initview{
     self.headerImageView = [[UIImageView alloc] init];
-    self.headerImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.headerImageView];
     [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
@@ -37,21 +36,27 @@
     
     self.selectSceneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.selectSceneBtn setImage:[UIImage imageNamed:@"noselect_icon"] forState:UIControlStateNormal];
-    [self.contentView addSubview:self.selectSceneBtn];
+    [self.selectSceneBtn setImage:[UIImage imageNamed:@"select_blue_icon"] forState:UIControlStateSelected];
+    [self.selectSceneBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 5, 25)];
+    [self addSubview:self.selectSceneBtn];
     [self.selectSceneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(40);
-        make.height.equalTo(40);
-        make.left.equalTo(self.titleLabel.right).offset(10);
+
+        make.right.equalTo(self.contentView.right).offset(0);
         make.centerY.equalTo(self.contentView.mas_centerY);
+        make.width.equalTo(70);
+        make.height.equalTo(self.contentView.mas_height);
     }];
-    [self.selectSceneBtn setEnabled:NO];
-//    self.color = [[UIView alloc] init];
-//    [self.contentView addSubview:self.color];
-//    [self.color mas_makeConstraints:^(MASConstraintMaker *make) {
-//       
-//        make.centerY.equalTo(self.contentView.mas_centerY);
-//        make.
-//        
-//    }];
+
+    self.color = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.contentView addSubview:self.color];
+    self.color.backgroundColor = [UIColor redColor];
+    [self.color mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.right.equalTo(self.selectSceneBtn.mas_left).offset(-10);
+        make.width.equalTo(60);
+        make.height.equalTo(30);
+
+    }];
 }
 @end

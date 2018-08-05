@@ -9,9 +9,9 @@
 #ifndef SceneRelationShip_h
 #define SceneRelationShip_h
 @interface SceneRelationShip:JSONModel
-@property(copy,nonatomic) NSString * devTid;
-@property(nonatomic,copy) NSString * mid;
-@property(nonatomic,copy) NSString * sid;
+@property(strong,nonatomic) NSString * devTid;
+@property(nonatomic,strong) NSString * mid;
+@property(nonatomic,strong) NSString * sid;
 @end
 
 

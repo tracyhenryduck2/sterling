@@ -19,7 +19,7 @@
 @interface CRCqueueHelp : NSObject
 
 +(NSString *)getDeviceCRCContent:(NSMutableArray *)deviceArray;
-+(NSString *)getSystemSceneCRCContent:(NSMutableArray *)SystemSceneArray;
++(NSString *)getSystemSceneCRCContent:(NSMutableArray *)SystemSceneArray withDevTid:(NSString *)devTid;
 +(NSString *)getSceneCRCContent:(NSMutableArray *)SceneArray;
 @end
 

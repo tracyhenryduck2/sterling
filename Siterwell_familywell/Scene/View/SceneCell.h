@@ -10,7 +10,9 @@
 #define SceneCell_h
 @interface SceneCell:UITableViewCell
 
-
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong,nonatomic) UILabel *detailLabel;
+@property (strong, nonatomic) UIButton *clickBtn;
 
 @end
 

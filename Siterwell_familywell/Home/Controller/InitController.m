@@ -314,7 +314,7 @@
             return [((SystemSceneModel *)obj1).sence_group intValue] > [((SystemSceneModel *)obj2).sence_group intValue];
         }];
         
-        NSString *sys = [CRCqueueHelp getSystemSceneCRCContent:systemscenelist];
+        NSString *sys = [CRCqueueHelp getSystemSceneCRCContent:systemscenelist withDevTid:gatewaymodel.devTid];
         NSString *scenes = [CRCqueueHelp getSceneCRCContent:scenelist];
         NSString *currentmode = [[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene:gatewaymodel.devTid];
                 SycnSceneApi * sy = [[SycnSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:currentmode answerContent:sys SceneContent:scenes];

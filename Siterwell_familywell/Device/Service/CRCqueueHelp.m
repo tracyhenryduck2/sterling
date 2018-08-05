@@ -50,23 +50,21 @@
     return content;
 }
 
-+(NSString *)getSystemSceneCRCContent:(NSMutableArray *)slist {
++(NSString *)getSystemSceneCRCContent:(NSMutableArray *)slist withDevTid:(NSString *)devTid {
     NSString *getSceneGroupCRC=@"",*num=@"";
-    NSString *curr_devTid = @"";
     
     if(slist.count>0){
         int codeLength = 2;
         NSMutableArray * sid = [[NSMutableArray alloc] init];
         for(SystemSceneModel *e in slist){
             [sid addObject:e.sence_group];
-            curr_devTid = e.devTid;
         }
         SystemSceneModel * dd = (SystemSceneModel *)[slist objectAtIndex:(slist.count-1)];
         for(int i = 0 ; i < [dd.sence_group integerValue]+1; i++) {//for here come with "0" , used slist.size()
             codeLength += 2;
             if ([sid containsObject:[NSString stringWithFormat:@"%d",i]]) {
            
-                NSMutableArray<SceneRelationShip *>  *SceneRelationList = [[DBSceneReManager sharedInstanced] queryGS584RelationShip:[NSString stringWithFormat:@"%d",i] withDevTid:curr_devTid];
+                NSMutableArray<SceneRelationShip *>  *SceneRelationList = [[DBSceneReManager sharedInstanced] queryGS584RelationShip:[NSString stringWithFormat:@"%d",i] withDevTid:devTid];
                 SystemSceneModel *sysModelBean = (SystemSceneModel *)slist[i];
                 NSString * name = sysModelBean.systemname;
                 int length = 0;
@@ -78,7 +76,7 @@
                 length += 1;//the scene id
                 
                 NSString * btnNum = @"";
-                NSMutableArray <GS584RelationShip *>* shortcutlist = [[DBGS584RelationShipManager sharedInstanced] queryAllGS584RelationShipwithDevTid:curr_devTid withSid:[NSString stringWithFormat:@"%d",i]];
+                NSMutableArray <GS584RelationShip *>* shortcutlist = [[DBGS584RelationShipManager sharedInstanced] queryAllGS584RelationShipwithDevTid:devTid withSid:[NSString stringWithFormat:@"%d",i]];
                 
                 if ([BatterHelp gethexBybinary:shortcutlist.count].length<2){  //new mid
                     btnNum = [@"0" stringByAppendingString:[BatterHelp gethexBybinary:shortcutlist.count]];

@@ -33,7 +33,7 @@ static NSString * const scenetable = @"scenetable";
 - (NSMutableArray *)queryAllScenewithDevTid:(NSString *)devTid{
     
     
-    NSMutableArray *allScene = [NSMutableArray array];
+   __block NSMutableArray *allScene = [NSMutableArray array];
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where devTid = '%@' order by mid",scenetable,devTid]];
         while ([rs next]) {

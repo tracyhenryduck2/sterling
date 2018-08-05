@@ -8,11 +8,17 @@
 
 #import "SceneVC.h"
 #import "SystemSceneCell.h"
-
+#import "SceneCell.h"
+#import "DBSystemSceneManager.h"
+#import "DBSceneManager.h"
+#import "DBGatewayManager.h"
+#import "SceneHeaderView.h"
 @interface SceneVC() <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *table_scene;
-
+@property (nonatomic,strong) NSMutableArray <SystemSceneModel *> *list_system_scene;
+@property (nonatomic,strong) NSMutableArray <SceneModel *> *list_scene;
+@property (nonatomic,strong) SceneHeaderView *sceneheaderview;
 @end
 @implementation SceneVC
 
@@ -25,7 +31,11 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"viewWillAppear");
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    _list_system_scene = [[DBSystemSceneManager sharedInstanced] queryAllSystemScene:gatewaymodel.devTid];
+    _list_scene = [[DBSceneManager sharedInstanced] queryAllScenewithDevTid:gatewaymodel.devTid];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -62,24 +72,121 @@
 
 #pragma -mark delegate
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"SystemSceneCell";
-    SystemSceneCell *cell = (SystemSceneCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    if (cell == nil) {
-        cell = [[SystemSceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if(indexPath.section == 0){
+        
+        static NSString *cellIdentifier = @"SystemSceneCell";
+        SystemSceneCell *cell = (SystemSceneCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[SystemSceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        SystemSceneModel *systemscene = [_list_system_scene objectAtIndex:indexPath.row];
+        if([systemscene.sence_group isEqualToString:@"0"]){
+            [cell.headerImageView setImage:[UIImage imageNamed:@"zjms_icon"]];
+            cell.titleLabel.text =  NSLocalizedString(@"在家", nil);
+        }else if([systemscene.sence_group isEqualToString:@"1"]){
+            [cell.headerImageView setImage:[UIImage imageNamed:@"ljms_icon"]];
+            cell.titleLabel.text =  NSLocalizedString(@"离家", nil);
+        }else if([systemscene.sence_group isEqualToString:@"2"]){
+            
+            [cell.headerImageView setImage:[UIImage imageNamed:@"smms_icon"]];
+            cell.titleLabel.text =  NSLocalizedString(@"睡眠", nil);
+        }else{
+            [cell.headerImageView setImage:[UIImage imageNamed:@"zjms_icon"]];
+            cell.titleLabel.text = systemscene.systemname;
+        }
+        
+        if ([systemscene.color isEqualToString:@"00"]||[systemscene.color isEqualToString:@"F8"]) {
+            
+        }else if ([systemscene.color isEqualToString:@"F1"]){
+            //                cell.color.backgroundColor = RGB(25,181,254);
+            cell.color.backgroundColor = HEXCOLOR(0x33a7ff);
+        }else if ([systemscene.color isEqualToString:@"F2"]){
+            //                cell.color.backgroundColor = RGB(122,13,142);
+            cell.color.backgroundColor = HEXCOLOR(0xc968ed);
+        }else if ([systemscene.color isEqualToString:@"F3"]){
+            //                cell.color.backgroundColor = RGB(255,121,175);
+            cell.color.backgroundColor = HEXCOLOR(0xf067bb);
+        }else if ([systemscene.color isEqualToString:@"F4"]){
+            //                cell.color.backgroundColor = RGB(46,204,113);
+            cell.color.backgroundColor = HEXCOLOR(0x53f6ab);
+        }else if ([systemscene.color isEqualToString:@"F5"]){
+            //                cell.color.backgroundColor = RGB(38,166,91);
+            cell.color.backgroundColor = HEXCOLOR(0xa5f7b2);
+        }else if ([systemscene.color isEqualToString:@"F6"]){
+            //                cell.color.backgroundColor = RGB(249,105,14);
+            cell.color.backgroundColor = HEXCOLOR(0xf56735);
+        }else if ([systemscene.color isEqualToString:@"F7"]){
+            //                cell.color.backgroundColor = RGB(26,56,144);
+            cell.color.backgroundColor = HEXCOLOR(0x4d94ff);
+        }else if ([systemscene.color isEqualToString:@"F0"]){
+            //                cell.color.backgroundColor = RGB(10, 114, 58);
+            cell.color.backgroundColor = HEXCOLOR(0x11da28);
+        }
+        
+        if([systemscene.choice intValue] == 1){
+            [cell.selectSceneBtn setSelected:YES];
+        }else{
+            [cell.selectSceneBtn setSelected:NO];
+        }
+        
+        return cell;
+    }else{
+        static NSString *cellIdentifier = @"SceneCell";
+        SceneCell *cell2 = (SceneCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell2 == nil) {
+            cell2 = [[SceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        SceneModel *scenemodel = [_list_scene objectAtIndex:indexPath.row];
+        cell2.titleLabel.text = scenemodel.scene_type;
+        cell2.detailLabel.text = scenemodel.scene_name;
+        
+        return cell2;
     }
-    
-    cell.titleLabel.text = @"Testing";
-    return cell;
+
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    if(section == 0){
+        return _list_system_scene.count;
+    }else if(section == 1){
+        return _list_scene.count;
+    }
+    else return 0;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 20;
+    }
+    return 40;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section == 0)
+    {
+        return 20;
+    }else
+    return 0.01;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section==0){
+        UIView *nilView=[[UIView alloc] initWithFrame:CGRectZero];
+        return nilView;
+    }else{
+        _sceneheaderview = [[SceneHeaderView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 40)];
+        _sceneheaderview.backgroundColor = [UIColor whiteColor];
+        return _sceneheaderview;
+    }
+
+}
 
 @end
