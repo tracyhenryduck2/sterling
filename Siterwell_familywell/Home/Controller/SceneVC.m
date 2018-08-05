@@ -13,6 +13,7 @@
 #import "DBSceneManager.h"
 #import "DBGatewayManager.h"
 #import "SceneHeaderView.h"
+#import "SceneEditController.h"
 @interface SceneVC() <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *table_scene;
@@ -44,6 +45,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
      NSLog(@"viewWillDisappear");
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
 }
 
 
@@ -178,15 +180,37 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+     NSLog(@"viewForHeaderInSection");
     if(section==0){
         UIView *nilView=[[UIView alloc] initWithFrame:CGRectZero];
         return nilView;
     }else{
         _sceneheaderview = [[SceneHeaderView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 40)];
         _sceneheaderview.backgroundColor = [UIColor whiteColor];
+        [_sceneheaderview.btn_add_scene addTarget:self
+                              action:@selector(BtnClick:)
+                    forControlEvents:UIControlEventTouchUpInside];
         return _sceneheaderview;
     }
 
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NSLocalizedString(@"删除", nil);
+}
+
+/**
+ cell点击删除
+ */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+
+#pragma -mark method
+-(void)BtnClick:(id)Sender{
+    SceneEditController *sc = [[SceneEditController alloc] init];
+    [self.navigationController pushViewController:sc animated:YES];
+}
 @end

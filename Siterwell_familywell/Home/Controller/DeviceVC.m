@@ -23,6 +23,7 @@
 
 #pragma mark -life
 -(void)viewDidLoad{
+    self.title = NSLocalizedString(@"设备", nil);
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:nil Title:NSLocalizedString(@"新增",nil) withTintColor:RGB(53, 167, 255)];
     
     

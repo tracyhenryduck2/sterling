@@ -25,6 +25,17 @@
         make.centerY.equalTo(self.mas_centerY);
         make.centerX.equalTo(self.mas_centerX);
     }];
+    
+    _btn_add_scene = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_btn_add_scene setImage:[UIImage imageNamed:@"add_list_icon"] forState:UIControlStateNormal];
+    [self addSubview:_btn_add_scene];
+    [_btn_add_scene mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.right.equalTo(self.mas_right).offset(-10);
+        make.width.equalTo(40);
+        make.height.equalTo(40);
+    }];
+    
 }
 
 
