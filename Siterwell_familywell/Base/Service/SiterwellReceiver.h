@@ -41,7 +41,7 @@
 
 -(void) onUpdateOnScene:(SceneModel *)scenemodel withDevTid:(NSString *)devTid;
 
--(void) onUpdateOnCurrentSystemScene:(NSString *)currentmodel withDevTid:(NSString *)devTid;
+-(void) onUpdateOnCurrentSystemScene:(NSNumber *)currentmodel withDevTid:(NSString *)devTid;
 
 -(void) onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid;
 @end

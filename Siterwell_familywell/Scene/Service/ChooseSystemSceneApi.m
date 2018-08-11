@@ -12,11 +12,11 @@
 {
     NSString *_devTid;
     NSString *_ctrlKey;
-    NSString *_scene_group;
+    NSNumber *_scene_group;
     NSString *_conncetHost;
 }
 
--(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost SceneGroup:(NSString *)scene_group{
+-(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost SceneGroup:(NSNumber *)scene_group{
     if (self = [super init]) {
         _devTid = devTid;
         _ctrlKey = ctrlKey;
@@ -34,7 +34,7 @@
                      @"ctrlKey": _ctrlKey,
                      @"data": @{
                              @"cmdId": @6,
-                             @"scene_type": @([_scene_group intValue])
+                             @"scene_type": _scene_group
                              }
                      }
              };

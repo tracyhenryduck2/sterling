@@ -9,7 +9,7 @@
 #import "DBSceneReManager.h"
 
 
-static NSString * const scenerelationshiptable = @"scenerelationshiptable";
+
 
 @implementation DBSceneReManager
 
@@ -26,7 +26,7 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
 
 #pragma mark -method
 - (void)createRelationShipTable{
-    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(sid varchar(40),mid varchar(40),devTid varchar(30),primary key(sid,mid,devTid))", scenerelationshiptable];
+    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(sid integer default(0),mid integer default(0),devTid varchar(30),primary key(sid,mid,devTid))", scenerelationshiptable];
     [[DBManager sharedInstanced] createTable:scenerelationshiptable sql:sql];
     
 }
@@ -39,8 +39,8 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
         FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where devTid = '%@'",scenerelationshiptable,devTid]];
         while ([rs next]) {
             SceneRelationShip *gs584RelationShip = [[SceneRelationShip alloc] init];
-            gs584RelationShip.sid = [rs stringForColumn:@"sid"];
-            gs584RelationShip.mid = [rs stringForColumn:@"mid"];
+            gs584RelationShip.sid = [NSNumber numberWithInt:[rs intForColumn:@"sid"]];
+            gs584RelationShip.mid = [NSNumber numberWithInt:[rs intForColumn:@"mid"]];
             gs584RelationShip.devTid = [rs stringForColumn:@"devTid"];
             [allScene addObject:gs584RelationShip];
         }
@@ -57,8 +57,8 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
         FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where sid ='%@' and devTid = '%@'",scenerelationshiptable,sid,devTid]];
         while ([rs next]) {
             SceneRelationShip *gs584RelationShip = [[SceneRelationShip alloc] init];
-            gs584RelationShip.sid = [rs stringForColumn:@"sid"];
-            gs584RelationShip.mid = [rs stringForColumn:@"mid"];
+            gs584RelationShip.sid = [NSNumber numberWithInt:[rs intForColumn:@"sid"]];
+            gs584RelationShip.mid = [NSNumber numberWithInt:[rs intForColumn:@"mid"]];
             gs584RelationShip.devTid = [rs stringForColumn:@"devTid"];
             [allScene addObject:gs584RelationShip];
         }
@@ -72,8 +72,8 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         
         
-            NSString *sql = [NSString stringWithFormat:@"insert into %@ (sid,mid,devTid) values ('%@','%@','%@')",scenerelationshiptable,
-                             scenerelationship.sid,scenerelationship.mid,scenerelationship.devTid];
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (sid,mid,devTid) values (%d,%d,'%@')",scenerelationshiptable,
+                             [scenerelationship.sid intValue],[scenerelationship.mid intValue],scenerelationship.devTid];
             [db executeUpdate:sql];
     
         
@@ -88,8 +88,8 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
             if(![f isKindOfClass:[SceneRelationShip class]])
                 continue;
             
-                NSString *sql = [NSString stringWithFormat:@"insert into %@ (sid,mid,devTid) VALUES ('%@','%@','%@')",scenerelationshiptable,
-                                 f.sid,f.mid,f.devTid];
+                NSString *sql = [NSString stringWithFormat:@"insert into %@ (sid,mid,devTid) VALUES (%d,%d,'%@')",scenerelationshiptable,
+                                 [f.sid intValue],[f.mid intValue],f.devTid];
                 [db executeUpdate:sql];
 
         }
@@ -97,9 +97,9 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
     }];
 }
 
--(void)deleteRelation:(NSString *)sid withDevTid:(NSString *)devTid{
+-(void)deleteRelation:(NSNumber *)sid withDevTid:(NSString *)devTid{
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        NSString *sql = [NSString stringWithFormat:@"delete from %@ where sid = '%@' and devTid = '%@' ", scenerelationshiptable, sid,devTid];
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ where sid = %d and devTid = '%@' ", scenerelationshiptable, [sid intValue],devTid];
         [db executeUpdate:sql];
     }];
 }

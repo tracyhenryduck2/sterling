@@ -36,7 +36,8 @@
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
     _list_system_scene = [[DBSystemSceneManager sharedInstanced] queryAllSystemScene:gatewaymodel.devTid];
-    _list_scene = [[DBSceneManager sharedInstanced] queryAllScenewithDevTid:gatewaymodel.devTid];
+
+    _list_scene = [[DBSceneManager sharedInstanced] queryAllSysceneScene:[[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene:gatewaymodel.devTid] withDevTid:gatewaymodel.devTid];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -84,13 +85,13 @@
             cell = [[SystemSceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         SystemSceneModel *systemscene = [_list_system_scene objectAtIndex:indexPath.row];
-        if([systemscene.sence_group isEqualToString:@"0"]){
+        if([systemscene.sence_group integerValue] == 0){
             [cell.headerImageView setImage:[UIImage imageNamed:@"zjms_icon"]];
             cell.titleLabel.text =  NSLocalizedString(@"在家", nil);
-        }else if([systemscene.sence_group isEqualToString:@"1"]){
+        }else if([systemscene.sence_group integerValue] == 1){
             [cell.headerImageView setImage:[UIImage imageNamed:@"ljms_icon"]];
             cell.titleLabel.text =  NSLocalizedString(@"离家", nil);
-        }else if([systemscene.sence_group isEqualToString:@"2"]){
+        }else if([systemscene.sence_group integerValue] == 2){
             
             [cell.headerImageView setImage:[UIImage imageNamed:@"smms_icon"]];
             cell.titleLabel.text =  NSLocalizedString(@"睡眠", nil);
@@ -142,7 +143,7 @@
             cell2 = [[SceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         SceneModel *scenemodel = [_list_scene objectAtIndex:indexPath.row];
-        cell2.titleLabel.text = scenemodel.scene_type;
+        cell2.titleLabel.text = [NSString stringWithFormat:@"%d",[scenemodel.scene_type intValue]];
         cell2.detailLabel.text = scenemodel.scene_name;
         
         return cell2;
@@ -180,7 +181,6 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-     NSLog(@"viewForHeaderInSection");
     if(section==0){
         UIView *nilView=[[UIView alloc] initWithFrame:CGRectZero];
         return nilView;
@@ -193,6 +193,13 @@
         return _sceneheaderview;
     }
 
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if(section==0){
+        UIView *nilView=[[UIView alloc] initWithFrame:CGRectZero];
+        return nilView;
+    }else return nil;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{

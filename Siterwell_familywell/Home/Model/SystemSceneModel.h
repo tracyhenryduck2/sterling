@@ -13,7 +13,7 @@
 #import "SceneRelationShip.h"
 @interface SystemSceneModel:JSONModel
 @property (nonatomic, strong) NSString *answer_content;
-@property (nonatomic, strong) NSString *sence_group;
+@property (nonatomic, strong) NSNumber *sence_group;
 @property(strong,nonatomic) NSString<Ignore> * systemname;
 @property(nonatomic)        NSNumber<Ignore> *choice;
 @property(nonatomic,strong) NSString<Ignore>  * color;

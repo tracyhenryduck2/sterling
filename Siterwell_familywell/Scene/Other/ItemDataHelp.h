@@ -25,6 +25,6 @@
 
 + (NSString *)SceneContentWithOutputArray:(NSMutableArray *)outarray inputAraary:(NSMutableArray *)inarray type:(NSInteger)type name:(NSString *)name sceneid:(NSString *)sceneid withDevTid:(NSString *)devTid;
 
-+ (BOOL)isAddSceneId:(NSString *)sceneId withDevTid:(NSString *)devTid;
++ (BOOL)isAddSceneId:(int)sceneId withDevTid:(NSString *)devTid;
 
 @end

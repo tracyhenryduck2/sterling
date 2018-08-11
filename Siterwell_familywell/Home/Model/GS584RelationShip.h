@@ -11,9 +11,9 @@
 @interface GS584RelationShip:JSONModel
 
 @property(strong,nonatomic)   NSString * devTid;
-@property(nonatomic,strong)   NSString * sid;
+@property(nonatomic,strong)   NSNumber * sid;
 @property(nonatomic,assign) NSNumber * eqid;
-@property(nonatomic,strong)   NSString  * action;
+@property(nonatomic,strong)   NSNumber  * action;
 @property(nonatomic,assign) NSInteger delay;
 @end
 

@@ -25,7 +25,7 @@
 @property (nonatomic) NSTimer *timer;
 @property (nonatomic) NSInteger count;
 @property (nonatomic,assign)BOOL flag_timer;
-@property (nonatomic,copy) NSString *current_system_scene;
+@property (nonatomic,copy) NSNumber *current_system_scene;
 @end
 
 @implementation InitController
@@ -155,21 +155,21 @@
         
         SystemSceneModel * sys = [[SystemSceneModel alloc] init];
         sys.systemname=@"";
-        sys.sence_group = @"0";
+        sys.sence_group = @0;
         sys.choice = @0;
         sys.devTid = gateway.devTid;
         sys.color = @"F0";
         
         SystemSceneModel * sys1 = [[SystemSceneModel alloc] init];
         sys1.systemname=@"";
-        sys1.sence_group = @"1";
+        sys1.sence_group = @1;
         sys1.choice = @0;
         sys1.devTid = gateway.devTid;
         sys1.color = @"F1";
         
         SystemSceneModel * sys2 = [[SystemSceneModel alloc] init];
         sys2.systemname=@"";
-        sys2.sence_group = @"2";
+        sys2.sence_group = @2;
         sys2.choice = @0;
         sys2.devTid = gateway.devTid;
         sys2.color = @"F2";
@@ -277,7 +277,7 @@
 
 -(void)onUpdateOnScene:(SceneModel *)scenemodel withDevTid:(NSString *)devTid{
         _count = 0;
-    if([scenemodel.scene_type isEqualToString:@"256"]){
+    if([scenemodel.scene_type integerValue] == 256){
         if(_current_system_scene!=nil){
             [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:_current_system_scene withDevTid:devTid];
         }
@@ -290,7 +290,7 @@
     }
 }
 
--(void) onUpdateOnCurrentSystemScene:(NSString *)currentmodel withDevTid:(NSString *)devTid{
+-(void) onUpdateOnCurrentSystemScene:(NSNumber *)currentmodel withDevTid:(NSString *)devTid{
     _count = 0;
     _current_system_scene = currentmodel;
     [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:_current_system_scene withDevTid:devTid];
@@ -306,17 +306,9 @@
         NSMutableArray * systemscenelist = [[DBSystemSceneManager sharedInstanced] queryAllSystemScene:gatewaymodel.devTid];
         NSMutableArray * scenelist = [[DBSceneManager sharedInstanced] queryAllScenewithDevTid:gatewaymodel.devTid];
         
-        [scenelist sortUsingComparator:^NSComparisonResult(__strong id obj1,__strong id obj2){
-            return [((SceneModel *)obj1).scene_type intValue] > [((SceneModel *)obj2).scene_type intValue];
-        }];
-        
-        [systemscenelist sortUsingComparator:^NSComparisonResult(__strong id obj1,__strong id obj2){
-            return [((SystemSceneModel *)obj1).sence_group intValue] > [((SystemSceneModel *)obj2).sence_group intValue];
-        }];
-        
         NSString *sys = [CRCqueueHelp getSystemSceneCRCContent:systemscenelist withDevTid:gatewaymodel.devTid];
         NSString *scenes = [CRCqueueHelp getSceneCRCContent:scenelist];
-        NSString *currentmode = [[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene:gatewaymodel.devTid];
+        NSNumber *currentmode = [[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene:gatewaymodel.devTid];
                 SycnSceneApi * sy = [[SycnSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:currentmode answerContent:sys SceneContent:scenes];
                 [sy startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
                     NSLog(@"得到数据为%@",data);

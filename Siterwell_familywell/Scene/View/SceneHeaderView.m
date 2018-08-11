@@ -36,6 +36,15 @@
         make.height.equalTo(40);
     }];
     
+    _line = [[UIView alloc] init];
+    _line.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:_line];
+    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(Main_Screen_Width);
+        make.height.equalTo(0.5);
+        make.bottom.equalTo(self.mas_bottom);
+    }];
+    
 }
 
 

@@ -11,7 +11,7 @@
 #import "JSONModel+HekrDic.h"
 @interface SceneModel:JSONModel
 @property(nonatomic,strong) NSString * scene_content;
-@property(nonatomic,strong) NSString * scene_type;
+@property(nonatomic,strong) NSNumber * scene_type;
 
 @property(nonatomic,strong) NSString<Ignore> * devTid;
 @property (nonatomic, strong) NSString<Ignore> *scene_name;

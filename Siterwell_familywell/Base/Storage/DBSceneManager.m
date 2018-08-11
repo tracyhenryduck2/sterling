@@ -7,6 +7,7 @@
 //
 
 #import "DBSceneManager.h"
+#import "DBSceneReManager.h"
 
 static NSString * const scenetable = @"scenetable";
 
@@ -25,7 +26,7 @@ static NSString * const scenetable = @"scenetable";
 
 #pragma mark -method
 - (void)createSceneTable{
-    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(name varchar(200) not null,code varchar(100),desc varchar(100),mid varchar(40),devTid varchar(30),primary key(mid,devTid))", scenetable];
+    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(name varchar(200) not null,code varchar(100),desc varchar(100),mid integer default(0),devTid varchar(30),primary key(mid,devTid))", scenetable];
     [[DBManager sharedInstanced] createTable:scenetable sql:sql];
     
 }
@@ -40,7 +41,7 @@ static NSString * const scenetable = @"scenetable";
             SceneModel *sceneModel = [[SceneModel alloc] init];
             sceneModel.scene_name = [rs stringForColumn:@"name"];
             sceneModel.scene_content = [rs stringForColumn:@"code"];
-            sceneModel.scene_type = [rs stringForColumn:@"mid"];
+            sceneModel.scene_type = [NSNumber numberWithInt:[rs intForColumn:@"mid"]];
             sceneModel.devTid = [rs stringForColumn:@"devTid"];
             [allScene addObject:sceneModel];
         }
@@ -48,16 +49,31 @@ static NSString * const scenetable = @"scenetable";
     return allScene;
 }
 
+-(NSMutableArray *)queryAllSysceneScene:(NSNumber *)sid withDevTid:(NSString *)devTid{
+    __block NSMutableArray *allScene = [NSMutableArray array];
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select b.* from %@ a inner join %@ b on a.mid = b.mid where a.sid = %d and a.devTid = '%@'",scenerelationshiptable,scenetable,[sid intValue],devTid]];
+        while ([rs next]) {
+            SceneModel *sceneModel = [[SceneModel alloc] init];
+            sceneModel.scene_name = [rs stringForColumn:@"name"];
+            sceneModel.scene_content = [rs stringForColumn:@"code"];
+            sceneModel.scene_type = [NSNumber numberWithInt:[rs intForColumn:@"mid"]];
+            sceneModel.devTid = [rs stringForColumn:@"devTid"];
+            [allScene addObject:sceneModel];
+        }
+    }];
+    return allScene;
+}
 
-- (SceneModel *)querySceneModel:(NSString *)mid withDevTid:(NSString *)devTid{
+- (SceneModel *)querySceneModel:(NSNumber *)mid withDevTid:(NSString *)devTid{
     
     __block SceneModel *scenemodel = nil;
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where mid = '%@' and devTid = '%@' ", scenetable,mid,devTid];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where mid = %d and devTid = '%@' ", scenetable,[mid intValue],devTid];
         FMResultSet *rs = [db executeQuery:sql];
         while (rs.next) {
             scenemodel = [[SceneModel alloc] init];
-            scenemodel.scene_type = [rs stringForColumn:@"mid"];
+            scenemodel.scene_type =[NSNumber numberWithInt:[rs intForColumn:@"mid"]];
             scenemodel.scene_content = [rs stringForColumn:@"code"];
             scenemodel.scene_name = [rs stringForColumn:@"name"];
             scenemodel.devTid = [rs stringForColumn:@"devTid"];
@@ -86,12 +102,12 @@ static NSString * const scenetable = @"scenetable";
     }];
 }
 
-- (BOOL)HasScene:(NSString *)mid withDevTid:(NSString *)devTid {
+- (BOOL)HasScene:(NSNumber *)mid withDevTid:(NSString *)devTid {
     
     __block BOOL flag = NO;
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         
-        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where mid = '%@' and devTid = '%@'", scenetable,mid,devTid];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where mid = %d and devTid = '%@'", scenetable,[mid intValue],devTid];
         FMResultSet *rs = [db executeQuery:sql];
         while ([rs next]) {
             flag = YES;

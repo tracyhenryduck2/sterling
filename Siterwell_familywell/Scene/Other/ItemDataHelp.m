@@ -241,10 +241,10 @@
 }
 
 
-+ (BOOL)isAddSceneId:(NSString *)sceneId withDevTid:(NSString *)devTid{
++ (BOOL)isAddSceneId:(int)sceneId withDevTid:(NSString *)devTid{
     NSMutableArray *array = [[DBSceneManager sharedInstanced] queryAllScenewithDevTid:devTid];
     for (SceneModel *model in array) {
-        if ([model.scene_type isEqualToString:sceneId]) {
+        if ([model.scene_type integerValue] == sceneId) {
             return NO;
         }
     }

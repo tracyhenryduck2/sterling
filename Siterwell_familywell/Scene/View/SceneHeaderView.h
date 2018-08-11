@@ -12,6 +12,7 @@
 
 @property(nonatomic,strong) UILabel *tittle;
 @property(nonatomic,strong) UIButton *btn_add_scene;
+@property(nonatomic,strong) UIView *line;
 
 @end
 

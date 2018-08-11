@@ -62,9 +62,9 @@
         SystemSceneModel * dd = (SystemSceneModel *)[slist objectAtIndex:(slist.count-1)];
         for(int i = 0 ; i < [dd.sence_group integerValue]+1; i++) {//for here come with "0" , used slist.size()
             codeLength += 2;
-            if ([sid containsObject:[NSString stringWithFormat:@"%d",i]]) {
+            if ([sid containsObject:[NSNumber numberWithInt:i]]) {
            
-                NSMutableArray<SceneRelationShip *>  *SceneRelationList = [[DBSceneReManager sharedInstanced] queryGS584RelationShip:[NSString stringWithFormat:@"%d",i] withDevTid:devTid];
+                NSMutableArray<SceneRelationShip *>  *SceneRelationList = [[DBSceneReManager sharedInstanced] queryGS584RelationShip:[NSNumber numberWithInt:i] withDevTid:devTid];
                 SystemSceneModel *sysModelBean = (SystemSceneModel *)slist[i];
                 NSString * name = sysModelBean.systemname;
                 int length = 0;
@@ -72,11 +72,11 @@
                 length = 0;
                 length += 2;//the total num length
                 
-                NSString * id2 = sysModelBean.sence_group;
+                NSNumber * id2 = sysModelBean.sence_group;
                 length += 1;//the scene id
                 
                 NSString * btnNum = @"";
-                NSMutableArray <GS584RelationShip *>* shortcutlist = [[DBGS584RelationShipManager sharedInstanced] queryAllGS584RelationShipwithDevTid:devTid withSid:[NSString stringWithFormat:@"%d",i]];
+                NSMutableArray <GS584RelationShip *>* shortcutlist = [[DBGS584RelationShipManager sharedInstanced] queryAllGS584RelationShipwithDevTid:devTid withSid:[NSNumber numberWithInt:i]];
                 
                 if ([BatterHelp gethexBybinary:shortcutlist.count].length<2){  //new mid
                     btnNum = [@"0" stringByAppendingString:[BatterHelp gethexBybinary:shortcutlist.count]];
@@ -180,16 +180,16 @@
         int codeLength = 2;
 
         int listLength = [((SceneModel *)[sceneList objectAtIndex:(sceneList.count-1)]).scene_type intValue];
-        NSMutableArray * eqid = [[NSMutableArray alloc] init];
+        NSMutableArray <NSNumber *>* eqid = [[NSMutableArray alloc] init];
         for (SceneModel *e in sceneList) {
             [eqid addObject:e.scene_type];
         }
         NSString * sceneCRC = @"";
         for (int i = 1; i <= listLength; i++) {
             codeLength += 2;
-            if ([eqid containsObject:[NSString stringWithFormat:@"%d",i]]) {
+            if ([eqid containsObject:[NSNumber numberWithInt:i]]) {
 
-                NSString *ds =  ((SceneModel *)[sceneList objectAtIndex:[eqid indexOfObject:[NSString stringWithFormat:@"%d",i]]]).scene_content;
+                NSString *ds =  ((SceneModel *)[sceneList objectAtIndex:[eqid indexOfObject:[NSNumber numberWithInt:i]]]).scene_content;
                 
                 NSString * crc = [SceneModel getCRCFromContent:ds];
                 sceneCRC = [sceneCRC stringByAppendingString: crc];
