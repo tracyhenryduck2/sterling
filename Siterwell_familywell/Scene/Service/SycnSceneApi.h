@@ -9,5 +9,5 @@
 #import "BaseDriveApi.h"
 
 @interface SycnSceneApi : BaseDriveApi
--(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost SceneGroup:(NSString *)scene_group answerContent:(NSString *)answer_content SceneContent:(NSString *)scene_content;
+-(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost SceneGroup:(NSNumber *)scene_group answerContent:(NSString *)answer_content SceneContent:(NSString *)scene_content;
 @end

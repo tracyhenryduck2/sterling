@@ -264,15 +264,24 @@
 
 -(void)onUpdateOnSystemScene:(SystemSceneModel *)systemscenemodel withDevTid:(NSString *)devTid{
     _count = 0;
-    NSLog(@"onUpdateOnSystemScene%@",systemscenemodel);
-    [systemscenemodel settotalDevTid:devTid];
-    [[DBSystemSceneManager sharedInstanced] insertSystemScene:systemscenemodel];
-    
-    //关系表更新
-    [[DBSceneReManager sharedInstanced] deleteRelation:systemscenemodel.sence_group withDevTid:systemscenemodel.devTid];
-    [[DBSceneReManager sharedInstanced] insertRelations:systemscenemodel.sceneRelationShip];
-    [[DBGS584RelationShipManager sharedInstanced] deleteRelation:systemscenemodel.sence_group withDevTid:systemscenemodel.devTid];
-    [[DBGS584RelationShipManager sharedInstanced] insertGS584Relations:systemscenemodel.dev584List];
+    [[DBSceneReManager sharedInstanced] deleteRelation:systemscenemodel.sence_group withDevTid:devTid];
+    [[DBGS584RelationShipManager sharedInstanced] deleteRelation:systemscenemodel.sence_group withDevTid:devTid];
+    if(![[systemscenemodel.answer_content substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"0000"]){
+        [systemscenemodel settotalDevTid:devTid];
+        [[DBSystemSceneManager sharedInstanced] insertSystemScene:systemscenemodel];
+        
+        //关系表更新
+        [[DBSceneReManager sharedInstanced] insertRelations:systemscenemodel.sceneRelationShip];
+        [[DBGS584RelationShipManager sharedInstanced] insertGS584Relations:systemscenemodel.dev584List];
+    }else{
+        if([systemscenemodel.sence_group intValue] < 3){
+            [[DBSystemSceneManager sharedInstanced] updateColor:[NSString stringWithFormat:@"F%@",systemscenemodel.sence_group] withSid:systemscenemodel.sence_group withDevTid:devTid];
+        }else{
+            [[DBSystemSceneManager sharedInstanced] deleteSystemScene:systemscenemodel.sence_group withDevTid:devTid];
+        }
+
+    }
+
 }
 
 -(void)onUpdateOnScene:(SceneModel *)scenemodel withDevTid:(NSString *)devTid{
@@ -313,7 +322,10 @@
                 [sy startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
                     NSLog(@"得到数据为%@",data);
                 }];
-    }else{
+    }else if([devicemodel.device_name isEqualToString:@"DEL"]){
+        [[DBDeviceManager sharedInstanced] deleteDevice:devicemodel.device_ID withDevTid:devTid];
+    }
+    else{
         [devicemodel setDevTid:devTid];
         [[DBDeviceManager sharedInstanced] insertDevice:devicemodel];
     }

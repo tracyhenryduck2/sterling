@@ -113,10 +113,10 @@ static NSString *deviceTable = @"device_table";
     }];
 }
 
-- (void)deleteDevice:(NSString *)eqid withDevTid:(NSString *)devTid{
+- (void)deleteDevice:(NSNumber *)eqid withDevTid:(NSString *)devTid{
     
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        NSString *sql = [NSString stringWithFormat:@"delete from %@ where sid = '%@' and devTid = '%@' ", deviceTable, eqid,devTid];
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ where eqid = %d and devTid = '%@' ", deviceTable, [eqid intValue],devTid];
         [db executeUpdate:sql];
     }];
 }

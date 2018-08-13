@@ -21,6 +21,7 @@
 - (void)updateSystemName:(NSString *)name withSid:(NSNumber *)sid withDevTid:(NSString *)DevTid;
 - (void)updateSystemChoicewithSid:(NSNumber *)sid withDevTid:(NSString *)DevTid;
 - (NSNumber *)queryCurrentSystemScene:(NSString *)devTid;
+- (void)deleteSystemScene:(NSNumber *)sid withDevTid:(NSString *)devTid;
 @end
 
 #endif /* DBSystemSceneManager_h */
