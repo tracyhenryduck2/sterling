@@ -46,7 +46,9 @@
         make.width.equalTo(70);
         make.height.equalTo(self.contentView.mas_height);
     }];
-
+    
+    [self.selectSceneBtn addTarget:self action:@selector(tap:) forControlEvents:UIControlEventTouchUpInside];
+    
     self.color = [[UIView alloc] initWithFrame:CGRectZero];
     [self.contentView addSubview:self.color];
     self.color.backgroundColor = [UIColor redColor];
@@ -58,5 +60,10 @@
         make.height.equalTo(30);
 
     }];
+}
+
+-(void) tap :(UIButton *) sender{
+    NSInteger tag = sender.tag;
+    [self.clickdelegate click:tag];
 }
 @end

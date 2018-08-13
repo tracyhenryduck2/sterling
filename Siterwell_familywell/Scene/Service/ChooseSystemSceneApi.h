@@ -9,5 +9,5 @@
 #import "BaseDriveApi.h"
 
 @interface ChooseSystemSceneApi : BaseDriveApi
--(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)domain SceneGroup:(NSString *)scene_group;
+-(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)domain SceneGroup:(NSNumber *)scene_group;
 @end

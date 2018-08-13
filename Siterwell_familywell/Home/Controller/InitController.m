@@ -95,7 +95,6 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    NSLog(@"viewDidDisappear");
     _testobj = nil;
 }
 
@@ -331,5 +330,11 @@
     }
 
 }
+
+- (void)onAnswerOK {
+    
+}
+
+
 @end
 

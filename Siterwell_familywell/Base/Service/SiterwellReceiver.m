@@ -39,6 +39,8 @@
             }else if([cmd intValue] == DEVICE_STATUS_UPLOAD){
                 DeviceModel *devmodel = [[DeviceModel alloc] initWithHekrDictionary:data error:nil];
                 [self.siterwelldelegate onDeviceStatus:devmodel withDevTid:devTid];
+            }else if([cmd intValue] == ANWSER_OK){
+                [self.siterwelldelegate onAnswerOK];
             }
             block(obj,data,error);
         }
