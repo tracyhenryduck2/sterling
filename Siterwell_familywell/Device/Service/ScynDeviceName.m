@@ -93,7 +93,7 @@
                      @"devTid": _devTid,
                      @"ctrlKey": _ctrlKey,
                      @"data": @{
-                             @"cmdId":@30,
+                             @"cmdId":@SyncDeviceName,
                              @"answer_content":[self getCRCContent]
                              }
                      }

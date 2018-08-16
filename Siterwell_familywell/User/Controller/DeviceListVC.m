@@ -21,6 +21,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"设备列表", nil);
 //    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(finish) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
 //    self.navigationItem.rightBarButtonItem =  [super itemWithTarget:self action:nil Title:NSLocalizedString(@"确定", nil) withTintColor:RGB(53, 167, 255)];
    _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(adddone) userInfo:nil repeats:YES];

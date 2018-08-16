@@ -20,4 +20,9 @@
 #define Hekr_checkCode @"%@/images/checkCaptcha?rid=%@&code=%@"
 #define Hekr_getSmsVerifyCode @"%@/sms/getVerifyCode?phoneNumber=%@&pid=%@&type=%@&token=%@"
 #define Hekr_getEmailVerifyCode @"%@/email/getVerifyCode?email=%@&pid=%@&type=%@&token=%@"
+
+#define SyncDevice 29
+#define SyncDeviceName 30
+#define SyncScenes 31
+#define ChooseSystemScene 6
 #endif /* HekrServiceApi_h */

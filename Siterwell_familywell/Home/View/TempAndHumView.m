@@ -55,7 +55,10 @@
 - (void)setItemData:(ItemData *)itemData {
     
     if([NSString isBlankString:itemData.customTitle]){
-        nameLb.text  = [NSString stringWithFormat:@"%@ %ld", NSLocalizedString(itemData.title, nil),itemData.devID];
+        NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+        NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+        NSDictionary* names = [dic valueForKey:@"names"];
+        nameLb.text  = [NSString stringWithFormat:@"%@ %ld", NSLocalizedString([names objectForKey:itemData.devType], nil),itemData.devID];
     }else{
         nameLb.text = itemData.customTitle;
     }

@@ -45,5 +45,5 @@
 
 -(void) onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid;
 
--(void) onAnswerOK;
+-(void) onAnswerOK:(NSString *)devTid;
 @end

@@ -11,7 +11,6 @@
 
 @interface ItemData : NSObject
 
-@property (nonatomic, strong, readonly)NSString *title;
 @property (nonatomic, strong, readonly)NSString *image;
 @property (nonatomic, strong, readonly)NSString *devType;
 @property (nonatomic, assign, readonly)NSInteger devID;

@@ -16,12 +16,15 @@
 #import "SettingController.h"
 #import "DBGatewayManager.h"
 #import <CoreLocation/CoreLocation.h>
-@interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate>
+#import "SiterwellReceiver.h"
+@interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate,SiterwellDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
 @property (nonatomic,strong) ModeCircleView *modecirleView;
 @property (nonatomic,strong) CircleMenuVc *menuVc;
 @property (nonatomic,strong) HomeHeadView *videoView;
+@property (nonatomic) SiterwellReceiver *siter;
+@property (nonatomic) NSObject *testobj;
 @end
 
 
@@ -33,7 +36,12 @@
 
 #pragma mark -life
 -(void)viewDidLoad{
-
+    _siter =  [[SiterwellReceiver alloc] init];
+    _testobj = [[NSObject alloc] init];
+    [_siter recv:_testobj callback:^(id obj, id data, NSError *error) {
+        
+    }];
+    _siter.siterwelldelegate = self;
     NSMutableArray <GatewayModel *> *gatewaysa = [[DBGatewayManager sharedInstanced] queryAllGateway];
     NSLog(@"缓存中的网关列表%@",gatewaysa);
     
@@ -57,9 +65,7 @@
     
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(test) image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
 
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
+
     self.title = @"我的家";
     UIColor* color = [UIColor whiteColor];
     NSDictionary* dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
@@ -226,9 +232,13 @@
 }
 
 -(void)test{
-    SettingController * vc = [[SettingController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    SettingController * vc = [[SettingController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 
+    SettingController *wl = [[SettingController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:wl];
+    [self presentViewController:nav animated:YES completion:nil];
+    
 }
 
 - (void)showCircleMenu{
@@ -251,6 +261,37 @@
 }
 
 - (void)cycleScrollView:(HomeHeadView *)cycleScrollView didSelectImageView:(NSInteger)index videoInfos:(NSArray *)videosArray {
+    
+}
+
+
+#pragma -mark 长链接代理方法
+- (void)onAnswerOK:(NSString *)devTid {
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    if([currentgateway2 isEqualToString:devTid]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"answer_ok" object:nil];
+    }
+
+}
+
+- (void)onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid {
+    
+}
+
+- (void)onUpdateOnCurrentSystemScene:(NSNumber *)currentmodel withDevTid:(NSString *)devTid {
+    
+}
+
+- (void)onUpdateOnScene:(SceneModel *)scenemodel withDevTid:(NSString *)devTid {
+    
+}
+
+- (void)onUpdateOnSystemScene:(SystemSceneModel *)systemscenemodel withDevTid:(NSString *)devTid {
+    
+}
+
+- (void)onlinestatus:(NSString *)devTid {
     
 }
 

@@ -10,7 +10,6 @@
 #import "Macros.h"
 #import "ResetCell.h"
 #import "VerifyCodeAlertView.h"
-#import "HekrHttpsApi.h"
 
 @interface ResetCode()
 

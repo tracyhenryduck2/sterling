@@ -31,7 +31,10 @@
 
     
     if([itemData.customTitle isEqualToString:@""]){
-          self.numberIndexLabel.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(itemData.title, nil) ,[NSString stringWithFormat:@"%ld",itemData.devID]];
+        NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+        NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+        NSDictionary* names = [dic valueForKey:@"names"];
+          self.numberIndexLabel.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString([names objectForKey:itemData.devType], nil) ,[NSString stringWithFormat:@"%ld",itemData.devID]];
     }else{
         self.numberIndexLabel.text = itemData.customTitle;
     }

@@ -22,6 +22,7 @@
     self.title = NSLocalizedString(@"配置", nil);
     self.titles = @[NSLocalizedString(@"当前网关", nil), NSLocalizedString(@"修改密码", nil), NSLocalizedString(@"网关配置", nil), NSLocalizedString(@"定位设置", nil),NSLocalizedString(@"紧急号码", nil),NSLocalizedString(@"新增摄像头", nil),NSLocalizedString(@"系统说明书", nil),NSLocalizedString(@"关于", nil) ];
     [self table];
+    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(finish) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
 }
 -(void)viewWillAppear:(BOOL)animated{
 
@@ -124,6 +125,10 @@
     return _table;
 }
 
+#pragma -mark method
 
+-(void)finish{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

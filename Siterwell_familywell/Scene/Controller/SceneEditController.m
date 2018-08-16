@@ -19,11 +19,13 @@
 
 #pragma -mark life
 -(void)viewDidLoad{
+     [super viewDidLoad];
     self.title = NSLocalizedString(@"编辑情景", nil);
-    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(back) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
 }
 

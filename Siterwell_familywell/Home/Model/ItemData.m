@@ -28,8 +28,7 @@
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
         _names = [dic valueForKey:@"names"];
         _pictures = [dic valueForKey:@"pictures"];
-        self.title = title;
-        self.customTitle = @"";
+        self.customTitle = title;
         self.devID = devID;
         self.statuCode = code;
         self.devType = devtype;

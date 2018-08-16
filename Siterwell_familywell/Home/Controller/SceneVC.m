@@ -16,30 +16,29 @@
 #import "SceneEditController.h"
 #import "ChooseSystemSceneApi.h"
 #import "SiterwellReceiver.h"
-@interface SceneVC() <UITableViewDelegate,UITableViewDataSource,CLickdelegate,SiterwellDelegate>
+#import "SystemSceneEditController.h"
+#import "Single.h"
+#import "DeviceListVC.h"
+@interface SceneVC() <UITableViewDelegate,UITableViewDataSource,CLickdelegate>
 
 @property (nonatomic,strong) UITableView *table_scene;
 @property (nonatomic,strong) NSMutableArray <SystemSceneModel *> *list_system_scene;
 @property (nonatomic,strong) NSMutableArray <SceneModel *> *list_scene;
 @property (nonatomic,strong) SceneHeaderView *sceneheaderview;
 @property (nonatomic,assign) NSInteger select_sid;
-@property (nonatomic) SiterwellReceiver *siter;
-@property (nonatomic) NSObject *testobj;
+
 @end
 @implementation SceneVC
 
 #pragma -mark life
 
 -(void)viewDidLoad{
-        NSLog(@"viewDidLoad");
+    
     self.title = NSLocalizedString(@"情景", nil);
+    self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(gotoSystemSceneAdd) image:@"add_list_icon" highImage:nil withTintColor:nil];
     [self table_scene];
-    _siter =  [[SiterwellReceiver alloc] init];
-    _testobj = [[NSObject alloc] init];
-    [_siter recv:_testobj callback:^(id obj, id data, NSError *error) {
-        
-    }];
-    _siter.siterwelldelegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -47,18 +46,24 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    NSLog(@"viewDidAppear");
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-     NSLog(@"viewWillDisappear");
-    _testobj = nil;
+    
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
 }
 
 
 -(void)viewDidDisappear:(BOOL)animated{
      NSLog(@"viewDidDisappear");
+}
+
+- (void)dealloc {
+    
+    //移除观察者 self
+    NSLog(@"dealloc SceneVC");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma -mark lazy
@@ -227,12 +232,12 @@
 }
 
 -(void)click:(NSInteger)index{
-    NSLog(@"新建%ld",index);
     _select_sid = index;
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
     SystemSceneModel *model = _list_system_scene[index];
+    [Single sharedInstanced].command = ChooseSystemScene;
     ChooseSystemSceneApi *choose  = [[ChooseSystemSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:model.sence_group];
     [choose startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
         NSLog(@"选择后返回的数据为%@",data);
@@ -240,18 +245,26 @@
 }
 
 -(void) onAnswerOK{
-    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
-    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
-    [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:[NSNumber numberWithInteger:_select_sid] withDevTid:gatewaymodel.devTid];
-    [self refresh];
-    [self.table_scene reloadData];
+    if([Single sharedInstanced].command == ChooseSystemScene){
+        [Single sharedInstanced].command = -1;
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+        [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:[NSNumber numberWithInteger:_select_sid] withDevTid:gatewaymodel.devTid];
+        [self refresh];
+    }
+
 }
 
 #pragma -mark method
 -(void)BtnClick:(id)Sender{
-    SceneEditController *sc = [[SceneEditController alloc] init];
+    DeviceListVC *sc = [[DeviceListVC alloc] init];
     [self.navigationController pushViewController:sc animated:YES];
+}
+
+-(void)gotoSystemSceneAdd{
+    SystemSceneEditController *systemSceneController = [[SystemSceneEditController alloc] init];
+    [self.navigationController pushViewController:systemSceneController animated:YES];
 }
 
 -(void)refresh{
@@ -261,5 +274,6 @@
     _list_system_scene = [[DBSystemSceneManager sharedInstanced] queryAllSystemScene:gatewaymodel.devTid];
     
     _list_scene = [[DBSceneManager sharedInstanced] queryAllSysceneScene:[[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene:gatewaymodel.devTid] withDevTid:gatewaymodel.devTid];
+    [self.table_scene reloadData];
 }
 @end

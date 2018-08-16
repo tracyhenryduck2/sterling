@@ -8,6 +8,8 @@
 
 #ifndef SystemSceneEditController_h
 #define SystemSceneEditController_h
+@interface SystemSceneEditController:BaseVC
 
+@end
 
 #endif /* SystemSceneEditController_h */

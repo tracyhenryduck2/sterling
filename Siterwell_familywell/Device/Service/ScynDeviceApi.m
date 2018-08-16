@@ -42,7 +42,7 @@
                      @"devTid":_devTid,
                      @"ctrlKey":_ctrlKey,
                      @"data":@{
-                             @"cmdId":@29,
+                             @"cmdId":@SyncDevice,
                              @"device_status":_deviceCRCqueue
                              }
                      }

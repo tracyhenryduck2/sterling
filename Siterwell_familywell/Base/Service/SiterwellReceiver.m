@@ -40,7 +40,7 @@
                 DeviceModel *devmodel = [[DeviceModel alloc] initWithHekrDictionary:data error:nil];
                 [self.siterwelldelegate onDeviceStatus:devmodel withDevTid:devTid];
             }else if([cmd intValue] == ANWSER_OK){
-                [self.siterwelldelegate onAnswerOK];
+                [self.siterwelldelegate onAnswerOK:devTid];
             }
             block(obj,data,error);
         }
