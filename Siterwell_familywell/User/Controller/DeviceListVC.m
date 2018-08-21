@@ -7,10 +7,10 @@
 //
 
 #import "DeviceListVC.h"
-#import "DeviceModel.h"
+#import "ItemData.h"
 @interface DeviceListVC() <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic) UITableView *tableView;
-@property (nonatomic) NSMutableArray<DeviceModel *> *deviceList;
+@property (nonatomic) NSMutableArray<ItemData *> *deviceList;
 @property (nonatomic) UILabel *noDataLb;
 @property (nonatomic,assign) int dsa;
 @property (nonatomic) NSTimer *timer;
@@ -71,9 +71,9 @@
 //    [self deleteDeviceWithDevTid:model.devTid andBindKey:model.bindKey];
 }
 
-- (NSMutableArray<DeviceModel *> *)deviceList {
+- (NSMutableArray<ItemData *> *)deviceList {
     if (!_deviceList) {
-        _deviceList = [NSMutableArray<DeviceModel *> array];
+        _deviceList = [NSMutableArray<ItemData *> array];
     }
     return _deviceList;
 }

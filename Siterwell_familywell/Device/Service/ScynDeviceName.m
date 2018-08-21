@@ -32,8 +32,8 @@
     
     int maxId = 0;
     for (ItemData *data in _deviceArray) {
-        if (data.devID && data.devID > maxId) {
-            maxId = (int)data.devID ;
+        if (data.device_ID && [data.device_ID intValue] > maxId) {
+            maxId = [data.device_ID intValue];
         }
     }
     NSString *content = @"";
@@ -47,7 +47,7 @@
     for (int i = 1 ; i<=maxId; i++) {
         bool hasDevice = NO;
         for (ItemData *data in _deviceArray) {
-            if (data.devID && data.devID == i) {
+            if (data.device_ID && [data.device_ID intValue] == i) {
                 
                 NSString *name = data.customTitle;
 

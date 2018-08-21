@@ -37,7 +37,7 @@
                 NSNumber *current_scenemode = data[@"params"][@"data"][@"sence_group"];
                 [self.siterwelldelegate onUpdateOnCurrentSystemScene:current_scenemode withDevTid:devTid];
             }else if([cmd intValue] == DEVICE_STATUS_UPLOAD){
-                DeviceModel *devmodel = [[DeviceModel alloc] initWithHekrDictionary:data error:nil];
+                ItemData *devmodel = [[ItemData alloc] initWithHekrDictionary:data error:nil];
                 [self.siterwelldelegate onDeviceStatus:devmodel withDevTid:devTid];
             }else if([cmd intValue] == ANWSER_OK){
                 [self.siterwelldelegate onAnswerOK:devTid];

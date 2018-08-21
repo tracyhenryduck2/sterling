@@ -304,7 +304,7 @@
     [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:_current_system_scene withDevTid:devTid];
 }
 
--(void) onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid{
+-(void) onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid{
     _count = 0;
     if([devicemodel.device_ID intValue] == 65535){
         NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];

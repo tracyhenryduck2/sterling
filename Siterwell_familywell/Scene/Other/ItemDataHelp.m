@@ -10,7 +10,7 @@
 
 
 @implementation ItemDataHelp
-+(SceneListItemData *)ItemDataToSceneListItemData:(DeviceModel *)data{
++(SceneListItemData *)ItemDataToSceneListItemData:(ItemData *)data{
     SceneListItemData *item = [[SceneListItemData alloc] init];
     item.eqid = data.device_ID;
     item.type = data.device_name;
@@ -18,10 +18,10 @@
     NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
     dic = [dic objectForKey:@"names"];
     NSDictionary *dic_pics = [dic objectForKey:@"pictures"];
-    if([NSString isBlankString:data.device_custom_name ]){
+    if([NSString isBlankString:data.customTitle ]){
         item.custmTitle = [NSString stringWithFormat:@"%@ %d",NSLocalizedString([dic objectForKey:data.device_name], nil) ,[data.device_ID intValue]];
     }else{
-        item.custmTitle = data.device_custom_name;
+        item.custmTitle = data.customTitle;
     }
         item.image = [NSString stringWithFormat:[dic_pics objectForKey:data.device_name],@"blue"];
     

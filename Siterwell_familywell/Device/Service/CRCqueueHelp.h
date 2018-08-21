@@ -11,7 +11,7 @@
 #import "DBDeviceManager.h"
 #import "DBSceneReManager.h"
 #import "DBGS584RelationShipManager.h"
-#import "DeviceModel.h"
+#import "ItemData.h"
 #import "SystemSceneModel.h"
 #import "SceneModel.h"
 #import "BatterHelp.h"

@@ -37,38 +37,32 @@ static NSString *deviceTable = @"device_table";
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where packageid = 0 and devTid = '%@' group by eqid order by sort,eqid",deviceTable,devTid]];
         while ([rs next]) {
-            DeviceModel *deviceModel = [[DeviceModel alloc] init];
-            deviceModel.device_custom_name = [rs stringForColumn:@"name"];
-            deviceModel.device_ID = [NSNumber numberWithInt:[rs intForColumn:@"eqid"]];
-            deviceModel.device_name = [rs stringForColumn:@"equipmenttype"];
+            ItemData *deviceModel = [[ItemData alloc] initWithTitle:[rs stringForColumn:@"name"] DevID:[rs intForColumn:@"eqid"] DevType:[rs stringForColumn:@"equipmenttype"] Code:[rs stringForColumn:@"status"]];
             deviceModel.devTid = [rs stringForColumn:@"devTid"];
-            deviceModel.device_status = [rs stringForColumn:@"status"];
             [allDevice addObject:deviceModel];
         }
     }];
     return allDevice;
 }
 
-- (DeviceModel *)queryDeviceModel:(NSNumber *)device_ID withDevTid:(NSString *)devTid{
+- (ItemData *)queryDeviceModel:(NSNumber *)device_ID withDevTid:(NSString *)devTid{
     
-    __block DeviceModel *deviceModel = nil;
+    __block ItemData *deviceModel = nil;
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where eqid = %d and devTid = '%@' ", deviceTable,[device_ID intValue],devTid];
         FMResultSet *rs = [db executeQuery:sql];
         while (rs.next) {
-            deviceModel = [[DeviceModel alloc] init];
-            deviceModel.device_custom_name = [rs stringForColumn:@"name"];
-            deviceModel.device_name = [rs stringForColumn:@"equipmenttype"];
-            deviceModel.device_status = [rs stringForColumn:@"status"];
+            NSString *ds = [rs stringForColumn:@"name"];
+            if(ds == nil) ds = @"";
+            deviceModel = [[ItemData alloc] initWithTitle:[rs stringForColumn:@"name"] DevID:[rs intForColumn:@"eqid"] DevType:[rs stringForColumn:@"equipmenttype"] Code:[rs stringForColumn:@"status"]];
             deviceModel.devTid = [rs stringForColumn:@"devTid"];
-            deviceModel.device_ID = [NSNumber numberWithInt:[rs intForColumn:@"eqid"]];
         }
     }];
     return deviceModel;
 }
 
 
-- (void)insertDevice:(DeviceModel *)deviceModel{
+- (void)insertDevice:(ItemData *)deviceModel{
 
    BOOL flag_has_device = [self HasDevice:deviceModel.device_ID withDevTid:deviceModel.devTid];
     NSLog(@"是否含有该子设备%d",flag_has_device);
@@ -76,10 +70,10 @@ static NSString *deviceTable = @"device_table";
         [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
                 if(flag_has_device == NO){
             NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,eqid,equipmenttype,status,devTid) VALUES ('%@', %d,'%@','%@','%@')",deviceTable,
-                             deviceModel.device_custom_name,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid];
+                             deviceModel.customTitle,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid];
             [db executeUpdate:sql];
                 }else{
-                    NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, deviceModel.device_custom_name,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid,[deviceModel.device_ID intValue],deviceModel.devTid];
+                    NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, deviceModel.customTitle,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid,[deviceModel.device_ID intValue],deviceModel.devTid];
                     [db executeUpdate:sql];
                 }
         }];
@@ -90,8 +84,8 @@ static NSString *deviceTable = @"device_table";
  
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
         [db beginTransaction];
-        for (DeviceModel *f in deviceModels) {
-            if(![f isKindOfClass:[DeviceModel class]])
+        for (ItemData *f in deviceModels) {
+            if(![f isKindOfClass:[ItemData class]])
                 continue;
             BOOL flag = NO;
             NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where eqid = %d and devTid = '%@'", deviceTable,[f.device_ID intValue],f.devTid];
@@ -102,10 +96,10 @@ static NSString *deviceTable = @"device_table";
             [rs close];
             if(flag == NO){
                 NSString *sql = [NSString stringWithFormat:@"insert into %@ (name,eqid,equipmenttype,status,devTid) VALUES ('%@', %d,'%@','%@','%@')",deviceTable,
-                                 f.device_custom_name,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid];
+                                 f.customTitle,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid];
                 [db executeUpdate:sql];
             }else{
-                NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, f.device_custom_name,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid,[f.device_ID intValue],f.devTid];
+                NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, f.customTitle,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid,[f.device_ID intValue],f.devTid];
                 [db executeUpdate:sql];
             }
         }

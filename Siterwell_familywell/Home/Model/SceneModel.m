@@ -142,7 +142,7 @@
         NSString *deviceId = [deviceString substringWithRange:NSMakeRange(0, 4)];
         NSInteger device_ID = strtoul([deviceId UTF8String],0,16);
         NSString *deviceCount = [deviceString substringWithRange:NSMakeRange(4, 8)];
-        DeviceModel *devicemodel = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:device_ID] withDevTid:devTid];
+        ItemData *devicemodel = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:device_ID] withDevTid:devTid];
         SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:devicemodel];
         deviceItem.action = deviceCount;
         [array addObject:deviceItem];
@@ -197,7 +197,7 @@
               [array addObject:deviceItem];
             
         }else{
-            DeviceModel * data = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:deviceId2] withDevTid:devTid];
+            ItemData * data = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:deviceId2] withDevTid:devTid];
             SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:data];
             deviceItem.action = deviceCount;
             [array addObject:deviceItem];

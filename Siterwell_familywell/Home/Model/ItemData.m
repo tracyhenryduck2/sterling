@@ -10,17 +10,20 @@
 #import "BatterHelp.h"
 
 @interface ItemData()
-@property (nonatomic, strong, readwrite)NSString *title;
-@property (nonatomic, strong, readwrite)NSString *image;
-@property (nonatomic, strong, readwrite)NSString *devType;
-@property (nonatomic, assign, readwrite)NSInteger devID;
-@property (nonatomic, strong, readwrite)NSString *statuCode;
-@property (nonatomic, strong, readwrite)NSString *crcCustomTitle;
-@property (nonatomic, strong, readwrite)NSDictionary *names;
-@property (nonatomic, strong, readwrite)NSDictionary *pictures;
+
 @end
 
 @implementation ItemData
+
+
+-(instancetype) initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err{
+    
+    if(self=[super initWithDictionary:dict error:err]){
+
+    }
+    return self;
+}
+
 - (instancetype)initWithTitle:(NSString *)title DevID:(NSInteger)devID DevType:(NSString *)devtype Code:(NSString *)code{
     self = [super init];
     if (self){
@@ -28,10 +31,11 @@
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
         _names = [dic valueForKey:@"names"];
         _pictures = [dic valueForKey:@"pictures"];
+
         self.customTitle = title;
-        self.devID = devID;
-        self.statuCode = code;
-        self.devType = devtype;
+        self.device_ID = [NSNumber numberWithInteger: devID];
+        self.device_status = code;
+        self.device_name = devtype;
         self.image = [self getImage:code name:devtype];
 
     }

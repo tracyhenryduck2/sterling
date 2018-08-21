@@ -58,18 +58,18 @@
         NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
         NSDictionary* names = [dic valueForKey:@"names"];
-        nameLb.text  = [NSString stringWithFormat:@"%@ %ld", NSLocalizedString([names objectForKey:itemData.devType], nil),itemData.devID];
+        nameLb.text  = [NSString stringWithFormat:@"%@ %ld", NSLocalizedString([names objectForKey:itemData.device_name], nil),[itemData.device_ID integerValue]];
     }else{
         nameLb.text = itemData.customTitle;
     }
     
-    NSString *tempstr = [itemData.statuCode substringWithRange:NSMakeRange(4, 2)];
+    NSString *tempstr = [itemData.device_status substringWithRange:NSMakeRange(4, 2)];
     NSString *one = [BatterHelp getBinaryByhex:tempstr];
     one = one.length < 8 ? [@"0000" stringByAppendingString:one] : one;
     one = [one substringWithRange:NSMakeRange(0, 1)];
     NSNumber *tempNum = [BatterHelp numberHexString:tempstr];
     
-    NSString *humstr = [itemData.statuCode substringWithRange:NSMakeRange(6, 2)];
+    NSString *humstr = [itemData.device_status substringWithRange:NSMakeRange(6, 2)];
     NSNumber *humNum = [BatterHelp numberHexString:humstr];
     if ([one isEqualToString:@"1"]) {
         int ttemp = [tempNum intValue] - 256;

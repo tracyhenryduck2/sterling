@@ -7,6 +7,7 @@
 //
 
 #import "BookCollectionViewCell.h"
+#import "NSString+JJ.h"
 
 @interface BookCollectionViewCell ()
 
@@ -30,11 +31,11 @@
 - (void)initCellWithItemData:(ItemData *)itemData{
 
     
-    if([itemData.customTitle isEqualToString:@""]){
+    if([NSString isBlankString:itemData.customTitle]){
         NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
         NSDictionary* names = [dic valueForKey:@"names"];
-          self.numberIndexLabel.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString([names objectForKey:itemData.devType], nil) ,[NSString stringWithFormat:@"%ld",itemData.devID]];
+          self.numberIndexLabel.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString([names objectForKey:itemData.device_name], nil) ,[NSString stringWithFormat:@"%ld",[itemData.device_ID integerValue]]];
     }else{
         self.numberIndexLabel.text = itemData.customTitle;
     }

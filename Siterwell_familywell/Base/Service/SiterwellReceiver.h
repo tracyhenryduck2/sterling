@@ -10,7 +10,7 @@
 #import "BatterHelp.h"
 #import "SystemSceneModel.h"
 #import "SceneModel.h"
-#import "DeviceModel.h"
+#import "ItemData.h"
 #import <HekrAPI.h>
 
 #define ANWSER_OK  11
@@ -43,7 +43,7 @@
 
 -(void) onUpdateOnCurrentSystemScene:(NSNumber *)currentmodel withDevTid:(NSString *)devTid;
 
--(void) onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid;
+-(void) onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid;
 
 -(void) onAnswerOK:(NSString *)devTid;
 @end

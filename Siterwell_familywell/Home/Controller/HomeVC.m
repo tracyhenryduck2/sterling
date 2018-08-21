@@ -275,7 +275,7 @@
 
 }
 
-- (void)onDeviceStatus:(DeviceModel *)devicemodel withDevTid:(NSString *)devTid {
+- (void)onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid {
     
 }
 

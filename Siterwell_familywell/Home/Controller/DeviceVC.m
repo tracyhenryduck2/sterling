@@ -10,6 +10,7 @@
 #import "BookShelfMainView.h"
 #import "ItemData.h"
 #import "ArrayTool.h"
+#import "DBDeviceManager.h"
 
 @interface DeviceVC ()
 @property (nonatomic, strong) NSMutableArray *modelSource;
@@ -127,17 +128,19 @@
 
 -(void)loadData{
   
-    if(!_initdataArray){
-        _initdataArray = [[NSMutableArray<ItemData *> alloc] init];
-        ItemData * itemdata = [[ItemData alloc] initWithTitle:@"dsa" DevID:1 DevType:@"0300" Code:@"04645501"];
-        ItemData * itemdata2 = [[ItemData alloc] initWithTitle:@"dsa" DevID:2 DevType:@"0006" Code:@"04645501"];
-        ItemData * itemdata3 = [[ItemData alloc] initWithTitle:@"dsa" DevID:3 DevType:@"0109" Code:@"04645501"];
-        
-        [_initdataArray addObject:itemdata];
-        [_initdataArray addObject:itemdata2];
-        [_initdataArray addObject:itemdata3];
-    }
-    
+//    if(!_initdataArray){
+//        _initdataArray = [[NSMutableArray<ItemData *> alloc] init];
+//        ItemData * itemdata = [[ItemData alloc] initWithTitle:@"dsa" DevID:1 DevType:@"0300" Code:@"04645501"];
+//        ItemData * itemdata2 = [[ItemData alloc] initWithTitle:@"dsa" DevID:2 DevType:@"0006" Code:@"04645501"];
+//        ItemData * itemdata3 = [[ItemData alloc] initWithTitle:@"dsa" DevID:3 DevType:@"0109" Code:@"04645501"];
+//
+//        [_initdataArray addObject:itemdata];
+//        [_initdataArray addObject:itemdata2];
+//        [_initdataArray addObject:itemdata3];
+//    }
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    _initdataArray = [[DBDeviceManager sharedInstanced] queryAllDevice:currentgateway2];
     if (!self.modelSource) {
         self.modelSource = [[NSMutableArray alloc]init];
 

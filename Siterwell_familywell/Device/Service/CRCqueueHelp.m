@@ -15,7 +15,7 @@
 +(NSString *)getDeviceCRCContent:(NSMutableArray *)deviceArray{
     
     int maxId = 0;
-    for (DeviceModel *data in deviceArray) {
+    for (ItemData *data in deviceArray) {
         if ([data.device_ID intValue] > maxId) {
             maxId = [data.device_ID intValue];
         }
@@ -30,7 +30,7 @@
     
     for (int i = 1 ; i<=maxId; i++) {
         bool hasDevice = NO;
-        for (DeviceModel *data in deviceArray) {
+        for (ItemData *data in deviceArray) {
             if ([data.device_ID intValue]  == i) {
                 
                 NSString *name = data.device_status;

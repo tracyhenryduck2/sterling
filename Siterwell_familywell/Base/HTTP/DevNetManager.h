@@ -7,7 +7,7 @@
 //
 
 #import "BaseNetManager.h"
-#import "DeviceModel.h"
+#import "ItemData.h"
 #import "DevVersionModel.h"
 
 #define APPID    @"01611410943"
@@ -62,7 +62,7 @@
 
 @interface DevNetManager : BaseNetManager
 
-+ (id)getDeviceListForFolderId:(NSString *)folderId withPage:(NSInteger)page andBaseUrl:(NSString *)baseurl handler:(void (^)(NSMutableArray <DeviceModel *>*pArray, NSError *error))handler;
++ (id)getDeviceListForFolderId:(NSString *)folderId withPage:(NSInteger)page andBaseUrl:(NSString *)baseurl handler:(void (^)(NSMutableArray <ItemData *>*pArray, NSError *error))handler;
 
 + (id)getDeviceList:(NSInteger)page andBaseUrl:(NSString *)baseurl handler:(void (^)(id, NSError *))handler;
 

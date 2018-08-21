@@ -7,7 +7,6 @@
 //
 
 #import "ScynDeviceApi.h"
-#import "DeviceModel.h"
 #import "BatterHelp.h"
 
 @implementation ScynDeviceApi

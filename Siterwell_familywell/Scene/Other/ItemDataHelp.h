@@ -10,7 +10,7 @@
 #import "SceneListItemData.h"
 #import "BatterHelp.h"
 #import "DBSceneManager.h"
-#import "DeviceModel.h"
+#import "ItemData.h"
 #import "NameHelper.h"
 
 @interface ItemDataHelp : NSObject
@@ -21,7 +21,7 @@
  @param data ItemData
  @return SceneListItem
  */
-+(SceneListItemData *)ItemDataToSceneListItemData:(DeviceModel *)data;
++(SceneListItemData *)ItemDataToSceneListItemData:(ItemData *)data;
 
 + (NSString *)SceneContentWithOutputArray:(NSMutableArray *)outarray inputAraary:(NSMutableArray *)inarray type:(NSInteger)type name:(NSString *)name sceneid:(NSString *)sceneid withDevTid:(NSString *)devTid;
 

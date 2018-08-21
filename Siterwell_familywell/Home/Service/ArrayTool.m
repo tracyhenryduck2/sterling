@@ -82,7 +82,7 @@
             }
         }else{
             ItemData *data = (ItemData *)obj;
-            if (data.devID  == object.devID) {
+            if ([data.device_ID integerValue]  == [object.device_ID integerValue] ) {
                 return YES;
             }
         }
@@ -130,7 +130,7 @@
     
     for (int j = 0; j<updateArray.count; j++) {
         ItemData *updateData = updateArray[j];
-        if (updateData.devID  == targetData.devID) {
+        if ([updateData.device_ID integerValue]  == [targetData.device_ID integerValue]) {
             return NO;
         }
     }
@@ -147,7 +147,7 @@
             ItemData *targetData = (ItemData *)obj;
             for (int j = 0; j<updateArr.count; j++) {
                 ItemData *updateData = updateArr[j];
-                if (updateData.devID  == targetData.devID) {
+                if ([updateData.device_ID integerValue]  == [targetData.device_ID integerValue]) {
                     [targetArr replaceObjectAtIndex:i withObject:updateData];
                     break;
                 }

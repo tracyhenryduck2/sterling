@@ -8,14 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "JSONModel+HekrDic.h"
+@interface ItemData : JSONModel
 
-@interface ItemData : NSObject
 
-@property (nonatomic, strong, readonly)NSString *image;
-@property (nonatomic, strong, readonly)NSString *devType;
-@property (nonatomic, assign, readonly)NSInteger devID;
-@property (nonatomic, strong, readonly)NSString *statuCode;
-@property (nonatomic, strong, readwrite)NSString *customTitle;
+
+@property(nonatomic,strong) NSNumber * device_ID;
+@property(nonatomic,strong) NSString * device_name;
+@property(nonatomic,strong) NSString * device_status;
+@property(strong,nonatomic) NSString<Ignore> * customTitle;
+@property (nonatomic,strong, readwrite)NSString<Ignore> *devTid;
+@property (nonatomic, strong, readwrite)NSString<Ignore> *image;
+@property (nonatomic, strong, readwrite)NSDictionary<Ignore> *names;
+@property (nonatomic, strong, readwrite)NSDictionary<Ignore> *pictures;
 
 - (instancetype)initWithTitle:(NSString *)title DevID:(NSInteger)devID DevType:(NSString *)devtype Code:(NSString *)code;
 @end
