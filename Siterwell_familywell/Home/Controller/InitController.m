@@ -335,6 +335,8 @@
     
 }
 
-
+-(void)onAlert:(NSString *)content withDevTid:(NSString *)devTid{
+    
+}
 @end
 

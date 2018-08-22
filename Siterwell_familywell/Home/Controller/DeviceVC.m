@@ -11,11 +11,11 @@
 #import "ItemData.h"
 #import "ArrayTool.h"
 #import "DBDeviceManager.h"
+#import "AddDeviceVC.h"
 
 @interface DeviceVC ()
 @property (nonatomic, strong) NSMutableArray *modelSource;
 @property (nonatomic, weak)   BookShelfMainView *bookShelfMainView;
-@property (nonatomic,strong) NSMutableArray<ItemData *> *initdataArray;
 @end
 
 
@@ -24,8 +24,14 @@
 
 #pragma mark -life
 -(void)viewDidLoad{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"updateDeviceSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:@"pauseRecv" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countine) name:@"countineRecv" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopScynDevice) name:@"updateDeviceOver" object:nil];
+    
     self.title = NSLocalizedString(@"设备", nil);
-    self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:nil Title:NSLocalizedString(@"新增",nil) withTintColor:RGB(53, 167, 255)];
+    self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(adddevice) Title:NSLocalizedString(@"新增",nil) withTintColor:RGB(53, 167, 255)];
     
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 144)];
@@ -121,10 +127,16 @@
 
 
 -(void)dealloc{
-   
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma -mark method
+
+-(void)adddevice{
+    AddDeviceVC *wl = [[AddDeviceVC alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:wl];
+    [self presentViewController:nav animated:YES completion:nil];
+}
 
 -(void)loadData{
   
@@ -140,12 +152,14 @@
 //    }
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-    _initdataArray = [[DBDeviceManager sharedInstanced] queryAllDevice:currentgateway2];
+    NSMutableArray * _initdataArray = [[DBDeviceManager sharedInstanced] queryAllDevice:currentgateway2];
     if (!self.modelSource) {
         self.modelSource = [[NSMutableArray alloc]init];
 
     }
-    self.modelSource  = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/devices.archiver"]];
+    
+    
+    self.modelSource  = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@_%@_devices.archiver",[config2 objectForKey:@"UserName"],currentgateway2]]];
     
     self.modelSource = [ArrayTool addJudgeArr:self.modelSource UpdateArr:_initdataArray];
     self.modelSource = [ArrayTool deletJundgeArr:self.modelSource UpdateArr:_initdataArray];
@@ -160,7 +174,23 @@
  KVO
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void *)context{
-    [NSKeyedArchiver archiveRootObject:_bookShelfMainView.model.itemsDataArr toFile:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/devices.archiver"]];
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    [NSKeyedArchiver archiveRootObject:_bookShelfMainView.model.itemsDataArr toFile:[NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@_%@_devices.archiver",[config2 objectForKey:@"UserName"],currentgateway2]]];
+}
+
+/**
+ 暂停接受消息
+ */
+- (void)pause{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateDeviceSuccess" object:nil];
+}
+
+/**
+ 继续接受消息
+ */
+- (void)countine{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"updateDeviceSuccess" object:nil];
 }
 
 @end

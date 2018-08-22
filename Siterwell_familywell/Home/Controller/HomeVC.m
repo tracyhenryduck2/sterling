@@ -17,6 +17,9 @@
 #import "DBGatewayManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SiterwellReceiver.h"
+#import "DBDeviceManager.h"
+#import "DBGatewayManager.h"
+#import "DBSceneManager.h"
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate,SiterwellDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
@@ -276,7 +279,13 @@
 }
 
 - (void)onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid {
-    
+    [devicemodel setDevTid:devTid];
+    [[DBDeviceManager sharedInstanced] insertDevice:devicemodel];
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    if([currentgateway2 isEqualToString:devTid]){
+           [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDeviceSuccess" object:nil];
+    }
 }
 
 - (void)onUpdateOnCurrentSystemScene:(NSNumber *)currentmodel withDevTid:(NSString *)devTid {
@@ -295,5 +304,50 @@
     
 }
 
+-(void)onAlert:(NSString *)content withDevTid:(NSString *)devTid{
+    
+    if(content.length < 8 && devTid.length < 4)
+        return;
+    
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    
+    NSString * gatewaytype;
+    NSString * gatewayname;
+    NSString * lastfour;
+    NSString * devicename;
+    NSString * alartname;
+    NSString * scenename;
+    
+    if([currentgateway2 isEqualToString:devTid]){
+        gatewaytype = NSLocalizedString(@"当前网关", nil);
+    }else{
+        gatewaytype = NSLocalizedString(@"其他网关", nil);
+    }
+    GatewayModel * gatew = [[DBGatewayManager sharedInstanced] queryForChosedGateway:devTid];
+    if ([gatew.deviceName isEqualToString:@"报警器"] || [gatew.deviceName isEqualToString:@"智能网关"]) {
+        gatewayname =  NSLocalizedString(@"我的家", nil);
+    }else{
+        gatewayname = gatew.deviceName;
+    }
+    lastfour = [devTid substringWithRange:NSMakeRange(devTid.length-4, 4)];
+    if([[content substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"AD"]){
+        NSString *deviceid = [content substringWithRange:NSMakeRange(6, 4)];
+        
+        deviceid = [NSString stringWithFormat:@"%d",(int)strtoul([deviceid UTF8String],0,16)];
+        NSString *deviceName = [content substringWithRange:NSMakeRange(10, 4)];
+        NSString *deviceStatus = [content substringWithRange:NSMakeRange(14, 8)];
+        NSString *alarmType = [content substringWithRange:NSMakeRange(18, 2)];
+        
+        
+    }else if([[content substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"AC"]){
+        
+    }
+    
+    
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:gatewaytype message:[NSString stringWithFormat:NSLocalizedString(@"请注意，%@(%@) 的 %@%@", nil),gatewayname ,lastfour , @"", @""] preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+}
 
 @end

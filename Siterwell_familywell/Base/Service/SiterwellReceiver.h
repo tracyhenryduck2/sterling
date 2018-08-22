@@ -46,4 +46,6 @@
 -(void) onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid;
 
 -(void) onAnswerOK:(NSString *)devTid;
+
+-(void) onAlert:(NSString *)content withDevTid:(NSString *)devTid;
 @end
