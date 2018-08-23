@@ -7,7 +7,6 @@
 //
 
 #import "SettingController.h"
-#import "DBManager.h"
 
 @interface SettingController()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic) NSArray *titles;
@@ -74,7 +73,6 @@
     }else{
         
         [[Hekr sharedInstance] logout];
-        [[DBManager sharedInstanced] close];
         UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"User" bundle:nil];
         AppDelegateInstance.window.rootViewController = [uistoryboard instantiateInitialViewController];
     }
