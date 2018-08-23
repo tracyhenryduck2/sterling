@@ -38,7 +38,7 @@
     [self.selectSceneBtn setImage:[UIImage imageNamed:@"noselect_icon"] forState:UIControlStateNormal];
     [self.selectSceneBtn setImage:[UIImage imageNamed:@"select_blue_icon"] forState:UIControlStateSelected];
     [self.selectSceneBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 5, 25)];
-    [self addSubview:self.selectSceneBtn];
+    [self.contentView addSubview:self.selectSceneBtn];
     [self.selectSceneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.right.equalTo(self.contentView.right).offset(0);

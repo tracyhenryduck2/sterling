@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectColorCell : UITableViewCell<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface SelectColorCell : UITableViewCell<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *colorsView;
+@property (strong, nonatomic) UICollectionView *colorsView;
 @property (strong, nonatomic) NSIndexPath *oldIndexPath;
 @property (strong, nonatomic) NSString *currtetColor;
 @property (strong, nonatomic) void (^colorSelected)(NSString *color);
