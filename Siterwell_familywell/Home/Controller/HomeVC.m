@@ -20,6 +20,8 @@
 #import "DBDeviceManager.h"
 #import "DBGatewayManager.h"
 #import "DBSceneManager.h"
+#import "WarnAnalisysHelper.h"
+#import "PostControllerApi.h"
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate,SiterwellDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
@@ -311,7 +313,7 @@
     
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-    
+    NSString * alarmtype;
     NSString * gatewaytype;
     NSString * gatewayname;
     NSString * lastfour;
@@ -330,24 +332,56 @@
     }else{
         gatewayname = gatew.deviceName;
     }
+    alarmtype = [content substringWithRange:NSMakeRange(4, 2)];
     lastfour = [devTid substringWithRange:NSMakeRange(devTid.length-4, 4)];
-    if([[content substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"AD"]){
+    if([alarmtype isEqualToString:@"AD"]){
         NSString *deviceid = [content substringWithRange:NSMakeRange(6, 4)];
         
         deviceid = [NSString stringWithFormat:@"%d",(int)strtoul([deviceid UTF8String],0,16)];
+        
+        NSNumber *dev_ID = [NSNumber numberWithInt:[deviceid intValue]];
+       ItemData *dev = [[DBDeviceManager sharedInstanced] queryDeviceModel:dev_ID withDevTid:devTid];
+        
+        if([NSString isBlankString:dev.customTitle]){
+            NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+            NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+            NSDictionary * _names = [dic valueForKey:@"names"];
+            devicename = [NSString stringWithFormat:@"%@%@",NSLocalizedString([_names objectForKey:dev.device_name], nil),dev.device_ID];
+        }else {
+            devicename = dev.customTitle;
+        }
+        
         NSString *deviceName = [content substringWithRange:NSMakeRange(10, 4)];
         NSString *deviceStatus = [content substringWithRange:NSMakeRange(14, 8)];
-        NSString *alarmType = [content substringWithRange:NSMakeRange(18, 2)];
         
-        
-    }else if([[content substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"AC"]){
-        
+        alartname = [WarnAnalisysHelper getAlertWithDevType:deviceName status:deviceStatus withID:dev_ID];
+        ItemData *dev2 = [[ItemData alloc] initWithTitle:@"" DevID:[dev_ID integerValue] DevType:deviceName Code:deviceStatus];
+        [dev2 setDevTid:devTid];
+        [[DBDeviceManager sharedInstanced] insertDevice:dev2];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDeviceSuccess" object:nil];
+    }else if([alarmtype isEqualToString:@"AC"]){
+        NSNumber * scene_ID = [BatterHelp numberHexString:[content substringWithRange:NSMakeRange(6, 2)]];
+        SceneModel *scene = [[DBSceneManager sharedInstanced] querySceneModel:scene_ID withDevTid:devTid];
+        if([NSString isBlankString:scene.scene_name]){
+            scenename = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"情景", nil),scene.scene_type];
+        }else{
+            scenename = scene.scene_name;
+        }
     }
     
     
-  UIAlertController *alert = [UIAlertController alertControllerWithTitle:gatewaytype message:[NSString stringWithFormat:NSLocalizedString(@"请注意，%@(%@) 的 %@%@", nil),gatewayname ,lastfour , @"", @""] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:gatewaytype message:[NSString stringWithFormat:NSLocalizedString(@"请注意，%@(%@) 的 %@%@", nil),gatewayname ,lastfour ,[alarmtype isEqualToString:@"AD"]?devicename:scenename, [alarmtype isEqualToString:@"AD"]?alartname:NSLocalizedString(@"触发", nil)] preferredStyle:UIAlertControllerStyleAlert];
     
-    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"静音", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+       GatewayModel *gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:devTid];
+       PostControllerApi *api = [[PostControllerApi alloc] initWithDrivce:devTid andCtrlKey:gateway.ctrlKey DeviceID:@0 DeviceStatus:@"00000000" ConnectHost:gateway.connectHost];
+        [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+            
+        }];
+    }]];
+    [GetWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 @end

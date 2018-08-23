@@ -10,6 +10,9 @@
 #define SystemSceneEditController_h
 @interface SystemSceneEditController:BaseVC
 
+@property (nonatomic,assign) BOOL edit;
+@property (nonatomic,assign) NSNumber *scene_type;
+
 @end
 
 #endif /* SystemSceneEditController_h */

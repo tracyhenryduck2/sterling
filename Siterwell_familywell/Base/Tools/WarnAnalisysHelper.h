@@ -10,7 +10,7 @@
 #define WarnAnalisysHelper_h
 @interface WarnAnalisysHelper:NSObject
 
-+(NSString *)getAlertWithDevType:(NSString *)type status:(NSString *) statusa;
++(NSString *)getAlertWithDevType:(NSString *)type status:(NSString *) statusa withID:(NSNumber *)dev_ID;
 
 @end
 

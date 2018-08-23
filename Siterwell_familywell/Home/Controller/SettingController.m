@@ -7,6 +7,7 @@
 //
 
 #import "SettingController.h"
+#import "DBManager.h"
 
 @interface SettingController()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic) NSArray *titles;
@@ -70,6 +71,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section == 0){
         NSLog(@"di");
+    }else{
+        
+        [[Hekr sharedInstance] logout];
+        [[DBManager sharedInstanced] close];
+        UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"User" bundle:nil];
+        AppDelegateInstance.window.rootViewController = [uistoryboard instantiateInitialViewController];
     }
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

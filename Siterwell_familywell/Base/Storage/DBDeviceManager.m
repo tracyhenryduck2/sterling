@@ -8,7 +8,7 @@
 
 #import "DBDeviceManager.h"
 
-static NSString *deviceTable = @"device_table";
+static NSString * const deviceTable = @"devicetable";
 
 @implementation DBDeviceManager
 
@@ -52,8 +52,6 @@ static NSString *deviceTable = @"device_table";
         NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where eqid = %d and devTid = '%@' ", deviceTable,[device_ID intValue],devTid];
         FMResultSet *rs = [db executeQuery:sql];
         while (rs.next) {
-            NSString *ds = [rs stringForColumn:@"name"];
-            if(ds == nil) ds = @"";
             deviceModel = [[ItemData alloc] initWithTitle:[rs stringForColumn:@"name"] DevID:[rs intForColumn:@"eqid"] DevType:[rs stringForColumn:@"equipmenttype"] Code:[rs stringForColumn:@"status"]];
             deviceModel.devTid = [rs stringForColumn:@"devTid"];
         }
@@ -73,7 +71,7 @@ static NSString *deviceTable = @"device_table";
                              deviceModel.customTitle,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid];
             [db executeUpdate:sql];
                 }else{
-                    NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, deviceModel.customTitle,[deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid,[deviceModel.device_ID intValue],deviceModel.devTid];
+                    NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, [deviceModel.device_ID intValue] ,deviceModel.device_name,deviceModel.device_status,deviceModel.devTid,[deviceModel.device_ID intValue],deviceModel.devTid];
                     [db executeUpdate:sql];
                 }
         }];
@@ -99,7 +97,7 @@ static NSString *deviceTable = @"device_table";
                                  f.customTitle,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid];
                 [db executeUpdate:sql];
             }else{
-                NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@',eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable, f.customTitle,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid,[f.device_ID intValue],f.devTid];
+                NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET eqid=%d,equipmenttype='%@',status='%@',devTid='%@' WHERE eqid=%d and devTid='%@'",deviceTable,[f.device_ID intValue] ,f.device_name,f.device_status,f.devTid,[f.device_ID intValue],f.devTid];
                 [db executeUpdate:sql];
             }
         }

@@ -21,6 +21,7 @@
 #define Hekr_getSmsVerifyCode @"%@/sms/getVerifyCode?phoneNumber=%@&pid=%@&type=%@&token=%@"
 #define Hekr_getEmailVerifyCode @"%@/email/getVerifyCode?email=%@&pid=%@&type=%@&token=%@"
 
+#define ControllDevice 1
 #define SyncDevice 29
 #define SyncDeviceName 30
 #define SyncScenes 31

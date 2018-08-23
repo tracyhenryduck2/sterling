@@ -123,8 +123,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
         [self loadData];
+        [self countine];
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [self pause];
+}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
