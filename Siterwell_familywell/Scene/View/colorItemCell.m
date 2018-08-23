@@ -30,10 +30,10 @@
     
     [self.baseColorView addSubview:self.colorImageView];
     [self.colorImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.baseColorView.mas_right).offset(0);
-        make.left.equalTo(self.baseColorView.mas_left).offset(0);
-        make.top.equalTo(self.baseColorView.mas_top).offset(0);
-        make.bottom.equalTo(self.baseColorView.mas_bottom).offset(0);
+        make.right.equalTo(self.baseColorView.mas_right).offset(-3);
+        make.left.equalTo(self.baseColorView.mas_left).offset(3);
+        make.top.equalTo(self.baseColorView.mas_top).offset(3);
+        make.bottom.equalTo(self.baseColorView.mas_bottom).offset(-3);
     }];
 }
 

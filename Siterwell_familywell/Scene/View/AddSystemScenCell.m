@@ -20,7 +20,7 @@
 
 -(void)initview{
     self.idLabel = [[UILabel alloc] init];
-    self.idLabel.font=[UIFont systemFontOfSize:15];
+    self.idLabel.font=SYSTEMFONT(15);
     self.idLabel.textColor = [UIColor darkGrayColor];
     self.idLabel.adjustsFontSizeToFitWidth=YES;
     [self.contentView addSubview:self.idLabel];

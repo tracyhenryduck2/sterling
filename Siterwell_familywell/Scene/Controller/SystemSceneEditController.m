@@ -112,6 +112,7 @@
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"addScenTitleCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.text = NSLocalizedString(@"请选择情景灯颜色", nil);
+            cell.textLabel.font = SYSTEMFONT(13);
             return cell;
         }else{
             SelectColorCell *cell = [[SelectColorCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"colorCell"];
