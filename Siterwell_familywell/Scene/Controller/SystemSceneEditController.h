@@ -12,7 +12,6 @@
 
 @property (nonatomic,assign) BOOL edit;
 @property (nonatomic,assign) NSNumber *scene_type;
-@property (nonatomic,assign) NSString *color;
 @end
 
 #endif /* SystemSceneEditController_h */

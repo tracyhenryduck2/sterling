@@ -14,6 +14,7 @@
 
 + (instancetype)sharedInstanced;
 - (NSMutableArray *)queryAllSystemScene:(NSString *)devTid;
+- (NSMutableArray *)queryAllSystemSceneId:(NSString *)devTid;
 - (void)insertSystemScene:(SystemSceneModel *)systemsceneModel;
 - (void)insertSystemScenes:(NSArray *)systemsceneModels;
 - (void)insertSystemScenesInit:(NSArray *)systemsceneModels;
@@ -21,6 +22,7 @@
 - (void)updateSystemName:(NSString *)name withSid:(NSNumber *)sid withDevTid:(NSString *)DevTid;
 - (void)updateSystemChoicewithSid:(NSNumber *)sid withDevTid:(NSString *)DevTid;
 - (NSNumber *)queryCurrentSystemScene:(NSString *)devTid;
+- (SystemSceneModel *)querySystemScene:(NSNumber *)sid withDevTid:(NSString *)devTid;
 - (void)deleteSystemScene:(NSNumber *)sid withDevTid:(NSString *)devTid;
 @end
 

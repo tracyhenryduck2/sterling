@@ -66,6 +66,21 @@
     return allScene;
 }
 
+- (NSMutableArray *)querymid:(NSNumber *)sid withDevTid:(NSString *)devTid{
+    
+    
+    NSMutableArray *allScene = [NSMutableArray array];
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where sid =%d and devTid = '%@'",scenerelationshiptable,[sid intValue],devTid]];
+        while ([rs next]) {
+            NSNumber * mid = [NSNumber numberWithInt:[rs intForColumn:@"mid"]];
+            [allScene addObject:mid];
+        }
+    }];
+    return allScene;
+}
+
+
 
 - (void)insertRelation:(SceneRelationShip *)scenerelationship{
 

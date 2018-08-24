@@ -167,6 +167,13 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
      [self.table_scene deselectRowAtIndexPath:[self.table_scene indexPathForSelectedRow] animated:YES];
+    if(indexPath.section == 0){
+        SystemSceneModel *sys = [_list_system_scene objectAtIndex:indexPath.row];
+        SystemSceneEditController *systemSceneController = [[SystemSceneEditController alloc] init];
+        systemSceneController.edit = YES;
+        systemSceneController.scene_type = sys.sence_group;
+        [self.navigationController pushViewController:systemSceneController animated:YES];
+    }
 }
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == 0){
@@ -183,7 +190,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 20;
+        return 10;
     }
     return 40;
 }
@@ -191,7 +198,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if(section == 0)
     {
-        return 20;
+        return 10;
     }else
     return 0.01;
 }

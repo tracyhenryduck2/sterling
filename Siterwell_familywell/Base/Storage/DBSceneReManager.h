@@ -17,6 +17,7 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
 + (instancetype)sharedInstanced;
 - (NSMutableArray *)queryAllGS584RelationShipwithDevTid:(NSString *)devTid;
 - (NSMutableArray *)queryGS584RelationShip:(NSNumber *)sid withDevTid:(NSString *)devTid;
+- (NSMutableArray *)querymid:(NSNumber *)sid withDevTid:(NSString *)devTid;
 - (void)insertRelation:(SceneRelationShip *)scenerelationship;
 - (void)insertRelations:(NSArray *)scenerelationships;
 - (void)deleteRelation:(NSNumber *)sid withDevTid:(NSString *)devTid;
