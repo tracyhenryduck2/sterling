@@ -44,7 +44,7 @@
 }
 
 - (void)toNextView {
-    if (self.page == self.pageCount) {
+    if (self.page == (self.pageCount-1)) {
         self.page = 0;
     } else {
         self.page += 1;
@@ -73,34 +73,47 @@
 
 - (WeatherView *)w {
     if (!_w) {
-        _w = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, self.frame.size.height)];
+        NSUserDefaults *config =  [NSUserDefaults standardUserDefaults];
+        NSString * flag_location = [config objectForKey:@"Location"];
+        if([NSString isBlankString:flag_location] || (![flag_location isEqualToString:@"2"])){
+            _w = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, self.frame.size.height)];
         [self.scroll addSubview:_w];
+    }
+
     }
     return _w;
 }
 
 - (void)setModel:(NewWeatherModel *)model {
+    if(self.w!=nil){
     self.w.model = model;
+    }
+
 }
 
 - (void)setAddress:(NSString *)address {
+   if(self.w!=nil){
     self.w.address = address;
+   }
 }
 - (void)setTempAndHumArray:(NSArray<ItemData *> *)tempAndHumArray {
     self.page = 0;
-    [self.scroll setContentSize:CGSizeMake(Main_Screen_Width * (tempAndHumArray.count + 1), self.frame.size.height)];
+    NSUserDefaults *config =  [NSUserDefaults standardUserDefaults];
+    NSString * flag_location = [config objectForKey:@"Location"];
+    int ds = (([NSString isBlankString:flag_location] || (![flag_location isEqualToString:@"2"]))?1:0);
+    [self.scroll setContentSize:CGSizeMake(Main_Screen_Width * (tempAndHumArray.count+ds), self.frame.size.height)];
     [self removeTimer];
     for (UIView *subView in self.scroll.subviews) {
         if ([subView isKindOfClass:[TempAndHumView class]]) {
             [subView removeFromSuperview];
         }
     }
-    for (int i = 1; i <= tempAndHumArray.count; i++) {
-        TempAndHumView *thv = [[TempAndHumView alloc] initWithFrame:CGRectMake(i * Main_Screen_Width, 0, Main_Screen_Width, self.frame.size.height)];
-        thv.itemData = tempAndHumArray[i-1];
+    for (int i = 0; i < tempAndHumArray.count; i++) {
+        TempAndHumView *thv = [[TempAndHumView alloc] initWithFrame:CGRectMake((i+ds) * Main_Screen_Width, 0, Main_Screen_Width, self.frame.size.height)];
+        thv.itemData = tempAndHumArray[i];
         [self.scroll addSubview:thv];
     }
-    self.pageCount = tempAndHumArray.count;
+    self.pageCount = tempAndHumArray.count+ds;
     [self addTimer];
 }
 

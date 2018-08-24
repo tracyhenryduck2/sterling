@@ -59,13 +59,9 @@
     NSString *address = @"宁波";
     self.weather_marquee.model = model;
     self.weather_marquee.address = address;
-    
-    NSMutableArray <ItemData *> *dsa = [[NSMutableArray alloc] init];
-    
-    for(int i=0;i<3;i++){
-      ItemData * itemdata = [[ItemData alloc] initWithTitle:@"dsa" DevID:(i+1) DevType:@"0102" Code:@"04645501"];
-        [dsa addObject:itemdata];
-    }
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    NSMutableArray <ItemData *> *dsa = [[DBDeviceManager sharedInstanced] queryAllTHCheck:currentgateway2];
     self.weather_marquee.tempAndHumArray=dsa;
     
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(test) image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];

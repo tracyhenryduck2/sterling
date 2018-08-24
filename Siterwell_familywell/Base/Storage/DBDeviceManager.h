@@ -14,6 +14,7 @@
 @interface DBDeviceManager : NSObject
 + (instancetype)sharedInstanced;
 - (NSMutableArray *)queryAllDevice:(NSString *)devTid;
+- (NSMutableArray *)queryAllTHCheck:(NSString *)devTid;
 - (ItemData *)queryDeviceModel:(NSNumber *)device_ID withDevTid:(NSString *)devTid;
 - (void)insertDevice:(ItemData *)deviceModel;
 - (void)insertDevices:(NSArray *)deviceModels;

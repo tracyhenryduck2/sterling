@@ -45,6 +45,21 @@ static NSString * const deviceTable = @"devicetable";
     return allDevice;
 }
 
+- (NSMutableArray *)queryAllTHCheck:(NSString *)devTid{
+    
+    
+    NSMutableArray *allDevice = [NSMutableArray array];
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where packageid = 0 and devTid = '%@' and equipmenttype = '0102'  group by eqid order by sort,eqid",deviceTable,devTid]];
+        while ([rs next]) {
+            ItemData *deviceModel = [[ItemData alloc] initWithTitle:[rs stringForColumn:@"name"] DevID:[rs intForColumn:@"eqid"] DevType:[rs stringForColumn:@"equipmenttype"] Code:[rs stringForColumn:@"status"]];
+            deviceModel.devTid = [rs stringForColumn:@"devTid"];
+            [allDevice addObject:deviceModel];
+        }
+    }];
+    return allDevice;
+}
+
 - (ItemData *)queryDeviceModel:(NSNumber *)device_ID withDevTid:(NSString *)devTid{
     
     __block ItemData *deviceModel = nil;
