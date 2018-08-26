@@ -21,6 +21,7 @@ static NSString * const scenerelationshiptable = @"scenerelationshiptable";
 - (void)insertRelation:(SceneRelationShip *)scenerelationship;
 - (void)insertRelations:(NSArray *)scenerelationships;
 - (void)deleteRelation:(NSNumber *)sid withDevTid:(NSString *)devTid;
+-(void)deleteRelationWithMid:(NSNumber *)mid withDevTid:(NSString *)devTid;
 @end
 
 #endif /* DBSceneReManager_h */

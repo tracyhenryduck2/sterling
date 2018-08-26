@@ -11,6 +11,7 @@
 #import "DBSceneManager.h"
 #import "DBSystemSceneManager.h"
 #import "DBSceneReManager.h"
+#import "DBGS584RelationShipManager.h"
 #import "SelectColorCell.h"
 
 @interface SystemSceneEditController()<UITableViewDelegate,UITableViewDataSource>

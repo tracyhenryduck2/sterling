@@ -17,5 +17,6 @@
 -(NSMutableArray *)queryAllSysceneScene:(NSNumber *)sid withDevTid:(NSString *)devTid;
 - (SceneModel *)querySceneModel:(NSNumber *)mid withDevTid:(NSString *)devTid;
 - (void)insertScene:(SceneModel *)sceneModel;
+- (void)deleteScene:(NSNumber *)mid withDevTid:(NSString *)devTid;
 @end
 #endif /* DBSceneManager_h */

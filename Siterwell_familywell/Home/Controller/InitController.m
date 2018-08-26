@@ -293,8 +293,15 @@
         UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         AppDelegateInstance.window.rootViewController = [uistoryboard instantiateInitialViewController];
     }else{
-        [scenemodel setDevTid:devTid];
-        [[DBSceneManager sharedInstanced] insertScene:scenemodel];
+        if([[scenemodel.scene_content substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"0000"]){
+            NSNumber *deletesceneid = [BatterHelp numberHexString:[scenemodel.scene_content substringWithRange:NSMakeRange(4, 2)]];
+            [[DBSceneManager sharedInstanced] deleteScene:deletesceneid withDevTid:devTid];
+            [[DBSceneReManager sharedInstanced] deleteRelationWithMid:deletesceneid withDevTid:devTid];
+        }else{
+            [scenemodel setDevTid:devTid];
+            [[DBSceneManager sharedInstanced] insertScene:scenemodel];
+        }
+
     }
 }
 

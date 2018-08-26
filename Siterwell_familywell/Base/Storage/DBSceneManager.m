@@ -116,4 +116,12 @@ static NSString * const scenetable = @"scenetable";
     }];
     return flag;
 }
+
+- (void)deleteScene:(NSNumber *)mid withDevTid:(NSString *)devTid{
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ where mid = %d and devTid = '%@' ", scenetable, [mid intValue],devTid];
+        [db executeUpdate:sql];
+    }];
+}
 @end

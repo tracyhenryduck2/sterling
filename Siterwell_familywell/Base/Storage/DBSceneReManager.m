@@ -118,4 +118,11 @@
         [db executeUpdate:sql];
     }];
 }
+
+-(void)deleteRelationWithMid:(NSNumber *)mid withDevTid:(NSString *)devTid{
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ where id = %d and devTid = '%@' ", scenerelationshiptable, [mid intValue],devTid];
+        [db executeUpdate:sql];
+    }];
+}
 @end
