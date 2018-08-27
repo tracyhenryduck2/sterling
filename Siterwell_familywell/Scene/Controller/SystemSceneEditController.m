@@ -82,10 +82,9 @@
     
 }
 
-- (void)dealloc {
-    
+- (void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"System哈哈哈哈哈哈哈：viewDidDisappear");
     //移除观察者 self
-    NSLog(@"dealloc SystemSceneEditController");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -198,7 +197,7 @@
 
 #pragma -mark method
 -(void)clickItem{
-    
+    [self check];
 }
 
 -(void)backfinish{
@@ -218,7 +217,7 @@
                 
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"保存", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
+                 [self check];
             }]];
             [self.navigationController presentViewController:alert animated:YES completion:nil];
         }else{
@@ -300,17 +299,40 @@
     SystemSceneModel * model = [[SystemSceneModel alloc] init];
     [model setColor:_color];
     [model setSystemname:_titleTextFiled.text];
-    [model setSence_group:_scene_type];
+    [model setSence_group:(_scene_type == nil?[NSNumber numberWithInt:[self getsid]]:_scene_type)];
     NSString * contentcode = [ContentHepler getContentFromSystem:model withSceneRelationShip:_array_ship withGS584Relations:_array_gs584];
     [Single sharedInstanced].command = AddSystemScene;
     GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
-    AddSystemSceneApi *add = [[AddSystemSceneApi alloc] initWithDevTid:model.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneContent:contentcode];
+    AddSystemSceneApi *add = [[AddSystemSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneContent:contentcode];
     [add startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
         
     }];
 }
 
 -(void)onAnswerOK{
-    
+    if([Single sharedInstanced].command == AddSystemScene){
+        [Single sharedInstanced].command = -1;
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        [[DBSceneReManager sharedInstanced] deleteRelation:(_scene_type == nil?[NSNumber numberWithInt:[self getsid]]:_scene_type) withDevTid:currentgateway2];
+        SystemSceneModel * model = [[SystemSceneModel alloc] init];
+        [model setColor:_color];
+        [model setSystemname:_titleTextFiled.text];
+        [model setSence_group:(_scene_type == nil?[NSNumber numberWithInt:[self getsid]]:_scene_type)];
+        [model setDevTid:currentgateway2];
+        [[DBSystemSceneManager sharedInstanced] insertSystemScene:model];
+        
+        NSMutableArray * ds = [[NSMutableArray alloc] init];
+        for(int i=0;i<_array_ship.count;i++){
+            SceneRelationShip *s = [[SceneRelationShip alloc] init];
+            [s setDevTid:currentgateway2];
+            [s setMid:[_array_ship objectAtIndex:i]];
+            [s setSid:(_scene_type == nil?[NSNumber numberWithInt:[self getsid]]:_scene_type)];
+            [ds addObject:s];
+        }
+        [[DBSceneReManager sharedInstanced] insertRelations:ds];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 @end

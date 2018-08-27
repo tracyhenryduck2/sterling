@@ -47,27 +47,17 @@
         
     }];
     _siter.siterwelldelegate = self;
-    NSMutableArray <GatewayModel *> *gatewaysa = [[DBGatewayManager sharedInstanced] queryAllGateway];
-    NSLog(@"缓存中的网关列表%@",gatewaysa);
     
-    NewWeatherModel *model = [[NewWeatherModel alloc] init];
-    model.weather = @"天晴";
-    model.humidity = @"10";
-    model.icon = @"s1";
-    model.temp = @"283.16";
-    
-    NSString *address = @"宁波";
-    self.weather_marquee.model = model;
-    self.weather_marquee.address = address;
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    GatewayModel * gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
     NSMutableArray <ItemData *> *dsa = [[DBDeviceManager sharedInstanced] queryAllTHCheck:currentgateway2];
     self.weather_marquee.tempAndHumArray=dsa;
     
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(test) image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
 
 
-    self.title = @"我的家";
+    self.title = gateway.deviceName;
     UIColor* color = [UIColor whiteColor];
     NSDictionary* dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
     self.navigationController.navigationBar.titleTextAttributes= dict;
