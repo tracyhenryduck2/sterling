@@ -182,6 +182,7 @@
             delyItem.minute = [NSString stringWithFormat:@"%ld",strtoul([minute UTF8String],0,16)];
             delyItem.second = [NSString stringWithFormat:@"%ld",strtoul([second UTF8String],0,16)];
             delyItem.image = @"blue_ys_icon";
+            delyItem.type = @"delay";
             delyItem.custmTitle = [NSString stringWithFormat:@"%@:%@",delyItem.minute,delyItem.second];
             [array addObject:delyItem];
         }

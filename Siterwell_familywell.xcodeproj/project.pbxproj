@@ -7,9 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881513612132862000CB2FD4 /* AddSystemScenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8815135D2132862000CB2FD4 /* AddSystemScenCell.m */; };
+		881513622132862000CB2FD4 /* SelectColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881513602132862000CB2FD4 /* SelectColorCell.m */; };
+		881513652132862F00CB2FD4 /* WarnAnalisysHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 881513632132862F00CB2FD4 /* WarnAnalisysHelper.m */; };
+		881513682132866800CB2FD4 /* AddDeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 881513662132866700CB2FD4 /* AddDeviceVC.m */; };
+		8815136B2132868600CB2FD4 /* PostControllerApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8815136A2132868600CB2FD4 /* PostControllerApi.m */; };
+		8815136F213286B100CB2FD4 /* AddDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8815136E213286B100CB2FD4 /* AddDeviceCell.m */; };
+		881513722132871200CB2FD4 /* colorItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881513702132871200CB2FD4 /* colorItemCell.m */; };
+		881513752132A2D100CB2FD4 /* ContentHepler.m in Sources */ = {isa = PBXBuildFile; fileRef = 881513742132A2D100CB2FD4 /* ContentHepler.m */; };
 		8829C5E9203D875D007B1A5B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8829C5E8203D875D007B1A5B /* Images.xcassets */; };
+		8835551E21342B4A0044A58E /* PushSystemSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835551A21342B4A0044A58E /* PushSystemSceneApi.m */; };
+		8835551F21342B4A0044A58E /* AddSystemSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835551B21342B4A0044A58E /* AddSystemSceneApi.m */; };
+		883720212127C37800A516D7 /* Single.m in Sources */ = {isa = PBXBuildFile; fileRef = 8837201F2127C37800A516D7 /* Single.m */; };
 		883D1627203D5BAA007001A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 883D1626203D5BAA007001A2 /* Assets.xcassets */; };
+		8846065F2116D245005981D8 /* SceneHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8846065E2116D245005981D8 /* SceneHeaderView.m */; };
 		888BF278203B9BF5008E2A37 /* SiterTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BF277203B9BF5008E2A37 /* SiterTools.m */; };
+		8899B4A1211540BE00716BEA /* SystemSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8899B49F211540BE00716BEA /* SystemSceneCell.m */; };
+		8899B4A2211540BE00716BEA /* SceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8899B4A0211540BE00716BEA /* SceneCell.m */; };
+		8899B4A6211540FF00716BEA /* NameHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8899B4A5211540FF00716BEA /* NameHelper.m */; };
+		8899B4A92115414300716BEA /* CRCqueueHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8899B4A82115414200716BEA /* CRCqueueHelp.m */; };
 		88A5AE152026A87D00F89C51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE142026A87D00F89C51 /* AppDelegate.m */; };
 		88A5AE1B2026A87D00F89C51 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A5AE192026A87D00F89C51 /* User.storyboard */; };
 		88A5AE202026A87D00F89C51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A5AE1E2026A87D00F89C51 /* LaunchScreen.storyboard */; };
@@ -17,6 +33,10 @@
 		88A5AE2D2026A87D00F89C51 /* mytest4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE2C2026A87D00F89C51 /* mytest4Tests.m */; };
 		88A5AE382026A87D00F89C51 /* mytest4UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE372026A87D00F89C51 /* mytest4UITests.m */; };
 		88A7CFD22054FE3B00F82C96 /* LanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A7CFD12054FE3B00F82C96 /* LanguageVC.m */; };
+		88A8EDD6210C0DB4006D46CB /* ScynDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EDD5210C0DB4006D46CB /* ScynDeviceApi.m */; };
+		88A8EDDC210C0E0E006D46CB /* DeviceAlarmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EDDB210C0E0E006D46CB /* DeviceAlarmDetailVC.m */; };
+		88A8EDDE210C0E49006D46CB /* DimmingmoduleDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EDDD210C0E49006D46CB /* DimmingmoduleDetailVC.m */; };
+		88A8EDE2210C0EA0006D46CB /* SocketDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EDE1210C0EA0006D46CB /* SocketDetailVC.m */; };
 		88B0365F203583DD00F18EFE /* ESP_ByteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03642203583DD00F18EFE /* ESP_ByteUtil.m */; };
 		88B03660203583DD00F18EFE /* ESP_CRC8.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03644203583DD00F18EFE /* ESP_CRC8.m */; };
 		88B03661203583DD00F18EFE /* ESP_NetUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03646203583DD00F18EFE /* ESP_NetUtil.m */; };
@@ -303,7 +323,6 @@
 		88B762AB2029E1D800FC87A0 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B762AA2029E1D800FC87A0 /* Register.m */; };
 		88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B90D32203D50AA007E2A9C /* ResetCode.m */; };
 		88DF4FAD20763A2800232BF8 /* DeviceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FAC20763A2800232BF8 /* DeviceListVC.m */; };
-		88DF4FB22076537300232BF8 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FB12076537300232BF8 /* DeviceModel.m */; };
 		C408076A21070DDF0064F4B7 /* BaseDriveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408076321070DDF0064F4B7 /* BaseDriveApi.m */; };
 		C408077621070FD20064F4B7 /* ChooseSystemSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408077021070FD00064F4B7 /* ChooseSystemSceneApi.m */; };
 		C408077721070FD20064F4B7 /* SycnSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408077321070FD10064F4B7 /* SycnSceneApi.m */; };
@@ -386,7 +405,6 @@
 		C4C5B9FE20CE1757009A3E2D /* deleteDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9ED20CE1755009A3E2D /* deleteDeviceApi.m */; };
 		C4C5B9FF20CE1757009A3E2D /* RenameDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9EE20CE1755009A3E2D /* RenameDeviceApi.m */; };
 		C4C5BA0020CE1757009A3E2D /* replaceDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9EF20CE1755009A3E2D /* replaceDeviceApi.m */; };
-		C4C5BA0120CE1757009A3E2D /* GetDeviceStatusApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F220CE1755009A3E2D /* GetDeviceStatusApi.m */; };
 		C4C5BA0220CE1757009A3E2D /* CancelAddingApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F620CE1756009A3E2D /* CancelAddingApi.m */; };
 		C4C5BA0320CE1757009A3E2D /* AddDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F720CE1756009A3E2D /* AddDeviceApi.m */; };
 		C4C5BA0420CE1757009A3E2D /* ScynDeviceName.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9F920CE1756009A3E2D /* ScynDeviceName.m */; };
@@ -433,10 +451,42 @@
 		38C965FF69DA7C5CF96991B3 /* libPods-Siterwell_familywell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Siterwell_familywell.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A5466EAA653BA67BD8EA3 /* Pods-Siterwell_familywell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siterwell_familywell.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell.debug.xcconfig"; sourceTree = "<group>"; };
 		631FF296BBCFBC9DC1F7B501 /* Pods-Siterwell_familywell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siterwell_familywell.release.xcconfig"; path = "Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell.release.xcconfig"; sourceTree = "<group>"; };
+		8815135D2132862000CB2FD4 /* AddSystemScenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSystemScenCell.m; sourceTree = "<group>"; };
+		8815135E2132862000CB2FD4 /* SelectColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectColorCell.h; sourceTree = "<group>"; };
+		8815135F2132862000CB2FD4 /* AddSystemScenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSystemScenCell.h; sourceTree = "<group>"; };
+		881513602132862000CB2FD4 /* SelectColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectColorCell.m; sourceTree = "<group>"; };
+		881513632132862F00CB2FD4 /* WarnAnalisysHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarnAnalisysHelper.m; sourceTree = "<group>"; };
+		881513642132862F00CB2FD4 /* WarnAnalisysHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarnAnalisysHelper.h; sourceTree = "<group>"; };
+		881513662132866700CB2FD4 /* AddDeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceVC.m; sourceTree = "<group>"; };
+		881513672132866800CB2FD4 /* AddDeviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceVC.h; sourceTree = "<group>"; };
+		881513692132868600CB2FD4 /* PostControllerApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostControllerApi.h; sourceTree = "<group>"; };
+		8815136A2132868600CB2FD4 /* PostControllerApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostControllerApi.m; sourceTree = "<group>"; };
+		8815136D213286B100CB2FD4 /* AddDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceCell.h; sourceTree = "<group>"; };
+		8815136E213286B100CB2FD4 /* AddDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceCell.m; sourceTree = "<group>"; };
+		881513702132871200CB2FD4 /* colorItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = colorItemCell.m; sourceTree = "<group>"; };
+		881513712132871200CB2FD4 /* colorItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorItemCell.h; sourceTree = "<group>"; };
+		881513732132A2C200CB2FD4 /* ContentHepler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentHepler.h; sourceTree = "<group>"; };
+		881513742132A2D100CB2FD4 /* ContentHepler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentHepler.m; sourceTree = "<group>"; };
 		8829C5E8203D875D007B1A5B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8835551A21342B4A0044A58E /* PushSystemSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSystemSceneApi.m; sourceTree = "<group>"; };
+		8835551B21342B4A0044A58E /* AddSystemSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSystemSceneApi.m; sourceTree = "<group>"; };
+		8835551C21342B4A0044A58E /* PushSystemSceneApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSystemSceneApi.h; sourceTree = "<group>"; };
+		8835551D21342B4A0044A58E /* AddSystemSceneApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSystemSceneApi.h; sourceTree = "<group>"; };
+		8837201F2127C37800A516D7 /* Single.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Single.m; sourceTree = "<group>"; };
+		883720202127C37800A516D7 /* Single.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Single.h; sourceTree = "<group>"; };
 		883D1626203D5BAA007001A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8846065D2116D232005981D8 /* SceneHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneHeaderView.h; sourceTree = "<group>"; };
+		8846065E2116D245005981D8 /* SceneHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneHeaderView.m; sourceTree = "<group>"; };
 		888BF277203B9BF5008E2A37 /* SiterTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SiterTools.m; sourceTree = "<group>"; };
 		888BF279203B9C08008E2A37 /* SiterTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiterTools.h; sourceTree = "<group>"; };
+		8899B49D211540BD00716BEA /* SceneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneCell.h; sourceTree = "<group>"; };
+		8899B49E211540BE00716BEA /* SystemSceneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemSceneCell.h; sourceTree = "<group>"; };
+		8899B49F211540BE00716BEA /* SystemSceneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemSceneCell.m; sourceTree = "<group>"; };
+		8899B4A0211540BE00716BEA /* SceneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneCell.m; sourceTree = "<group>"; };
+		8899B4A4211540FF00716BEA /* NameHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameHelper.h; sourceTree = "<group>"; };
+		8899B4A5211540FF00716BEA /* NameHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameHelper.m; sourceTree = "<group>"; };
+		8899B4A72115414200716BEA /* CRCqueueHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCqueueHelp.h; sourceTree = "<group>"; };
+		8899B4A82115414200716BEA /* CRCqueueHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCqueueHelp.m; sourceTree = "<group>"; };
 		88A5AE102026A87D00F89C51 /* Siterwell_familywell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siterwell_familywell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A5AE132026A87D00F89C51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88A5AE142026A87D00F89C51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -452,6 +502,14 @@
 		88A5AE392026A87D00F89C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88A7CFD12054FE3B00F82C96 /* LanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageVC.m; sourceTree = "<group>"; };
 		88A7CFD32054FE4E00F82C96 /* LanguageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageVC.h; sourceTree = "<group>"; };
+		88A8EDD4210C0DB4006D46CB /* ScynDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScynDeviceApi.h; sourceTree = "<group>"; };
+		88A8EDD5210C0DB4006D46CB /* ScynDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScynDeviceApi.m; sourceTree = "<group>"; };
+		88A8EDDA210C0DFE006D46CB /* DeviceAlarmDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceAlarmDetailVC.h; sourceTree = "<group>"; };
+		88A8EDDB210C0E0E006D46CB /* DeviceAlarmDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceAlarmDetailVC.m; sourceTree = "<group>"; };
+		88A8EDDD210C0E49006D46CB /* DimmingmoduleDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DimmingmoduleDetailVC.m; sourceTree = "<group>"; };
+		88A8EDDF210C0E5F006D46CB /* DimmingmoduleDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DimmingmoduleDetailVC.h; sourceTree = "<group>"; };
+		88A8EDE0210C0E79006D46CB /* SocketDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketDetailVC.h; sourceTree = "<group>"; };
+		88A8EDE1210C0EA0006D46CB /* SocketDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketDetailVC.m; sourceTree = "<group>"; };
 		88AAE3E2204C123300D5A3A5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		88B03641203583DD00F18EFE /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
 		88B03642203583DD00F18EFE /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
@@ -1031,8 +1089,6 @@
 		88B90D34203D50BF007E2A9C /* ResetCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetCode.h; sourceTree = "<group>"; };
 		88DF4FAC20763A2800232BF8 /* DeviceListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceListVC.m; sourceTree = "<group>"; };
 		88DF4FAE20763A3C00232BF8 /* DeviceListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceListVC.h; sourceTree = "<group>"; };
-		88DF4FB02076536300232BF8 /* DeviceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceModel.h; sourceTree = "<group>"; };
-		88DF4FB12076537300232BF8 /* DeviceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceModel.m; sourceTree = "<group>"; };
 		C408076221070DDF0064F4B7 /* BaseDriveApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDriveApi.h; sourceTree = "<group>"; };
 		C408076321070DDF0064F4B7 /* BaseDriveApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDriveApi.m; sourceTree = "<group>"; };
 		C408077021070FD00064F4B7 /* ChooseSystemSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSystemSceneApi.m; sourceTree = "<group>"; };
@@ -1189,13 +1245,11 @@
 		C4C5B9EF20CE1755009A3E2D /* replaceDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = replaceDeviceApi.m; sourceTree = "<group>"; };
 		C4C5B9F020CE1755009A3E2D /* CancelAddingApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelAddingApi.h; sourceTree = "<group>"; };
 		C4C5B9F120CE1755009A3E2D /* RenameDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameDeviceApi.h; sourceTree = "<group>"; };
-		C4C5B9F220CE1755009A3E2D /* GetDeviceStatusApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetDeviceStatusApi.m; sourceTree = "<group>"; };
 		C4C5B9F320CE1755009A3E2D /* ScynDeviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScynDeviceName.h; sourceTree = "<group>"; };
 		C4C5B9F620CE1756009A3E2D /* CancelAddingApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelAddingApi.m; sourceTree = "<group>"; };
 		C4C5B9F720CE1756009A3E2D /* AddDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceApi.m; sourceTree = "<group>"; };
 		C4C5B9F820CE1756009A3E2D /* replaceDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = replaceDeviceApi.h; sourceTree = "<group>"; };
 		C4C5B9F920CE1756009A3E2D /* ScynDeviceName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScynDeviceName.m; sourceTree = "<group>"; };
-		C4C5B9FB20CE1756009A3E2D /* GetDeviceStatusApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDeviceStatusApi.h; sourceTree = "<group>"; };
 		C4C5B9FC20CE1757009A3E2D /* AddDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceApi.h; sourceTree = "<group>"; };
 		C4C5BA0620CE555D009A3E2D /* WarnModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarnModel.h; sourceTree = "<group>"; };
 		C4C5BA0720CE5577009A3E2D /* WarnModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarnModel.m; sourceTree = "<group>"; };
@@ -1265,6 +1319,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8815136C213286B100CB2FD4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8815136D213286B100CB2FD4 /* AddDeviceCell.h */,
+				8815136E213286B100CB2FD4 /* AddDeviceCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		883D1625203D5B84007001A2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1290,8 +1353,6 @@
 				C43412FA20F34D840006F207 /* NewWeatherModel.m */,
 				C43846A520C6789500FF8725 /* ItemData.h */,
 				C43846A420C6789500FF8725 /* ItemData.m */,
-				88DF4FB02076536300232BF8 /* DeviceModel.h */,
-				88DF4FB12076537300232BF8 /* DeviceModel.m */,
 				C438466620C62CDA00FF8725 /* SystemSceneModel.m */,
 				C438466820C62CF200FF8725 /* SystemSceneModel.h */,
 				C438466920C62DA900FF8725 /* SceneModel.m */,
@@ -1308,6 +1369,21 @@
 				C4C9D9AB20FDB7C800C89AD9 /* SceneRelationShip.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8899B4A3211540FF00716BEA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				881513642132862F00CB2FD4 /* WarnAnalisysHelper.h */,
+				881513632132862F00CB2FD4 /* WarnAnalisysHelper.m */,
+				883720202127C37800A516D7 /* Single.h */,
+				8837201F2127C37800A516D7 /* Single.m */,
+				8899B4A4211540FF00716BEA /* NameHelper.h */,
+				8899B4A5211540FF00716BEA /* NameHelper.m */,
+				881513732132A2C200CB2FD4 /* ContentHepler.h */,
+				881513742132A2D100CB2FD4 /* ContentHepler.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		88A5AE072026A87D00F89C51 = {
@@ -1370,6 +1446,21 @@
 				88A5AE392026A87D00F89C51 /* Info.plist */,
 			);
 			path = mytest4UITests;
+			sourceTree = "<group>";
+		};
+		88A8EDD9210C0DE6006D46CB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				881513672132866800CB2FD4 /* AddDeviceVC.h */,
+				881513662132866700CB2FD4 /* AddDeviceVC.m */,
+				88A8EDDA210C0DFE006D46CB /* DeviceAlarmDetailVC.h */,
+				88A8EDDB210C0E0E006D46CB /* DeviceAlarmDetailVC.m */,
+				88A8EDDD210C0E49006D46CB /* DimmingmoduleDetailVC.m */,
+				88A8EDDF210C0E5F006D46CB /* DimmingmoduleDetailVC.h */,
+				88A8EDE0210C0E79006D46CB /* SocketDetailVC.h */,
+				88A8EDE1210C0EA0006D46CB /* SocketDetailVC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		88B0363F203583B100F18EFE /* Vender */ = {
@@ -2674,6 +2765,7 @@
 		88B7629E2029DCF800FC87A0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				8899B4A3211540FF00716BEA /* Tools */,
 				C408076121070DDF0064F4B7 /* Service */,
 				C4E35C1D20F4A0FF00B806C8 /* HTTP */,
 				C42E6BBC20C12EE500784B75 /* Storage */,
@@ -2755,6 +2847,10 @@
 		C408076E21070F8D0064F4B7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				8835551D21342B4A0044A58E /* AddSystemSceneApi.h */,
+				8835551B21342B4A0044A58E /* AddSystemSceneApi.m */,
+				8835551C21342B4A0044A58E /* PushSystemSceneApi.h */,
+				8835551A21342B4A0044A58E /* PushSystemSceneApi.m */,
 				C408077221070FD10064F4B7 /* ChooseSystemSceneApi.h */,
 				C408077021070FD00064F4B7 /* ChooseSystemSceneApi.m */,
 				C408077121070FD10064F4B7 /* SycnSceneApi.h */,
@@ -3006,6 +3102,18 @@
 		C46C23AF20FF29BC00D9350F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				881513712132871200CB2FD4 /* colorItemCell.h */,
+				881513702132871200CB2FD4 /* colorItemCell.m */,
+				8815135F2132862000CB2FD4 /* AddSystemScenCell.h */,
+				8815135D2132862000CB2FD4 /* AddSystemScenCell.m */,
+				8815135E2132862000CB2FD4 /* SelectColorCell.h */,
+				881513602132862000CB2FD4 /* SelectColorCell.m */,
+				8899B49D211540BD00716BEA /* SceneCell.h */,
+				8899B4A0211540BE00716BEA /* SceneCell.m */,
+				8899B49E211540BE00716BEA /* SystemSceneCell.h */,
+				8899B49F211540BE00716BEA /* SystemSceneCell.m */,
+				8846065D2116D232005981D8 /* SceneHeaderView.h */,
+				8846065E2116D245005981D8 /* SceneHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3062,7 +3170,8 @@
 		C4C5B9E320CE0CE3009A3E2D /* Device */ = {
 			isa = PBXGroup;
 			children = (
-				C4C5B9E620CE0D00009A3E2D /* Controller */,
+				8815136C213286B100CB2FD4 /* View */,
+				88A8EDD9210C0DE6006D46CB /* Controller */,
 				C4C5B9E420CE0CED009A3E2D /* Service */,
 			);
 			path = Device;
@@ -3071,14 +3180,18 @@
 		C4C5B9E420CE0CED009A3E2D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				881513692132868600CB2FD4 /* PostControllerApi.h */,
+				8815136A2132868600CB2FD4 /* PostControllerApi.m */,
+				8899B4A72115414200716BEA /* CRCqueueHelp.h */,
+				8899B4A82115414200716BEA /* CRCqueueHelp.m */,
+				88A8EDD4210C0DB4006D46CB /* ScynDeviceApi.h */,
+				88A8EDD5210C0DB4006D46CB /* ScynDeviceApi.m */,
 				C4C5B9FC20CE1757009A3E2D /* AddDeviceApi.h */,
 				C4C5B9F720CE1756009A3E2D /* AddDeviceApi.m */,
 				C4C5B9F020CE1755009A3E2D /* CancelAddingApi.h */,
 				C4C5B9F620CE1756009A3E2D /* CancelAddingApi.m */,
 				C4C5B9EC20CE1755009A3E2D /* deleteDeviceApi.h */,
 				C4C5B9ED20CE1755009A3E2D /* deleteDeviceApi.m */,
-				C4C5B9FB20CE1756009A3E2D /* GetDeviceStatusApi.h */,
-				C4C5B9F220CE1755009A3E2D /* GetDeviceStatusApi.m */,
 				C4C5B9F120CE1755009A3E2D /* RenameDeviceApi.h */,
 				C4C5B9EE20CE1755009A3E2D /* RenameDeviceApi.m */,
 				C4C5B9F820CE1756009A3E2D /* replaceDeviceApi.h */,
@@ -3087,13 +3200,6 @@
 				C4C5B9F920CE1756009A3E2D /* ScynDeviceName.m */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		C4C5B9E620CE0D00009A3E2D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		C4E35C1D20F4A0FF00B806C8 /* HTTP */ = {
@@ -3132,6 +3238,7 @@
 				88A5AE0D2026A87D00F89C51 /* Frameworks */,
 				88A5AE0E2026A87D00F89C51 /* Resources */,
 				ADAF06D980A63F0655118DC3 /* [CP] Copy Pods Resources */,
+				FDBE55EA9C199BC6590386B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3281,19 +3388,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/HekrSDK/JSSDK.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/HekrSDK/JSSDK.bundle,
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
 				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
 				"${PODS_ROOT}/WeiboSDK/libWeiboSDK/WeiboSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JSSDK.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SAMKeychain.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3318,6 +3421,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FDBE55EA9C199BC6590386B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Siterwell_familywell/Pods-Siterwell_familywell-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3334,6 +3452,7 @@
 				88B03C252035E5E000F18EFE /* NSNotificationCenter+MainThread.m in Sources */,
 				88B03CE92035E5E000F18EFE /* YTKBatchRequest.m in Sources */,
 				C43A054620C76D8F00B2E5FC /* MJRefreshComponent.m in Sources */,
+				8846065F2116D245005981D8 /* SceneHeaderView.m in Sources */,
 				88B03663203583DD00F18EFE /* ESPDataCode.m in Sources */,
 				88B03CB02035E5E000F18EFE /* UISplitViewController+QuickAccess.m in Sources */,
 				88B03CC42035E5E000F18EFE /* UIView+Debug.m in Sources */,
@@ -3345,6 +3464,7 @@
 				C4A176B720CF720F002AE3F7 /* RegistCell.m in Sources */,
 				C438466A20C62DA900FF8725 /* SceneModel.m in Sources */,
 				88B03CCF2035E5E000F18EFE /* UIView+ViewController.m in Sources */,
+				88A8EDE2210C0EA0006D46CB /* SocketDetailVC.m in Sources */,
 				88B03C222035E5E000F18EFE /* NSIndexPath+Offset.m in Sources */,
 				88B03C472035E5E000F18EFE /* NSString+Size.m in Sources */,
 				88B0398C2035E04400F18EFE /* UIPlaceHolderTextView.m in Sources */,
@@ -3368,7 +3488,6 @@
 				88B03C622035E5E000F18EFE /* CAMediaTimingFunction+AdditionalEquations.m in Sources */,
 				88B03CD62035E5E000F18EFE /* UIViewController+MJPopupViewController.m in Sources */,
 				88A5AE232026A87D00F89C51 /* main.m in Sources */,
-				C4C5BA0120CE1757009A3E2D /* GetDeviceStatusApi.m in Sources */,
 				88B03CA02035E5E000F18EFE /* UINavigationController+JZExtension.m in Sources */,
 				88B03C3F2035E5E000F18EFE /* NSString+Hash.m in Sources */,
 				88B03C152035E5E000F18EFE /* NSDate+Utilities.m in Sources */,
@@ -3381,6 +3500,7 @@
 				88B03C262035E5E000F18EFE /* NSDecimalNumber+CalculatingByString.m in Sources */,
 				88B03C992035E5E000F18EFE /* UILabel+AutomaticWriting.m in Sources */,
 				C43A054720C76D8F00B2E5FC /* MJRefreshFooter.m in Sources */,
+				883720212127C37800A516D7 /* Single.m in Sources */,
 				88B03CC72035E5E000F18EFE /* UIView+Find.m in Sources */,
 				88B03C792035E5E000F18EFE /* UIColor+Modify.m in Sources */,
 				88B03CC92035E5E000F18EFE /* UIView+GestureCallback.m in Sources */,
@@ -3394,11 +3514,13 @@
 				88B03C672035E5E000F18EFE /* UIApplication+KeyboardFrame.m in Sources */,
 				88A7CFD22054FE3B00F82C96 /* LanguageVC.m in Sources */,
 				88B03C0D2035E5E000F18EFE /* NSData+SDDataCache.m in Sources */,
+				881513752132A2D100CB2FD4 /* ContentHepler.m in Sources */,
 				88B03C072035E5E000F18EFE /* NSData+APNSToken.m in Sources */,
 				88B03CBC2035E5E000F18EFE /* UITextField+Shake.m in Sources */,
 				88B03C382035E5E000F18EFE /* NSMutableString+Ruby.m in Sources */,
 				C4C5B9FF20CE1757009A3E2D /* RenameDeviceApi.m in Sources */,
 				88B03C3B2035E5E000F18EFE /* NSString+Contains.m in Sources */,
+				88A8EDDC210C0E0E006D46CB /* DeviceAlarmDetailVC.m in Sources */,
 				88B03CB12035E5E000F18EFE /* UITableView+iOS7Style.m in Sources */,
 				88B03C842035E5E000F18EFE /* UIImage+animatedGIF.m in Sources */,
 				88B03C282035E5E000F18EFE /* NSNumber+CGFloat.m in Sources */,
@@ -3422,13 +3544,16 @@
 				C438467D20C66A8E00FF8725 /* TimerModel.m in Sources */,
 				88B03CE72035E5E000F18EFE /* ScanDevice.m in Sources */,
 				88B03C5A2035E5E000F18EFE /* NSString+Additions.m in Sources */,
+				881513722132871200CB2FD4 /* colorItemCell.m in Sources */,
 				88B03C502035E5E000F18EFE /* NSURLConnection+SelfSigned.m in Sources */,
 				888BF278203B9BF5008E2A37 /* SiterTools.m in Sources */,
+				88A8EDD6210C0DB4006D46CB /* ScynDeviceApi.m in Sources */,
 				88B03BFF2035E5E000F18EFE /* NSPersistentStoreCoordinator+Custom.m in Sources */,
 				88B03BF82035E5E000F18EFE /* NSFetchRequest+Extensions.m in Sources */,
 				88B03C9D2035E5E000F18EFE /* UINavigationBar+Awesome.m in Sources */,
 				C4C9D9A920FDB68600C89AD9 /* GS584RelationShip.m in Sources */,
 				C43A054420C76D8F00B2E5FC /* MJRefreshAutoFooter.m in Sources */,
+				881513652132862F00CB2FD4 /* WarnAnalisysHelper.m in Sources */,
 				88B03CEA2035E5E000F18EFE /* YTKBatchRequestAgent.m in Sources */,
 				88B03BFA2035E5E000F18EFE /* NSManagedObject+Extensions.m in Sources */,
 				88B03CD82035E5E000F18EFE /* UIViewController+TopBarMessage.m in Sources */,
@@ -3449,6 +3574,7 @@
 				C4FF15EC20CFB27800DA3026 /* NSString+JJ.m in Sources */,
 				C46C23CF20FF2E4800D9350F /* CollectionController.m in Sources */,
 				88B03C232035E5E000F18EFE /* NSInvocation+Bb.m in Sources */,
+				8899B4A2211540BE00716BEA /* SceneCell.m in Sources */,
 				88B03C1E2035E5E000F18EFE /* NSException+Trace.m in Sources */,
 				88B03C5F2035E5E000F18EFE /* CAAnimation+Blocks.m in Sources */,
 				C4C5BA0020CE1757009A3E2D /* replaceDeviceApi.m in Sources */,
@@ -3477,6 +3603,7 @@
 				C43A054920C76D8F00B2E5FC /* MJRefreshAutoGifFooter.m in Sources */,
 				88B03667203583DD00F18EFE /* ESPTouchGenerator.m in Sources */,
 				88B03C392035E5E000F18EFE /* NSString+ArryValue.m in Sources */,
+				8899B4A92115414300716BEA /* CRCqueueHelp.m in Sources */,
 				C43D5188203FE6D200DE5FF3 /* DeviceVC.m in Sources */,
 				88B03C872035E5E000F18EFE /* UIImage+Capture.m in Sources */,
 				C43A055120C76D8F00B2E5FC /* MJRefreshStateHeader.m in Sources */,
@@ -3491,11 +3618,13 @@
 				88B03C702035E5E000F18EFE /* UIButton+BackgroundColor.m in Sources */,
 				88B03CD32035E5E000F18EFE /* UIViewController+BackButtonTouched.m in Sources */,
 				88B03CFB2035E5E000F18EFE /* UITapImageView.m in Sources */,
+				881513612132862000CB2FD4 /* AddSystemScenCell.m in Sources */,
 				88B03CBA2035E5E000F18EFE /* UITextField+History.m in Sources */,
 				C408077621070FD20064F4B7 /* ChooseSystemSceneApi.m in Sources */,
 				88B03CF82035E5E000F18EFE /* MyMD5.m in Sources */,
 				88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */,
 				88B762AB2029E1D800FC87A0 /* Register.m in Sources */,
+				8815136B2132868600CB2FD4 /* PostControllerApi.m in Sources */,
 				88B03661203583DD00F18EFE /* ESP_NetUtil.m in Sources */,
 				C43158EC2109BA5A0089A222 /* TimeModel.m in Sources */,
 				C438469120C676A300FF8725 /* BookshelfCollectionViewFlowLayout.m in Sources */,
@@ -3538,6 +3667,7 @@
 				C4C5BA0E20CE7AE0009A3E2D /* UserInfoModel.m in Sources */,
 				88B03C4B2035E5E000F18EFE /* NSString+XML.m in Sources */,
 				88B03664203583DD00F18EFE /* ESPDatumCode.m in Sources */,
+				8835551E21342B4A0044A58E /* PushSystemSceneApi.m in Sources */,
 				C46C23C320FF2D3C00D9350F /* SetTimeController.m in Sources */,
 				C408076A21070DDF0064F4B7 /* BaseDriveApi.m in Sources */,
 				88B03C0E2035E5E000F18EFE /* NSData+zlib.m in Sources */,
@@ -3573,13 +3703,13 @@
 				88B03C532035E5E000F18EFE /* NSUserDefaults+iCloudSync.m in Sources */,
 				88B03C3E2035E5E000F18EFE /* NSString+Encrypt.m in Sources */,
 				88B03C9B2035E5E000F18EFE /* UILabel+ESAdjustableLabel.m in Sources */,
-				88DF4FB22076537300232BF8 /* DeviceModel.m in Sources */,
 				88B03C692035E5E000F18EFE /* UIApplication+Permissions.m in Sources */,
 				88B03C772035E5E000F18EFE /* UIColor+Gradient.m in Sources */,
 				88B03C522035E5E000F18EFE /* NSURLRequest+ParamsFromDictionary.m in Sources */,
 				88B03C8B2035E5E000F18EFE /* UIImage+GIF.m in Sources */,
 				C4FF15E620CF936A00DA3026 /* DBWarnManager.m in Sources */,
 				C46C23BC20FF2ABB00D9350F /* SceneEditController.m in Sources */,
+				8899B4A1211540BE00716BEA /* SystemSceneCell.m in Sources */,
 				88B03CF62035E5E000F18EFE /* MPLoggerFormatter.m in Sources */,
 				88B03C542035E5E000F18EFE /* NSUserDefaults+SafeAccess.m in Sources */,
 				88B0366A203583DD00F18EFE /* ESPTouchTaskParameter.m in Sources */,
@@ -3598,6 +3728,7 @@
 				C434130120F353F20006F207 /* CYMarquee.m in Sources */,
 				88B03C3D2035E5E000F18EFE /* NSString+Emoji.m in Sources */,
 				88B03C052035E5E000F18EFE /* NSBundle+AppIcon.m in Sources */,
+				881513682132866800CB2FD4 /* AddDeviceVC.m in Sources */,
 				88B03CB42035E5E000F18EFE /* UITableView+FDKeyedHeightCache.m in Sources */,
 				C4C5BA0420CE1757009A3E2D /* ScynDeviceName.m in Sources */,
 				88B03CE42035E5E000F18EFE /* AppStatusHelp.m in Sources */,
@@ -3613,6 +3744,7 @@
 				88B03CB92035E5E000F18EFE /* UITextField+Blocks.m in Sources */,
 				C4E35C2620F4A42400B806C8 /* CYNetManager.m in Sources */,
 				C4C5BA0320CE1757009A3E2D /* AddDeviceApi.m in Sources */,
+				8815136F213286B100CB2FD4 /* AddDeviceCell.m in Sources */,
 				88B03C1D2035E5E000F18EFE /* NSDictionary+XML.m in Sources */,
 				88B03CE32035E5E000F18EFE /* UIWindow+Hierarchy.m in Sources */,
 				88B03C8E2035E5E000F18EFE /* UIImage+PDF.m in Sources */,
@@ -3682,8 +3814,10 @@
 				C4FF15E920CFB13900DA3026 /* VerifyCodeAlertView.m in Sources */,
 				88B03C4F2035E5E000F18EFE /* NSURL+QueryDictionary.m in Sources */,
 				88B0365F203583DD00F18EFE /* ESP_ByteUtil.m in Sources */,
+				8835551F21342B4A0044A58E /* AddSystemSceneApi.m in Sources */,
 				88B03CAA2035E5E000F18EFE /* UIScreen+Frame.m in Sources */,
 				C43A054F20C76D8F00B2E5FC /* MJRefreshGifHeader.m in Sources */,
+				88A8EDDE210C0E49006D46CB /* DimmingmoduleDetailVC.m in Sources */,
 				C4E35C2920F4A49E00B806C8 /* DevVersionModel.m in Sources */,
 				88B03CBF2035E5E000F18EFE /* UITextView+Select.m in Sources */,
 				88B7629D2029D3BC00FC87A0 /* Loginvc.m in Sources */,
@@ -3695,6 +3829,8 @@
 				88B03C762035E5E000F18EFE /* UIButton+TouchAreaInsets.m in Sources */,
 				88B03CA62035E5E000F18EFE /* UIPopoverController+iPhone.m in Sources */,
 				88B03C082035E5E000F18EFE /* NSData+Base64.m in Sources */,
+				881513622132862000CB2FD4 /* SelectColorCell.m in Sources */,
+				8899B4A6211540FF00716BEA /* NameHelper.m in Sources */,
 				88B03C952035E5E000F18EFE /* UIImageView+FaceAwareFill.m in Sources */,
 				88B03668203583DD00F18EFE /* ESPTouchResult.m in Sources */,
 				88B03BFC2035E5E000F18EFE /* NSManagedObjectContext+Fetching.m in Sources */,

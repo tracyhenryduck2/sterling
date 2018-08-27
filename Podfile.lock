@@ -115,11 +115,6 @@ EXTERNAL SOURCES:
   HekrSDK:
     :podspec: https://raw.githubusercontent.com/HEKR-Cloud/HEKR-IOS-SDK/global/HekrSDK.podspec
 
-CHECKOUT OPTIONS:
-  HekrSDK:
-    :commit: ad4d7d6e4597ca0318d3e4a96c816fbcbadfdc64
-    :git: https://github.com/HEKR-Cloud/HEKR-IOS-SDK.git
-
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
