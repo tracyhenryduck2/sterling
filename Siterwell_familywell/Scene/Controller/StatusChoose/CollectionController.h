@@ -8,6 +8,11 @@
 
 #ifndef CollectionController_h
 #define CollectionController_h
+@interface CollectionController:BaseVC
 
+@property (nonatomic , copy) NSString * selectType;
+@property (nonatomic , strong) RACSubject *delegate;
+
+@end
 
 #endif /* CollectionController_h */

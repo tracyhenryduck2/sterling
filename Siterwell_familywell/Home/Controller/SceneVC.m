@@ -19,6 +19,7 @@
 #import "SystemSceneEditController.h"
 #import "Single.h"
 #import "DeviceListVC.h"
+#import "CollectionController.h"
 @interface SceneVC() <UITableViewDelegate,UITableViewDataSource,CLickdelegate>
 
 @property (nonatomic,strong) UITableView *table_scene;
@@ -265,7 +266,14 @@
 
 #pragma -mark method
 -(void)BtnClick:(id)Sender{
-    DeviceListVC *sc = [[DeviceListVC alloc] init];
+    CollectionController *sc = [[CollectionController alloc] init];
+    sc.selectType = @"00";
+    sc.delegate = [RACSubject subject];
+    @weakify(self);
+    [sc.delegate subscribeNext:^(id x) {
+        @strongify(self);
+       [MBProgressHUD showError:x ToView:self.view];
+    }];
     [self.navigationController pushViewController:sc animated:YES];
 }
 

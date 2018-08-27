@@ -11,11 +11,16 @@
 #import "SystemSceneModel.h"
 #import "GS584RelationShip.h"
 #import "SceneRelationShip.h"
+#import "SceneModel.h"
+#import "BatterHelp.h"
+#import "NameHelper.h"
+
 
 @interface ContentHepler : NSObject
 
 +(NSString *)getContentFromSystem:(SystemSceneModel *)systemModel withSceneRelationShip:(NSMutableArray *)scenerelationships withGS584Relations:(NSMutableArray *)gs584relationships;
 
++(NSString *)getContentFromScene:(SceneModel *)sceneModel;
 @end
 
 #endif /* ContentHepler_h */

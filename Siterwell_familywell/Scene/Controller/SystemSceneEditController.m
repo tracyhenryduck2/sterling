@@ -13,7 +13,10 @@
 #import "DBSceneReManager.h"
 #import "DBGS584RelationShipManager.h"
 #import "SelectColorCell.h"
-
+#import "ContentHepler.h"
+#import "AddSystemSceneApi.h"
+#import "DBGatewayManager.h"
+#import "Single.h"
 @interface SystemSceneEditController()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITextField *titleTextFiled;
@@ -22,6 +25,8 @@
 @property (nonatomic,strong) SystemSceneModel * sysmodel;
 @property (strong,nonatomic)NSMutableArray <SceneModel *>* array_scene;
 @property (strong,nonatomic)NSMutableArray <NSNumber *>*array_ship;
+@property (strong,nonatomic)NSMutableArray<GS584RelationShip *> *array_gs584;
+@property (nonatomic,copy)NSString *initcode;
 @end
 
 @implementation SystemSceneEditController
@@ -29,6 +34,7 @@
 #pragma -mark life
 
 -(void)viewDidLoad{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
     [super viewDidLoad];
     [self initdata];
     UITextField * enterTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width-60, 30)];
@@ -68,12 +74,19 @@
     }
     self.navigationItem.titleView = enterTextField;
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"确定", nil) withTintColor:ThemeColor];
-    
+    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(backfinish) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
 
     
     [self tableView];
     
     
+}
+
+- (void)dealloc {
+    
+    //移除观察者 self
+    NSLog(@"dealloc SystemSceneEditController");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -188,15 +201,48 @@
     
 }
 
+-(void)backfinish{
+    if(_edit == YES){
+        SystemSceneModel * model = [[SystemSceneModel alloc] init];
+        [model setColor:_color];
+        [model setSystemname:_titleTextFiled.text];
+        [model setSence_group:_scene_type];
+        NSString * contentcode = [ContentHepler getContentFromSystem:model withSceneRelationShip:_array_ship withGS584Relations:_array_gs584];
+        
+        if(![contentcode isEqualToString:_initcode]){
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"是否保存", nil) preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+                 [self.navigationController popViewControllerAnimated:YES];
+                
+                
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"保存", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            [self.navigationController presentViewController:alert animated:YES completion:nil];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+
+    }else{
+         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 -(void) initdata{
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     if(_edit == YES ){
         _sysmodel = [[DBSystemSceneManager sharedInstanced] querySystemScene:_scene_type withDevTid:currentgateway2];
         _array_ship = [[DBSceneReManager sharedInstanced] querymid:_scene_type withDevTid:currentgateway2];
+        _array_gs584 = [[DBGS584RelationShipManager sharedInstanced] queryAllGS584RelationShipwithDevTid:currentgateway2 withSid:_scene_type];
         _color = _sysmodel.color;
+        _initcode = [ContentHepler getContentFromSystem:_sysmodel withSceneRelationShip:_array_ship withGS584Relations:_array_gs584];
     }else{
         _array_ship = [[NSMutableArray alloc] init];
+        _array_gs584 = [NSMutableArray new];
         _color = nil;
     }
     _array_scene = [[DBSceneManager sharedInstanced] queryAllScenewithDevTid:currentgateway2];
@@ -222,6 +268,49 @@
         }
         return m;
     }
+    
+}
+
+-(void)check{
+    [self.view endEditing:YES];
+
+    if (self.titleTextFiled.text.length <= 0) {
+        [MBProgressHUD showError:NSLocalizedString(@"名称为空", nil) ToView:self.view];
+        return;
+    }
+    
+    if ([self.titleTextFiled.text containsString:@"@"] || [self.titleTextFiled.text containsString:@"$"]) {
+        [MBProgressHUD showError:NSLocalizedString(@"名称含有非法字符", nil) ToView:self.view];
+        return;
+    }
+    
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSData *namedata = [_titleTextFiled.text dataUsingEncoding:enc];
+    if (namedata.length >= 15) {
+        [MBProgressHUD showError:NSLocalizedString(@"情景名称过长", nil) ToView:self.view];
+        return;
+    }
+    
+    if([NSString isBlankString:_color]){
+       [MBProgressHUD showError:NSLocalizedString(@"请选择颜色", nil) ToView:self.view];
+        return;
+    }
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    SystemSceneModel * model = [[SystemSceneModel alloc] init];
+    [model setColor:_color];
+    [model setSystemname:_titleTextFiled.text];
+    [model setSence_group:_scene_type];
+    NSString * contentcode = [ContentHepler getContentFromSystem:model withSceneRelationShip:_array_ship withGS584Relations:_array_gs584];
+    [Single sharedInstanced].command = AddSystemScene;
+    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    AddSystemSceneApi *add = [[AddSystemSceneApi alloc] initWithDevTid:model.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneContent:contentcode];
+    [add startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+        
+    }];
+}
+
+-(void)onAnswerOK{
     
 }
 @end

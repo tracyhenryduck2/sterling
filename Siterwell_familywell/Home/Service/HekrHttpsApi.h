@@ -22,8 +22,12 @@
 #define Hekr_getEmailVerifyCode @"%@/email/getVerifyCode?email=%@&pid=%@&type=%@&token=%@"
 
 #define ControllDevice 1
+#define ChooseSystemScene 6
+
+#define AddSystemScene 23
+#define EditSystemScene 24
 #define SyncDevice 29
 #define SyncDeviceName 30
 #define SyncScenes 31
-#define ChooseSystemScene 6
+
 #endif /* HekrServiceApi_h */

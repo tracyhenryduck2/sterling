@@ -1,27 +1,27 @@
 //
-//  ChooseSystemSceneApi.m
+//  AddSystemSceneApi.m
 //  sHome
 //
 //  Created by shaop on 2017/2/15.
 //  Copyright © 2017年 shaop. All rights reserved.
 //
 
-#import "ChooseSystemSceneApi.h"
+#import "AddSystemSceneApi.h"
 
-@implementation ChooseSystemSceneApi
+@implementation AddSystemSceneApi
 {
     NSString *_devTid;
     NSString *_ctrlKey;
-    NSNumber *_scene_group;
-    NSString *_conncetHost;
+    NSString *_content;
+    NSString *_connectHost;
 }
 
--(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost SceneGroup:(NSNumber *)scene_group{
+-(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost SceneContent:(NSString *)content{
     if (self = [super init]) {
         _devTid = devTid;
         _ctrlKey = ctrlKey;
-        _conncetHost = conncetHost;
-        _scene_group = scene_group;
+        _content = content;
+        _connectHost = conncetHost;
     }
     return self;
 }
@@ -33,15 +33,15 @@
                      @"devTid": _devTid,
                      @"ctrlKey": _ctrlKey,
                      @"data": @{
-                             @"cmdId": @ChooseSystemScene,
-                             @"scene_type": _scene_group
+                             @"cmdId": @AddSystemScene,
+                             @"scene_content": _content
                              }
                      }
              };
 }
 
-- (id)requestArgumentConnectHost{
-    return _conncetHost;
-}
 
+- (id)requestArgumentConnectHost{
+    return _connectHost;
+}
 @end
