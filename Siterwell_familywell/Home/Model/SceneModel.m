@@ -18,6 +18,7 @@
     if(self=[super initWithDictionary:dict error:err]){
         if(self.scene_content.length>38){
             self.scene_name = [self getNameFromConetent];
+            self.scene_select_type = [self getSelectType];
         }
     }
     return self;
@@ -103,6 +104,11 @@
         return content;
     }
     
+}
+
+- (NSString *)getSelectType{
+    NSString *type = [self.scene_content substringWithRange:NSMakeRange(38, 2)];
+    return type;
 }
 
 - (NSMutableArray *)getInDeviceArray:(NSString *)devTid{

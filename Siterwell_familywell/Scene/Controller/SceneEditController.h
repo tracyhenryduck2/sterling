@@ -10,6 +10,8 @@
 #define SceneEditController_h
 @interface SceneEditController:BaseVC
 
+@property(nonatomic,assign) NSNumber *mid;
+
 @end
 
 #endif /* SceneEditController_h */

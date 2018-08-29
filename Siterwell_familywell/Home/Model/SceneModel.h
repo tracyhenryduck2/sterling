@@ -23,6 +23,9 @@
 @property (nonatomic, strong) NSString<Ignore> *scene_select_type;
 
 + (NSString *)getCRCFromContent:(NSString *)answer_content;
+- (NSMutableArray *)getInDeviceArray:(NSString *)devTid;
+- (NSMutableArray *)getOutDeviceArray:(NSString *)devTid;
+- (NSString *)getSelectType;
 @end
 
 #endif /* SceneModel_h */

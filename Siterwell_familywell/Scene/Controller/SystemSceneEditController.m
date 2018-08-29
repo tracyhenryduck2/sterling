@@ -34,7 +34,6 @@
 #pragma -mark life
 
 -(void)viewDidLoad{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
     [super viewDidLoad];
     [self initdata];
     UITextField * enterTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width-60, 30)];
@@ -88,6 +87,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
+}
 
 #pragma -mark lazy
 -(UITableView *)tableView{

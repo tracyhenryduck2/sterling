@@ -7,10 +7,16 @@
 //
 
 #import "SceneEditController.h"
+#import "DBSceneManager.h"
+#import "SceneListItemData.h"
+
 @interface SceneEditController()
 
 @property (nonatomic,strong) UITextField *titleTextFiled;
-
+@property (nonatomic,copy) NSString *initcode;
+@property (nonatomic,strong) NSMutableArray <SceneListItemData*>* inputList;
+@property (nonatomic,strong) NSMutableArray <SceneListItemData*>* outputList;
+@property (nonatomic,copy) NSString *trigger_style;
 @end
 
 @implementation SceneEditController{
@@ -45,6 +51,31 @@
     
 }
 
+-(void)initdata{
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    
+    if(_mid==nil){
+        _inputList = [NSMutableArray new];
+        _outputList = [NSMutableArray new];
+        _trigger_style = @"00";
+        SceneListItemData *ds = [[SceneListItemData alloc] init];
+        [ds setType:@"add"];
+        [_inputList addObject:ds];
+        [_outputList addObject:ds];
+    }else{
+       SceneModel *model = [[DBSceneManager sharedInstanced] querySceneModel:_mid withDevTid:currentgateway2];
+        _inputList = [model getInDeviceArray:currentgateway2];
+        _outputList = [model getOutDeviceArray:currentgateway2];
+        _trigger_style = [model getSelectType];
+        SceneListItemData *ds = [[SceneListItemData alloc] init];
+        [ds setType:@"add"];
+        [_inputList addObject:ds];
+        [_outputList addObject:ds];
+    }
+    
+    
+}
 
 #pragma -mark method
 -(void)backfinish{
