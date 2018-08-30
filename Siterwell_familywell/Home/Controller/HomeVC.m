@@ -28,6 +28,7 @@
 @property (nonatomic,strong) ModeCircleView *modecirleView;
 @property (nonatomic,strong) CircleMenuVc *menuVc;
 @property (nonatomic,strong) HomeHeadView *videoView;
+@property (nonatomic,strong) UIButton *titlbtn;
 @property (nonatomic) SiterwellReceiver *siter;
 @property (nonatomic) NSObject *testobj;
 @end
@@ -54,10 +55,10 @@
     NSMutableArray <ItemData *> *dsa = [[DBDeviceManager sharedInstanced] queryAllTHCheck:currentgateway2];
     self.weather_marquee.tempAndHumArray=dsa;
     
+    [[self titlbtn] setTitle:([gateway.deviceName isEqualToString:@"报警器"]?NSLocalizedString(@"我的家", nil):gateway.deviceName) forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(test) image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
 
 
-    self.title = gateway.deviceName;
     UIColor* color = [UIColor whiteColor];
     NSDictionary* dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
     self.navigationController.navigationBar.titleTextAttributes= dict;
@@ -123,6 +124,23 @@
 
 
 #pragma mark -lazy
+
+- (UIButton *)titlbtn {
+    if (!_titlbtn) {
+        _titlbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_titlbtn setBackgroundColor:[UIColor clearColor]];
+        [_titlbtn setImage:[UIImage imageNamed:@"arrow_down"] forState:UIControlStateNormal];
+        [_titlbtn setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
+        [self.navigationController.navigationBar addSubview:_titlbtn];
+        [_titlbtn addTarget:self action:@selector(selectGateWays) forControlEvents:UIControlEventTouchUpInside];
+        [_titlbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(0);
+            make.centerX.equalTo(0);
+            make.centerY.equalTo(0);
+        }];
+    }
+    return _titlbtn;
+}
 
 -(CYMarquee *)weather_marquee{
     if(!_weather_marquee){
