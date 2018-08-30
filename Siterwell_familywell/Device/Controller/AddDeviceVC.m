@@ -10,6 +10,7 @@
 #import "CancelAddingApi.h"
 #import "DBGatewayManager.h"
 #import "AddDeviceCell.h"
+#import "AddDeviceApi.h"
 @interface AddDeviceVC ()<UITableViewDelegate , UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableview;
 
@@ -21,7 +22,13 @@
 #pragma -mark life
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    GatewayModel * gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    AddDeviceApi *api = [[AddDeviceApi alloc] initWithDevTid:gateway.devTid CtrlKey:gateway.ctrlKey ConnectHost:gateway.connectHost];
+    [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+        
+    }];
     if ([_type isEqualToString:@"update"]) {
         self.title = NSLocalizedString(@"替换设备",nil);
     }else{

@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) NSMutableArray<Ignore> *scene_indevice_array;
 @property (nonatomic, strong) NSString<Ignore> *scene_select_type;
-
+-(void)create:(NSNumber *)scene_type;
 + (NSString *)getCRCFromContent:(NSString *)answer_content;
 - (NSMutableArray *)getInDeviceArray:(NSString *)devTid;
 - (NSMutableArray *)getOutDeviceArray:(NSString *)devTid;

@@ -16,10 +16,10 @@
     item.type = data.device_name;
     NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
     NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
-    dic = [dic objectForKey:@"names"];
+    NSDictionary *dic_name = [dic objectForKey:@"names"];
     NSDictionary *dic_pics = [dic objectForKey:@"pictures"];
     if([NSString isBlankString:data.customTitle ]){
-        item.custmTitle = [NSString stringWithFormat:@"%@ %d",NSLocalizedString([dic objectForKey:data.device_name], nil) ,[data.device_ID intValue]];
+        item.custmTitle = [NSString stringWithFormat:@"%@ %d",NSLocalizedString([dic_name objectForKey:data.device_name], nil) ,[data.device_ID intValue]];
     }else{
         item.custmTitle = data.customTitle;
     }

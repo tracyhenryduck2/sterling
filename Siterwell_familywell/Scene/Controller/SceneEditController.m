@@ -9,23 +9,28 @@
 #import "SceneEditController.h"
 #import "DBSceneManager.h"
 #import "SceneListItemData.h"
+#import "InOutputAddSceneCell.h"
+#import "CollectionController.h"
 
-@interface SceneEditController()
+@interface SceneEditController()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITextField *titleTextFiled;
 @property (nonatomic,copy) NSString *initcode;
 @property (nonatomic,strong) NSMutableArray <SceneListItemData*>* inputList;
 @property (nonatomic,strong) NSMutableArray <SceneListItemData*>* outputList;
 @property (nonatomic,copy) NSString *trigger_style;
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong)SceneModel *sceneModel;
 @end
 
 @implementation SceneEditController{
-    int dsa;
+
 }
 
 #pragma -mark life
 -(void)viewDidLoad{
      [super viewDidLoad];
+    [self initdata];
     UITextField * enterTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width-60, 30)];
     enterTextField.backgroundColor = RGB(242, 242, 245);
     enterTextField.layer.cornerRadius = 15.0f;
@@ -39,6 +44,11 @@
     self.navigationItem.titleView = enterTextField;
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"确定", nil) withTintColor:ThemeColor];
     self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(backfinish) image:@"back_icon" highImage:nil withTintColor:[UIColor blackColor]];
+    [self tableView];
+
+    if(_sceneModel!=nil){
+        _titleTextFiled.text = _sceneModel.scene_name;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -64,10 +74,10 @@
         [_inputList addObject:ds];
         [_outputList addObject:ds];
     }else{
-       SceneModel *model = [[DBSceneManager sharedInstanced] querySceneModel:_mid withDevTid:currentgateway2];
-        _inputList = [model getInDeviceArray:currentgateway2];
-        _outputList = [model getOutDeviceArray:currentgateway2];
-        _trigger_style = [model getSelectType];
+        _sceneModel= [[DBSceneManager sharedInstanced] querySceneModel:_mid withDevTid:currentgateway2];
+        _inputList = [_sceneModel getInDeviceArray:currentgateway2];
+        _outputList = [_sceneModel getOutDeviceArray:currentgateway2];
+        _trigger_style = [_sceneModel getSelectType];
         SceneListItemData *ds = [[SceneListItemData alloc] init];
         [ds setType:@"add"];
         [_inputList addObject:ds];
@@ -77,8 +87,147 @@
     
 }
 
+#pragma -mark tableview
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"titleViewCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.text = NSLocalizedString(@"执行条件", nil);
+            cell.textLabel.font = SYSTEMFONT(13);
+            return cell;
+        }else{
+           InOutputAddSceneCell *cell = [[InOutputAddSceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"inputCell"];
+            cell.itemdatas = _inputList;
+            return cell;
+        }
+        
+    }else if(indexPath.section == 1){
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"titleViewCell2"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if([_trigger_style isEqualToString:@"FF"]){
+          cell.textLabel.text = NSLocalizedString(@"满足所有条件触发", nil);
+        }else{
+          cell.textLabel.text = NSLocalizedString(@"满足任一条件即触发", nil);
+        }
+        cell.textLabel.numberOfLines = 0;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }else{
+        if (indexPath.row == 0) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"titleViewCell3"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.text = NSLocalizedString(@"按顺序执行", nil);
+            cell.textLabel.font = SYSTEMFONT(13);
+            return cell;
+        }else{
+            InOutputAddSceneCell *cell = [[InOutputAddSceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"outputCell"];
+            cell.itemdatas = _outputList;
+            return cell;
+        }
+    }
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    if(indexPath.section == 1){
+        CollectionController *vc = [[CollectionController alloc] init];
+        vc.selectType = _trigger_style;
+        vc.delegate = [RACSubject subject];
+        @weakify(self);
+        [vc.delegate subscribeNext:^(id x) {
+            @strongify(self);
+            self.trigger_style = x;
+            [self.tableView reloadData];
+        }];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if(section == 0){
+        return 2;
+    }else if(section == 1){
+        return 1;
+    }else {
+        return 2;
+    }
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 3;
+}
+
+
+// 预测cell的高度
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
+
+// 自动布局后cell的高度
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row != 0) {
+            int count = (int)(_inputList.count-1);
+            int row = count/3;
+            return (Main_Screen_Width/4)*(row+1);
+        }
+    }else if(indexPath.section == 2){
+        if (indexPath.row != 0) {
+            int count = (int)(_outputList.count-1);
+            int row = count/3;
+            return (Main_Screen_Width/4)*(row+1);
+        }
+    }
+    
+    return UITableViewAutomaticDimension;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *nilView=[[UIView alloc] initWithFrame:CGRectZero];
+    return nilView;
+}
+
+#pragma -mark lazy
+-(UITableView *)tableView{
+    if(_tableView==nil){
+        
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        _tableView.rowHeight = 60;
+        _tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 0);
+        _tableView.backgroundColor = RGB(239, 239, 243);
+        _tableView.tableFooterView = [UIView new];
+        [self.view addSubview:_tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(0);
+        }];
+        
+    }
+    return _tableView;
+}
+
 #pragma -mark method
 -(void)backfinish{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)clickItem{
+    
+}
+
+
+
+
+
+
 @end

@@ -401,6 +401,9 @@
 		C46C23D220FF2E6E00D9350F /* GS240SetController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23D120FF2E6E00D9350F /* GS240SetController.m */; };
 		C46C23D520FF308900D9350F /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23D420FF308900D9350F /* SettingController.m */; };
 		C4A176B720CF720F002AE3F7 /* RegistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A176B620CF720F002AE3F7 /* RegistCell.m */; };
+		C4BC2B6221379D520079862B /* AddSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BC2B6121379D520079862B /* AddSceneCell.m */; };
+		C4BC2B652137A2830079862B /* Encryptools.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BC2B642137A2830079862B /* Encryptools.m */; };
+		C4BC2B682137BD180079862B /* InOutputAddSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BC2B672137BD180079862B /* InOutputAddSceneCell.m */; };
 		C4C5B9E120CE092B009A3E2D /* ArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9E020CE092B009A3E2D /* ArrayTool.m */; };
 		C4C5B9FE20CE1757009A3E2D /* deleteDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9ED20CE1755009A3E2D /* deleteDeviceApi.m */; };
 		C4C5B9FF20CE1757009A3E2D /* RenameDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C5B9EE20CE1755009A3E2D /* RenameDeviceApi.m */; };
@@ -1237,6 +1240,12 @@
 		C4A176B520CF71FB002AE3F7 /* RegistCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistCell.h; sourceTree = "<group>"; };
 		C4A176B620CF720F002AE3F7 /* RegistCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistCell.m; sourceTree = "<group>"; };
 		C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4BC2B6021379D520079862B /* AddSceneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSceneCell.h; sourceTree = "<group>"; };
+		C4BC2B6121379D520079862B /* AddSceneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSceneCell.m; sourceTree = "<group>"; };
+		C4BC2B632137A2820079862B /* Encryptools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryptools.h; sourceTree = "<group>"; };
+		C4BC2B642137A2830079862B /* Encryptools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encryptools.m; sourceTree = "<group>"; };
+		C4BC2B662137BD090079862B /* InOutputAddSceneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InOutputAddSceneCell.h; sourceTree = "<group>"; };
+		C4BC2B672137BD180079862B /* InOutputAddSceneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InOutputAddSceneCell.m; sourceTree = "<group>"; };
 		C4C5B9DF20CE092B009A3E2D /* ArrayTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayTool.h; sourceTree = "<group>"; };
 		C4C5B9E020CE092B009A3E2D /* ArrayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayTool.m; sourceTree = "<group>"; };
 		C4C5B9EC20CE1755009A3E2D /* deleteDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteDeviceApi.h; sourceTree = "<group>"; };
@@ -1374,6 +1383,8 @@
 		8899B4A3211540FF00716BEA /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				C4BC2B632137A2820079862B /* Encryptools.h */,
+				C4BC2B642137A2830079862B /* Encryptools.m */,
 				881513642132862F00CB2FD4 /* WarnAnalisysHelper.h */,
 				881513632132862F00CB2FD4 /* WarnAnalisysHelper.m */,
 				883720202127C37800A516D7 /* Single.h */,
@@ -3102,6 +3113,8 @@
 		C46C23AF20FF29BC00D9350F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C4BC2B6021379D520079862B /* AddSceneCell.h */,
+				C4BC2B6121379D520079862B /* AddSceneCell.m */,
 				881513712132871200CB2FD4 /* colorItemCell.h */,
 				881513702132871200CB2FD4 /* colorItemCell.m */,
 				8815135F2132862000CB2FD4 /* AddSystemScenCell.h */,
@@ -3114,6 +3127,8 @@
 				8899B49F211540BE00716BEA /* SystemSceneCell.m */,
 				8846065D2116D232005981D8 /* SceneHeaderView.h */,
 				8846065E2116D245005981D8 /* SceneHeaderView.m */,
+				C4BC2B662137BD090079862B /* InOutputAddSceneCell.h */,
+				C4BC2B672137BD180079862B /* InOutputAddSceneCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3504,6 +3519,7 @@
 				88B03CC72035E5E000F18EFE /* UIView+Find.m in Sources */,
 				88B03C792035E5E000F18EFE /* UIColor+Modify.m in Sources */,
 				88B03CC92035E5E000F18EFE /* UIView+GestureCallback.m in Sources */,
+				C4BC2B652137A2830079862B /* Encryptools.m in Sources */,
 				88B03C802035E5E000F18EFE /* UIFont+DynamicFontControl.m in Sources */,
 				88B03CEF2035E5E000F18EFE /* YTKNetworkPrivate.m in Sources */,
 				C43846A120C6780B00FF8725 /* BookCollectionViewCell.m in Sources */,
@@ -3683,6 +3699,7 @@
 				C438467720C65C4100FF8725 /* GatewayModel.m in Sources */,
 				88B03C6E2035E5E000F18EFE /* UIBezierPath+SVG.m in Sources */,
 				88B03C432035E5E000F18EFE /* NSString+RegexCategory.m in Sources */,
+				C4BC2B6221379D520079862B /* AddSceneCell.m in Sources */,
 				88B03CFA2035E5E000F18EFE /* dateTimeHelper.m in Sources */,
 				88B03C752035E5E000F18EFE /* UIButton+Submitting.m in Sources */,
 				88B03C202035E5E000F18EFE /* NSFileManager+Paths.m in Sources */,
@@ -3776,6 +3793,7 @@
 				C46C23D520FF308900D9350F /* SettingController.m in Sources */,
 				88B03CA32035E5E000F18EFE /* UINavigationItem+Loading.m in Sources */,
 				88B03CA42035E5E000F18EFE /* UINavigationItem+Lock.m in Sources */,
+				C4BC2B682137BD180079862B /* InOutputAddSceneCell.m in Sources */,
 				88B03C182035E5E000F18EFE /* NSDictionary+Block.m in Sources */,
 				88B03CB62035E5E000F18EFE /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				88B03C922035E5E000F18EFE /* UIImage+Vector.m in Sources */,

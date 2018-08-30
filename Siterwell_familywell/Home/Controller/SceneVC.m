@@ -174,6 +174,11 @@
         systemSceneController.edit = YES;
         systemSceneController.scene_type = sys.sence_group;
         [self.navigationController pushViewController:systemSceneController animated:YES];
+    }else{
+        SceneModel *sys = [_list_scene objectAtIndex:indexPath.row];
+        SceneEditController *vc = [[SceneEditController alloc] init];
+        vc.mid = sys.scene_type;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -266,14 +271,7 @@
 
 #pragma -mark method
 -(void)BtnClick:(id)Sender{
-    CollectionController *sc = [[CollectionController alloc] init];
-    sc.selectType = @"00";
-    sc.delegate = [RACSubject subject];
-    @weakify(self);
-    [sc.delegate subscribeNext:^(id x) {
-        @strongify(self);
-       [MBProgressHUD showError:x ToView:self.view];
-    }];
+    SceneEditController *sc = [[SceneEditController alloc] init];
     [self.navigationController pushViewController:sc animated:YES];
 }
 

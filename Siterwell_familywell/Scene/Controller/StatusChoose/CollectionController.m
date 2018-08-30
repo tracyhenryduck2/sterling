@@ -123,7 +123,7 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }else{
-        cell.textLabel.text = NSLocalizedString(@"满足所有条件执行", nil);
+        cell.textLabel.text = NSLocalizedString(@"满足所有条件触发", nil);
         if ([_selectType isEqualToString:@"FF"]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }else {

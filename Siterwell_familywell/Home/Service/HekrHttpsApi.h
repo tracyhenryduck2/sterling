@@ -23,11 +23,19 @@
 
 #define ControllDevice 1
 #define ChooseSystemScene 6
-
+#define ANWSER_OK  11
+#define DEVICE_NAME_UPLOAD 17
+#define DEVICE_STATUS_UPLOAD 19
+#define GATEWAY_NEED_TIME 22
 #define AddSystemScene 23
 #define EditSystemScene 24
+#define GATEWAY_ALERT_INFO 25
+#define SCENE_MODE_UPLOAD 26
+#define SCENE_UPLOAD 27
+#define CURRENT_SCENE_UPLOAD 28
 #define SyncDevice 29
 #define SyncDeviceName 30
 #define SyncScenes 31
+#define TIMER_UPLOAD 36
 
 #endif /* HekrServiceApi_h */

@@ -13,18 +13,23 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err{
     
     if (self = [super initWithDictionary:dict error:err]) {
-        if (self.sence_group!=nil && (self.answer_content.length >= 32 || (self.answer_content.length == 6 && [[self.answer_content substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"0000"]))) {
-            self.systemname = [self getNameFromContent];
-            self.color = [self getSceneColor];
-            self.dev584Count = [self getDev584_countFromContent];
-            self.dev584List = [self getDev584List:self.dev584Count];
-            self.sceneCount = [self getSceneCountFromContent];
-            self.sceneRelationShip = [self getSceneRelationShipList:self.sceneCount withGS584Count:self.dev584Count];
-        }
+
     }
     return self;
 }
 
+-(void)create:(NSNumber *)scene_group{
+    self.sence_group = scene_group;
+    if (self.sence_group!=nil && (self.answer_content.length >= 32 || (self.answer_content.length == 6 && [[self.answer_content substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"0000"]))) {
+        self.systemname = [self getNameFromContent];
+        self.color = [self getSceneColor];
+        self.dev584Count = [self getDev584_countFromContent];
+        self.dev584List = [self getDev584List:self.dev584Count];
+        self.sceneCount = [self getSceneCountFromContent];
+        self.sceneRelationShip = [self getSceneRelationShipList:self.sceneCount withGS584Count:self.dev584Count];
+    }
+    
+}
 
 - (NSString *)getNameFromContent{
     NSString *result = @"";

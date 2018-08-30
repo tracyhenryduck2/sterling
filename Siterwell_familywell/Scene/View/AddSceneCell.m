@@ -21,11 +21,13 @@
     self.image_custom = [[UIImageView alloc] init];
     [self.contentView addSubview:self.image_custom];
     [self.image_custom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(60, 60));;
+        make.centerX.equalTo(self.contentView.mas_centerX);
+        make.top.equalTo(self.contentView.mas_top).offset(10);
     }];
     
     self.customtitle = [[UILabel alloc] init];
-    
+    self.customtitle.font = SYSTEMFONT(13);
     [self.contentView addSubview:self.customtitle];
     [self.customtitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.image_custom.mas_bottom).offset(3);

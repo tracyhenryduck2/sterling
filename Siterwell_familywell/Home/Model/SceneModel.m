@@ -16,12 +16,17 @@
 -(instancetype) initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err{
     
     if(self=[super initWithDictionary:dict error:err]){
-        if(self.scene_content.length>38){
-            self.scene_name = [self getNameFromConetent];
-            self.scene_select_type = [self getSelectType];
-        }
+
     }
     return self;
+}
+
+-(void)create:(NSNumber *)scene_type{
+    self.scene_type = scene_type;
+    if(self.scene_content.length>38){
+        self.scene_name = [self getNameFromConetent];
+        self.scene_select_type = [self getSelectType];
+    }
 }
 
 - (NSString *)getNameFromConetent{
@@ -195,11 +200,12 @@
         NSString *deviceId = [deviceString substringWithRange:NSMakeRange(4, 4)];
         NSInteger deviceId2 =strtoul([deviceId UTF8String],0,16);
         NSString *deviceCount = [deviceString substringWithRange:NSMakeRange(8, 8)];
-        if ([deviceId isEqualToString:@"0"]) {
+        if (deviceId2 == 0) {
             SceneListItemData *deviceItem = [[SceneListItemData alloc] init];
             deviceItem.type = @"gateway";
             deviceItem.eqid = [NSNumber numberWithInt:0];
             deviceItem.custmTitle = NSLocalizedString(@"网关", nil);
+            deviceItem.image = @"blue_wgjd_icon";
             deviceItem.action = deviceCount;
               [array addObject:deviceItem];
             

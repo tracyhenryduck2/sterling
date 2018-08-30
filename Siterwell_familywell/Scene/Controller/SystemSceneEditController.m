@@ -82,7 +82,6 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    NSLog(@"System哈哈哈哈哈哈哈：viewDidDisappear");
     //移除观察者 self
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

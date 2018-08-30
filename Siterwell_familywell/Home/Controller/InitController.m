@@ -285,7 +285,7 @@
 
 -(void)onUpdateOnScene:(SceneModel *)scenemodel withDevTid:(NSString *)devTid{
         _count = 0;
-    if([scenemodel.scene_type integerValue] == 256){
+    if([scenemodel.scene_content isEqualToString:@"OVER"]){
         if(_current_system_scene!=nil){
             [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:_current_system_scene withDevTid:devTid];
         }
@@ -313,7 +313,7 @@
 
 -(void) onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid{
     _count = 0;
-    if([devicemodel.device_ID intValue] == 65535){
+    if([devicemodel.device_name isEqualToString:@"STATUES"]){
         NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
         NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
         GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];

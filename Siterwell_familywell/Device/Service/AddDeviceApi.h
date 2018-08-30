@@ -9,5 +9,5 @@
 #import "BaseDriveApi.h"
 
 @interface AddDeviceApi : BaseDriveApi
--(id)initWithDrivce:(NSString *)devTid andCtrlKey:(NSString *)ctrlkey DeviceStatus:(NSArray *)device_status ConnectHost:(NSString *)connecthost;
+-(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey ConnectHost:(NSString *)connecthost;
 @end

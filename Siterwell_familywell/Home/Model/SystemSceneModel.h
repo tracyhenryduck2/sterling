@@ -25,6 +25,7 @@
 @property (nonatomic) NSNumber<Ignore> *sceneCount;
 
 @property (nonatomic) NSMutableArray<Ignore> *sceneRelationShip;
+-(void)create:(NSNumber *)scene_group;
 + (NSString *)getCRCFromContent:(NSString *)answer_content;
 -(void)settotalDevTid:(NSString<Ignore> *)devTid;
 @end
