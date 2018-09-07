@@ -10,6 +10,8 @@
 
 @interface SceneListItemData : NSObject
 
+@property (nonatomic , strong) NSString *title;
+
 @property (nonatomic , strong) NSString *type;
 
 @property (nonatomic , strong) NSString *custmTitle;

@@ -51,16 +51,18 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     AddSceneCell *cell = (AddSceneCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"addsceneItemCell" forIndexPath:indexPath];
-    if(indexPath.row == (_itemdatas.count-1)){
-        cell.image_custom.image = [UIImage imageNamed:@"add_icon"];
-        cell.customtitle.text = NSLocalizedString(@"添加", nil);
-    }else{
-        SceneListItemData *data = [_itemdatas objectAtIndex:indexPath.row];
-        cell.image_custom.image = [UIImage imageNamed:data.image];
-        cell.customtitle.text = data.custmTitle;
+    SceneListItemData *data = [_itemdatas objectAtIndex:indexPath.row];
+    cell.image_custom.image = [UIImage imageNamed:data.image];
+    cell.customtitle.text = data.custmTitle;
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    SceneListItemData *data = [_itemdatas objectAtIndex:indexPath.row];
+    if (_delegate) {
+       [_delegate sendNext:data];
     }
 
-    return cell;
 }
 
 #pragma mark ---- UICollectionViewDelegateFlowLayout

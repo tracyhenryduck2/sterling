@@ -154,8 +154,16 @@
         NSInteger device_ID = strtoul([deviceId UTF8String],0,16);
         NSString *deviceCount = [deviceString substringWithRange:NSMakeRange(4, 8)];
         ItemData *devicemodel = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:device_ID] withDevTid:devTid];
-        SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:devicemodel];
-        deviceItem.action = deviceCount;
+        SceneListItemData *deviceItem;
+        if(devicemodel == nil){
+            deviceItem = [[SceneListItemData alloc] init];
+            deviceItem.type = @"empty";
+            
+        }else{
+            deviceItem = [ItemDataHelp ItemDataToSceneListItemData:devicemodel];
+            deviceItem.action = deviceCount;
+        }
+
         [array addObject:deviceItem];
     }
     
@@ -211,8 +219,15 @@
             
         }else{
             ItemData * data = [[DBDeviceManager sharedInstanced] queryDeviceModel:[NSNumber numberWithInteger:deviceId2] withDevTid:devTid];
-            SceneListItemData *deviceItem = [ItemDataHelp ItemDataToSceneListItemData:data];
-            deviceItem.action = deviceCount;
+            SceneListItemData *deviceItem;
+            if(data == nil){
+                deviceItem = [[SceneListItemData alloc] init];
+                deviceItem.type = @"empty";
+                
+            }else{
+                deviceItem = [ItemDataHelp ItemDataToSceneListItemData:data];
+                deviceItem.action = deviceCount;
+            }
             [array addObject:deviceItem];
         }
 

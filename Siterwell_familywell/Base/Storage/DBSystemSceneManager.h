@@ -22,6 +22,7 @@
 - (void)updateSystemName:(NSString *)name withSid:(NSNumber *)sid withDevTid:(NSString *)DevTid;
 - (void)updateSystemChoicewithSid:(NSNumber *)sid withDevTid:(NSString *)DevTid;
 - (NSNumber *)queryCurrentSystemScene:(NSString *)devTid;
+- (SystemSceneModel *)queryCurrentSystemScene2:(NSString *)devTid;
 - (SystemSceneModel *)querySystemScene:(NSNumber *)sid withDevTid:(NSString *)devTid;
 - (void)deleteSystemScene:(NSNumber *)sid withDevTid:(NSString *)devTid;
 @end

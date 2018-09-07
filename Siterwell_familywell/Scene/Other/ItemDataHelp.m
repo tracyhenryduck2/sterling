@@ -20,6 +20,7 @@
     NSDictionary *dic_pics = [dic objectForKey:@"pictures"];
     if([NSString isBlankString:data.customTitle ]){
         item.custmTitle = [NSString stringWithFormat:@"%@ %d",NSLocalizedString([dic_name objectForKey:data.device_name], nil) ,[data.device_ID intValue]];
+        item.title = [dic_name objectForKey:data.device_name];
     }else{
         item.custmTitle = data.customTitle;
     }

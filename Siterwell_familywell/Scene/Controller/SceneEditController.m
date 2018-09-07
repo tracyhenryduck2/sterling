@@ -11,6 +11,10 @@
 #import "SceneListItemData.h"
 #import "InOutputAddSceneCell.h"
 #import "CollectionController.h"
+#import "ModelListVC.h"
+#import "SetDelayController.h"
+#import "SetTimeController.h"
+#import "NormalStatusVC.h"
 
 @interface SceneEditController()<UITableViewDelegate,UITableViewDataSource>
 
@@ -49,6 +53,27 @@
     if(_sceneModel!=nil){
         _titleTextFiled.text = _sceneModel.scene_name;
     }
+    
+    @weakify(self)
+    [_inputList enumerateObjectsUsingBlock:^(SceneListItemData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        @strongify(self)
+        if([_inputList[idx].type isEqualToString:@"empty"]){
+            [MBProgressHUD showError:NSLocalizedString(@"有设备被删除", nil) ToView:self.view];
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+        
+    }];
+    
+    [_outputList enumerateObjectsUsingBlock:^(SceneListItemData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        @strongify(self)
+        if([_outputList[idx].type isEqualToString:@"empty"]){
+            [MBProgressHUD showError:NSLocalizedString(@"有设备被删除", nil) ToView:self.view];
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+        
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -71,6 +96,8 @@
         _trigger_style = @"00";
         SceneListItemData *ds = [[SceneListItemData alloc] init];
         [ds setType:@"add"];
+        ds.image = @"add_icon";
+        ds.custmTitle = NSLocalizedString(@"添加", nil);
         [_inputList addObject:ds];
         [_outputList addObject:ds];
     }else{
@@ -80,6 +107,8 @@
         _trigger_style = [_sceneModel getSelectType];
         SceneListItemData *ds = [[SceneListItemData alloc] init];
         [ds setType:@"add"];
+        ds.custmTitle = NSLocalizedString(@"添加", nil);
+        ds.image = @"add_icon";
         [_inputList addObject:ds];
         [_outputList addObject:ds];
     }
@@ -101,6 +130,15 @@
         }else{
            InOutputAddSceneCell *cell = [[InOutputAddSceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"inputCell"];
             cell.itemdatas = _inputList;
+            cell.delegate = [RACSubject subject];
+            @weakify(self);
+            [cell.delegate subscribeNext:^(id x) {
+                @strongify(self);
+                SceneListItemData *data = x;
+                ModelListVC *vc = [[ModelListVC alloc] init];
+                vc.title = data.custmTitle;
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
             return cell;
         }
         
@@ -125,6 +163,26 @@
         }else{
             InOutputAddSceneCell *cell = [[InOutputAddSceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"outputCell"];
             cell.itemdatas = _outputList;
+            cell.delegate = [RACSubject subject];
+            @weakify(self);
+            [cell.delegate subscribeNext:^(id x) {
+                @strongify(self);
+                SceneListItemData *data = x;
+                if([data.type isEqualToString:@"add"]){
+                    ModelListVC *vc = [[ModelListVC alloc] init];
+                    vc.title = data.custmTitle;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else if([data.type isEqualToString:@"delay"]){
+                    SetDelayController *vc = [[SetDelayController alloc] init];
+                    vc.title = NSLocalizedString(@"延时", nil);
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else{
+                    NormalStatusVC *vc = [[NormalStatusVC alloc] init];
+                    vc.title = data.custmTitle;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+
+            }];
             return cell;
         }
     }

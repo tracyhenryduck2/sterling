@@ -8,6 +8,8 @@
 
 #ifndef SetDelayController_h
 #define SetDelayController_h
+@interface SetDelayController:BaseVC
 
+@end
 
 #endif /* SetDelayController_h */

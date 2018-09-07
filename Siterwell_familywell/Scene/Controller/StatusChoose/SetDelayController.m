@@ -6,4 +6,18 @@
 //  Copyright © 2018年 iMac. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SetDelayController.h"
+
+@implementation SetDelayController
+
+#pragma -mark life
+-(void)viewDidLoad{
+    [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+}
+
+
+@end

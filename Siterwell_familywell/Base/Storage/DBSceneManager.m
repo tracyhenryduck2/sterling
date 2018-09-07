@@ -52,7 +52,7 @@ static NSString * const scenetable = @"scenetable";
 -(NSMutableArray *)queryAllSysceneScene:(NSNumber *)sid withDevTid:(NSString *)devTid{
     __block NSMutableArray *allScene = [NSMutableArray array];
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select b.* from %@ a inner join %@ b on a.mid = b.mid where a.sid = %d and a.devTid = '%@'",scenerelationshiptable,scenetable,[sid intValue],devTid]];
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select b.* from %@ a inner join %@ b on a.mid = b.mid where a.sid = %d and a.devTid = '%@' and b.devTid = '%@'",scenerelationshiptable,scenetable,[sid intValue],devTid,devTid]];
         while ([rs next]) {
             SceneModel *sceneModel = [[SceneModel alloc] init];
             sceneModel.scene_name = [rs stringForColumn:@"name"];

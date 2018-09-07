@@ -22,6 +22,9 @@
 #import "DBSceneManager.h"
 #import "WarnAnalisysHelper.h"
 #import "PostControllerApi.h"
+#import "DBSystemSceneManager.h"
+#import "ChooseSystemSceneApi.h"
+#import "Single.h"
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate,SiterwellDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
@@ -31,17 +34,19 @@
 @property (nonatomic,strong) UIButton *titlbtn;
 @property (nonatomic) SiterwellReceiver *siter;
 @property (nonatomic) NSObject *testobj;
+@property (nonatomic,strong) NSMutableArray <SystemSceneModel *>* systemSceneListArray;
 @end
 
 
 @implementation HomeVC{
     BOOL flag;
-    NSMutableArray <SystemSceneModel *>* _systemSceneListArray;
+    int _select_sid;
 }
 
 
 #pragma mark -life
 -(void)viewDidLoad{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AnswerOK) name:@"answer_ok" object:nil];
     _siter =  [[SiterwellReceiver alloc] init];
     _testobj = [[NSObject alloc] init];
     [_siter recv:_testobj callback:^(id obj, id data, NSError *error) {
@@ -55,7 +60,7 @@
     NSMutableArray <ItemData *> *dsa = [[DBDeviceManager sharedInstanced] queryAllTHCheck:currentgateway2];
     self.weather_marquee.tempAndHumArray=dsa;
     
-    [[self titlbtn] setTitle:([gateway.deviceName isEqualToString:@"报警器"]?NSLocalizedString(@"我的家", nil):gateway.deviceName) forState:UIControlStateNormal];
+    [[self titlbtn] setTitle:[NSString stringWithFormat:@"%@(%@)",([gateway.deviceName isEqualToString:@"报警器"]?NSLocalizedString(@"我的家", nil):gateway.deviceName),[gateway.online isEqualToString:@"1"]?NSLocalizedString(@"在线", nil):NSLocalizedString(@"离线", nil)]   forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(test) image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
 
 
@@ -87,11 +92,16 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    _systemSceneListArray = [[NSMutableArray alloc] init];;
-    for(int i=0;i<3;i++){
-        SystemSceneModel * itemdata = [[SystemSceneModel alloc] init];
-        [_systemSceneListArray addObject:itemdata];
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    GatewayModel * gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    if([NSString isBlankString:currentgateway2]){
+        _systemSceneListArray = [[NSMutableArray alloc] init];
+    }else{
+       _systemSceneListArray = [[DBSystemSceneManager sharedInstanced] queryAllSystemScene:currentgateway2];
     }
+
+
     //圆形菜单
     _menuVc = [[CircleMenuVc alloc] initWithButtonCount:_systemSceneListArray.count
                                                menuSize:kKYCircleMenuSize
@@ -107,14 +117,23 @@
     
     _menuVc.view.hidden = YES;
     
-    __weak typeof (self) weakSelf = self;
+    WS(ws)
     _menuVc.closedCircleMenu = ^{
-        weakSelf.menuVc.view.hidden = YES;
+        ws.menuVc.view.hidden = YES;
     };
     _menuVc.clickedMenu = ^(NSInteger tag) {
-        
-        weakSelf.menuVc.view.hidden = YES;
+
+        ws.menuVc.view.hidden = YES;
+        SystemSceneModel *ads = [ws.systemSceneListArray objectAtIndex:(tag-1)];
+        _select_sid = [ads.sence_group intValue];
+        [Single sharedInstanced].command = ChooseSystemScene_Home;
+        ChooseSystemSceneApi *api = [[ChooseSystemSceneApi alloc] initWithDevTid:gateway.devTid CtrlKey:gateway.ctrlKey Domain:gateway.connectHost SceneGroup:ads.sence_group];
+        [api startWithObject:ws CompletionBlockWithSuccess:^(id data, NSError *error) {
+            
+        }];
     };
+
+    [self refresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -241,9 +260,6 @@
 }
 
 -(void)test{
-//    SettingController * vc = [[SettingController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-
     SettingController *wl = [[SettingController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:wl];
     [self presentViewController:nav animated:YES completion:nil];
@@ -253,6 +269,34 @@
 - (void)showCircleMenu{
     _menuVc.view.hidden = NO;
     [_menuVc open];
+}
+
+-(void) AnswerOK{
+    if([Single sharedInstanced].command == ChooseSystemScene_Home){
+        [Single sharedInstanced].command = -1;
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+        [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:[NSNumber numberWithInteger:_select_sid] withDevTid:gatewaymodel.devTid];
+        [self refresh];
+    }
+    
+}
+
+-(void)refresh{
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    SystemSceneModel *currentsystem = [[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene2:currentgateway2];
+    [[self modecirleView] setLabel:currentsystem];
+    if([currentsystem.sence_group intValue] == 0){
+        [[self modecirleView] setText:NSLocalizedString(@"在家", nil)];
+    }else if([currentsystem.sence_group intValue] == 1){
+        [[self modecirleView] setText:NSLocalizedString(@"离家", nil)];
+    }else if([currentsystem.sence_group intValue] == 2){
+        [[self modecirleView] setText:NSLocalizedString(@"睡眠", nil)];
+    }else{
+        [[self modecirleView] setText:currentsystem.systemname];
+    }
 }
 
 #pragma mark -delegate

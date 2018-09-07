@@ -63,6 +63,7 @@ static NSString * const systemScenetable = @"sysmodle";
     return allSystemScene;
 }
 
+
 - (NSNumber *)queryCurrentSystemScene:(NSString *)devTid{
     
     
@@ -76,6 +77,25 @@ static NSString * const systemScenetable = @"sysmodle";
         }
     }];
     return current_mode;
+}
+
+- (SystemSceneModel *)queryCurrentSystemScene2:(NSString *)devTid{
+    
+    
+    __block SystemSceneModel *systemSceneModel = nil;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where  devTid = '%@' and choice = 1 limit 1",systemScenetable,devTid]];
+        while ([rs next]) {
+            systemSceneModel = [[SystemSceneModel alloc] init];
+            systemSceneModel.systemname = [rs stringForColumn:@"name"];
+            systemSceneModel.choice =[NSNumber numberWithInt:[rs intForColumn:@"choice"]];
+            systemSceneModel.sence_group = [NSNumber numberWithInt:[rs intForColumn:@"sid"]];
+            systemSceneModel.devTid = [rs stringForColumn:@"devTid"];
+            systemSceneModel.color = [rs stringForColumn:@"color"];
+            
+        }
+    }];
+    return systemSceneModel;
 }
 
 - (SystemSceneModel *)querySystemScene:(NSNumber *)sid withDevTid:(NSString *)devTid{

@@ -8,6 +8,8 @@
 
 #ifndef SetTimeController_h
 #define SetTimeController_h
+@interface SetTimeController:BaseVC
 
+@end
 
 #endif /* SetTimeController_h */

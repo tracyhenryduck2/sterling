@@ -7,6 +7,7 @@
 //
 
 #import "SettingController.h"
+#import "DBGatewayManager.h"
 
 @interface SettingController()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic) NSArray *titles;
@@ -48,7 +49,15 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:13.5];
         cell.textLabel.text = self.titles[indexPath.row];
         if (indexPath.row == 0) {
-            cell.detailTextLabel.text = @"aaa";
+            NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+            NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+            GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+            if([gatewaymodel.deviceName isEqualToString:@"报警器"]){
+              cell.detailTextLabel.text = [NSLocalizedString(@"我的家", nil) stringByAppendingString:[NSString stringWithFormat:@"(%@)",[gatewaymodel.devTid substringWithRange:NSMakeRange(gatewaymodel.devTid.length-4, 4)]]];
+            }else{
+                   cell.detailTextLabel.text = [gatewaymodel.deviceName stringByAppendingString:[NSString stringWithFormat:@"(%@)",[gatewaymodel.devTid substringWithRange:NSMakeRange(gatewaymodel.devTid.length-5, 4)]]];
+            }
+         
         }
         
         return cell;
