@@ -20,6 +20,7 @@
 #import "Single.h"
 #import "DeviceListVC.h"
 #import "CollectionController.h"
+#import "TimerListController.h"
 @interface SceneVC() <UITableViewDelegate,UITableViewDataSource,CLickdelegate>
 
 @property (nonatomic,strong) UITableView *table_scene;
@@ -37,12 +38,14 @@
     
     self.title = NSLocalizedString(@"情景", nil);
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(gotoSystemSceneAdd) image:@"add_list_icon" highImage:nil withTintColor:nil];
+    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(gototimerlist) Title:NSLocalizedString(@"定时", nil) withTintColor:ThemeColor];
     [self table_scene];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
+
 
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
     [self refresh];
 }
 
@@ -51,7 +54,7 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    
+     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
 }
 
@@ -278,6 +281,11 @@
 -(void)gotoSystemSceneAdd{
     SystemSceneEditController *systemSceneController = [[SystemSceneEditController alloc] init];
     [self.navigationController pushViewController:systemSceneController animated:YES];
+}
+
+-(void)gototimerlist{
+    TimerListController *timercv = [[TimerListController alloc] init];
+    [self.navigationController pushViewController:timercv animated:YES];
 }
 
 -(void)refresh{

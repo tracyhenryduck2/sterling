@@ -47,7 +47,7 @@
 
 #pragma mark -life
 -(void)viewDidLoad{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AnswerOK) name:@"answer_ok" object:nil];
+
     _siter =  [[SiterwellReceiver alloc] init];
     _testobj = [[NSObject alloc] init];
     [_siter recv:_testobj callback:^(id obj, id data, NSError *error) {
@@ -80,12 +80,14 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     //设置透明标题栏
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AnswerOK) name:@"answer_ok" object:nil];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
