@@ -19,6 +19,7 @@ typedef NS_OPTIONS(NSUInteger, AddSceneCellType) {
 @property (assign,nonatomic) AddSceneCellType cellType;
 @property (nonatomic,strong) NSMutableArray *itemdatas;
 @property (nonatomic,strong) RACSubject *delegate;
+@property (nonatomic,strong) RACSubject *longclickdelegate;
 @end
 
 #endif /* InputAddSceneCell_h */

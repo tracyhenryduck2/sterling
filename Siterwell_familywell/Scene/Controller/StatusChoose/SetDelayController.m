@@ -7,12 +7,15 @@
 //
 
 #import "SetDelayController.h"
-
+@interface SetDelayController()
+@property (nonatomic , strong) UIPickerView *pickview;
+@end
 @implementation SetDelayController
 
 #pragma -mark life
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

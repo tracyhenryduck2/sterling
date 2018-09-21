@@ -9,7 +9,7 @@
 #ifndef SetDelayController_h
 #define SetDelayController_h
 @interface SetDelayController:BaseVC
-
+@property (nonatomic , strong) RACSubject *delegate;
 @end
 
 #endif /* SetDelayController_h */

@@ -130,6 +130,7 @@
         timeItem.minute = [NSString stringWithFormat:@"%ld",strtoul([minute UTF8String],0,16)];
         timeItem.image = @"blue_clock_icon";
         timeItem.type = @"time";
+        timeItem.title = @"定时";
         timeItem.custmTitle = [NSString stringWithFormat:@"%@:%@",timeItem.hour,timeItem.minute];
         [array addObject:timeItem];
     }
@@ -139,6 +140,7 @@
         SceneListItemData *clickItem = [[SceneListItemData alloc] init];
         clickItem.type = @"click";
         clickItem.image = @"blue_hand_icon";
+        clickItem.title = @"点击执行";
         clickItem.custmTitle = NSLocalizedString(@"点击执行", nil);
         self.isShouldClick = @"AB";
         [array addObject:clickItem];
@@ -181,6 +183,7 @@
         clickItem.type = @"phone";
         clickItem.custmTitle = NSLocalizedString(@"手机通知", nil);
         clickItem.image = @"blue_phone_icon";
+        clickItem.title = @"手机通知";
         [array addObject:clickItem];
     }
     
@@ -202,6 +205,7 @@
             delyItem.second = [NSString stringWithFormat:@"%ld",strtoul([second UTF8String],0,16)];
             delyItem.image = @"blue_ys_icon";
             delyItem.type = @"delay";
+            delyItem.title = @"延时";
             delyItem.custmTitle = [NSString stringWithFormat:@"%@:%@",delyItem.minute,delyItem.second];
             [array addObject:delyItem];
         }
@@ -212,6 +216,7 @@
             SceneListItemData *deviceItem = [[SceneListItemData alloc] init];
             deviceItem.type = @"gateway";
             deviceItem.eqid = [NSNumber numberWithInt:0];
+            deviceItem.title = @"网关";
             deviceItem.custmTitle = NSLocalizedString(@"网关", nil);
             deviceItem.image = @"blue_wgjd_icon";
             deviceItem.action = deviceCount;

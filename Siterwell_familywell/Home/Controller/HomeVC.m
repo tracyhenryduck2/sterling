@@ -25,6 +25,7 @@
 #import "DBSystemSceneManager.h"
 #import "ChooseSystemSceneApi.h"
 #import "Single.h"
+#import "GatewayListVC.h"
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate,SiterwellDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
@@ -297,6 +298,11 @@
     }else{
         [[self modecirleView] setText:currentsystem.systemname];
     }
+}
+
+-(void)selectGateWays{
+    GatewayListVC *gatewvc = [[GatewayListVC alloc] init];
+    [self.navigationController pushViewController:gatewvc animated:YES];
 }
 
 #pragma mark -delegate

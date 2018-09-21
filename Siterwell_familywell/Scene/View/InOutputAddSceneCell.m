@@ -54,6 +54,18 @@
     SceneListItemData *data = [_itemdatas objectAtIndex:indexPath.row];
     cell.image_custom.image = [UIImage imageNamed:data.image];
     cell.customtitle.text = data.custmTitle;
+    cell.tag = indexPath.row;
+    if(![data.type isEqualToString:@"add"]){
+        UILongPressGestureRecognizer *lpGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(readyToDeleteItem:)];
+        lpGes.minimumPressDuration = 0.8f;
+        [cell addGestureRecognizer:lpGes];
+    }else{
+        NSArray<UIGestureRecognizer *> *gesArray = cell.gestureRecognizers;
+        for (int i = 0; i < gesArray.count; i++) {
+            [cell removeGestureRecognizer:gesArray[i]];
+        }
+    }
+    
     return cell;
 }
 
@@ -94,4 +106,20 @@
     return YES;
 }
 
+
+#pragma -mark method
+- (void)readyToDeleteItem:(UILongPressGestureRecognizer *)ges {
+    
+    AddSceneCell *cell = (AddSceneCell *)[ges view];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"确定删除", nil) preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleDefault handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (_longclickdelegate) {
+            NSString *tag = [NSString stringWithFormat:@"%ld",(long)cell.tag];
+            [_longclickdelegate sendNext:tag];
+        }
+    }]];
+    [self.viewController presentViewController:alert animated:YES completion:nil];
+}
 @end

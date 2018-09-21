@@ -16,11 +16,11 @@
 @property(nonatomic,strong) NSNumber * device_ID;
 @property(nonatomic,strong) NSString * device_name;
 @property(nonatomic,strong) NSString * device_status;
-@property(strong,nonatomic) NSString<Ignore> * customTitle;
-@property (nonatomic,strong, readwrite)NSString<Ignore> *devTid;
-@property (nonatomic, strong, readwrite)NSString<Ignore> *image;
-@property (nonatomic, strong, readwrite)NSDictionary<Ignore> *names;
-@property (nonatomic, strong, readwrite)NSDictionary<Ignore> *pictures;
+@property(nonatomic,strong) NSString<Ignore> * customTitle;
+@property (nonatomic,strong)NSString<Ignore> *devTid;
+@property (nonatomic, strong)NSString<Ignore> *image;
+@property (nonatomic, strong)NSDictionary<Ignore> *names;
+@property (nonatomic, strong)NSDictionary<Ignore> *pictures;
 
 - (instancetype)initWithTitle:(NSString *)title DevID:(NSInteger)devID DevType:(NSString *)devtype Code:(NSString *)code;
 @end

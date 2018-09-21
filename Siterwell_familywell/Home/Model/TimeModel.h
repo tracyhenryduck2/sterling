@@ -8,15 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TimeModel : NSObject
+@interface TimeModel : JSONModel
 
-@property (nonatomic , strong) NSString *week;
 
-@property (nonatomic , strong) NSString *Hour;
+@property (nonatomic,strong) NSString *time;
 
-@property (nonatomic , strong) NSString *Minute;
+@property (nonatomic, strong) NSNumber<Ignore> *timer_id;
 
-@property (nonatomic , strong) NSString *Second;
+@property (nonatomic, strong) NSString<Ignore> *timer_on;//是否使用
 
+@property (nonatomic , strong) NSString<Ignore> *week;
+
+@property (nonatomic , strong) NSString<Ignore> *Hour;
+
+@property (nonatomic , strong) NSString<Ignore> *Minute;
+
+@property (nonatomic , strong) NSString<Ignore> *Second;
+
+@property (nonatomic, strong) NSString<Ignore> *sence_group;
+
+@property (nonatomic, strong) NSString<Ignore> *sence_name;
 
 @end

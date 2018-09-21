@@ -12,7 +12,7 @@
 @interface NormalStatusVC:BaseVC
 
 @property (nonatomic,strong) SceneListItemData *data;
-
+@property (nonatomic , strong) RACSubject *delegate;
 @end
 
 #endif /* NormalStatusVC_h */

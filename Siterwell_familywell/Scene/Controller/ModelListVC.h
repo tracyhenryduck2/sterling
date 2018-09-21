@@ -8,8 +8,11 @@
 
 #ifndef ModelListVC_h
 #define ModelListVC_h
-@interface ModelListVC:BaseVC
+@interface ModelListVC:BaseVC<UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
 
+@property (strong, nonatomic) UICollectionView *datalistView;
+@property (nonatomic,assign) BOOL IsInput;
+@property (nonatomic,strong) RACSubject *delegate;
 
 @end
 

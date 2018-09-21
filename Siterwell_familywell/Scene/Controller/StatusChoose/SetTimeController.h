@@ -8,8 +8,10 @@
 
 #ifndef SetTimeController_h
 #define SetTimeController_h
+#import "SceneListItemData.h"
 @interface SetTimeController:BaseVC
-
+@property (nonatomic , strong) RACSubject *delegate;
+@property (nonatomic , strong) SceneListItemData *data;
 @end
 
 #endif /* SetTimeController_h */

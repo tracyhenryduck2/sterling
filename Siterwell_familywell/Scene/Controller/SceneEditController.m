@@ -135,9 +135,32 @@
             [cell.delegate subscribeNext:^(id x) {
                 @strongify(self);
                 SceneListItemData *data = x;
-                ModelListVC *vc = [[ModelListVC alloc] init];
-                vc.title = data.custmTitle;
-                [self.navigationController pushViewController:vc animated:YES];
+                if([data.type isEqualToString:@"add"]){
+                    ModelListVC *vc = [[ModelListVC alloc] init];
+                    vc.title = NSLocalizedString(@"添加触发条件", nil);
+                    vc.IsInput = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else if([data.type isEqualToString:@"time"]){
+                    SetTimeController *vc = [[SetTimeController alloc] init];
+                    vc.title = NSLocalizedString(@"定时", nil);
+                    vc.data = data;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else if([data.type isEqualToString:@"click"]){
+                    [MBProgressHUD showError:NSLocalizedString(@"无需设置", nil) ToView:self.view];
+                }else{
+                    NormalStatusVC *vc = [[NormalStatusVC alloc] init];
+                    vc.data = data;
+                    vc.title = data.custmTitle;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+
+            }];
+            cell.longclickdelegate = [RACSubject subject];
+            [cell.longclickdelegate subscribeNext:^(id x) {
+                
+                int index = [x intValue];
+                [_inputList removeObjectAtIndex:index];
+              [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
             }];
             return cell;
         }
@@ -171,6 +194,7 @@
                 if([data.type isEqualToString:@"add"]){
                     ModelListVC *vc = [[ModelListVC alloc] init];
                     vc.title = data.custmTitle;
+                    vc.IsInput = NO;
                     [self.navigationController pushViewController:vc animated:YES];
                 }else if([data.type isEqualToString:@"delay"]){
                     SetDelayController *vc = [[SetDelayController alloc] init];
@@ -178,10 +202,18 @@
                     [self.navigationController pushViewController:vc animated:YES];
                 }else{
                     NormalStatusVC *vc = [[NormalStatusVC alloc] init];
+                    vc.data = data;
                     vc.title = data.custmTitle;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
 
+            }];
+            cell.longclickdelegate = [RACSubject subject];
+            [cell.longclickdelegate subscribeNext:^(id x) {
+
+                int index = [x intValue];
+                [_outputList removeObjectAtIndex:index];
+              [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationRight];
             }];
             return cell;
         }
