@@ -30,6 +30,7 @@
 }
 
 -(void)initview{
+    _MondayBtn = [[UIButton alloc] init];
     [_MondayBtn setTitleColor:RGB(245, 103, 53) forState:UIControlStateSelected];
     [_MondayBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_MondayBtn setTag:0];
@@ -38,7 +39,7 @@
         make.left.equalTo(self.contentView.mas_left);
         make.width.equalTo(Main_Screen_Width/7);
     }];
-    
+     _TuesdayBtn = [[UIButton alloc] init];
     [_TuesdayBtn setTitleColor:RGB(245, 103, 53) forState:UIControlStateSelected];
     [_TuesdayBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_TuesdayBtn setTag:1];
@@ -47,7 +48,7 @@
         make.left.equalTo(_MondayBtn.mas_right);
         make.width.equalTo(Main_Screen_Width/7);
     }];
-    
+     _WeddayBtn = [[UIButton alloc] init];
     [_WeddayBtn setTitleColor:RGB(245, 103, 53) forState:UIControlStateSelected];
     [_WeddayBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_WeddayBtn setTag:2];
@@ -56,7 +57,7 @@
         make.left.equalTo(_TuesdayBtn.mas_right);
         make.width.equalTo(Main_Screen_Width/7);
     }];
-    
+     _ThurthBtn = [[UIButton alloc] init];
     [_ThurthBtn setTitleColor:RGB(245, 103, 53) forState:UIControlStateSelected];
     [_ThurthBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_ThurthBtn setTag:3];
@@ -65,7 +66,7 @@
         make.left.equalTo(_WeddayBtn.mas_right);
         make.width.equalTo(Main_Screen_Width/7);
     }];
-    
+     _FriBtn = [[UIButton alloc] init];
     [_FriBtn setTitleColor:RGB(245, 103, 53) forState:UIControlStateSelected];
     [_FriBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_FriBtn setTag:4];
@@ -74,7 +75,7 @@
         make.left.equalTo(_ThurthBtn.mas_right);
         make.width.equalTo(Main_Screen_Width/7);
     }];
-    
+    _SatBtn = [[UIButton alloc] init];
     [_SatBtn setTitleColor:RGB(245, 103, 53) forState:UIControlStateSelected];
     [_SatBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_SatBtn setTag:5];
@@ -84,6 +85,7 @@
         make.width.equalTo(Main_Screen_Width/7);
     }];
     
+    _SunBtn = [[UIButton alloc] init];
     [_SunBtn setTitleColor:RGB(245, 103, 53) forState:UIControlStateSelected];
     [_SunBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_SunBtn setTag:6];

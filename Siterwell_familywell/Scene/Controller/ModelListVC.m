@@ -110,7 +110,10 @@
     self.datalistView.scrollEnabled = NO;
     [self.view addSubview:self.datalistView];
     [self.datalistView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(0);
+        make.top.equalTo(self.view.mas_top).offset(30);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
         make.centerY.equalTo(self.view.mas_centerY);
     }];
 }

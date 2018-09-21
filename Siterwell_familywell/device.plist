@@ -6,6 +6,8 @@
 	<dict>
 		<key>0214</key>
 		<string>%@_jtbj_icon</string>
+		<key>1214</key>
+		<string>%@_jtbj_icon</string>
 		<key>0201</key>
 		<string>%@_dtdzncz_icon</string>
 		<key>0213</key>
@@ -68,6 +70,8 @@
 	<key>names</key>
 	<dict>
 		<key>0214</key>
+		<string>调光模块</string>
+		<key>1214</key>
 		<string>调光模块</string>
 		<key>0201</key>
 		<string>双路开关</string>

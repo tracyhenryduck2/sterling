@@ -29,12 +29,12 @@
 
 -(void)initdata{
     _hourlist = [NSMutableArray new];
-    for(int i=0;i<23;i++){
+    for(int i=0;i<24;i++){
         [_hourlist addObject:[NSString stringWithFormat:@"%d",i ]];
     }
     
     _minlist = [NSMutableArray new];
-    for(int i=0;i<59;i++){
+    for(int i=0;i<60;i++){
         [_minlist addObject:[NSString stringWithFormat:@"%d",i ]];
     }
 }

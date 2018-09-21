@@ -337,13 +337,23 @@
 }
 
 - (void)onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid {
-    [devicemodel setDevTid:devTid];
-    [[DBDeviceManager sharedInstanced] insertDevice:devicemodel];
-    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
-    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-    if([currentgateway2 isEqualToString:devTid]){
-           [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDeviceSuccess" object:nil];
+    
+    if([devicemodel.device_name isEqualToString:@"STATUES"]){
+        
+    }else if([devicemodel.device_name isEqualToString:@"DEL"]){
+        [[DBDeviceManager sharedInstanced] deleteDevice:devicemodel.device_ID withDevTid:devTid];
     }
+    else{
+        [devicemodel setDevTid:devTid];
+        [[DBDeviceManager sharedInstanced] insertDevice:devicemodel];
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        if([currentgateway2 isEqualToString:devTid]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDeviceSuccess" object:nil];
+        }
+    }
+    
+
 }
 
 - (void)onUpdateOnCurrentSystemScene:(NSNumber *)currentmodel withDevTid:(NSString *)devTid {

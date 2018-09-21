@@ -230,11 +230,14 @@
     }else{
         GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
         
-        _flag_timer = YES;
-        ScynDeviceApi *deviceApi = [[ScynDeviceApi alloc] initWithDrivce:gatewaymodel.devTid andCtrlKey:gatewaymodel.ctrlKey DeviceStatus:[CRCqueueHelp getDeviceCRCContent:[[DBDeviceManager sharedInstanced] queryAllDevice:gatewaymodel.devTid]] ConnectHost:gatewaymodel.connectHost];
-        [deviceApi startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
-            NSLog(@"得到数据为%@",data);
-        }];
+        if(gatewaymodel!=nil){
+            _flag_timer = YES;
+            ScynDeviceApi *deviceApi = [[ScynDeviceApi alloc] initWithDrivce:gatewaymodel.devTid andCtrlKey:gatewaymodel.ctrlKey DeviceStatus:[CRCqueueHelp getDeviceCRCContent:[[DBDeviceManager sharedInstanced] queryAllDevice:gatewaymodel.devTid]] ConnectHost:gatewaymodel.connectHost];
+            [deviceApi startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+                NSLog(@"得到数据为%@",data);
+            }];
+        }
+
     }
 
 
