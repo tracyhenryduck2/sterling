@@ -13,7 +13,9 @@
 @property (strong, nonatomic) UICollectionView *datalistView;
 @property (nonatomic,assign) BOOL IsInput;
 @property (nonatomic,strong) RACSubject *delegate;
-
+@property (nonatomic,strong) NSMutableArray *inputarray;
+@property (nonatomic,strong) NSMutableArray *outputarray;
+@property (nonatomic,assign) BOOL lastObjectIsDelay;
 @end
 
 #endif /* ModelListVC_h */

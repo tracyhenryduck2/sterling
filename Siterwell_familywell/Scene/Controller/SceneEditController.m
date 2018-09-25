@@ -15,6 +15,8 @@
 #import "SetDelayController.h"
 #import "SetTimeController.h"
 #import "NormalStatusVC.h"
+#import "Single.h"
+#import "DBSceneManager.h"
 
 @interface SceneEditController()<UITableViewDelegate,UITableViewDataSource>
 
@@ -83,7 +85,12 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    //移除观察者 self
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)initdata{
@@ -139,11 +146,43 @@
                     ModelListVC *vc = [[ModelListVC alloc] init];
                     vc.title = NSLocalizedString(@"添加触发条件", nil);
                     vc.IsInput = YES;
+                    vc.inputarray = _inputList;
+                    vc.delegate = [RACSubject subject];
+                    [vc.delegate subscribeNext:^(id x) {
+                        SceneListItemData *tianjia = x;
+                        
+                        if([tianjia.type isEqualToString:@"time"]){
+                            [_inputList insertObject:tianjia atIndex:0];
+                        }else if([tianjia.type isEqualToString:@"click"]){
+                            if(_inputList.count>=2){
+                                SceneListItemData *first = [_inputList objectAtIndex:0];
+                                if([first.type isEqualToString:@"time"]){
+                                    [_inputList insertObject:tianjia atIndex:1];
+                                }else{
+                                    [_inputList insertObject:tianjia atIndex:0];
+                                }
+
+                            }else{
+                                [_inputList insertObject:tianjia atIndex:0];
+                            }
+                        }else{
+                            NSUInteger count = [_inputList count];
+                            [_inputList insertObject:tianjia atIndex:count-1];
+                        }
+
+                        [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+                    }];
                     [self.navigationController pushViewController:vc animated:YES];
                 }else if([data.type isEqualToString:@"time"]){
                     SetTimeController *vc = [[SetTimeController alloc] init];
                     vc.title = NSLocalizedString(@"定时", nil);
                     vc.data = data;
+                    vc.delegate = [RACSubject subject];
+                    [vc.delegate subscribeNext:^(id x) {
+                        SceneListItemData *data = x;
+                        [_inputList setObject:data atIndexedSubscript:0];
+                      [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+                    }];
                     [self.navigationController pushViewController:vc animated:YES];
                 }else if([data.type isEqualToString:@"click"]){
                     [MBProgressHUD showError:NSLocalizedString(@"无需设置", nil) ToView:self.view];
@@ -151,6 +190,17 @@
                     NormalStatusVC *vc = [[NormalStatusVC alloc] init];
                     vc.data = data;
                     vc.title = data.custmTitle;
+                    vc.delegate = [RACSubject subject];
+                    [vc.delegate subscribeNext:^(id x) {
+                        SceneListItemData *data = x;
+                        [_inputList enumerateObjectsUsingBlock:^(SceneListItemData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                            if([_inputList[idx].eqid intValue] == [data.eqid intValue]){
+                                *stop = YES;
+                                [_inputList setObject:data atIndexedSubscript:idx];
+                            }
+                        }];
+                       [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+                    }];
                     [self.navigationController pushViewController:vc animated:YES];
                 }
 
@@ -193,17 +243,62 @@
                 SceneListItemData *data = x;
                 if([data.type isEqualToString:@"add"]){
                     ModelListVC *vc = [[ModelListVC alloc] init];
-                    vc.title = data.custmTitle;
+                    vc.title = NSLocalizedString(@"添加执行动作", nil);;
                     vc.IsInput = NO;
+                    vc.outputarray = _outputList;
+                    NSInteger count  = [_outputList count];
+                    if(count >= 2){
+                        SceneListItemData *dd = [_outputList objectAtIndex:count-2];
+                        vc.lastObjectIsDelay = NO;
+                        if([dd.type isEqualToString:@"delay"]){
+                            vc.lastObjectIsDelay = YES;
+                        }
+                    }
+                    vc.delegate = [RACSubject subject];
+                    [vc.delegate subscribeNext:^(id x) {
+                        SceneListItemData *tianjia = x;
+                        
+                        if([tianjia.type isEqualToString:@"phone"]){
+                            [_outputList insertObject:tianjia atIndex:0];
+                        }else{
+                            NSUInteger count = [_outputList count];
+                            if(count >=2){
+                                SceneListItemData *last = [_outputList objectAtIndex:count - 2];
+                                if([last.type isEqualToString:@"delay"]){
+                                    last.eqid = tianjia.eqid;
+                                }
+                                [_outputList setObject:last atIndexedSubscript:count - 2];
+                            }
+
+                            [_outputList insertObject:tianjia atIndex:count - 1];
+                        }
+                        
+                        [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationLeft];
+                    }];
                     [self.navigationController pushViewController:vc animated:YES];
                 }else if([data.type isEqualToString:@"delay"]){
                     SetDelayController *vc = [[SetDelayController alloc] init];
                     vc.title = NSLocalizedString(@"延时", nil);
+                    vc.data = data;
+                    vc.delegate = [RACSubject subject];
+                    [vc.delegate subscribeNext:^(id x) {
+                        SceneListItemData *data = x;
+                        [_outputList setObject:data atIndexedSubscript:[Single sharedInstanced].indexOutPut];
+                        [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationLeft];
+                    }];
                     [self.navigationController pushViewController:vc animated:YES];
+                }else if([data.type isEqualToString:@"phone"]){
+                    [MBProgressHUD showError:NSLocalizedString(@"无需设置", nil) ToView:self.view];
                 }else{
                     NormalStatusVC *vc = [[NormalStatusVC alloc] init];
                     vc.data = data;
                     vc.title = data.custmTitle;
+                    vc.delegate = [RACSubject subject];
+                    [vc.delegate subscribeNext:^(id x) {
+                        SceneListItemData *data = x;
+                        [_outputList setObject:data atIndexedSubscript:[Single sharedInstanced].indexOutPut];
+                        [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationLeft];
+                    }];
                     [self.navigationController pushViewController:vc animated:YES];
                 }
 
@@ -214,6 +309,10 @@
                 int index = [x intValue];
                 [_outputList removeObjectAtIndex:index];
               [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationRight];
+            }];
+            cell.indexdelegate = [RACSubject subject];
+            [cell.indexdelegate subscribeNext:^(id x) {
+                [Single sharedInstanced].indexOutPut = [x intValue];
             }];
             return cell;
         }
@@ -308,16 +407,117 @@
 
 #pragma -mark method
 -(void)backfinish{
+    NSMutableArray *inputarraynew = [NSMutableArray new];
+    for(int i=0;i<_inputList.count-1;i++){
+        SceneListItemData *d = [_inputList objectAtIndex:i];
+        [inputarraynew addObject:d];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)clickItem{
+    [self check];
+}
+
+-(void)onAnswerOK{
     
 }
 
+-(void)check{
+    [self.view endEditing:YES];
+    if([NSString isBlankString:self.titleTextFiled.text]){
+        [MBProgressHUD showError:NSLocalizedString(@"请输入情景名称", nil) ToView:self.view];
+        return;
+    }
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    BOOL hasflag = [[DBSceneManager sharedInstanced] HasScene:currentgateway2 withName:self.titleTextFiled.text];
+    
+    if (hasflag && self.mid==nil) {
+        [MBProgressHUD showError:NSLocalizedString(@"输入情景名称重复", nil) ToView:self.view];
+        return;
+    }
+    
+    if ([self.titleTextFiled.text containsString:@"@"] || [self.titleTextFiled.text containsString:@"$"]) {
+        [MBProgressHUD showError:NSLocalizedString(@"名称含有非法字符", nil) ToView:self.view];
+        return;
+    }
+    
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSData *namedata = [_titleTextFiled.text dataUsingEncoding:enc];
+    if (namedata.length >= 15) {
+        [MBProgressHUD showError:NSLocalizedString(@"情景名称过长", nil) ToView:self.view];
+        return;
+    }
+    
+    
+    
+    if(_inputList.count<=1){
+        [MBProgressHUD showError:NSLocalizedString(@"请输入触发条件", nil) ToView:self.view];
+        return;
+    }
+    
+    if(_outputList.count<=1){
+        [MBProgressHUD showError:NSLocalizedString(@"请输入执行动作", nil) ToView:self.view];
+        return;
+    }
+    
+    if(_outputList.count>=2 && [[_outputList objectAtIndex:_outputList.count-2].type isEqualToString:@"delay"]){
+        [MBProgressHUD showError:NSLocalizedString(@"延时后必须添加执行动作", nil) ToView:self.view];
+        return;
+    }
+}
 
-
-
-
-
+//插空法获取情景id
+-(int)getmid{
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    NSMutableArray * list = [[DBSceneManager sharedInstanced] queryAllSceneId:currentgateway2];
+    
+    if(list.count==0){
+        return 1;
+    }else if(list.count==1){
+        if([[list objectAtIndex:0] intValue] ==1){
+            return 2;
+        }else{
+            return 1;
+        }
+    }else{
+        int m = 0;
+        for(int i=0;i<list.count-1;i++){
+            
+            
+            if(i==0){
+                
+                int d = [[list objectAtIndex:i] intValue] ;
+                if(d!=1){
+                    m = 1;
+                    break;
+                }
+                else {
+                    if( ([[list objectAtIndex:i] intValue] +1) < [[list objectAtIndex:i+1] intValue]){
+                        m = [[list objectAtIndex:i] intValue]+1;
+                        break;
+                    }else{
+                        m = [[list objectAtIndex:i] intValue]+2;
+                    }
+                }
+                
+                
+            }else{
+                if( ([[list objectAtIndex:i] intValue]+1) < [[list objectAtIndex:i+1] intValue]){
+                    m = [[list objectAtIndex:i] intValue]+1;
+                    break;
+                }else{
+                    m = [[list objectAtIndex:i] intValue]+2;
+                }
+                
+            }
+            
+            
+        }
+        return m;
+    }
+}
 @end

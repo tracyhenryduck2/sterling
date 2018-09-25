@@ -11,7 +11,7 @@
 @interface Single:NSObject
 
 @property (nonatomic,assign) int command;
-
+@property (nonatomic,assign) int indexOutPut; //记录情景编辑时的索引号
 +(instancetype)sharedInstanced;
 
 @end

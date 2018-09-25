@@ -11,7 +11,7 @@
 @interface WeekCell : UITableViewCell
 @property(copy,nonatomic) NSString *week;
 @property(strong,nonatomic) void (^dayCellSelected)(NSInteger tag);
-
+-(NSString *)getWeek;
 @end
 
 #endif /* WeekCell_h */

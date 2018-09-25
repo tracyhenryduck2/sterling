@@ -8,8 +8,10 @@
 
 #ifndef SetDelayController_h
 #define SetDelayController_h
+#import "SceneListItemData.h"
 @interface SetDelayController:BaseVC
 @property (nonatomic , strong) RACSubject *delegate;
+@property (nonatomic , strong) SceneListItemData *data;
 @end
 
 #endif /* SetDelayController_h */

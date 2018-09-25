@@ -74,6 +74,11 @@
     if (_delegate) {
        [_delegate sendNext:data];
     }
+    
+    if(_indexdelegate){
+        
+        [_indexdelegate sendNext: [NSNumber numberWithInteger:indexPath.row] ];
+    }
 
 }
 

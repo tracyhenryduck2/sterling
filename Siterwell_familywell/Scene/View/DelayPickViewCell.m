@@ -1,22 +1,22 @@
 //
-//  PickViewCell.m
+//  DelayPickViewCell.m
 //  Siterwell_familywell
 //
 //  Created by TracyHenry on 2018/9/10.
 //  Copyright © 2018年 iMac. All rights reserved.
 //
 
-#import "PickViewCell.h"
+#import "DelayPickViewCell.h"
 
-@interface PickViewCell()
-
-@property(nonatomic,strong) NSMutableArray *hourlist;
+@interface DelayPickViewCell()
 
 @property(nonatomic,strong) NSMutableArray *minlist;
 
+@property(nonatomic,strong) NSMutableArray *seclist;
+
 @end
 
-@implementation PickViewCell
+@implementation DelayPickViewCell
 
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -28,14 +28,14 @@
 }
 
 -(void)initdata{
-    _hourlist = [NSMutableArray new];
-    for(int i=0;i<24;i++){
-        [_hourlist addObject:[NSString stringWithFormat:@"%02d",i ]];
-    }
-    
     _minlist = [NSMutableArray new];
     for(int i=0;i<60;i++){
         [_minlist addObject:[NSString stringWithFormat:@"%02d",i ]];
+    }
+    
+    _seclist = [NSMutableArray new];
+    for(int i=0;i<60;i++){
+        [_seclist addObject:[NSString stringWithFormat:@"%02d",i ]];
     }
 }
 
@@ -59,11 +59,11 @@
 
 - (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if(component == 0){
-      return  _hourlist.count;
+      return  _minlist.count;
     }else if(component == 1){
         return 1;
     }else{
-      return _minlist.count;
+      return _seclist.count;
     }
     
 }
@@ -83,11 +83,11 @@
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     if(component == 0){
-        return [_hourlist objectAtIndex:row];
+        return [_minlist objectAtIndex:row];
     }else if(component == 1){
         return @":";
     }else{
-        return [_minlist objectAtIndex:row];
+        return [_seclist objectAtIndex:row];
     }
 
 }

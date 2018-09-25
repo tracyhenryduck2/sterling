@@ -126,8 +126,8 @@
     if (![week isEqualToString:@"00"]) {
         SceneListItemData *timeItem = [[SceneListItemData alloc] init];
         timeItem.week = week;
-        timeItem.hour = [NSString stringWithFormat:@"%ld",strtoul([hour UTF8String],0,16)];
-        timeItem.minute = [NSString stringWithFormat:@"%ld",strtoul([minute UTF8String],0,16)];
+        timeItem.hour = [NSString stringWithFormat:@"%02ld",strtoul([hour UTF8String],0,16)];
+        timeItem.minute = [NSString stringWithFormat:@"%02ld",strtoul([minute UTF8String],0,16)];
         timeItem.image = @"blue_clock_icon";
         timeItem.type = @"time";
         timeItem.title = @"定时";
@@ -198,7 +198,8 @@
         
         NSString *minute = [deviceString substringWithRange:NSMakeRange(0, 2)];
         NSString *second = [deviceString substringWithRange:NSMakeRange(2, 2)];
-        
+        NSString *deviceId = [deviceString substringWithRange:NSMakeRange(4, 4)];
+        NSInteger deviceId2 =strtoul([deviceId UTF8String],0,16);
         if (![minute isEqualToString:@"00"] || ![second isEqualToString:@"00"]) {
             SceneListItemData *delyItem = [[SceneListItemData alloc] init];
             delyItem.minute = [NSString stringWithFormat:@"%ld",strtoul([minute UTF8String],0,16)];
@@ -207,10 +208,10 @@
             delyItem.type = @"delay";
             delyItem.title = @"延时";
             delyItem.custmTitle = [NSString stringWithFormat:@"%@:%@",delyItem.minute,delyItem.second];
+            delyItem.eqid = [NSNumber numberWithInteger:deviceId2];
             [array addObject:delyItem];
         }
-        NSString *deviceId = [deviceString substringWithRange:NSMakeRange(4, 4)];
-        NSInteger deviceId2 =strtoul([deviceId UTF8String],0,16);
+
         NSString *deviceCount = [deviceString substringWithRange:NSMakeRange(8, 8)];
         if (deviceId2 == 0) {
             SceneListItemData *deviceItem = [[SceneListItemData alloc] init];

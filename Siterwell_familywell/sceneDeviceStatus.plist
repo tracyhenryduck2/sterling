@@ -2,6 +2,66 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>气体探测器</key>
+    <array>
+        <dict>
+            <key>value</key>
+            <string>00005500</string>
+            <key>name</key>
+            <string>报警</string>
+        </dict>
+        <dict>
+            <key>value</key>
+            <string>0000BB00</string>
+            <key>name</key>
+            <string>测试报警</string>
+        </dict>
+    </array>
+	<key>水感报警器</key>
+	<array>
+		<dict>
+			<key>value</key>
+			<string>00005500</string>
+			<key>name</key>
+			<string>报警</string>
+		</dict>
+		<dict>
+			<key>value</key>
+			<string>0000BB00</string>
+			<key>name</key>
+			<string>测试报警</string>
+		</dict>
+	</array>
+	<key>热感报警器</key>
+	<array>
+		<dict>
+			<key>value</key>
+			<string>00005500</string>
+			<key>name</key>
+			<string>报警</string>
+		</dict>
+		<dict>
+			<key>value</key>
+			<string>0000BB00</string>
+			<key>name</key>
+			<string>测试报警</string>
+		</dict>
+	</array>
+	<key>SM报警器</key>
+	<array>
+		<dict>
+			<key>value</key>
+			<string>00005500</string>
+			<key>name</key>
+			<string>报警</string>
+		</dict>
+		<dict>
+			<key>value</key>
+			<string>0000BB00</string>
+			<key>name</key>
+			<string>测试报警</string>
+		</dict>
+	</array>
 	<key>情景开关</key>
 	<array>
 		<dict>

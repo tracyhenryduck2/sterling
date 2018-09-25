@@ -24,6 +24,8 @@
 #define ControllDevice 1
 #define ChooseSystemScene 6
 #define ChooseSystemScene_Home -6
+#define AddScene 8
+#define EditScene 9
 #define ANWSER_OK  11
 #define DEVICE_NAME_UPLOAD 17
 #define DEVICE_STATUS_UPLOAD 19

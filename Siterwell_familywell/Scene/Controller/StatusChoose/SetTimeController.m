@@ -9,6 +9,7 @@
 #import "SetTimeController.h"
 #import "PickViewCell.h"
 #import "WeekCell.h"
+#import "BatterHelp.h"
 
 @interface SetTimeController()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) UIPickerView *pickview;
@@ -55,11 +56,16 @@
         if (indexPath.row == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"titleViewCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.text = NSLocalizedString(@"分/秒", nil);
+            cell.textLabel.text = NSLocalizedString(@"时/分", nil);
             cell.textLabel.font = SYSTEMFONT(13);
             return cell;
         }else{
             PickViewCell *cell = [[PickViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"pickViewCell"];
+            self.pickview = cell.pickview;
+            if(self.data!=nil){
+                [cell.pickview selectRow:[self.data.hour intValue] inComponent:0 animated:NO];
+                [cell.pickview selectRow:[self.data.minute intValue] inComponent:2 animated:NO];
+            }
             return cell;
         }
         
@@ -72,6 +78,10 @@
             return cell;
         }else{
             WeekCell *cell = [[WeekCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"weekViewCell"];
+            if(self.data!=nil){
+                NSString *binweek = [BatterHelp getBinaryByhex:self.data.week];
+                cell.week = binweek;
+            }
              return cell;
         }
     }
@@ -103,9 +113,16 @@
 // 自动布局后cell的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if(indexPath.row == 1){
-        return 160;
+    if (indexPath.section == 0) {
+        if (indexPath.row != 0) {
+            return 160;
+        }
+    }else if(indexPath.section == 1){
+        if (indexPath.row != 0) {
+            return 80;
+        }
     }
+    
     return UITableViewAutomaticDimension;
 }
 
@@ -117,7 +134,32 @@
 #pragma -mark method
 
 -(void)confirm{
+    self.data = [SceneListItemData new];
+    self.data.image = @"blue_clock_icon";
+    self.data.type = @"time";
+    self.data.title = @"定时";
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+    WeekCell *vd =(WeekCell *)[[self tableview] cellForRowAtIndexPath:indexPath];
     
+    NSString *shi = [BatterHelp getDecimalBybinary:[vd getWeek]];
+    if([shi isEqualToString:@"0"]){
+        [MBProgressHUD showError:NSLocalizedString(@"请选择星期", nil) ToView:self.view];
+        return;
+    }
+    NSString *dsa = [BatterHelp gethexBybinary:[shi intValue]];
+    NSString *last = @"";
+    for(int i=0;i<(2-dsa.length);i++){
+       last = [last stringByAppendingString:@"0"];
+    }
+   last = [last stringByAppendingString:dsa];
+    self.data.week = last;
+    NSInteger hour = [self.pickview selectedRowInComponent:0];
+    NSInteger min =  [self.pickview selectedRowInComponent:2];
+    self.data.hour = [NSString stringWithFormat:@"%02ld",hour];
+    self.data.minute = [NSString stringWithFormat:@"%02ld",min];
+    self.data.custmTitle = [NSString stringWithFormat:@"%@:%@",self.data.hour,self.data.minute];
+    [self.delegate sendNext:self.data];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

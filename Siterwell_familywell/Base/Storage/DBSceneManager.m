@@ -124,4 +124,34 @@ static NSString * const scenetable = @"scenetable";
         [db executeUpdate:sql];
     }];
 }
+
+- (BOOL)HasScene:(NSString *)devTid withName:(NSString *)scenename{
+    
+    __block BOOL flag = NO;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where name = '%@' and devTid = '%@'", scenetable,scenename,devTid];
+        FMResultSet *rs = [db executeQuery:sql];
+        while ([rs next]) {
+            flag = YES;
+        }
+        [rs close];
+    }];
+    return flag;
+}
+
+- (NSMutableArray *)queryAllSceneId:(NSString *)devTid{
+    
+    
+    NSMutableArray *allScene = [NSMutableArray array];
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where  devTid = '%@' order by mid",scenetable,devTid]];
+        while ([rs next]) {
+            NSNumber * mid = [NSNumber numberWithInt:[rs intForColumn:@"mid"]];
+            [allScene addObject:mid];
+        }
+    }];
+    return allScene;
+}
+
 @end

@@ -13,6 +13,7 @@
 #import "ItemDataHelp.h"
 #import "SetTimeController.h"
 #import "SetDelayController.h"
+#import "NormalStatusVC.h"
 
 @interface ModelListVC()
 @property (nonatomic,strong) NSMutableArray <SceneListItemData *>* itemDatas;
@@ -59,6 +60,26 @@
                 }
             }
         }
+        
+        if(_inputarray!=nil){
+            for(SceneListItemData *data in _inputarray){
+                for(SceneListItemData *d in _itemDatas){
+                    if(data.eqid !=nil && [data.eqid intValue] == [d.eqid intValue]){
+                        [_itemDatas removeObject:d];
+                        break;
+                    }else{
+                        if([data.type isEqualToString:d.type] && [d.type isEqualToString:@"time"]){
+                            [_itemDatas removeObject:d];
+                            break;
+                        }else if([data.type isEqualToString:d.type] && [d.type isEqualToString:@"click"]){
+                            [_itemDatas removeObject:d];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
     }else{
         SceneListItemData *item1 = [[SceneListItemData alloc] init];
         item1.title = @"手机通知";
@@ -69,7 +90,7 @@
         
         SceneListItemData *item2 = [[SceneListItemData alloc] init];
         item2.title = @"延时";
-        item1.type = @"delay";
+        item2.type = @"delay";
         item2.custmTitle = NSLocalizedString(@"延时", nil);
         item2.image = @"blue_ys_icon";
         [_itemDatas addObject:item2];
@@ -88,6 +109,24 @@
                     SceneListItemData *item = [ItemDataHelp ItemDataToSceneListItemData:model];
                     [_itemDatas addObject:item];
                     break;
+                }
+            }
+        }
+        
+        if(_outputarray!=nil){
+            for(SceneListItemData *data in _outputarray){
+                if([data.type isEqualToString:@"phone"]){
+                    [_itemDatas removeObjectAtIndex:0];
+                    break;
+                }
+            }
+            
+            if(_lastObjectIsDelay == YES){
+                for(SceneListItemData *da in _itemDatas){
+                    if([da.type isEqualToString:@"delay"]){
+                        [_itemDatas removeObject:da];
+                        break;
+                    }
                 }
             }
         }
@@ -151,9 +190,47 @@
     }else if([data.type isEqualToString:@"time"]){
         SetTimeController *vc = [[SetTimeController alloc] init];
         vc.title = NSLocalizedString(@"定时", nil);
+        vc.delegate = [RACSubject subject];
+        @weakify(self);
+        [vc.delegate subscribeNext:^(id x) {
+            @strongify(self);
+            SceneListItemData *scenelistItemdata = x;
+            [self.delegate sendNext:scenelistItemdata];
+            UIViewController *viewCtl = self.navigationController.viewControllers[1];
+            [self.navigationController popToViewController:viewCtl animated:YES];
+        }];
         [self.navigationController pushViewController:vc animated:YES];
     }else if([data.type isEqualToString:@"delay"]){
         SetDelayController *vc = [[SetDelayController alloc] init];
+        vc.title = NSLocalizedString(@"延时", nil);
+        vc.delegate = [RACSubject subject];
+        @weakify(self);
+        [vc.delegate subscribeNext:^(id x) {
+            @strongify(self);
+            SceneListItemData *scenelistItemdata = x;
+            [self.delegate sendNext:scenelistItemdata];
+            UIViewController *viewCtl = self.navigationController.viewControllers[1];
+            [self.navigationController popToViewController:viewCtl animated:YES];
+        }];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if([data.type isEqualToString:@"phone"]){
+        [self.delegate sendNext:data];
+        UIViewController *viewCtl = self.navigationController.viewControllers[1];
+        [self.navigationController popToViewController:viewCtl animated:YES];
+    }
+    else {
+        NormalStatusVC *vc = [[NormalStatusVC alloc] init];
+        vc.title = data.custmTitle;
+        vc.data = data;
+        vc.delegate = [RACSubject subject];
+        @weakify(self);
+        [vc.delegate subscribeNext:^(id x) {
+         @strongify(self);
+            SceneListItemData *scenelistItemdata = x;
+            [self.delegate sendNext:scenelistItemdata];
+            UIViewController *viewCtl = self.navigationController.viewControllers[1];
+            [self.navigationController popToViewController:viewCtl animated:YES];
+        }];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
