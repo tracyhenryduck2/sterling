@@ -144,8 +144,13 @@
                 } else {
                     oo = [BatterHelp gethexBybinary:(scene)];
                 }
+                NSString * ds = @"";
+                if([id2 integerValue] <=2){
+                    ds =     [NameHelper getASCIIFromName:@""];
+                }else{
+                    ds =     [NameHelper getASCIIFromName:name];
+                }
                 
-                NSString * ds = [NameHelper getASCIIFromName:name];
                 
                 NSString * fullCode = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@", oooo,@"0",id2,ds,btnNum,oo,shortcut,sceneCode,color ];
                 getSceneGroupCRC = [getSceneGroupCRC stringByAppendingString:[SystemSceneModel getCRCFromContent:fullCode]];
@@ -215,5 +220,52 @@
     }
     
     return nil;
+}
+
++(NSString *)getTimerCRCS:(NSMutableArray *)timers{
+    
+    NSString *SceneTimerListContent =@"";
+    if (timers.count > 0) {
+        
+        int maxId = 0;
+        for (TimerModel *model in timers) {
+            if ([model.timerid intValue] > maxId) {
+                maxId = [model.timerid intValue];
+            }
+        }
+        SceneTimerListContent = [BatterHelp gethexBybinary:(maxId * 2 + 4)];
+    }else {
+        SceneTimerListContent = @"0";
+    }
+    long scene_count = SceneTimerListContent.length;
+    for (int i = 0; i < 4 - scene_count; i++) {
+        SceneTimerListContent = [@"0" stringByAppendingString:SceneTimerListContent];
+    }
+    
+    //crc
+    // 自定义情景CRC补位
+    int arrayIndex = 0;
+    if (timers.count > 0) {
+        
+        int maxId = 0;
+        
+        for (TimerModel *model in timers) {
+            if ([model.timerid intValue] > maxId) {
+                maxId = [model.timerid intValue];
+            }
+        }
+        
+        for (int i = 0; i <= maxId; i++) {
+            TimerModel *model = timers[arrayIndex];
+            if (i == [model.timerid intValue]) {
+                SceneTimerListContent = [BatterHelp getTimerSceneCRCCode:model.time];
+                arrayIndex ++;
+            }else{
+                SceneTimerListContent = [SceneTimerListContent stringByAppendingString:@"0000"];
+            }
+        }
+    }
+    
+    return SceneTimerListContent;
 }
 @end

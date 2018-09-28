@@ -139,7 +139,13 @@
               [self getChooseGateway];
             }
         }else{
-            [self getChooseGateway];
+            [[DBGatewayManager sharedInstanced] deleteGatewayTable];
+            NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+            [config setObject:nil forKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
+             [config synchronize];
+            UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            AppDelegateInstance.window.rootViewController = [uistoryboard instantiateInitialViewController];
+        
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self getChooseGateway];

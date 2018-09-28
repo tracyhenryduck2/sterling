@@ -10,13 +10,14 @@
 #define TimerModel_h
 #import "JSONModel+HekrDic.h"
 @interface TimerModel:JSONModel
-
-@property (nonatomic, strong) NSString *timerid;
-@property (nonatomic, assign) NSInteger enable;
-@property (nonatomic,strong) NSString * sid;
-@property (nonatomic,strong) NSString * week;
-@property (nonatomic,strong) NSString * hour;
-@property (nonatomic,strong) NSString * min;
+@property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSNumber<Ignore> *timerid;
+@property (nonatomic, assign) NSNumber<Ignore> *enable;
+@property (nonatomic,strong) NSNumber<Ignore> * sid;
+@property (nonatomic,strong) NSString<Ignore> * week;
+@property (nonatomic,strong) NSString<Ignore> * hour;
+@property (nonatomic,strong) NSString<Ignore> * min;
+@property (nonatomic,strong) NSString<Ignore> *name;
 @property(nonatomic,assign) NSString<Ignore> * devTid;
 @end
 

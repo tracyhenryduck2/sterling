@@ -302,6 +302,8 @@
     [model setSystemname:_titleTextFiled.text];
     [model setSence_group:(_scene_type == nil?[NSNumber numberWithInt:[self getsid]]:_scene_type)];
     NSString * contentcode = [ContentHepler getContentFromSystem:model withSceneRelationShip:_array_ship withGS584Relations:_array_gs584];
+    NSString *crc = [SystemSceneModel getCRCFromContent:contentcode];
+    contentcode = [contentcode stringByAppendingString:crc];
     [Single sharedInstanced].command = AddSystemScene;
     GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
     AddSystemSceneApi *add = [[AddSystemSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneContent:contentcode];

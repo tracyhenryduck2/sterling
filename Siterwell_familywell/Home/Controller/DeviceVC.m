@@ -126,6 +126,14 @@
         [self countine];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    if([NSString isBlankString:currentgateway2]){
+        [MBProgressHUD showError:NSLocalizedString(@"请选择网关", nil) ToView:self.view];
+    }
+}
+
 -(void)viewDidDisappear:(BOOL)animated{
     [self pause];
 }

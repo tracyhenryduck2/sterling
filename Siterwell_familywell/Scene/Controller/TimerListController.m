@@ -6,18 +6,142 @@
 //  Copyright © 2018年 iMac. All rights reserved.
 //
 #import "TimerListController.h"
+#import "TimerSwitchCell.h"
+#import "TimerModel.h"
+#import "TimerEditController.h"
+#import "DBTimerManager.h"
+#import "Single.h"
+#import "SyncTimerSwitchApi.h"
+#import "DBGatewayManager.h"
+#import "CRCqueueHelp.h"
 
-@interface TimerListController()
-
+@interface TimerListController()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) UITableView *table;
+@property (nonatomic,strong) NSMutableArray <TimerModel *>*timer_arry;
+@property (nonatomic,assign) BOOL refresh;
 @end
 
 @implementation TimerListController
 
-#pragma -mark
+#pragma -mark life
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"定时", nil);
+    self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(gotoAdd) Title:NSLocalizedString(@"添加", nil) withTintColor:ThemeColor];
+    _timer_arry = [NSMutableArray new];
+    
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    
+    _timer_arry = [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
+    
+    
+    [self table];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onFreshTimer) name:@"refreshtimer" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
+    
+    if(!_refresh){
+        _refresh = YES;
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+
+        NSMutableArray *timerss= [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
+        
+       NSString *timerlistcontent = [CRCqueueHelp getTimerCRCS:timerss];
+        
+        SyncTimerSwitchApi *api = [[SyncTimerSwitchApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost Content:timerlistcontent];
+        [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+            
+        }];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    //移除观察者 self
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark -lazy
+
+- (UITableView *)table {
+    
+    if(!_table){
+        _table= [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _table.dataSource = self;
+        _table.delegate = self;
+        _table.rowHeight = 70;
+        _table.bounces = NO;
+        _table.separatorInset = UIEdgeInsetsZero;
+        _table.tableFooterView = [[UIView alloc] init];
+        _table.backgroundColor = RGB(239, 239, 243);
+        [self.view addSubview:_table];
+        [_table mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(0);
+            make.top.equalTo(64);
+        }];
+    }
+    
+    return _table;
+}
+
+#pragma mark -delegate
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+        NSString *cellId = @"cell";
+        TimerSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[TimerSwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+        }
+        [cell setWeek:@"68"];
+
+        return cell;
+    
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+   return _timer_arry.count;
+    
 }
 
 
 
+#pragma -mark method
+-(void)gotoAdd{
+    TimerEditController *edit = [[TimerEditController alloc] init];
+    [self.navigationController pushViewController:edit animated:YES];
+}
+
+-(void)onFreshTimer{
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    
+    _timer_arry = [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
+}
+
+-(void)onAnswerOK{
+    if([Single sharedInstanced].command == AddTimerSwitch){
+        [Single sharedInstanced].command = -1;
+        
+    }
+}
 @end

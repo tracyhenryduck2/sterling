@@ -17,7 +17,11 @@
 #import "NormalStatusVC.h"
 #import "Single.h"
 #import "DBSceneManager.h"
-
+#import "ContentHepler.h"
+#import "DBGatewayManager.h"
+#import "AddSceneApi.h"
+#import "DBSystemSceneManager.h"
+#import "DBSceneReManager.h"
 @interface SceneEditController()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITextField *titleTextFiled;
@@ -60,6 +64,7 @@
     [_inputList enumerateObjectsUsingBlock:^(SceneListItemData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         @strongify(self)
         if([_inputList[idx].type isEqualToString:@"empty"]){
+            * stop = YES;
             [MBProgressHUD showError:NSLocalizedString(@"有设备被删除", nil) ToView:self.view];
             [self.navigationController popViewControllerAnimated:YES];
             return;
@@ -70,6 +75,7 @@
     [_outputList enumerateObjectsUsingBlock:^(SceneListItemData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         @strongify(self)
         if([_outputList[idx].type isEqualToString:@"empty"]){
+            * stop = YES;
             [MBProgressHUD showError:NSLocalizedString(@"有设备被删除", nil) ToView:self.view];
             [self.navigationController popViewControllerAnimated:YES];
             return;
@@ -112,6 +118,7 @@
         _inputList = [_sceneModel getInDeviceArray:currentgateway2];
         _outputList = [_sceneModel getOutDeviceArray:currentgateway2];
         _trigger_style = [_sceneModel getSelectType];
+        _initcode = [ContentHepler getContentFromScene:_outputList inputAraary:_inputList type:_trigger_style name:_sceneModel.scene_name sceneid:_sceneModel.scene_type];
         SceneListItemData *ds = [[SceneListItemData alloc] init];
         [ds setType:@"add"];
         ds.custmTitle = NSLocalizedString(@"添加", nil);
@@ -407,13 +414,30 @@
 
 #pragma -mark method
 -(void)backfinish{
-    NSMutableArray *inputarraynew = [NSMutableArray new];
-    for(int i=0;i<_inputList.count-1;i++){
-        SceneListItemData *d = [_inputList objectAtIndex:i];
-        [inputarraynew addObject:d];
+    if(_mid != nil){
+
+        NSString * contentcode = [ContentHepler getContentFromScene:_outputList inputAraary:_inputList type:_trigger_style name:_titleTextFiled.text sceneid:_mid];
+        
+        if(![contentcode isEqualToString:_initcode]){
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"是否保存", nil) preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+                [self.navigationController popViewControllerAnimated:YES];
+                
+                
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"保存", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self check];
+            }]];
+            [self.navigationController presentViewController:alert animated:YES completion:nil];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+        
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
     }
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)clickItem{
@@ -421,7 +445,30 @@
 }
 
 -(void)onAnswerOK{
-    
+    if([Single sharedInstanced].command == AddScene){
+        [Single sharedInstanced].command = -1;
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        NSNumber *currentsid = [[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene:currentgateway2];
+        int mids = (_mid==nil?[self getmid]:[_mid intValue]);
+        
+       NSString *content = [ContentHepler getContentFromScene:_outputList inputAraary:_inputList type:_trigger_style name:_titleTextFiled.text sceneid:[NSNumber numberWithInt:mids]];
+        
+        SceneModel *sc = [[SceneModel alloc] init];
+        sc.devTid = currentgateway2;
+        sc.scene_content = content;
+        sc.scene_name = _titleTextFiled.text;
+        sc.scene_type = [NSNumber numberWithInt:mids];
+        [[DBSceneManager sharedInstanced] insertScene:sc];
+        
+        SceneRelationShip *ship = [[SceneRelationShip alloc] init];
+        ship.devTid = currentgateway2;
+        ship.mid = [NSNumber numberWithInt:mids];
+        ship.sid = currentsid;
+        [[DBSceneReManager sharedInstanced] insertRelation:ship];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void)check{
@@ -467,6 +514,21 @@
         [MBProgressHUD showError:NSLocalizedString(@"延时后必须添加执行动作", nil) ToView:self.view];
         return;
     }
+    
+    int zhongmid = (_mid==nil?[self getmid]:[_mid intValue]);
+    
+    NSString *content = [ContentHepler getContentFromScene:_outputList inputAraary:_inputList type:_trigger_style name:_titleTextFiled.text sceneid:[NSNumber numberWithInt:zhongmid]];
+    NSString *crc = [SceneModel getCRCFromContent:content];
+    content = [content stringByAppendingString:crc];
+
+    [Single sharedInstanced].command = AddScene;
+    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    AddSceneApi *add = [[AddSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneContent:content];
+    [add startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+
+    }];
+    
+    
 }
 
 //插空法获取情景id

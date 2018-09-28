@@ -125,4 +125,20 @@
         [db executeUpdate:sql];
     }];
 }
+
+- (BOOL)HasRe:(NSString *)devTid withMid:(NSNumber *)mid withSid:(NSNumber *)sid {
+    
+    __block BOOL flag = NO;
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * from %@ where mid = %d annd sid = %d and devTid = '%@'", scenerelationshiptable,[mid intValue],[sid intValue],devTid];
+        FMResultSet *rs = [db executeQuery:sql];
+        while ([rs next]) {
+            flag = YES;
+        }
+        [rs close];
+    }];
+    return flag;
+}
+
 @end

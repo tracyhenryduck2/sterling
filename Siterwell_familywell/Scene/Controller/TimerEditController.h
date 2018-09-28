@@ -8,6 +8,9 @@
 
 #ifndef TimerEditController_h
 #define TimerEditController_h
+@interface TimerEditController:BaseVC
+@property(nonatomic,strong) NSNumber *timerid;
 
+@end
 
 #endif /* TimerEditController_h */

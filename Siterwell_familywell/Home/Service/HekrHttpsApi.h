@@ -39,6 +39,9 @@
 #define SyncDevice 29
 #define SyncDeviceName 30
 #define SyncScenes 31
+#define AddTimerSwitch 34
+#define SyncTimerSwitch 35
+#define DeleteTimerSwitch 37
 #define TIMER_UPLOAD 36
 
 #endif /* HekrServiceApi_h */

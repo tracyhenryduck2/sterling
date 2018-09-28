@@ -50,7 +50,11 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    if([NSString isBlankString:currentgateway2]){
+        [MBProgressHUD showError:NSLocalizedString(@"请选择网关", nil) ToView:self.view];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -218,12 +222,20 @@
         UIView *nilView=[[UIView alloc] initWithFrame:CGRectZero];
         return nilView;
     }else{
-        _sceneheaderview = [[SceneHeaderView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 40)];
-        _sceneheaderview.backgroundColor = [UIColor whiteColor];
-        [_sceneheaderview.btn_add_scene addTarget:self
-                              action:@selector(BtnClick:)
-                    forControlEvents:UIControlEventTouchUpInside];
-        return _sceneheaderview;
+        
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        if([NSString isBlankString:currentgateway2]){
+            UIView *nilView=[[UIView alloc] initWithFrame:CGRectZero];
+            return nilView;
+        }else{
+            _sceneheaderview = [[SceneHeaderView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 40)];
+            _sceneheaderview.backgroundColor = [UIColor whiteColor];
+            [_sceneheaderview.btn_add_scene addTarget:self
+                                               action:@selector(BtnClick:)
+                                     forControlEvents:UIControlEventTouchUpInside];
+            return _sceneheaderview;
+        }
     }
 
 }
@@ -279,13 +291,27 @@
 }
 
 -(void)gotoSystemSceneAdd{
-    SystemSceneEditController *systemSceneController = [[SystemSceneEditController alloc] init];
-    [self.navigationController pushViewController:systemSceneController animated:YES];
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    if([NSString isBlankString:currentgateway2]){
+        [MBProgressHUD showError:NSLocalizedString(@"请选择网关", nil) ToView:self.view];
+    }else{
+        SystemSceneEditController *systemSceneController = [[SystemSceneEditController alloc] init];
+        [self.navigationController pushViewController:systemSceneController animated:YES];
+    }
+
 }
 
 -(void)gototimerlist{
-    TimerListController *timercv = [[TimerListController alloc] init];
-    [self.navigationController pushViewController:timercv animated:YES];
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    if([NSString isBlankString:currentgateway2]){
+        [MBProgressHUD showError:NSLocalizedString(@"请选择网关", nil) ToView:self.view];
+    }else{
+        TimerListController *timercv = [[TimerListController alloc] init];
+        [self.navigationController pushViewController:timercv animated:YES];
+    }
+
 }
 
 -(void)refresh{

@@ -60,8 +60,12 @@
     GatewayModel * gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
     NSMutableArray <ItemData *> *dsa = [[DBDeviceManager sharedInstanced] queryAllTHCheck:currentgateway2];
     self.weather_marquee.tempAndHumArray=dsa;
-    
-    [[self titlbtn] setTitle:[NSString stringWithFormat:@"%@(%@)",([gateway.deviceName isEqualToString:@"报警器"]?NSLocalizedString(@"我的家", nil):gateway.deviceName),[gateway.online isEqualToString:@"1"]?NSLocalizedString(@"在线", nil):NSLocalizedString(@"离线", nil)]   forState:UIControlStateNormal];
+    if(gateway == nil){
+        [[self titlbtn] setTitle:@"" forState:UIControlStateNormal];
+    }else{
+        [[self titlbtn] setTitle:[NSString stringWithFormat:@"%@(%@)",([gateway.deviceName isEqualToString:@"报警器"]?NSLocalizedString(@"我的家", nil):gateway.deviceName),[gateway.online isEqualToString:@"1"]?NSLocalizedString(@"在线", nil):NSLocalizedString(@"离线", nil)]   forState:UIControlStateNormal];
+    }
+
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(test) image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
 
 
@@ -290,16 +294,20 @@
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     SystemSceneModel *currentsystem = [[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene2:currentgateway2];
-    [[self modecirleView] setLabel:currentsystem];
-    if([currentsystem.sence_group intValue] == 0){
-        [[self modecirleView] setText:NSLocalizedString(@"在家", nil)];
-    }else if([currentsystem.sence_group intValue] == 1){
-        [[self modecirleView] setText:NSLocalizedString(@"离家", nil)];
-    }else if([currentsystem.sence_group intValue] == 2){
-        [[self modecirleView] setText:NSLocalizedString(@"睡眠", nil)];
-    }else{
-        [[self modecirleView] setText:currentsystem.systemname];
+  
+    if(currentsystem!=nil){
+          [[self modecirleView] setLabel:currentsystem];
+        if([currentsystem.sence_group intValue] == 0){
+            [[self modecirleView] setText:NSLocalizedString(@"在家", nil)];
+        }else if([currentsystem.sence_group intValue] == 1){
+            [[self modecirleView] setText:NSLocalizedString(@"离家", nil)];
+        }else if([currentsystem.sence_group intValue] == 2){
+            [[self modecirleView] setText:NSLocalizedString(@"睡眠", nil)];
+        }else{
+            [[self modecirleView] setText:currentsystem.systemname];
+        }
     }
+  
 }
 
 -(void)selectGateWays{
