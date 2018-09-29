@@ -70,6 +70,9 @@
             }else if([cmd intValue] == GATEWAY_ALERT_INFO){
                 NSString *answer_content = data[@"params"][@"data"][@"answer_content"];
                 [self.siterwelldelegate onAlert:answer_content withDevTid:devTid];
+            }else if([cmd intValue] == TimerSwitch_UPLOAD){
+                TimerModel *timermodel = [[TimerModel alloc] initWithHekrDictionary:data error:nil];
+                [self.siterwelldelegate onTimerSwitch:timermodel withDevTid:devTid];
             }
             block(obj,data,error);
         }

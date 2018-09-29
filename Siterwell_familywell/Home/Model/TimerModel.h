@@ -19,6 +19,7 @@
 @property (nonatomic,strong) NSString<Ignore> * min;
 @property (nonatomic,strong) NSString<Ignore> *name;
 @property(nonatomic,assign) NSString<Ignore> * devTid;
+- (NSString *)getTimerSenceNameBySenceGroup:(NSString *)devTid;
 @end
 
 #endif /* TimerModel_h */

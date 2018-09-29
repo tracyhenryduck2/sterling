@@ -26,6 +26,7 @@
 #pragma -mark life
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.view.backgroundColor = RGB(239, 239, 243);
     self.title = NSLocalizedString(@"定时", nil);
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(gotoAdd) Title:NSLocalizedString(@"添加", nil) withTintColor:ThemeColor];
     _timer_arry = [NSMutableArray new];
@@ -34,7 +35,9 @@
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     
     _timer_arry = [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
-    
+    [_timer_arry enumerateObjectsUsingBlock:^(TimerModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj setName:[obj getTimerSenceNameBySenceGroup:currentgateway2]];
+    }];
     
     [self table];
     
@@ -58,11 +61,10 @@
 
         NSMutableArray *timerss= [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
         
-       NSString *timerlistcontent = [CRCqueueHelp getTimerCRCS:timerss];
-        
+       NSString *timerlistcontent = [CRCqueueHelp getTimerCRCS:timerss withDevTid:currentgateway2];
         SyncTimerSwitchApi *api = [[SyncTimerSwitchApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost Content:timerlistcontent];
         [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
-            
+
         }];
     }
 }
@@ -81,14 +83,13 @@
         _table.dataSource = self;
         _table.delegate = self;
         _table.rowHeight = 70;
-        _table.bounces = NO;
         _table.separatorInset = UIEdgeInsetsZero;
         _table.tableFooterView = [[UIView alloc] init];
         _table.backgroundColor = RGB(239, 239, 243);
         [self.view addSubview:_table];
         [_table mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(0);
-            make.top.equalTo(64);
+            make.top.equalTo(74);
         }];
     }
     
@@ -103,7 +104,12 @@
         if (!cell) {
             cell = [[TimerSwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
         }
-        [cell setWeek:@"68"];
+    
+    TimerModel *timer = [_timer_arry objectAtIndex:indexPath.row];
+        [cell setWeek:timer.week];
+    [cell setEnable:timer.enable];
+    [cell setSceneGroup:timer.name];
+    [cell setTime:timer.hour withMin:timer.min];
 
         return cell;
     
@@ -136,6 +142,11 @@
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     
     _timer_arry = [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
+    [_timer_arry enumerateObjectsUsingBlock:^(TimerModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj setName:[obj getTimerSenceNameBySenceGroup:currentgateway2]];
+    }];
+    
+    [[self table] reloadData];
 }
 
 -(void)onAnswerOK{

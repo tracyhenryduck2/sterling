@@ -13,6 +13,7 @@
 #import "ItemData.h"
 #import <HekrAPI.h>
 #import "HekrHttpsApi.h"
+#import "TimerModel.h"
 
 @protocol SiterwellDelegate;
 
@@ -39,4 +40,7 @@
 -(void) onAnswerOK:(NSString *)devTid;
 
 -(void) onAlert:(NSString *)content withDevTid:(NSString *)devTid;
+
+-(void) onTimerSwitch:(TimerModel *)time withDevTid:(NSString *)devTid;
+
 @end

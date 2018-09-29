@@ -17,6 +17,8 @@
 #import "BatterHelp.h"
 #import "NameHelper.h"
 #import "TimerModel.h"
+#import "DBTimerManager.h"
+#import "ContentHepler.h"
 @interface CRCqueueHelp : NSObject
 
 //获取设备队列crc
@@ -26,7 +28,7 @@
 //获取自定义情景队列crc
 +(NSString *)getSceneCRCContent:(NSMutableArray *)SceneArray;
 //获取定时任务队列crc
-+(NSString *)getTimerCRCS:(NSMutableArray *)timers;
++(NSString *)getTimerCRCS:(NSMutableArray <TimerModel *>*)slist withDevTid:(NSString *)devTid;
 @end
 
 #endif /* DeviceCRCqueueHelp_h */

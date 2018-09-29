@@ -14,8 +14,10 @@
 @interface DBTimerManager:NSObject
 + (instancetype)sharedInstanced;
 - (NSMutableArray *)queryAllTimers:(NSString *)devTid;
-- (void)deleteTimer:(NSString *)timerid withDevTid:(NSString *)devTid;
+- (TimerModel *)queryTimer:(NSNumber *)timerid withDevTid:(NSString *)devTid;
+- (void)deleteTimer:(NSNumber *)timerid withDevTid:(NSString *)devTid;
 - (void)updateTimerEnable:(NSNumber *)enable withTimerid:(NSNumber *)timerid withDevTid:(NSString *)DevTid;
+- (void)insertTimer:(TimerModel *)timerModel;
 @end
 
 #endif /* DBTimerManager_h */

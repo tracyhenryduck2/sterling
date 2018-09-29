@@ -110,8 +110,31 @@
     return fullCode;
 }
 
-+(NSString *)getContentFromScene:(SceneModel *)sceneModel{
-    return nil;
++(NSString *)getContentFromTimer:(TimerModel *)timerModel{
+    NSString *time = @"";
+    
+        time = [BatterHelp gethexBybinary:[timerModel.timerid intValue]];
+    if (time.length == 1) {
+        time = [@"0" stringByAppendingString:time];
+    }
+    
+    //使能
+    time = [time stringByAppendingString:[NSString stringWithFormat:@"%02d",[timerModel.enable intValue]]];
+    
+    //情景模式
+    time = [time stringByAppendingString:[NSString stringWithFormat:@"%02d",[timerModel.sid intValue]]];
+    
+    //周次
+    time = [time stringByAppendingString:[timerModel.week length] < 2 ? [NSString stringWithFormat:@"0%@", timerModel.week]: timerModel.week];
+    
+    //时间
+    NSString *Hhex = [BatterHelp gethexBybinary:[timerModel.hour intValue]];
+    NSString *Mhex = [BatterHelp gethexBybinary:[timerModel.min intValue]];
+    NSString *hm = [NSString stringWithFormat:@"%@%@",[Hhex length] < 2?[NSString stringWithFormat:@"0%@",Hhex]:Hhex,[Mhex length] < 2?[NSString stringWithFormat:@"0%@",Mhex]:Mhex];
+    time = [time stringByAppendingString:hm];
+    
+
+    return time;
 }
 
 

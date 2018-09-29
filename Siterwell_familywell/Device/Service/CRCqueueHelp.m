@@ -222,50 +222,49 @@
     return nil;
 }
 
-+(NSString *)getTimerCRCS:(NSMutableArray *)timers{
-    
-    NSString *SceneTimerListContent =@"";
-    if (timers.count > 0) {
++(NSString *)getTimerCRCS:(NSMutableArray <TimerModel *>*)slist withDevTid:(NSString *)devTid{
+    NSString *getSceneGroupCRC=@"",*num = @"";
+    if(slist.count>0) {
+        int codeLength = 2;
+        NSMutableArray<NSNumber *> *tid = [[NSMutableArray alloc] init];
+        for (TimerModel * e in slist) {
+            [tid addObject:e.timerid];
+        }
         
-        int maxId = 0;
-        for (TimerModel *model in timers) {
-            if ([model.timerid intValue] > maxId) {
-                maxId = [model.timerid intValue];
+        
+        for (int i = 0; i <[[slist objectAtIndex:(slist.count - 1)].timerid intValue]+1; i++) {//for here come with "0" , used slist.size()
+            codeLength += 2;
+            BOOL flag = NO;
+            for(NSNumber *d in tid){
+                if([d intValue] == i){
+                    flag = YES;
+                    TimerModel *mo = [[DBTimerManager sharedInstanced] queryTimer:[NSNumber numberWithInt:i] withDevTid:devTid];
+                    NSString *timecotent =[ContentHepler getContentFromTimer:mo];
+                    getSceneGroupCRC = [getSceneGroupCRC stringByAppendingString:[BatterHelp getTimerSceneCRCCode:timecotent]];
+                    break;
+                }
+            }
+            if(flag == NO){
+                getSceneGroupCRC = [getSceneGroupCRC stringByAppendingString:@"0000"];
             }
         }
-        SceneTimerListContent = [BatterHelp gethexBybinary:(maxId * 2 + 4)];
+        
+        
+        NSString *oooo = @"0";
+        
+        NSString *lengthhex = [BatterHelp gethexBybinary:codeLength];
+        
+        if (lengthhex.length < 4) {
+            for (int i = 0; i < 4 - lengthhex.length - 1; i++) {
+               oooo = [oooo stringByAppendingString:@"0"];
+            }
+            num = [NSString stringWithFormat:@"%@%@",oooo,lengthhex ];
+        } else {
+            num = lengthhex;
+        }
+        return [NSString stringWithFormat:@"%@%@",num,getSceneGroupCRC ];
     }else {
-        SceneTimerListContent = @"0";
+        return @"0000";
     }
-    long scene_count = SceneTimerListContent.length;
-    for (int i = 0; i < 4 - scene_count; i++) {
-        SceneTimerListContent = [@"0" stringByAppendingString:SceneTimerListContent];
-    }
-    
-    //crc
-    // 自定义情景CRC补位
-    int arrayIndex = 0;
-    if (timers.count > 0) {
-        
-        int maxId = 0;
-        
-        for (TimerModel *model in timers) {
-            if ([model.timerid intValue] > maxId) {
-                maxId = [model.timerid intValue];
-            }
-        }
-        
-        for (int i = 0; i <= maxId; i++) {
-            TimerModel *model = timers[arrayIndex];
-            if (i == [model.timerid intValue]) {
-                SceneTimerListContent = [BatterHelp getTimerSceneCRCCode:model.time];
-                arrayIndex ++;
-            }else{
-                SceneTimerListContent = [SceneTimerListContent stringByAppendingString:@"0000"];
-            }
-        }
-    }
-    
-    return SceneTimerListContent;
 }
 @end

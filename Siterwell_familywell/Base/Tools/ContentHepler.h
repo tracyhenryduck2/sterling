@@ -15,12 +15,13 @@
 #import "BatterHelp.h"
 #import "NameHelper.h"
 #import "SceneListItemData.h"
+#import "TimerModel.h"
 
 @interface ContentHepler : NSObject
 
 +(NSString *)getContentFromSystem:(SystemSceneModel *)systemModel withSceneRelationShip:(NSMutableArray *)scenerelationships withGS584Relations:(NSMutableArray *)gs584relationships;
 
-+(NSString *)getContentFromScene:(SceneModel *)sceneModel;
++(NSString *)getContentFromTimer:(TimerModel *)timerModel;
 
 +(NSString *)getContentFromScene:(NSMutableArray *)outarray inputAraary:(NSMutableArray *)inarray type:(NSString *)type name:(NSString *)name sceneid:(NSNumber *)sceneid;
 @end

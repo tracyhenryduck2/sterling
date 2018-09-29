@@ -26,6 +26,7 @@
 #import "ChooseSystemSceneApi.h"
 #import "Single.h"
 #import "GatewayListVC.h"
+#import "DBTimerManager.h"
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate,SiterwellDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
@@ -458,4 +459,17 @@
     [GetWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
+-(void)onTimerSwitch:(TimerModel *)time withDevTid:(NSString *)devTid{
+    if([time.time isEqualToString:@"TIMER_OVER"]){
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"timerover" object:nil];
+    }else if([time.time containsString:@"DEL"]){
+        int timerId =(int)strtoul([[time.time substringWithRange:NSMakeRange(0, 2)] UTF8String],0,16);
+        [[DBTimerManager sharedInstanced] deleteTimer:[NSNumber numberWithInt:timerId] withDevTid:devTid];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshtimer" object:nil];
+    }else {
+        [time setDevTid:devTid];
+        [[DBTimerManager sharedInstanced] insertTimer:time];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshtimer" object:nil];
+    }
+}
 @end

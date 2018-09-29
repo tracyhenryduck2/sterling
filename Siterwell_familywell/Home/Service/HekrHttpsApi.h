@@ -41,6 +41,7 @@
 #define SyncScenes 31
 #define AddTimerSwitch 34
 #define SyncTimerSwitch 35
+#define TimerSwitch_UPLOAD 36
 #define DeleteTimerSwitch 37
 #define TIMER_UPLOAD 36
 

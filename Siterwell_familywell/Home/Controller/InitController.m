@@ -354,5 +354,9 @@
 -(void)onAlert:(NSString *)content withDevTid:(NSString *)devTid{
     
 }
+
+-(void)onTimerSwitch:(TimerModel *)time withDevTid:(NSString *)devTid{
+    
+}
 @end
 

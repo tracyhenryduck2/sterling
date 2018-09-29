@@ -14,7 +14,9 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err{
     
     if (self = [super initWithDictionary:dict error:err]) {
-        
+        if(self.time.length >= 12){
+            [self creatModel];
+        }
     }
     return self;
 }
@@ -23,7 +25,9 @@
     self.timerid = [self getTimerIdFromTime];
     self.enable = [self getTimerOnFromTime];
     self.sid = [self getTimerSenceGroupFromTime];
-    
+    self.hour = [self getHourFromTime];
+    self.min = [self getMinFromTime];
+    self.week = [self getWeekFromTime];
 }
 
 - (NSNumber *)getTimerIdFromTime{
@@ -51,23 +55,38 @@
     int senceGroup = (int)strtoul([[self.time substringWithRange:NSMakeRange(4, 2)] UTF8String],0,16);
    SystemSceneModel *model = [[DBSystemSceneManager sharedInstanced] querySystemScene:[NSNumber numberWithInt:senceGroup] withDevTid:devTid];
 
-    return model.systemname;
+    if(senceGroup ==0){
+        return NSLocalizedString(@"在家", nil);
+    }else if(senceGroup == 1){
+        return NSLocalizedString(@"离家", nil);
+    }else if(senceGroup == 2){
+        return NSLocalizedString(@"睡眠", nil);
+    }else{
+        if(model == nil)
+        {
+            return [NSString stringWithFormat:@"%@%d",NSLocalizedString(@"情景模式", nil),senceGroup ];
+        }else{
+            return model.systemname;
+        }
+        
+    }
+
+ 
 }
 
-//- (TimeModel *)getTimerWHMSFromTime{
-//
-//    TimeModel *timeMd = [[TimeModel alloc] init];
-//    NSString *timeW = [self.time substringWithRange:NSMakeRange(6, 2)];
-//    timeW = [BatterHelp getBinaryByhex:timeW];
-//
-//    NSString *timeH = [self.time substringWithRange:NSMakeRange(8, 2)];
-//    NSString *timeM = [self.time substringWithRange:NSMakeRange(10, 2)];
-//
-//    timeMd.week = timeW;
-//    timeMd.Hour = [[NSString stringWithFormat:@"%@",[BatterHelp numberHexString:timeH]] length] < 2?[NSString stringWithFormat:@"0%@",[NSString stringWithFormat:@"%@",[BatterHelp numberHexString:timeH]] ]:[NSString stringWithFormat:@"%@",[BatterHelp numberHexString:timeH]];
-//    timeMd.Minute = [[NSString stringWithFormat:@"%@",[BatterHelp numberHexString:timeM]] length] < 2?[NSString stringWithFormat:@"0%@",[NSString stringWithFormat:@"%@",[BatterHelp numberHexString:timeM]] ]:[NSString stringWithFormat:@"%@",[BatterHelp numberHexString:timeM]];;
-//
-//    return timeMd;
-//}
+-(NSString *)getWeekFromTime{
+   return [self.time substringWithRange:NSMakeRange(6, 2)];
+}
+
+-(NSString *)getHourFromTime{
+    int houror =(int)strtoul([[self.time substringWithRange:NSMakeRange(8, 2)] UTF8String],0,16);
+    return [NSString stringWithFormat:@"%02d",houror ];
+}
+
+-(NSString *)getMinFromTime{
+    int min =(int)strtoul([[self.time substringWithRange:NSMakeRange(10, 2)] UTF8String],0,16);
+    return [NSString stringWithFormat:@"%02d",min ];
+}
+
 
 @end

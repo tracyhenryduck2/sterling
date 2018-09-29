@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) void (^click)(int tag);
 -(void)setWeek:(NSString *)week;
+-(void)setTime:(NSString *)hour withMin:(NSString *)min;
+-(void)setSceneGroup:(NSString *)name;
+-(void)setEnable:(NSNumber *)enable;
 @end
 
 #endif /* TimerSwitchCell_h */

@@ -79,6 +79,22 @@
 
 }
 
+-(void)setTime:(NSString *)hour withMin:(NSString *)min{
+    self.HM.text = [NSString stringWithFormat:@"%@:%@",hour,min ];
+}
+
+-(void)setSceneGroup:(NSString *)name{
+    self.sceneName.text = name;
+}
+
+-(void)setEnable:(NSNumber *)enable{
+    if([enable intValue]==1){
+        [self.clickBtn setSelected:YES];
+    }else{
+        [self.clickBtn setSelected:NO];
+    }
+}
+
 -(void)setWeek:(NSString *)week{
     NSString *binstring = [BatterHelp getBinaryByhex:week];
     NSString *ss = @"";
