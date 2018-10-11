@@ -103,20 +103,27 @@
         TimerSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
             cell = [[TimerSwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+            
         }
-    
     TimerModel *timer = [_timer_arry objectAtIndex:indexPath.row];
-        [cell setWeek:timer.week];
+    [cell setWeek:timer.week];
     [cell setEnable:timer.enable];
     [cell setSceneGroup:timer.name];
     [cell setTime:timer.hour withMin:timer.min];
+    [cell.clickBtn setTag:indexPath.row];
+    cell.click = ^(int tag) {
+        NSLog(@"点击咯咯%d",tag);
+    };
 
         return cell;
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    TimerModel *model = [_timer_arry objectAtIndex:indexPath.row];
+    TimerEditController *editer = [[TimerEditController alloc] init];
+    editer.timerid = model.timerid;
+    [self.navigationController pushViewController:editer animated:YES];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

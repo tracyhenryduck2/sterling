@@ -14,7 +14,6 @@
 @property (strong, nonatomic) UILabel *HM;
 @property (strong, nonatomic) UILabel *to;
 @property (strong, nonatomic) UILabel *sceneName;
-@property (strong, nonatomic) UIButton *clickBtn;
 @end
 
 @implementation TimerSwitchCell
@@ -68,7 +67,7 @@
         make.height.equalTo(30);
         make.right.equalTo(self.contentView.mas_right).offset(-10);
     }];
-    
+    [self.clickBtn addTarget:self action:@selector(tap:) forControlEvents:UIControlEventTouchUpInside];
     self.day1 = [[UILabel alloc] init];
     self.day1.font = SYSTEMFONT(12);
     [self.contentView addSubview:self.day1];
@@ -155,4 +154,8 @@
    self.day1.text = ss;
 }
 
+-(void)tap:(UIButton *)sender{
+    int tag = (int)sender.tag;
+    self.click(tag);
+}
 @end

@@ -9,7 +9,7 @@
 #ifndef TimerSwitchCell_h
 #define TimerSwitchCell_h
 @interface TimerSwitchCell:UITableViewCell
-
+@property (strong, nonatomic) UIButton *clickBtn;
 @property (strong, nonatomic) void (^click)(int tag);
 -(void)setWeek:(NSString *)week;
 -(void)setTime:(NSString *)hour withMin:(NSString *)min;
