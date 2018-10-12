@@ -64,7 +64,7 @@
     [self.clickBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.width.equalTo(50);
-        make.height.equalTo(30);
+        make.height.equalTo(self.contentView.mas_height);
         make.right.equalTo(self.contentView.mas_right).offset(-10);
     }];
     [self.clickBtn addTarget:self action:@selector(tap:) forControlEvents:UIControlEventTouchUpInside];

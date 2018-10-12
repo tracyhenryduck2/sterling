@@ -58,6 +58,8 @@
 
     if(_sceneModel!=nil){
         _titleTextFiled.text = _sceneModel.scene_name;
+    }else{
+        _titleTextFiled.text = [NSString stringWithFormat:@"%@%d",NSLocalizedString(@"我的情景", nil),[self getmid] ];
     }
     
     @weakify(self)
@@ -82,6 +84,8 @@
         }
         
     }];
+    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{

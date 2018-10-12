@@ -15,6 +15,8 @@
 + (instancetype)sharedInstanced;
 - (NSMutableArray *)queryAllTimers:(NSString *)devTid;
 - (TimerModel *)queryTimer:(NSNumber *)timerid withDevTid:(NSString *)devTid;
+-(NSMutableArray *)queryTimer:(NSString *)hour withMin:(NSString *)min withDevTid:(NSString *)devTid;
+- (NSMutableArray *)queryAllTimersTid:(NSString *)devTid;
 - (void)deleteTimer:(NSNumber *)timerid withDevTid:(NSString *)devTid;
 - (void)updateTimerEnable:(NSNumber *)enable withTimerid:(NSNumber *)timerid withDevTid:(NSString *)DevTid;
 - (void)insertTimer:(TimerModel *)timerModel;

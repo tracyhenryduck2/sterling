@@ -1,26 +1,25 @@
 //
-//  DeleteTimerSwitchApi.m
+//  DeleteSystemSceneApi.m
 //  Siterwell_familywell
 //
-//  Created by TracyHenry on 2018/9/28.
+//  Created by TracyHenry on 2018/10/12.
 //  Copyright © 2018年 iMac. All rights reserved.
 //
 
-#import "DeleteTimerSwitchApi.h"
-
-@implementation DeleteTimerSwitchApi
+#import "DeleteSystemSceneApi.h"
+@implementation DeleteSystemSceneApi
 {
     NSString *_devTid;
     NSString *_ctrlKey;
-    NSNumber *_timerid;
+    NSNumber *_sid;
     NSString *_connectHost;
 }
 
--(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost Content:(NSNumber *)timerid{
+-(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost Content:(NSNumber *)sid{
     if (self = [super init]) {
         _devTid = devTid;
         _ctrlKey = ctrlKey;
-        _timerid = timerid;
+        _sid = sid;
         _connectHost = conncetHost;
     }
     return self;
@@ -33,8 +32,8 @@
                      @"devTid": _devTid,
                      @"ctrlKey": _ctrlKey,
                      @"data": @{
-                             @"cmdId": @DeleteTimerSwitch,
-                             @"device_ID": _timerid
+                             @"cmdId": @DeleteSystemScene,
+                             @"sence_group": _sid
                              }
                      }
              };
@@ -44,4 +43,5 @@
 - (id)requestArgumentConnectHost{
     return _connectHost;
 }
+
 @end

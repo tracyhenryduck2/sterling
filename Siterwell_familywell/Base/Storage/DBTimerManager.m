@@ -34,7 +34,7 @@ static  NSString * const timertable = @"timertable";
     
     NSMutableArray *alltimers= [NSMutableArray array];
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where devTid = '%@' order by timerid",timertable,devTid]];
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where devTid = '%@' order by hour,min",timertable,devTid]];
         while ([rs next]) {
             TimerModel * timermodel = [[TimerModel alloc] init];
             timermodel.enable = [NSNumber numberWithInt:[rs intForColumn:@"enable"]];
@@ -51,12 +51,27 @@ static  NSString * const timertable = @"timertable";
     return alltimers;
 }
 
+- (NSMutableArray *)queryAllTimersTid:(NSString *)devTid{
+    
+    
+    NSMutableArray *alltimers= [NSMutableArray array];
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select timerid from %@ where devTid = '%@' order by timerid",timertable,devTid]];
+        while ([rs next]) {
+            
+            NSNumber * timerid = [NSNumber numberWithInt:[rs intForColumn:@"timerid"]];
+            [alltimers addObject:timerid];
+        }
+    }];
+    return alltimers;
+}
+
 - (TimerModel *)queryTimer:(NSNumber *)timerid withDevTid:(NSString *)devTid{
     
     
    __block TimerModel * timermodel = nil;
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where devTid = '%@' order by timerid",timertable,devTid]];
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select * from %@ where devTid = '%@' and timerid = %@ order by timerid",timertable,devTid,timerid]];
         while ([rs next]) {
             timermodel = [[TimerModel alloc] init];
             timermodel.enable = [NSNumber numberWithInt:[rs intForColumn:@"enable"]];
@@ -72,6 +87,17 @@ static  NSString * const timertable = @"timertable";
     return timermodel;
 }
 
+-(NSMutableArray *)queryTimer:(NSString *)hour withMin:(NSString *)min withDevTid:(NSString *)devTid{
+    __block NSMutableArray * array = [NSMutableArray new];
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery: [NSString stringWithFormat: @"select week from %@ where devTid = '%@' and hour = '%@' and min = '%@' order by timerid",timertable,devTid,hour,min]];
+        while ([rs next]) {
+            NSString * week = [rs stringForColumn:@"week"];
+            [array addObject:week];
+        }
+    }];
+    return array;
+}
 
 - (void)deleteTimer:(NSNumber *)timerid withDevTid:(NSString *)devTid{
     

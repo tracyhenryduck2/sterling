@@ -39,7 +39,9 @@
 #define SyncDevice 29
 #define SyncDeviceName 30
 #define SyncScenes 31
+#define DeleteSystemScene 33
 #define AddTimerSwitch 34
+#define TimerSwitchEnable -34
 #define SyncTimerSwitch 35
 #define TimerSwitch_UPLOAD 36
 #define DeleteTimerSwitch 37

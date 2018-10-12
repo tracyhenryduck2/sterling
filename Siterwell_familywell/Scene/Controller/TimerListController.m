@@ -14,11 +14,17 @@
 #import "SyncTimerSwitchApi.h"
 #import "DBGatewayManager.h"
 #import "CRCqueueHelp.h"
+#import "ContentHepler.h"
+#import "AddTimerSwitchApi.h"
+#import "DeleteTimerSwitchApi.h"
 
 @interface TimerListController()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *table;
 @property (nonatomic,strong) NSMutableArray <TimerModel *>*timer_arry;
 @property (nonatomic,assign) BOOL refresh;
+@property (nonatomic,assign) int index_cache;
+@property (nonatomic,strong) TimerModel *timer_cache;
+@property (nonatomic,strong) TimerModel *timer_delete;
 @end
 
 @implementation TimerListController
@@ -27,17 +33,17 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = RGB(239, 239, 243);
-    self.title = NSLocalizedString(@"定时", nil);
-    self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(gotoAdd) Title:NSLocalizedString(@"添加", nil) withTintColor:ThemeColor];
-    _timer_arry = [NSMutableArray new];
     
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    if([NSString isBlankString:currentgateway2]){
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     
-    _timer_arry = [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
-    [_timer_arry enumerateObjectsUsingBlock:^(TimerModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setName:[obj getTimerSenceNameBySenceGroup:currentgateway2]];
-    }];
+    self.title = NSLocalizedString(@"定时", nil);
+    self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(gotoAdd) Title:NSLocalizedString(@"添加", nil) withTintColor:ThemeColor];
+
     
     [self table];
     
@@ -67,6 +73,16 @@
 
         }];
     }
+    
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    
+    _timer_arry = [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
+    [_timer_arry enumerateObjectsUsingBlock:^(TimerModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj setName:[obj getTimerSenceNameBySenceGroup:currentgateway2]];
+    }];
+    
+    [[self table] reloadData];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -89,7 +105,7 @@
         [self.view addSubview:_table];
         [_table mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(0);
-            make.top.equalTo(74);
+            make.top.equalTo(15);
         }];
     }
     
@@ -112,7 +128,27 @@
     [cell setTime:timer.hour withMin:timer.min];
     [cell.clickBtn setTag:indexPath.row];
     cell.click = ^(int tag) {
-        NSLog(@"点击咯咯%d",tag);
+        TimerModel *timera = [_timer_arry objectAtIndex:tag];
+        NSNumber *enable = timera.enable;
+        if([enable intValue] == 0){
+            [timera setEnable:@1];
+        }else{
+            [timera setEnable:@0];
+        }
+        _index_cache = tag;
+        _timer_cache = timera;
+        NSString *content = [ContentHepler getContentFromTimer:timera];
+        NSString *crc = [BatterHelp getTimerSceneCRCCode:content];
+        
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        [Single sharedInstanced].command = TimerSwitchEnable;
+        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+        
+        AddTimerSwitchApi *api = [[AddTimerSwitchApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost Content:[NSString stringWithFormat:@"%@%@",content,crc]];
+        [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+            
+        }];
     };
 
         return cell;
@@ -135,8 +171,26 @@
    return _timer_arry.count;
     
 }
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NSLocalizedString(@"删除", nil);
+}
+/**
+ cell点击删除
+ */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _timer_delete = [_timer_arry objectAtIndex:indexPath.row];
 
-
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    [Single sharedInstanced].command = DeleteTimerSwitch;
+    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    DeleteTimerSwitchApi *api = [[DeleteTimerSwitchApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost Content:_timer_delete.timerid];
+    [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+        
+    }];
+    
+}
 
 #pragma -mark method
 -(void)gotoAdd{
@@ -157,9 +211,31 @@
 }
 
 -(void)onAnswerOK{
-    if([Single sharedInstanced].command == AddTimerSwitch){
+    if([Single sharedInstanced].command == TimerSwitchEnable){
         [Single sharedInstanced].command = -1;
-        
+        if(_index_cache>=0){
+            NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+            NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+            [_timer_cache setDevTid:currentgateway2];
+            [[DBTimerManager sharedInstanced] insertTimer:_timer_cache];
+            [_timer_arry setObject:_timer_cache atIndexedSubscript:_index_cache];
+            [[self table] reloadData];
+            _timer_cache = nil;
+            _index_cache = -1;
+        }
+    }else if([Single sharedInstanced].command == DeleteTimerSwitch){
+        [Single sharedInstanced].command = -1;
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        if(_timer_delete!=nil){
+            [[DBTimerManager sharedInstanced] deleteTimer:_timer_delete.timerid withDevTid:currentgateway2];
+            _timer_delete = nil;
+            _timer_arry = [[DBTimerManager sharedInstanced] queryAllTimers:currentgateway2];
+            [_timer_arry enumerateObjectsUsingBlock:^(TimerModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [obj setName:[obj getTimerSenceNameBySenceGroup:currentgateway2]];
+            }];
+            [[self table] reloadData];
+        }
     }
 }
 @end

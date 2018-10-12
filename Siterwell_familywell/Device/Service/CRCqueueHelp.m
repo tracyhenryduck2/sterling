@@ -65,7 +65,7 @@
             if ([sid containsObject:[NSNumber numberWithInt:i]]) {
            
                 NSMutableArray<SceneRelationShip *>  *SceneRelationList = [[DBSceneReManager sharedInstanced] queryGS584RelationShip:[NSNumber numberWithInt:i] withDevTid:devTid];
-                SystemSceneModel *sysModelBean = (SystemSceneModel *)slist[i];
+                SystemSceneModel *sysModelBean = (SystemSceneModel *)[slist objectAtIndex:[sid indexOfObject:[NSNumber numberWithInt:i]]];
                 NSString * name = sysModelBean.systemname;
                 int length = 0;
                 

@@ -66,7 +66,10 @@
                 [devmodel setDevice_ID:[NSNumber numberWithInt:newa]];
                 [self.siterwelldelegate onDeviceStatus:devmodel withDevTid:devTid];
             }else if([cmd intValue] == ANWSER_OK){
-                [self.siterwelldelegate onAnswerOK:devTid];
+                NSNumber *answer_yes_or_no = data[@"params"][@"data"][@"answer_yes_or_no"];
+                if([answer_yes_or_no intValue]==2){
+                    [self.siterwelldelegate onAnswerOK:devTid];
+                }
             }else if([cmd intValue] == GATEWAY_ALERT_INFO){
                 NSString *answer_content = data[@"params"][@"data"][@"answer_content"];
                 [self.siterwelldelegate onAlert:answer_content withDevTid:devTid];

@@ -317,7 +317,10 @@
         [Single sharedInstanced].command = -1;
         NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
         NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-        [[DBSceneReManager sharedInstanced] deleteRelation:(_scene_type == nil?[NSNumber numberWithInt:[self getsid]]:_scene_type) withDevTid:currentgateway2];
+        if(_scene_type!=nil){
+          [[DBSceneReManager sharedInstanced] deleteRelation:(_scene_type == nil?[NSNumber numberWithInt:[self getsid]]:_scene_type) withDevTid:currentgateway2];
+        }
+
         SystemSceneModel * model = [[SystemSceneModel alloc] init];
         [model setColor:_color];
         [model setSystemname:_titleTextFiled.text];

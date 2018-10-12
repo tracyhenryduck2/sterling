@@ -21,6 +21,9 @@
 #import "DeviceListVC.h"
 #import "CollectionController.h"
 #import "TimerListController.h"
+#import "DeleteSystemSceneApi.h"
+#import "DBSceneReManager.h"
+#import "DBGS584RelationShipManager.h"
 @interface SceneVC() <UITableViewDelegate,UITableViewDataSource,CLickdelegate>
 
 @property (nonatomic,strong) UITableView *table_scene;
@@ -28,6 +31,7 @@
 @property (nonatomic,strong) NSMutableArray <SceneModel *> *list_scene;
 @property (nonatomic,strong) SceneHeaderView *sceneheaderview;
 @property (nonatomic,assign) NSInteger select_sid;
+@property (nonatomic,strong) NSNumber *delete_sid;
 
 @end
 @implementation SceneVC
@@ -256,17 +260,38 @@
  */
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if(indexPath.section==0){
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        GatewayModel *gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+       SystemSceneModel *mde = [_list_system_scene objectAtIndex:indexPath.row];
+       NSNumber *dd = [[DBSystemSceneManager sharedInstanced] queryCurrentSystemScene:currentgateway2];
+        if([mde.sence_group intValue]<=2){
+            [MBProgressHUD showError:NSLocalizedString(@"此情景模式不能被删除", nil) ToView:self.view];
+        }else if([dd intValue]==[mde.sence_group intValue]){
+            [MBProgressHUD showError:NSLocalizedString(@"当前情景模式不能被删除", nil) ToView:self.view];
+        }else{
+            [Single sharedInstanced].command = DeleteSystemScene;
+            DeleteSystemSceneApi *api = [[DeleteSystemSceneApi alloc] initWithDevTid:gateway.devTid CtrlKey:gateway.ctrlKey Domain:gateway.connectHost Content:mde.sence_group];
+            _delete_sid = mde.sence_group;
+            [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+                
+            }];
+        }
+    }else{
+        
+    }
 }
 
 -(void)click:(NSInteger)index{
-    _select_sid = index;
+    
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
     SystemSceneModel *model = _list_system_scene[index];
     [Single sharedInstanced].command = ChooseSystemScene;
     ChooseSystemSceneApi *choose  = [[ChooseSystemSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneGroup:model.sence_group];
+    _select_sid = [model.sence_group intValue];
     [choose startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
         NSLog(@"选择后返回的数据为%@",data);
     }];
@@ -277,9 +302,19 @@
         [Single sharedInstanced].command = -1;
         NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
         NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
-        [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:[NSNumber numberWithInteger:_select_sid] withDevTid:gatewaymodel.devTid];
+        [[DBSystemSceneManager sharedInstanced] updateSystemChoicewithSid:[NSNumber numberWithInteger:_select_sid] withDevTid:currentgateway2];
         [self refresh];
+    }else if([Single sharedInstanced].command == DeleteSystemScene){
+        [Single sharedInstanced].command = -1;
+
+        if(_delete_sid!=nil){
+            NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+            NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+            [[DBSystemSceneManager sharedInstanced] deleteSystemScene:_delete_sid withDevTid:currentgateway2];
+            [[DBSceneReManager sharedInstanced] deleteRelation:_delete_sid withDevTid:currentgateway2];
+            [[DBGS584RelationShipManager sharedInstanced] deleteRelation:_delete_sid withDevTid:currentgateway2];
+            [self refresh];
+        }
     }
 
 }
@@ -295,6 +330,8 @@
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
     if([NSString isBlankString:currentgateway2]){
         [MBProgressHUD showError:NSLocalizedString(@"请选择网关", nil) ToView:self.view];
+    }else if(_list_system_scene.count>=8){
+        [MBProgressHUD showError:NSLocalizedString(@"情景模式达到上限", nil) ToView:self.view];
     }else{
         SystemSceneEditController *systemSceneController = [[SystemSceneEditController alloc] init];
         [self.navigationController pushViewController:systemSceneController animated:YES];

@@ -12,7 +12,7 @@
 
 @interface DeleteTimerSwitchApi : BaseDriveApi
 
--(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost Content:(NSString *)content;
+-(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey Domain:(NSString *)conncetHost Content:(NSNumber *)timerid;
 
 @end
 
