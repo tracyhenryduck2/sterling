@@ -1,13 +1,16 @@
 //
-//  AboutVC.m
+//  AboutVC.h
 //  Siterwell_familywell
 //
 //  Created by TracyHenry on 2018/9/7.
 //  Copyright © 2018年 iMac. All rights reserved.
 //
 
-#import "AboutVC.h"
+#ifndef AboutVC_h
+#define AboutVC_h
 
-@implementation AboutVC
+@interface AboutVC : BaseVC
 
 @end
+
+#endif /* AboutVC_h */

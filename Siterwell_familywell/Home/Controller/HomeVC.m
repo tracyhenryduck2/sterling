@@ -140,7 +140,7 @@
             
         }];
     };
-
+    [self getUserIonfo];
     [self refresh];
 }
 
@@ -312,8 +312,9 @@
 }
 
 -(void)selectGateWays{
-    GatewayListVC *gatewvc = [[GatewayListVC alloc] init];
-    [self.navigationController pushViewController:gatewvc animated:YES];
+    GatewayListVC *wl = [[GatewayListVC alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:wl];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark -delegate
@@ -471,5 +472,50 @@
         [[DBTimerManager sharedInstanced] insertTimer:time];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshtimer" object:nil];
     }
+}
+
+#pragma -mark method
+- (void)getUserIonfo{
+    NSString *https = (ApiMap==nil?@"https://user-openapi.hekr.me":ApiMap[@"user-openapi.hekr.me"]);
+    [[[Hekr sharedInstance] sessionWithDefaultAuthorization] GET:[NSString stringWithFormat:@"%@/user/profile", https]
+      parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+          
+          NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+          [config setValue:responseObject forKey:UserInfos];
+          [config synchronize];
+          
+//          NSDictionary *extraPropertiesDic = ((NSDictionary *)responseObject)[@"extraProperties"];
+//
+//          if (extraPropertiesDic[@"monitor"] !=nil) {
+//
+//              NSMutableArray *monitor = [(NSArray*)[extraPropertiesDic[@"monitor"] arrayValue] mutableCopy];
+//
+//              for (int i = 0; i < [monitor count]; i++) {
+//
+//                  if (![[monitor objectAtIndex:i][@"devid"] isEqualToString:@"lbt_01"]&&[monitor objectAtIndex:i][@"devid"]!=nil&&[[monitor objectAtIndex:i][@"devid"] isEqual:[NSNull null]]) {
+//
+//                      NSDictionary *videoDic = (NSDictionary *)monitor[i];
+//                      VideoInfoModel *vInfo = [[VideoInfoModel alloc] init];
+//                      vInfo.devid = videoDic[@"devid"];
+//                      vInfo.name = videoDic[@"name"];
+//                      NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserName"];
+//                      vInfo.userName = userName;
+//                      [[VideoDataBase sharedDataBase] updateVideoInfo:vInfo];
+//                  }
+//              }
+//
+//              if (monitor != nil&&[monitor count] > 0) {
+//                  _imageView.videoArray = monitor;
+//              }else{
+//                  _imageView.videoArray = @[@{@"devid":@"lbt_01",@"name":NSLocalizedString(@"无视频，点击添加", nil)}];
+//              }
+//
+//          }else{
+//              _imageView.videoArray = @[@{@"devid":@"lbt_01",@"name":NSLocalizedString(@"无视频，点击添加", nil)}];
+//          }
+          
+      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+          NSLog(@"%@",error.domain);
+      }];
 }
 @end

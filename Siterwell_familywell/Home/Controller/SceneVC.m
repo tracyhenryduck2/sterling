@@ -24,6 +24,9 @@
 #import "DeleteSystemSceneApi.h"
 #import "DBSceneReManager.h"
 #import "DBGS584RelationShipManager.h"
+#import "DeleteSceneApi.h"
+#import "ContentHepler.h"
+#import "PushSystemSceneApi.h"
 @interface SceneVC() <UITableViewDelegate,UITableViewDataSource,CLickdelegate>
 
 @property (nonatomic,strong) UITableView *table_scene;
@@ -32,6 +35,7 @@
 @property (nonatomic,strong) SceneHeaderView *sceneheaderview;
 @property (nonatomic,assign) NSInteger select_sid;
 @property (nonatomic,strong) NSNumber *delete_sid;
+@property (nonatomic,strong) NSNumber *delete_mid;
 
 @end
 @implementation SceneVC
@@ -279,7 +283,16 @@
             }];
         }
     }else{
-        
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+        GatewayModel *gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+        [Single sharedInstanced].command = DelteScene;
+        SceneModel *model = [_list_scene objectAtIndex:indexPath.row];
+        DeleteSceneApi *api = [[DeleteSceneApi alloc] initWithDevTid:gateway.devTid CtrlKey:gateway.ctrlKey Domain:gateway.connectHost SceneContent:model.scene_type];
+        _delete_mid = model.scene_type;
+        [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+            
+        }];
     }
 }
 
@@ -315,6 +328,34 @@
             [[DBGS584RelationShipManager sharedInstanced] deleteRelation:_delete_sid withDevTid:currentgateway2];
             [self refresh];
         }
+    }else if([Single sharedInstanced].command == DelteScene){
+        [Single sharedInstanced].command = -1;
+        if(_delete_mid!=nil){
+            NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+            NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+                GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+            
+            [[DBSceneReManager sharedInstanced] deleteRelationWithMid:_delete_mid withDevTid:currentgateway2];
+            [[DBSceneManager sharedInstanced] deleteScene:_delete_mid withDevTid:currentgateway2];
+            [self refresh];
+            
+            for(int i=0;i<_list_system_scene.count;i++){
+                SystemSceneModel *model = [_list_system_scene objectAtIndex:i];
+                NSMutableArray <NSNumber *> *mids = [[DBSceneReManager sharedInstanced] querymid:model.sence_group withDevTid:currentgateway2];
+                NSMutableArray <GS584RelationShip *> *ships = [[DBGS584RelationShipManager sharedInstanced] queryAllGS584RelationShipwithDevTid:currentgateway2 withSid:model.sence_group];
+               NSString *content = [ContentHepler getContentFromSystem:model withSceneRelationShip:mids withGS584Relations:ships];
+                
+                NSLog(@"删除时同时发的其他命令%@",content);
+                PushSystemSceneApi *apia = [[PushSystemSceneApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost SceneContent:content];
+                [apia startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+                    
+                }];
+                
+            }
+            
+        }
+
+        
     }
 
 }

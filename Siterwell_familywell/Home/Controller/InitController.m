@@ -154,6 +154,24 @@
 
 
 -(void)getChooseGateway{
+    
+    NSMutableArray <GatewayModel *>*gatewjiulist = [[DBGatewayManager sharedInstanced] queryAllGateway];
+    [gatewjiulist enumerateObjectsUsingBlock:^(GatewayModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        BOOL falg = false;
+
+        for(int i=0;i<_gateways.count;i++){
+            if([obj.devTid isEqualToString:[_gateways objectAtIndex:i].devTid]
+               &&[obj.ctrlKey isEqualToString:[_gateways objectAtIndex:i].ctrlKey]
+               &&[obj.bindKey isEqualToString:[_gateways objectAtIndex:i].bindKey]){
+                _flag = true;
+                break;
+            }
+        }
+        if(!falg){
+            [[DBGatewayManager sharedInstanced] deleteGateway:obj.devTid];
+        }
+    }];
+    
     [[DBGatewayManager sharedInstanced] insertGateways:_gateways];
     for(int i=0;i<_gateways.count;i++){
         GatewayModel * gateway = [_gateways objectAtIndex:i];

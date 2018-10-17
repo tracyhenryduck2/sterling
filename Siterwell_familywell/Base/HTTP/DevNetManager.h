@@ -8,7 +8,6 @@
 
 #import "BaseNetManager.h"
 #import "ItemData.h"
-#import "DevVersionModel.h"
 
 #define APPID    @"01611410943"
 
@@ -65,9 +64,6 @@
 + (id)getDeviceListForFolderId:(NSString *)folderId withPage:(NSInteger)page andBaseUrl:(NSString *)baseurl handler:(void (^)(NSMutableArray <ItemData *>*pArray, NSError *error))handler;
 
 + (id)getDeviceList:(NSInteger)page andBaseUrl:(NSString *)baseurl handler:(void (^)(id, NSError *))handler;
-
-+ (id)getDevVersionCheckWithParame:(id)parame andBaseUrl:(NSString *)baseurl handler:(void (^)(DevVersionModel *model, NSError *error))handler;
-
 
 +(id)checkImg:(NSString *)code andBaseUrl:(NSString *)baseurl handler:(void(^)(NSString *,NSError *)) handler;
 
