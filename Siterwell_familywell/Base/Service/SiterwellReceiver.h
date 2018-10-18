@@ -35,6 +35,8 @@
 
 -(void) onUpdateOnCurrentSystemScene:(NSNumber *)currentmodel withDevTid:(NSString *)devTid;
 
+-(void) onDeviceName:(NSString *)device_name withDevTid:(NSString *)devTid;
+
 -(void) onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid;
 
 -(void) onAnswerOK:(NSString *)devTid;

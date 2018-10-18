@@ -56,16 +56,7 @@
     }];
     _siter.siterwelldelegate = self;
     
-    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
-    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-    GatewayModel * gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
-    NSMutableArray <ItemData *> *dsa = [[DBDeviceManager sharedInstanced] queryAllTHCheck:currentgateway2];
-    self.weather_marquee.tempAndHumArray=dsa;
-    if(gateway == nil){
-        [[self titlbtn] setTitle:@"" forState:UIControlStateNormal];
-    }else{
-        [[self titlbtn] setTitle:[NSString stringWithFormat:@"%@(%@)",([gateway.deviceName isEqualToString:@"报警器"]?NSLocalizedString(@"我的家", nil):gateway.deviceName),[gateway.online isEqualToString:@"1"]?NSLocalizedString(@"在线", nil):NSLocalizedString(@"离线", nil)]   forState:UIControlStateNormal];
-    }
+
 
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(test) image:@"setting_icon" highImage:@"setting_icon" withTintColor:[UIColor whiteColor]];
 
@@ -97,6 +88,16 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    GatewayModel * gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    NSMutableArray <ItemData *> *dsa = [[DBDeviceManager sharedInstanced] queryAllTHCheck:currentgateway2];
+    self.weather_marquee.tempAndHumArray=dsa;
+    if(gateway == nil){
+        [[self titlbtn] setTitle:@"" forState:UIControlStateNormal];
+    }else{
+        [[self titlbtn] setTitle:[NSString stringWithFormat:@"%@(%@)",([gateway.deviceName isEqualToString:@"报警器"]?NSLocalizedString(@"我的家", nil):gateway.deviceName),[gateway.online isEqualToString:@"1"]?NSLocalizedString(@"在线", nil):NSLocalizedString(@"离线", nil)]   forState:UIControlStateNormal];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -472,6 +473,26 @@
         [[DBTimerManager sharedInstanced] insertTimer:time];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshtimer" object:nil];
     }
+}
+
+-(void)onDeviceName:(NSString *)device_name withDevTid:(NSString *)devTid{
+    
+    if([device_name isEqualToString:@"NAME_OVER"]){
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDeviceNameOver" object:nil];
+    }else{
+        if (device_name.length == 36) {
+            NSString *device_id = [NSString stringWithFormat:@"%lu",strtoul([[device_name substringWithRange:NSMakeRange(0, 4)] UTF8String],0,16)];
+            NSString *name = [device_name substringWithRange:NSMakeRange(4, 32)];
+            NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+            
+            NSData *data = [BatterHelp hexStringToData:name];
+            NSString *result = [[NSString alloc] initWithData:data encoding:enc];
+            result = [result stringByReplacingOccurrencesOfString:@"@" withString:@""];
+            result = [result stringByReplacingOccurrencesOfString:@"$" withString:@""];
+            
+        }
+    }
+
 }
 
 #pragma -mark method

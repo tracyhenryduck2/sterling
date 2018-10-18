@@ -18,7 +18,6 @@
 #import "CRCqueueHelp.h"
 @interface InitController()<SiterwellDelegate>
 @property (nonatomic,strong) UIImage * LogoImage;
-@property (nonatomic,assign) NSInteger flag;
 @property (nonatomic,strong) NSMutableArray <GatewayModel *> * gateways;
 @property (nonatomic) SiterwellReceiver *siter;
 @property (nonatomic) NSObject *testobj;
@@ -163,7 +162,7 @@
             if([obj.devTid isEqualToString:[_gateways objectAtIndex:i].devTid]
                &&[obj.ctrlKey isEqualToString:[_gateways objectAtIndex:i].ctrlKey]
                &&[obj.bindKey isEqualToString:[_gateways objectAtIndex:i].bindKey]){
-                _flag = true;
+                falg = true;
                 break;
             }
         }
@@ -374,6 +373,10 @@
 }
 
 -(void)onTimerSwitch:(TimerModel *)time withDevTid:(NSString *)devTid{
+    
+}
+
+-(void)onDeviceName:(NSString *)device_name withDevTid:(NSString *)devTid{
     
 }
 @end

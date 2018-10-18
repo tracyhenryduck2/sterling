@@ -51,7 +51,7 @@
                 
                 NSString *name = data.customTitle;
 
-                if([name isEqualToString:@""]){
+                if([NSString isBlankString:name]){
                     content = [content stringByAppendingString:@"0000"];
                     hasDevice = YES;
                     break;

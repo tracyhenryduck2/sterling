@@ -57,6 +57,9 @@
                 NSNumber *current_scenemode = data[@"params"][@"data"][@"sence_group"];
                 int newa = [Encryptools getDescryption:[current_scenemode intValue] withMsgId:[msgId intValue]];
                 [self.siterwelldelegate onUpdateOnCurrentSystemScene:[NSNumber numberWithInt:newa] withDevTid:devTid];
+            }else if([cmd intValue] == DEVICE_NAME_UPLOAD){
+                NSString *device_name = data[@"params"][@"data"][@"answer_content"];
+                [self.siterwelldelegate onDeviceName:device_name withDevTid:devTid];
             }else if([cmd intValue] == DEVICE_STATUS_UPLOAD){
                 ItemData *devmodel = [[ItemData alloc] initWithHekrDictionary:data error:nil];
                 [self.siterwelldelegate onDeviceStatus:devmodel withDevTid:devTid];

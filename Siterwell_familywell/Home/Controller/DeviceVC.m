@@ -12,6 +12,8 @@
 #import "ArrayTool.h"
 #import "DBDeviceManager.h"
 #import "AddDeviceVC.h"
+#import "ScynDeviceName.h"
+#import "DBGatewayManager.h"
 
 @interface DeviceVC ()
 @property (nonatomic, strong) NSMutableArray *modelSource;
@@ -25,6 +27,7 @@
 #pragma mark -life
 -(void)viewDidLoad{
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"updateDeviceNameOver" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"updateDeviceSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:@"pauseRecv" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countine) name:@"countineRecv" object:nil];
@@ -124,6 +127,7 @@
 -(void)viewWillAppear:(BOOL)animated{
         [self loadData];
         [self countine];
+        [self sycnDeviceName];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -205,4 +209,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"updateDeviceSuccess" object:nil];
 }
 
+-(void)sycnDeviceName{
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    if(![NSString isBlankString:currentgateway2]){
+        NSMutableArray *devlist = [[DBDeviceManager sharedInstanced] queryAllDevice:currentgateway2];
+        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+        ScynDeviceName *api = [[ScynDeviceName alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Device:devlist ConnectHost:gatewaymodel.connectHost];
+        [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+            
+        }];
+    }
+
+}
 @end
