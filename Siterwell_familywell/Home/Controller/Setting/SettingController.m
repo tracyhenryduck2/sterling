@@ -12,6 +12,7 @@
 #import "GatewayListVC.h"
 #import "ChangePsdVC.h"
 #import "EmergentPhoneVC.h"
+#import "ChooseLocationVC.h"
 
 @interface SettingController()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic) NSArray *titles;
@@ -93,7 +94,7 @@
                 
                 break;
             case 3:
-                
+                [self gotoLocation];
                 break;
             case 4:
                 [self gotoEmergency];
@@ -174,6 +175,11 @@
 
 -(void)finish{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)gotoLocation{
+    ChooseLocationVC *laction = [[ChooseLocationVC alloc] init];
+    [self.navigationController pushViewController:laction animated:YES];
 }
 
 -(void)gotoAbout{
