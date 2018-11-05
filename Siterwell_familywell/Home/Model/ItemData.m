@@ -180,14 +180,31 @@
             
             return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"aq"];
         }
+        else if([[_names objectForKey:devtype]  containsString:@"温控器"]){
+            
+                battery = [BatterHelp getBatterFormDevice:battery];
+                if ([battery intValue] <= 15) {
+                    return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"gz"];
+                } else {
+                    int ds = [[BatterHelp numberHexString:status] intValue];
+                    int sta = (0x1F) & ds;
+                    if(sta>=5 && sta <=30){
+                        return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"aq"];
+                    }else{
+                         return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"no"];
+                    }
+                }
+            
+            
+        }
         else if ([status isEqualToString:@"40"]) {
             return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"gz"];
         }
         else {
-            return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"no"];;
+            return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"no"];
         }
     }
-    return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"no"];;
+    return [NSString stringWithFormat:[_pictures objectForKey:devtype],@"no"];
 }
 
 

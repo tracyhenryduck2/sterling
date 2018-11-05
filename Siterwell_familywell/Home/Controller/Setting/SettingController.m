@@ -13,6 +13,7 @@
 #import "ChangePsdVC.h"
 #import "EmergentPhoneVC.h"
 #import "ChooseLocationVC.h"
+#import "BeforeConfigurationVC.h"
 
 @interface SettingController()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic) NSArray *titles;
@@ -91,7 +92,7 @@
                 [self gotoChangePsd];
                 break;
             case 2:
-                
+                [self gotoConfigGateway];
                 break;
             case 3:
                 [self gotoLocation];
@@ -184,6 +185,11 @@
 
 -(void)gotoAbout{
         AboutVC *about = [[AboutVC alloc] init];
+    [self.navigationController pushViewController:about animated:YES];
+}
+
+-(void)gotoConfigGateway{
+    BeforeConfigurationVC *about = [[BeforeConfigurationVC alloc] init];
     [self.navigationController pushViewController:about animated:YES];
 }
 
