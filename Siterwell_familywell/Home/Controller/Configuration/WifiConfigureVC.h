@@ -8,6 +8,8 @@
 
 #ifndef WifiConfigureVC_h
 #define WifiConfigureVC_h
+@interface WifiConfigureVC:BaseVC
 
+@end
 
 #endif /* WifiConfigureVC_h */

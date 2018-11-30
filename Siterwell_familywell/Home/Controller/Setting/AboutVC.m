@@ -127,7 +127,6 @@
         _table.dataSource = self;
         _table.delegate = self;
         _table.rowHeight = 50;
-        _table.bounces = NO;
         _table.separatorInset = UIEdgeInsetsZero;
         _table.tableFooterView = [[UIView alloc] init];
         [self.view addSubview:_table];

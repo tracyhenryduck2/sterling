@@ -158,14 +158,13 @@
         _table.dataSource = self;
         _table.delegate = self;
         _table.rowHeight = 50;
-        _table.bounces = NO;
         _table.separatorInset = UIEdgeInsetsZero;
         _table.tableFooterView = [[UIView alloc] init];
+        _table.backgroundColor = RGB(239, 239, 243);
         [self.view addSubview:_table];
         [_table mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(0);
-            make.top.equalTo(64);
-            //        make.height.equalTo(Main_Screen_Width/2 + 50*4+64);
+            make.top.equalTo(30);
         }];
     }
 

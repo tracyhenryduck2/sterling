@@ -82,6 +82,7 @@
 
 #define ThemeColor RGB(43, 148, 255)
 #define GrayColor  RGB(239, 239, 243)
+#define LightYellow RGB(248, 183, 49)
 
 //App版本号
 #define appMPVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
