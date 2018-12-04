@@ -11,7 +11,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "ESP_NetUtil.h"
 #import "AppStatusHelp.h"
-#import "GatewayModel.h"
+#import "DBGatewayManager.h"
 
 static MyUdp *_UDP = nil;
 
@@ -85,6 +85,21 @@ static MyUdp *_UDP = nil;
     
 }
 
+- (void)sendSwitchServer:(NSString *)ipaddress withDeviceID:(NSString *)deviceId {
+    NSError *err = nil;
+    if ([_asyncUdpSocket isClosed]) {
+        [_asyncUdpSocket enableBroadcast:YES error:&err];
+        [_asyncUdpSocket bindToPort:1025 error:&err];
+    }
+    [_asyncUdpSocket beginReceiving:&err];
+    
+    NSData *data = [[[@"IOT_SWITCH:" stringByAppendingString:deviceId] stringByAppendingString:@":SITER1"] dataUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"发送切换服务器命令%@",[[@"IOT_SWITCH:" stringByAppendingString:deviceId] stringByAppendingString:@":SITER1"]);
+    NSLog(@"\n\n\n\n\n发送IOT_SWITCH到了\%@\n\n\n\n\n",ipaddress);
+    [_asyncUdpSocket sendData:data toHost:ipaddress port:1025 withTimeout:-1 tag:0x00012];
+}
+
+
 - (void)sendGetTokenEmptynNew:(NSString *)ipaddress withDeviceID:(NSString *)deviceId {
     NSError *err = nil;
     if ([_asyncUdpSocket isClosed]) {
@@ -115,6 +130,19 @@ static MyUdp *_UDP = nil;
                     NSLog(@"内网发送目标2ip：%@",[AppStatusHelp getWifiIP]);
         [_asyncUdpSocket sendData:data toHost:[AppStatusHelp getWifiIP] port:1025 withTimeout:1 tag:0x00012];
     }
+}
+
+- (void)recvSwitchServerObj:(id)obj Callback:(void(^)(id obj, id data, NSError *error)) block{
+    NSObject __weak *sobj = obj;
+    
+    [RACObserve(self, data) subscribeNext:^(id x) {
+        if (sobj) {
+            NSString *str = [[NSString alloc] initWithData:x encoding:NSUTF8StringEncoding];
+            if ([str rangeOfString:@"ST_answer_OK"].location != NSNotFound) {
+                block(sobj,str,nil);
+            }
+        }
+    }];
 }
 
 - (void)recvTokenObj:(id)obj Callback:(void(^)(id obj, id data, NSError *error)) block{
@@ -154,7 +182,7 @@ static MyUdp *_UDP = nil;
 }
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext{
-    self.data = data;
+
     
     
     if ([GCDAsyncUdpSocket isIPv4Address:address]) {
@@ -163,6 +191,7 @@ static MyUdp *_UDP = nil;
         
         //NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
         if(strAddress  && ![strAddress isEqualToString:localAddress]){
+            self.data = data;
             NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             if([str rangeOfString:@"NAME:"].location != NSNotFound && [str rangeOfString:@"BIND:"].location != NSNotFound)
             {
@@ -172,11 +201,28 @@ static MyUdp *_UDP = nil;
                 NSString *result1 = [str substringWithRange:range1];
                 result1 = [result1 substringWithRange:NSMakeRange(0, [result1 length] - 1)];
                 NSString *devTid = result1;
+                NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+                NSString * currentgateway2 = [config objectForKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
+                GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+                if ([devTid isEqualToString:gatewaymodel.devTid]) {
+                    [config setObject:[GCDAsyncUdpSocket hostFromAddress:address] forKey:@"ipV4"];
+                    [config synchronize];
+                }
             }else if([str rangeOfString:@"devSend"].location !=NSNotFound){
                    NSLog(@"内网收到原始数据：%@",str);
+                 NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+                NSString * currentgateway2 = [config objectForKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
+                GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:NSJSONReadingMutableLeaves
+                                                                      error:nil];
+                 NSString *gatewayId = dic[@"params"][@"devTid"];
+                
+                if ([gatewayId isEqualToString:gatewaymodel.devTid]) {
                     //返回应答
                     NSData *dataa = [@"APP_answer_OK" dataUsingEncoding:NSUTF8StringEncoding];
                     [_asyncUdpSocket sendData:dataa toHost:[GCDAsyncUdpSocket hostFromAddress:address] port:1025 withTimeout:-1 tag:0x00012];
+                }
                 
             }
 
@@ -187,7 +233,12 @@ static MyUdp *_UDP = nil;
 
 
 - (void)udpSocketDidClose:(GCDAsyncUdpSocket *)sock withError:(NSError * _Nullable)error{
-
+    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config objectForKey:[NSString stringWithFormat:CurrentGateway,[config objectForKey:@"UserName"]]];
+    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    if(gatewaymodel!=nil){
+            [self sendGetTokenWithDeviceID:gatewaymodel.devTid];
+    }
 
 }
 

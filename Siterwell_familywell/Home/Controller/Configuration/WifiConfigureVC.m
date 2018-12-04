@@ -9,8 +9,10 @@
 #import "WifiConfigureVC.h"
 #import "WifiContentCell.h"
 #import "HekrConfig.h"
+#import "connectWifiVC.h"
 @interface WifiConfigureVC()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *table;
+@property (strong, nonatomic) UITextField *psdTextFiled;
 @end
 @implementation WifiConfigureVC
 
@@ -38,6 +40,7 @@
         cell.field.hidden = NO;
         [cell.image_title setImage:[UIImage imageNamed:@"password_icon"]];
         cell.field.placeholder = NSLocalizedString(@"请输入新密码", nil);
+        _psdTextFiled = cell.field;
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
@@ -117,6 +120,9 @@
 
 #pragma -mark method
 -(void)next{
-    
+    connectWifiVC *connectvc = [[connectWifiVC alloc] init];
+    connectvc.apSsid = [HekrConfig getWifiName];
+    connectvc.apPwd = _psdTextFiled.text;
+    [self.navigationController pushViewController:connectvc animated:YES];
 }
 @end

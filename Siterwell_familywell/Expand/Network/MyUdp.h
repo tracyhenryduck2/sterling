@@ -13,8 +13,10 @@
 +(instancetype)shared;
 
 - (void)sendGetTokenEmptynNew:(NSString *)ipaddress withDeviceID:(NSString *)deviceId ;
+- (void)sendSwitchServer:(NSString *)ipaddress withDeviceID:(NSString *)deviceId;
 - (void)sendGetTokenWithDeviceID:(NSString *)deviceId ;
 - (void)senData:(NSDictionary *)dics;
+- (void)recvSwitchServerObj:(id)obj Callback:(void(^)(id obj, id data, NSError *error)) block;
 - (void)recv:(id)filter obj:(id)obj callback:(void(^)(id obj, id data, NSError *error)) block;
 - (void)recvTokenObj:(id)obj Callback:(void(^)(id obj, id data, NSError *error)) block;
 @end

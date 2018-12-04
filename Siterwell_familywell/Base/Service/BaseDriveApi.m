@@ -8,6 +8,7 @@
 
 #import "BaseDriveApi.h"
 #import <HekrApi.h>
+#import "MyUdp.h"
 
 @implementation BaseDriveApi
 
@@ -17,6 +18,10 @@
 
 
 - (id)requestArgumentConnectHost{
+    return nil;
+}
+
+- (id)requestArgumentFilter {
     return nil;
 }
 
@@ -48,14 +53,14 @@
 }
 
 - (void)startUdpObj:(id)obj CompletionBlockWithSuccess:(void (^)(id, NSError *))success failure:(void (^)(id, NSError *))failure {
-//    [[MyUdp shared] recv:[self requestArgumentFilter] obj:obj callback:^(id obj, id data, NSError *error) {
-//        if (data) {
-//            NSLog(@"%@",data);
-//            success(data , error);
-//        }
-//    }];
-//
-//    [[MyUdp shared] senData:[self requestArgumentCommand]];
+    [[MyUdp shared] recv:[self requestArgumentFilter] obj:obj callback:^(id obj, id data, NSError *error) {
+        if (data) {
+            NSLog(@"%@",data);
+            success(data , error);
+        }
+    }];
+
+    [[MyUdp shared] senData:[self requestArgumentCommand]];
 }
 
 -(void)dealloc{

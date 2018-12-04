@@ -30,6 +30,7 @@
 #define ANWSER_OK  11
 #define DEVICE_NAME_UPLOAD 17
 #define DEVICE_STATUS_UPLOAD 19
+#define GATEWAYTIME_UPLOAD 21
 #define GATEWAY_NEED_TIME 22
 #define AddSystemScene 23
 #define EditSystemScene 24
@@ -47,5 +48,6 @@
 #define TimerSwitch_UPLOAD 36
 #define DeleteTimerSwitch 37
 #define TIMER_UPLOAD 36
+#define GATEWAYTIMEZONE_UPLOAD 251
 
 #endif /* HekrServiceApi_h */
