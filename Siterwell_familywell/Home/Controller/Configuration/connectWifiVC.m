@@ -92,6 +92,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"配置WIFI", nil);
+    self.view.backgroundColor = [UIColor whiteColor];
     self.repeatCount = 3;
     progress = 0;
     _bindId = @"";
@@ -153,6 +155,7 @@
 -(UILabel *)statusLabel{
     if(_statusLabel==nil){
         _statusLabel = [[UILabel alloc] init];
+        _statusLabel.text = NSLocalizedString(@"连接中..", nil);
         [self.view addSubview:_statusLabel];
         [_statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view.mas_centerX);

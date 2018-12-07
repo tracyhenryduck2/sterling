@@ -31,6 +31,10 @@
         cLabel.textColor = KHWCircleColor;
         cLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:cLabel];
+        [cLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.mas_centerX);
+            make.centerY.equalTo(self.mas_centerY);
+        }];
         self.cLabel = cLabel;
     }
     

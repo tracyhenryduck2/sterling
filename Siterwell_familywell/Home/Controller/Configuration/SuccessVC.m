@@ -9,6 +9,8 @@
 #import "SuccessVC.h"
 #import "SuccessView.h"
 #import "HomeVC.h"
+#import "InitController.h"
+
 @interface SuccessVC ()
 
 @end
@@ -22,15 +24,20 @@
     [self.view addSubview:suc];
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0* NSEC_PER_SEC));
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-        UIViewController *target = nil;
-        for (UIViewController * controller in self.navigationController.viewControllers) { //遍历
-            if ([controller isKindOfClass:[HomeVC class]]) { //这里判断是否为你想要跳转的页面
-                target = controller;
-            }
-        }
-        if (target) {
-            [self.navigationController popToViewController:target animated:YES]; //跳转
-        }
+//        UIViewController *target = nil;
+//        for (UIViewController * controller in self.navigationController.viewControllers) { //遍历
+//            if ([controller isKindOfClass:[HomeVC class]]) { //这里判断是否为你想要跳转的页面
+//                target = controller;
+//            }
+//        }
+//        if (target) {
+//            [self.navigationController popToViewController:target animated:YES]; //跳转
+//        }
+        
+        InitController *vc =[[InitController alloc] init];
+        vc.flag_login = YES;
+        AppDelegateInstance.window.rootViewController = vc;
+        
     });
 }
 

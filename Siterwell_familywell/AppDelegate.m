@@ -11,6 +11,7 @@
 #import "HekrAPI.h"
 #import "NSBundle+Language.h"
 #import <HekrSimpleTcpClient.h>
+#import "InitController.h"
 // iOS10 及以上需导入 UserNotifications.framework
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -99,6 +100,17 @@
                    @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:domain]};
     }];
     
+    
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString *username = [config2 objectForKey:@"UserName"];
+    
+    if(![NSString isBlankString:username]){
+        InitController *newViewController = [[InitController alloc] init];
+        newViewController.flag_login = YES;
+        self.window.rootViewController = newViewController;
+        
+    }
+
     
     return YES;
 }
