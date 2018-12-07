@@ -14,6 +14,7 @@
 #import "EmergentPhoneVC.h"
 #import "ChooseLocationVC.h"
 #import "BeforeConfigurationVC.h"
+#import "DevNetManager.h"
 
 @interface SettingController()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic) NSArray *titles;
@@ -114,6 +115,15 @@
                 break;
         }
     }else{
+        
+        NSUserDefaults *config =  [NSUserDefaults standardUserDefaults];
+        NSString * clientid = [config objectForKey:AppClientID];
+        NSLog(@"个推解绑%@",clientid);
+        NSString *currentdomain = [config objectForKey:@"hekr_domain"];
+        NSString *baseurl = [NSString isBlankString:currentdomain]?@"https://user-openapi.hekr.me":[NSString stringWithFormat:@"%@%@",@"https://user-openapi.",currentdomain];
+        [DevNetManager unBindPush:clientid andBaseUrl:baseurl hander:^(NSError *error) {
+           
+        }];
         
         [[Hekr sharedInstance] logout];
         UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"User" bundle:nil];

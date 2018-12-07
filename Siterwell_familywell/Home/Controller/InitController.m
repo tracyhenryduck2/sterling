@@ -147,7 +147,17 @@
         
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self getChooseGateway];
+        
+        [MBProgressHUD hideHUDForView:GetWindow animated:YES];
+        NSString* errResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+        if([errResponse containsString:@"403"]){
+            UIStoryboard *uistoryboard = [UIStoryboard storyboardWithName:@"User" bundle:nil];
+            AppDelegateInstance.window.rootViewController = [uistoryboard instantiateInitialViewController];
+        }else{
+            [self getChooseGateway];
+        }
+        
+
     }];
 }
 
