@@ -134,9 +134,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 1) {
-        return 20;
+        return 10;
     }
-    return 10;
+    return 0;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -164,7 +164,7 @@
         [self.view addSubview:_table];
         [_table mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(0);
-            make.top.equalTo(30);
+            make.top.equalTo(10);
         }];
     }
 

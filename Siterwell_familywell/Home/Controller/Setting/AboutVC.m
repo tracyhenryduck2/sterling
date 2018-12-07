@@ -129,6 +129,7 @@
         _table.rowHeight = 50;
         _table.separatorInset = UIEdgeInsetsZero;
         _table.tableFooterView = [[UIView alloc] init];
+        _table.backgroundColor = RGB(239, 239, 243);
         [self.view addSubview:_table];
         [_table mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(0);

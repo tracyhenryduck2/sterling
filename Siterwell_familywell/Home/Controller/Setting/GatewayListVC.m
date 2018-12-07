@@ -124,7 +124,7 @@
         [self.view addSubview:_table];
         [_table mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(0);
-            make.top.equalTo(30);
+            make.top.equalTo(10);
         }];
     }
     

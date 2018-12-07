@@ -111,7 +111,7 @@
         [self.view addSubview:_table];
         [_table mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(0);
-            make.top.equalTo(30);
+            make.top.equalTo(10);
         }];
     }
     
@@ -120,6 +120,17 @@
 
 #pragma -mark method
 -(void)next{
+    
+    if([NSString isBlankString:[HekrConfig getWifiName]]){
+        [MBProgressHUD showError:NSLocalizedString(@"无WIFI", nil) ToView:self.view];
+        return;
+    }
+    
+    if([NSString isBlankString:_psdTextFiled.text]){
+        [MBProgressHUD showError:NSLocalizedString(@"请输入WIFI密码", nil) ToView:self.view];
+        return;
+    }
+    
     connectWifiVC *connectvc = [[connectWifiVC alloc] init];
     connectvc.apSsid = [HekrConfig getWifiName];
     connectvc.apPwd = _psdTextFiled.text;
