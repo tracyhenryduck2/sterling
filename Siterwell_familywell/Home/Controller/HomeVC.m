@@ -30,6 +30,7 @@
 #import "DBVideoManager.h"
 #import "POP.h"
 #import "WarningListViewController.h"
+#import "VoiceHelp.h"
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate,SiterwellDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
@@ -514,6 +515,7 @@
             
         }];
     }]];
+    [VoiceHelp playMainBoundAudioWithName:@"phonering"];
     [GetWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
