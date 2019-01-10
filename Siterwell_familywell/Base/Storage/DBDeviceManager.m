@@ -120,6 +120,14 @@ static NSString * const deviceTable = @"devicetable";
     }];
 }
 
+-(void)updateDeviceName:(NSNumber *)device_ID withName:(NSString *)name withDevTid:(NSString *)devTid{
+    
+    [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {
+            NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET name='%@' WHERE eqid=%@ and devTid='%@'",deviceTable, name,device_ID,devTid];
+            [db executeUpdate:sql];
+    }];
+}
+
 - (void)deleteDevice:(NSNumber *)eqid withDevTid:(NSString *)devTid{
     
     [[DBManager sharedInstanced].dbQueue inDatabase:^(FMDatabase *db) {

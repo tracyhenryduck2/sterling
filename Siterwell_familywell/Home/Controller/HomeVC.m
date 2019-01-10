@@ -546,6 +546,9 @@
             result = [result stringByReplacingOccurrencesOfString:@"@" withString:@""];
             result = [result stringByReplacingOccurrencesOfString:@"$" withString:@""];
             
+            NSNumber *devid =[NSNumber numberWithInt:[device_id intValue]];
+            
+            [[DBDeviceManager sharedInstanced] updateDeviceName:devid  withName:result withDevTid:devTid];
         }
     }
 

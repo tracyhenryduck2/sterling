@@ -19,6 +19,7 @@
 - (void)insertDevice:(ItemData *)deviceModel;
 - (void)insertDevices:(NSArray *)deviceModels;
 - (void)deleteDevice:(NSNumber *)eqid withDevTid:(NSString *)devTid;
+-(void)updateDeviceName:(NSNumber *)device_ID withName:(NSString *)name withDevTid:(NSString *)devTid;
 @end
 
 #endif /* DBDeviceManager_h */
