@@ -14,6 +14,8 @@
 #import "AddDeviceVC.h"
 #import "ScynDeviceName.h"
 #import "DBGatewayManager.h"
+#import "ScynDeviceApi.h"
+#import "CRCqueueHelp.h"
 
 @interface DeviceVC ()
 @property (nonatomic, strong) NSMutableArray *modelSource;
@@ -102,11 +104,11 @@
     BookShelfMainView *bookShelfView = [BookShelfMainView loadFromNib];
     bookShelfView.subVC = self;
     bookShelfView.delegate = [RACSubject subject];
-    //@weakify(self)
+    @weakify(self)
     [bookShelfView.delegate subscribeNext:^(id x) {
         //同步
-        //@strongify(self)
-
+        @strongify(self)
+        [self deviceSync];
     }];
     [self.view addSubview:bookShelfView];
     self.bookShelfMainView = bookShelfView;
@@ -221,5 +223,27 @@
         }];
     }
 
+}
+
+-(void)deviceSync{
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    
+    if(![NSString isBlankString:currentgateway2]){
+        GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+        if(gatewaymodel!=nil){
+            ScynDeviceApi *deviceApi = [[ScynDeviceApi alloc] initWithDrivce:gatewaymodel.devTid andCtrlKey:gatewaymodel.ctrlKey DeviceStatus:[CRCqueueHelp getDeviceCRCContent:[[DBDeviceManager sharedInstanced] queryAllDevice:gatewaymodel.devTid]] ConnectHost:gatewaymodel.connectHost];
+            [deviceApi startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+                NSLog(@"得到数据为%@",data);
+            }];
+        }
+        
+    }
+    
+}
+
+-(void)stopScynDevice{
+        [self loadData];
+        [self.bookShelfMainView stopScycn];
 }
 @end

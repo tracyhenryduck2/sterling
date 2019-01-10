@@ -406,7 +406,7 @@
 - (void)onDeviceStatus:(ItemData *)devicemodel withDevTid:(NSString *)devTid {
     
     if([devicemodel.device_name isEqualToString:@"STATUES"]){
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDeviceOver" object:nil];
     }else if([devicemodel.device_name isEqualToString:@"DEL"]){
         [[DBDeviceManager sharedInstanced] deleteDevice:devicemodel.device_ID withDevTid:devTid];
     }
