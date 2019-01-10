@@ -12,4 +12,5 @@
 - (NSURL *)cy_URL;
 +  (BOOL) isBlankString:(NSString *)string;
 +(BOOL) isPhoneNumber:(NSString*) mobileNum;
+-(NSArray *) arrayValue;
 @end

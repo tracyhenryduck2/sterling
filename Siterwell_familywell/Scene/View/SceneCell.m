@@ -41,6 +41,7 @@
     //关键语句
     self.clickBtn.layer.cornerRadius = 10.0;//2.0是圆角的弧度，根据需求自己更改
     [self.contentView addSubview:self.clickBtn];
+    [self.clickBtn addTarget:self action:@selector(tap:) forControlEvents:UIControlEventTouchUpInside];
     [self.clickBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.width.equalTo(100);
@@ -49,4 +50,8 @@
     }];
 }
 
+-(void) tap :(UIButton *) sender{
+    NSInteger tag = sender.tag;
+    [self.clickdelegate clickfor:tag];
+}
 @end

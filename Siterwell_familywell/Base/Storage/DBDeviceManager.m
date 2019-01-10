@@ -25,7 +25,7 @@ static NSString * const deviceTable = @"devicetable";
 
 #pragma mark -method
 - (void)createDeviceTable{
-    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(name varchar(200) NOT NULL, eqid integer default(0),equipmenttype varchar(20),status varchar(20),equipmentdesc varchar(200),packageid integer default (0),sort integer,devTid varchar(30),primary key(eqid,devTid))", deviceTable];
+    NSString *sql = [NSString stringWithFormat:@"create table if not exists %@(name varchar(200) NOT NULL, eqid integer default(0),equipmenttype varchar(20),status varchar(20),equipmentdesc varchar(200),packageid integer default (0),sort integer,devTid varchar(30),autotemp varchar(200),handtemp varchar(200),fangtemp varchar(200),primary key(eqid,devTid))", deviceTable];
     [[DBManager sharedInstanced] createTable:deviceTable sql:sql];
  
 }

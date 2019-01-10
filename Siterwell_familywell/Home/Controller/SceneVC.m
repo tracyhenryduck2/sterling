@@ -27,7 +27,8 @@
 #import "DeleteSceneApi.h"
 #import "ContentHepler.h"
 #import "PushSystemSceneApi.h"
-@interface SceneVC() <UITableViewDelegate,UITableViewDataSource,CLickdelegate>
+#import "ClickApi.h"
+@interface SceneVC() <UITableViewDelegate,UITableViewDataSource,CLickdelegate,CLickBtndelegate>
 
 @property (nonatomic,strong) UITableView *table_scene;
 @property (nonatomic,strong) NSMutableArray <SystemSceneModel *> *list_system_scene;
@@ -171,11 +172,20 @@
         
         if (cell2 == nil) {
             cell2 = [[SceneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell2.clickdelegate = self;
+            [cell2.clickBtn setTag:indexPath.row];
         }
         SceneModel *scenemodel = [_list_scene objectAtIndex:indexPath.row];
+        NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+        NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+         [scenemodel getInDeviceArray:currentgateway2];
         cell2.titleLabel.text = [NSString stringWithFormat:@"%d",[scenemodel.scene_type intValue]];
         cell2.detailLabel.text = scenemodel.scene_name;
-        
+        if([scenemodel.isShouldClick isEqualToString:@"AB"]){
+            cell2.clickBtn.hidden = NO;
+        }else{
+            cell2.clickBtn.hidden = YES;
+        }
         return cell2;
     }
 
@@ -310,6 +320,20 @@
     }];
 }
 
+-(void)clickfor:(NSInteger)index{
+    NSLog(@"index:%ld",index);
+    SceneModel *model =  [_list_scene objectAtIndex:index];
+    
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    GatewayModel *gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+    [Single sharedInstanced].command = ClickToAction;
+    ClickApi *api = [[ClickApi alloc] initWithDevTid:gatewaymodel.devTid CtrlKey:gatewaymodel.ctrlKey Domain:gatewaymodel.connectHost Scene:model.scene_type];
+    [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+        NSLog(@"选择后返回的数据为%@",data);
+    }];
+}
+
 -(void) onAnswerOK{
     if([Single sharedInstanced].command == ChooseSystemScene){
         [Single sharedInstanced].command = -1;
@@ -356,6 +380,9 @@
         }
 
         
+    }else if([Single sharedInstanced].command == ClickToAction){
+        [Single sharedInstanced].command = -1;
+        [MBProgressHUD showSuccess:NSLocalizedString(@"执行成功", nil) ToView:GetWindow];
     }
 
 }

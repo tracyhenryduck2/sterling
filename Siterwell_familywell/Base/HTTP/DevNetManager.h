@@ -8,6 +8,7 @@
 
 #import "BaseNetManager.h"
 #import "ItemData.h"
+#import "WarningModel.h"
 
 #define APPID    @"01611410943"
 
@@ -59,6 +60,10 @@
 
 #define kStatusQuery @"%@/deviceStatusQuery"
 
+#define kWarningPath  @"/api/v1/notification?type=WARNING"
+
+#define kClearWarningsPath  @"/api/v1/notification"
+
 @interface DevNetManager : BaseNetManager
 
 + (id)getDeviceListForFolderId:(NSString *)folderId withPage:(NSInteger)page andBaseUrl:(NSString *)baseurl handler:(void (^)(NSMutableArray <ItemData *>*pArray, NSError *error))handler;
@@ -100,4 +105,8 @@
 +(id)putDeviceIntoFolder:(NSString *)folderId withDevTid:(NSString *)devTid withCtrlKey:(NSString *)ctrlkey andBaseUrl:(NSString *)baseurl hanlder :(void(^)(NSError *)) handler;
 
 +(id)queryStatus:(NSArray *) array andBaseUrl:(NSString *)baseurl hanlder :(void(^)(id,NSError *)) handler;
+
++ (id)clearAllWarningsWithDevTid:(NSString *)devTid ctrlKey:(NSString *)ctrlKey handler:(void (^)(NSError *))handler;
+
++ (id)getWarningsWithDevTid:(NSString *)devTid andPage:(NSInteger)page handler:(void (^)(NSArray<WarningModel *> *, BOOL, NSError *))handler;
 @end

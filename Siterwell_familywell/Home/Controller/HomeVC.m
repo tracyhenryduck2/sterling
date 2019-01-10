@@ -27,6 +27,9 @@
 #import "Single.h"
 #import "GatewayListVC.h"
 #import "DBTimerManager.h"
+#import "DBVideoManager.h"
+#import "POP.h"
+#import "WarningListViewController.h"
 @interface HomeVC()<CLLocationManagerDelegate,HomeHeadViewDelegate,SiterwellDelegate>
 @property (nonatomic) CLLocationManager *locationMgr;
 @property (nonatomic,strong) CYMarquee *weather_marquee;
@@ -37,6 +40,7 @@
 @property (nonatomic) SiterwellReceiver *siter;
 @property (nonatomic) NSObject *testobj;
 @property (nonatomic,strong) NSMutableArray <SystemSceneModel *>* systemSceneListArray;
+@property (nonatomic,strong) UIView *bottomview;
 @end
 
 
@@ -72,6 +76,11 @@
     NSArray * ds = @[@{@"devid":@"lbt_01",@"name":@"嘿嘿嘿"}];
     [self.videoView setVideoArray:ds];
     
+    [self bottomview];
+    UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self.bottomview addGestureRecognizer:recognizer];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBottom:)];
+    [self.bottomview addGestureRecognizer:tap];
     
 }
 
@@ -207,6 +216,53 @@
     }
     return _videoView;
 }
+
+
+#pragma -mark lazy
+-(UIView *)bottomview{
+    if(_bottomview==nil){
+        _bottomview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 31)];
+        [self.view addSubview:_bottomview];
+        [_bottomview makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(0);
+            make.right.equalTo(0);
+            make.height.equalTo(31);
+            make.bottom.equalTo(self.view.mas_bottom).offset(-49);
+        }];
+        
+        UIImageView *imagebg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sbgjblue_bg"]];
+        [_bottomview addSubview:imagebg];
+        [imagebg makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(0);
+        }];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.text = NSLocalizedString(@"设备告警", nil);
+        label.font = SYSTEMFONT(14);
+        label.textColor = [UIColor whiteColor];
+        [_bottomview addSubview:label];
+        [label makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(0);
+            make.centerY.equalTo(0);
+        }];
+        
+        UIImageView *image1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tj01_icon"]];
+        [_bottomview addSubview:image1];
+        [image1 makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(label.mas_left).offset(-5);
+            make.centerY.equalTo(0);
+        }];
+        
+        UIImageView *image2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow01_icon"]];
+        [_bottomview addSubview:image2];
+        [image2 makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(label.mas_right).offset(5);
+            make.centerY.equalTo(0);
+        }];
+    }
+    return _bottomview;
+}
+
 
 #pragma mark -method
 -(void)initLocation{
@@ -505,38 +561,63 @@
           [config setValue:responseObject forKey:UserInfos];
           [config synchronize];
           
-//          NSDictionary *extraPropertiesDic = ((NSDictionary *)responseObject)[@"extraProperties"];
-//
-//          if (extraPropertiesDic[@"monitor"] !=nil) {
-//
-//              NSMutableArray *monitor = [(NSArray*)[extraPropertiesDic[@"monitor"] arrayValue] mutableCopy];
-//
-//              for (int i = 0; i < [monitor count]; i++) {
-//
-//                  if (![[monitor objectAtIndex:i][@"devid"] isEqualToString:@"lbt_01"]&&[monitor objectAtIndex:i][@"devid"]!=nil&&[[monitor objectAtIndex:i][@"devid"] isEqual:[NSNull null]]) {
-//
-//                      NSDictionary *videoDic = (NSDictionary *)monitor[i];
-//                      VideoInfoModel *vInfo = [[VideoInfoModel alloc] init];
-//                      vInfo.devid = videoDic[@"devid"];
-//                      vInfo.name = videoDic[@"name"];
-//                      NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserName"];
-//                      vInfo.userName = userName;
-//                      [[VideoDataBase sharedDataBase] updateVideoInfo:vInfo];
-//                  }
-//              }
-//
-//              if (monitor != nil&&[monitor count] > 0) {
-//                  _imageView.videoArray = monitor;
-//              }else{
-//                  _imageView.videoArray = @[@{@"devid":@"lbt_01",@"name":NSLocalizedString(@"无视频，点击添加", nil)}];
-//              }
-//
-//          }else{
-//              _imageView.videoArray = @[@{@"devid":@"lbt_01",@"name":NSLocalizedString(@"无视频，点击添加", nil)}];
-//          }
+          NSDictionary *extraPropertiesDic = ((NSDictionary *)responseObject)[@"extraProperties"];
+
+          if (extraPropertiesDic[@"monitor"] !=nil) {
+
+              NSMutableArray *monitor = [(NSArray*)[extraPropertiesDic[@"monitor"] arrayValue] mutableCopy];
+
+              for (int i = 0; i < [monitor count]; i++) {
+
+                  if (![[monitor objectAtIndex:i][@"devid"] isEqualToString:@"lbt_01"]&&[monitor objectAtIndex:i][@"devid"]!=nil) {
+
+                      NSDictionary *videoDic = (NSDictionary *)monitor[i];
+                      VideoModel *vInfo = [[VideoModel alloc] init];
+                      vInfo.devid = videoDic[@"devid"];
+                      vInfo.name = videoDic[@"name"];
+                      [[DBVideoManager sharedInstanced] insertVideo:vInfo];
+                  }
+              }
+
+              if (monitor != nil&&[monitor count] > 0) {
+                  _videoView.videoArray = monitor;
+              }else{
+                  _videoView.videoArray = @[@{@"devid":@"lbt_01",@"name":NSLocalizedString(@"无视频，点击添加", nil)}];
+              }
+
+          }else{
+              _videoView.videoArray = @[@{@"devid":@"lbt_01",@"name":NSLocalizedString(@"无视频，点击添加", nil)}];
+          }
           
       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
           NSLog(@"%@",error.domain);
       }];
+}
+
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer {
+    WarningListViewController *wl = [[WarningListViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:wl];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+/**
+ 点击底部的蓝条
+ */
+-(void)tapBottom:(UITapGestureRecognizer *)sender{
+    //弹动一下
+    BOOL animated = [self.bottomview.layer pop_animationKeys] > 0;
+    if (!animated) {
+        POPDecayAnimation *scollerTop = [POPDecayAnimation animationWithPropertyNamed:kPOPLayerTranslationY];
+        scollerTop.velocity = @(-30);
+        [_bottomview.layer pop_addAnimation:scollerTop forKey:@"scollerTop"];
+        
+        WS(ws)
+        scollerTop.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+            POPSpringAnimation *dropAnamation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerTranslationY];
+            dropAnamation.toValue = @(0);
+            dropAnamation.springBounciness = 20;
+            [ws.bottomview.layer pop_addAnimation:dropAnamation forKey:@"dropAnamation"];
+        };
+    }
 }
 @end

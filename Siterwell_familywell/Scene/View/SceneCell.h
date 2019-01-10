@@ -8,12 +8,19 @@
 
 #ifndef SceneCell_h
 #define SceneCell_h
+
+@protocol CLickBtndelegate;
 @interface SceneCell:UITableViewCell
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong,nonatomic) UILabel *detailLabel;
 @property (strong, nonatomic) UIButton *clickBtn;
-
+@property (strong, nonatomic) id<CLickBtndelegate> clickdelegate;
 @end
 
+
+@protocol CLickBtndelegate
+
+-(void) clickfor:(NSInteger)index;
+@end
 #endif /* SceneCell_h */
