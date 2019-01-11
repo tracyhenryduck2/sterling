@@ -34,7 +34,7 @@
                                   @"ctrlKey": _ctrlKey,
                                   @"data": @{
                                           @"device_ID": _mDeviceId,
-                                          @"cmdId": @3
+                                          @"cmdId": @ReplaceDevice
                                           }
                                   }
                           };

@@ -37,7 +37,7 @@
                      @"devTid": _devTid,
                      @"ctrlKey": _ctrlKey,
                      @"data": @{
-                             @"cmdId": @5,
+                             @"cmdId": @EditDeviceName,
                              @"device_ID": @(_deviceId),
                              @"device_name": _deviceName
                              }

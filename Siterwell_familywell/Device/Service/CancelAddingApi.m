@@ -31,7 +31,7 @@
                      @"devTid": _devTid,
                      @"ctrlKey": _ctrlKey,
                      @"data": @{
-                             @"cmdId": @7
+                             @"cmdId": @CancelAddDevice
                              }
                      }
              };

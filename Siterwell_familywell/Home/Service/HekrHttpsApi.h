@@ -24,6 +24,10 @@
 #define ControllDevice 1
 #define ChooseSystemScene 6
 #define ChooseSystemScene_Home -6
+#define ReplaceDevice 3
+#define DeleteDevice 4
+#define EditDeviceName 5
+#define CancelAddDevice 7
 #define AddScene 8
 #define EditScene 9
 #define DelteScene 10

@@ -16,6 +16,7 @@
 #import "DBGatewayManager.h"
 #import "ScynDeviceApi.h"
 #import "CRCqueueHelp.h"
+#import "RenameVC.h"
 
 @interface DeviceVC ()
 @property (nonatomic, strong) NSMutableArray *modelSource;
@@ -151,7 +152,7 @@
 #pragma -mark method
 
 -(void)adddevice{
-    AddDeviceVC *wl = [[AddDeviceVC alloc] init];
+    RenameVC *wl = [[RenameVC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:wl];
     [self presentViewController:nav animated:YES completion:nil];
 }
