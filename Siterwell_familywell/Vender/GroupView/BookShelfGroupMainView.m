@@ -9,6 +9,7 @@
 #import "BookShelfGroupMainView.h"
 #import "BookCollectionViewCell.h"
 #import "BookShelfGroupViewFlowLayout.h"
+#import "DeviceDetailVC.h"
 
 @interface BookShelfGroupMainView ()<BookShelfGroupViewDataSource, BookShelfGroupViewDelegateFlowLayout>
 
@@ -166,14 +167,23 @@
 //    [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
     id itemData = [self.allGroupItems objectAtIndex:indexPath.row];
     ItemData *data = itemData;
-    
-//    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"DeviceStoryboard" bundle:nil];
-//    DeviceDetailVC *vc = [mainStoryBoard instantiateViewControllerWithIdentifier:@"DeviceDetailVC"];
-////    if ([data.status isEqualToString:@"no"]){
-////        return;
-////    }
-//    vc.data = data;
-//    [self.subvc.navigationController pushViewController:vc animated:YES];
+    NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+    NSDictionary * _names = [dic valueForKey:@"names"];
+    NSString * devicename = [_names objectForKey:data.device_name];
+    if ([devicename isEqualToString:@"情景开关"]) {
+
+    }
+    else if ([devicename isEqualToString:@"调光模块"]) {
+
+    }
+    else if ([devicename isEqualToString:@"温控器"]) {
+    }
+    else {
+        DeviceDetailVC *vc = [[DeviceDetailVC alloc ] init];
+        vc.data = itemData;
+        [self.subvc.navigationController pushViewController:vc animated:YES];
+    }
     
 }
 

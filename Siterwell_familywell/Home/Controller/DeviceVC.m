@@ -128,6 +128,9 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
         [self loadData];
         [self countine];
         [self sycnDeviceName];
@@ -152,7 +155,7 @@
 #pragma -mark method
 
 -(void)adddevice{
-    RenameVC *wl = [[RenameVC alloc] init];
+    AddDeviceVC *wl = [[AddDeviceVC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:wl];
     [self presentViewController:nav animated:YES completion:nil];
 }

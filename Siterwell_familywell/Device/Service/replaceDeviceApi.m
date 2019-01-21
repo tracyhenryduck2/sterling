@@ -12,11 +12,11 @@
 {
     NSString *_devTid;
     NSString *_ctrlKey;
-    NSString *_mDeviceId;
+    NSNumber *_mDeviceId;
     NSString *_connectHost;
 }
 
--(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey mDeviceID:(NSString *)mDeviceId ConnectHost:(NSString *)connecthost{
+-(id)initWithDevTid:(NSString *)devTid CtrlKey:(NSString *)ctrlKey mDeviceID:(NSNumber *)mDeviceId ConnectHost:(NSString *)connecthost{
     if (self = [super init]) {
         _devTid = devTid;
         _ctrlKey = ctrlKey;

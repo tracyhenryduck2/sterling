@@ -21,21 +21,19 @@
 #import "RenameVC.h"
 #import "UserInfoModel.h"
 #import "MyUdp.h"
-
 #import "LEEAlert.h"
 #import "Encryptools.h"
 #import "TXScrollLabelView.h"
 @interface DeviceDetailVC ()
-@property (strong, nonatomic) IBOutlet UIView *borderView;
-@property (strong, nonatomic) IBOutlet UIView *bgView;
-@property (strong, nonatomic) IBOutlet UILabel *MainLabel;
-@property (strong, nonatomic) IBOutlet UIView *centerLine;
-@property (strong, nonatomic) IBOutlet UIButton *TestBtn;
-@property (strong, nonatomic) IBOutlet UIButton *PhoneBtn;
-@property (strong, nonatomic) IBOutlet UIImageView *bgImageView;
-//@property (strong, nonatomic) UILabel *signalLabel;
+@property (strong, nonatomic) UIView *borderView;
+@property (strong, nonatomic) UIView *bgView;
+@property (strong, nonatomic) UILabel *MainLabel;
+@property (strong, nonatomic) UIView *centerLine;
+@property (strong, nonatomic) UIButton *TestBtn;
+@property (strong, nonatomic) UIButton *PhoneBtn;
+@property (strong, nonatomic) UIImageView *bgImageView;
 @property (strong, nonatomic) UILabel *batteryLabel;
-@property (strong, nonatomic) IBOutlet UISwitch *deviceSwitch;
+@property (strong, nonatomic) UISwitch *deviceSwitch;
 
 @property (nonatomic) UIImageView *wifiImgV;
 @property (nonatomic) UIImageView *batteryImgV;
@@ -49,21 +47,28 @@
 @property (nonatomic) TXScrollLabelView *titleLabel2;
 
 @property (nonatomic,strong) UIView *bottomview;
+@property (nonatomic,strong) GatewayModel *gatewaymodel;
 @end
 
 @implementation DeviceDetailVC
 {
     CGPoint _bottomPoint;
     CGPoint _beginPoint;
-    
-    BOOL _isReplcing;
-    BOOL _isDeleting;
-    BOOL _isSwitching;
 
 }
 - (void)viewDidLoad {
+    NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
+    NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
+    _gatewaymodel = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
     [super viewDidLoad];
+    [self bgImageView];
     [self bottomview];
+    [self centerLine];
+    [self MainLabel];
+    [self deviceSwitch];
+    [self TestBtn];
+    [self PhoneBtn];
+
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [self.bottomview addGestureRecognizer:recognizer];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBottom:)];
@@ -96,9 +101,11 @@
     
     
     if([NSString isBlankString:_data.customTitle]){
-        [self titleLabel2].scrollTitle = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(_data.title, nil),_data.devID];
+        NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+        NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+        NSDictionary* names = [dic valueForKey:@"names"];
+         [self titleLabel2].scrollTitle = [NSString stringWithFormat:@"%@%@",NSLocalizedString([names objectForKey:_data.device_name], nil) ,[NSString stringWithFormat:@"%@",_data.device_ID]];
     }else{
-        //self.title = _data.customTitle;
         [self titleLabel2].scrollTitle = _data.customTitle;
     }
     if([self titleLabel2].upLabel.frame.size.width <=200){
@@ -106,25 +113,16 @@
     }else{
         [[self titleLabel2] beginScrolling];
     }
-    
-    
-    _borderView.layer.cornerRadius = 100.0f;
-    _borderView.layer.borderColor = [[UIColor whiteColor] CGColor];
-    _borderView.layer.borderWidth = 1.0f;
-    
-    _bgView.layer.cornerRadius = 90.0f;
-    
-    _TestBtn.layer.cornerRadius = 22.0f;
-    _PhoneBtn.layer.cornerRadius = 22.0f;
+
     
     [self setDevice];
     
     [self setPageBackground];
     
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"管理",nil) withTintColor:[UIColor whiteColor]];
-    
+    self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(goBack) image:@"back_white_icon" highImage:nil withTintColor:[UIColor whiteColor]];
     [self analysisStatus];
-    [self currentDevice];
+//    [self currentDevice];
     
     //弹动一下
     BOOL animated = [self.bottomview.layer pop_animationKeys] > 0;
@@ -157,96 +155,35 @@
 //    self.isShowTip = NO;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnswerOK) name:@"answer_ok" object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    //移除观察者 self
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 /**
  管理按钮点击
  */
 -(void)clickItem{
-    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
-    DeviceListModel *model = [[DeviceListModel alloc] initWithDictionary:[config objectForKey:DeviceInfo] error:nil];
-    deleteDeviceApi *deleteApi = [[deleteDeviceApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey mDeviceID:_data.devID];
-    replaceDeviceApi *replaceApi = [[replaceDeviceApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey mDeviceID:_data.devID];
+    deleteDeviceApi *deleteApi = [[deleteDeviceApi alloc] initWithDevTid:_gatewaymodel.devTid CtrlKey:_gatewaymodel.ctrlKey mDeviceID:[self.data.device_ID integerValue] ConnectHost:_gatewaymodel.connectHost];
+    replaceDeviceApi *replaceApi = [[replaceDeviceApi alloc] initWithDevTid:_gatewaymodel.devTid CtrlKey:_gatewaymodel.ctrlKey mDeviceID:self.data.device_ID ConnectHost:_gatewaymodel.connectHost];
     LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:NSLocalizedString(@"取消",nil) clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
         WS(ws)
 
         if (buttonIndex == 2) {
-            
-            if (!_isDeleting) {
-                __block NSObject *obj = [[NSObject alloc] init];
-                _isDeleting = YES;
-                [deleteApi startWithObject:obj CompletionBlockWithSuccess:^(id data, NSError *error) {
-                    _isDeleting = NO;
-                    
-                    NSDictionary *dic = data;
-                    dic = [dic objectForKey:@"params"];
-                    dic = [dic objectForKey:@"data"];
-                    long isSuccess = [[dic objectForKey:@"answer_yes_or_no"] longValue];
-                    if (isSuccess == 2) {
-                        [ws deleteDevice];
-                        [ws.navigationController popViewControllerAnimated:YES];
-                    }else{
-                        [MBProgressHUD showError:NSLocalizedString(@"删除失败",nil) ToView:ws.view];
-                    }
-//                    [obj setValue:@"1" forKey:@"1"];
-                    obj = nil;
-                } failure:^(id data, NSError *error) {
-                    _isDeleting = NO;
-//                    [obj setValue:@"1" forKey:@"1"];
-                    obj = nil;
-                }];
-
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if (_isDeleting) {
-                        _isDeleting = NO;
-                        [MBProgressHUD showError:NSLocalizedString(@"删除失败",nil) ToView:ws.view];
-                        obj = nil;
-                    }
-                });
-                
-            }
-            
+       
         }else if (buttonIndex == 1){
-            
-            if (!_isReplcing) {
-                __block NSObject *obj = [[NSObject alloc] init];
-                _isReplcing = YES;
-                [replaceApi startWithObject:obj CompletionBlockWithSuccess:^(id data, NSError *error) {
-                    _isReplcing = NO;
-                    NSDictionary *dic = data;
-                    dic = [dic objectForKey:@"params"];
-                    dic = [dic objectForKey:@"data"];
-                    long isSuccess = [[dic objectForKey:@"answer_yes_or_no"] longValue];
-                    if (isSuccess == 2) {
-                        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"DeviceStoryboard" bundle:nil];
-                        AddDeviceVC *vc = [mainStoryBoard instantiateViewControllerWithIdentifier:@"AddDeviceVC"];
-                        vc.type = ws.data.devID;
-                        BaseNC *nav = [[BaseNC alloc] initWithRootViewController:vc];
-                        [ws.navigationController presentViewController:nav animated:YES completion:nil];
-                        [ws.navigationController popToRootViewControllerAnimated:YES];
-                    }else{
-                        [MBProgressHUD showError:NSLocalizedString(@"替换失败",nil) ToView:ws.view];
-                    }
-//                    [obj setValue:@"1" forKey:@"1"];
-                    obj = nil;
-                } failure:^(id data, NSError *error) {
-//                    [obj setValue:@"1" forKey:@"1"];
-                    obj = nil;
-                    _isReplcing = NO;
-                }];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if (_isReplcing) {
-                        obj = nil;
-                        _isReplcing = NO;
-                    }
-                });
-            }
+
 
         }else if(buttonIndex == 3){
-           
+
         }else{
+            
         }
-        
+
     } otherButtonTitles:NSLocalizedString(@"替换设备",nil),NSLocalizedString(@"删除设备",nil),NSLocalizedString(@"重命名",nil), nil];
     actionSheet.buttonFont = [UIFont systemFontOfSize:14];
     actionSheet.buttonHeight = 44.0f;
@@ -260,157 +197,162 @@
     [MBProgressHUD showSuccess:NSLocalizedString(@"删除成功",nil) ToView:self.view];
 }
 
-/**
- 实时更新设备
- */
-- (void)currentDevice{
-    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
-    DeviceListModel *_model = [[DeviceListModel alloc] initWithDictionary:[config objectForKey:DeviceInfo] error:nil];
-    NSDictionary *dic = @{@"action" : @"devSend",
-                          @"params" : @{
-                                  @"devTid" : _model.devTid,
-                                  @"data" : @{
-                                          @"cmdId" : @19,
-                                          @"device_ID" : @([self.data.devID intValue])
-                                          }
-                                  }
-                          };
-    
-    NSDictionary *dic2 = @{@"action" : @"devSend",
-                          @"params" : @{
-                                  @"devTid" : _model.devTid,
-                                  @"data" : @{
-                                          @"cmdId" : @119,
-                                          @"device_ID" : @([self.data.devID intValue])
-                                          }
-                                  }
-                          };
-    WS(ws)
-    if (![[config objectForKey:AppStatus] isEqualToString:IntranetAppStatus]){
-        [[Hekr sharedInstance] recv:dic obj:self callback:^(id obj, id data, NSError *error) {
-            if (!error) {
-                DeviceModel *model = [[DeviceModel alloc] initWithDivicedictionary:data error:nil];
-                ws.data = [DeviceMapHelp ItemWithDeivce:model];
-                [ws analysisStatus];
-                [ws tarnslateBackgroundImageView];
-//                if (self.isShowTip == YES) {
-//                    [self showOpenDoorStatusWith:data];
-//                }
-            }
-        }];
-        
-        [[Hekr sharedInstance] recv:dic2 obj:self callback:^(id obj, id data, NSError *error) {
-            if (!error) {
-                NSNumber *msgId=data[@"msgId"];
-                DeviceModel *model = [[DeviceModel alloc] initWithDivicedictionary:data error:nil];
-                int newa = [Encryptools getDescryption:model.device_ID withMsgId:[msgId intValue]];
-                [model setDevice_ID:newa];
-                ws.data = [DeviceMapHelp ItemWithDeivce:model];
-                [ws analysisStatus];
-                [ws tarnslateBackgroundImageView];
-                //                if (self.isShowTip == YES) {
-                //                    [self showOpenDoorStatusWith:data];
-                //                }
-            }
-        }];
-    }
-    else{
-        [[MyUdp shared] recv:dic obj:self callback:^(id obj, id data, NSError *error) {
-            if (!error) {
-                DeviceModel *model = [[DeviceModel alloc] initWithDivicedictionary:data error:nil];
-                ws.data = [DeviceMapHelp ItemWithDeivce:model];
-                [ws analysisStatus];
-                [ws tarnslateBackgroundImageView];
-//                if (self.isShowTip == YES) {
-//                    [self showOpenDoorStatusWith:data];
-//                }
-            }
-        }];
-        
-        [[MyUdp shared] recv:dic2 obj:self callback:^(id obj, id data, NSError *error) {
-            if (!error) {
-                NSNumber *msgId=data[@"msgId"];
-                DeviceModel *model = [[DeviceModel alloc] initWithDivicedictionary:data error:nil];
-                int newa = [Encryptools getDescryption:model.device_ID withMsgId:[msgId intValue]];
-                [model setDevice_ID:newa];
-                ws.data = [DeviceMapHelp ItemWithDeivce:model];
-                [ws analysisStatus];
-                [ws tarnslateBackgroundImageView];
-                //                if (self.isShowTip == YES) {
-                //                    [self showOpenDoorStatusWith:data];
-                //                }
-            }
-        }];
-        
-    }
-}
+///**
+// 实时更新设备
+// */
+//- (void)currentDevice{
+//    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+//    DeviceListModel *_model = [[DeviceListModel alloc] initWithDictionary:[config objectForKey:DeviceInfo] error:nil];
+//    NSDictionary *dic = @{@"action" : @"devSend",
+//                          @"params" : @{
+//                                  @"devTid" : _model.devTid,
+//                                  @"data" : @{
+//                                          @"cmdId" : @19,
+//                                          @"device_ID" : @([self.data.devID intValue])
+//                                          }
+//                                  }
+//                          };
+//
+//    NSDictionary *dic2 = @{@"action" : @"devSend",
+//                          @"params" : @{
+//                                  @"devTid" : _model.devTid,
+//                                  @"data" : @{
+//                                          @"cmdId" : @119,
+//                                          @"device_ID" : @([self.data.devID intValue])
+//                                          }
+//                                  }
+//                          };
+//    WS(ws)
+//    if (![[config objectForKey:AppStatus] isEqualToString:IntranetAppStatus]){
+//        [[Hekr sharedInstance] recv:dic obj:self callback:^(id obj, id data, NSError *error) {
+//            if (!error) {
+//                DeviceModel *model = [[DeviceModel alloc] initWithDivicedictionary:data error:nil];
+//                ws.data = [DeviceMapHelp ItemWithDeivce:model];
+//                [ws analysisStatus];
+//                [ws tarnslateBackgroundImageView];
+////                if (self.isShowTip == YES) {
+////                    [self showOpenDoorStatusWith:data];
+////                }
+//            }
+//        }];
+//
+//        [[Hekr sharedInstance] recv:dic2 obj:self callback:^(id obj, id data, NSError *error) {
+//            if (!error) {
+//                NSNumber *msgId=data[@"msgId"];
+//                DeviceModel *model = [[DeviceModel alloc] initWithDivicedictionary:data error:nil];
+//                int newa = [Encryptools getDescryption:model.device_ID withMsgId:[msgId intValue]];
+//                [model setDevice_ID:newa];
+//                ws.data = [DeviceMapHelp ItemWithDeivce:model];
+//                [ws analysisStatus];
+//                [ws tarnslateBackgroundImageView];
+//                //                if (self.isShowTip == YES) {
+//                //                    [self showOpenDoorStatusWith:data];
+//                //                }
+//            }
+//        }];
+//    }
+//    else{
+//        [[MyUdp shared] recv:dic obj:self callback:^(id obj, id data, NSError *error) {
+//            if (!error) {
+//                DeviceModel *model = [[DeviceModel alloc] initWithDivicedictionary:data error:nil];
+//                ws.data = [DeviceMapHelp ItemWithDeivce:model];
+//                [ws analysisStatus];
+//                [ws tarnslateBackgroundImageView];
+////                if (self.isShowTip == YES) {
+////                    [self showOpenDoorStatusWith:data];
+////                }
+//            }
+//        }];
+//
+//        [[MyUdp shared] recv:dic2 obj:self callback:^(id obj, id data, NSError *error) {
+//            if (!error) {
+//                NSNumber *msgId=data[@"msgId"];
+//                DeviceModel *model = [[DeviceModel alloc] initWithDivicedictionary:data error:nil];
+//                int newa = [Encryptools getDescryption:model.device_ID withMsgId:[msgId intValue]];
+//                [model setDevice_ID:newa];
+//                ws.data = [DeviceMapHelp ItemWithDeivce:model];
+//                [ws analysisStatus];
+//                [ws tarnslateBackgroundImageView];
+//                //                if (self.isShowTip == YES) {
+//                //                    [self showOpenDoorStatusWith:data];
+//                //                }
+//            }
+//        }];
+//
+//    }
+//}
 
 /**
  设置各类页面的信息
  */
 -(void)setDevice{
     
-    if ([self.data.status isEqualToString:@"no"]) {
+    NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+    NSDictionary * _names = [dic valueForKey:@"names"];
+    NSString * devicename = [_names objectForKey:self.data.device_name];
+    
+    if ([self.data.image hasPrefix:@"no"]) {
         [_deviceSwitch setHidden:YES];
         [_TestBtn setHidden:YES];
         
-        if([self.data.title isEqualToString:@"智能插座"]){
+        if([devicename isEqualToString:@"智能插座"]){
             [_deviceSwitch setHidden:NO];
-        } else if ([self.data.title isEqualToString:@"双路开关"]) {
+        } else if ([devicename isEqualToString:@"双路开关"]) {
             //
         }
     }
     
-    if([self.data.title isEqualToString:@"水感报警器"]||
-       [self.data.title isEqualToString:@"SM报警器"]||
-       [self.data.title isEqualToString:@"CO报警器"]||
-       [self.data.title isEqualToString:@"复合型烟感"] ||
-       [self.data.title isEqualToString:@"热感报警器"]){
+    if([devicename isEqualToString:@"水感报警器"]||
+       [devicename isEqualToString:@"SM报警器"]||
+       [devicename isEqualToString:@"CO报警器"]||
+       [devicename isEqualToString:@"复合型烟感"] ||
+       [devicename isEqualToString:@"热感报警器"]){
         //报警类设备显示测试、电话按钮
         [_deviceSwitch setHidden:YES];
-       DeviceModel *dev = [[DeviceDataBase sharedDataBase] selectDeviceNew:self.data.devID];
-        if(dev!=nil && ([dev.device_name containsString:@"008"] || [dev.device_name containsString:@"009"] || [dev.device_name containsString:@"00A"] || [dev.device_name containsString:@"00B"] || [dev.device_name containsString:@"00C"]
-                        || [dev.device_name containsString:@"00D"] )){
+
+        if(self.data!=nil && ([self.data.device_name containsString:@"008"] || [self.data.device_name containsString:@"009"] || [self.data.device_name containsString:@"00A"] || [self.data.device_name containsString:@"00B"] || [self.data.device_name containsString:@"00C"]
+                        || [self.data.device_name containsString:@"00D"] )){
                [_TestBtn setHidden:YES];
         }else{
         [_TestBtn setHidden:NO];
         }
      
         
-    }else if([self.data.title isEqualToString:@"智能插座"]){
+    }else if([devicename isEqualToString:@"智能插座"]){
         //插座类只显示开关
         [_TestBtn setHidden:YES];
         [_PhoneBtn setHidden:YES];
         
-        if (self.data.statuCode.length >= 8) {
-            if ([[self.data.statuCode substringWithRange:NSMakeRange(6, 2)] isEqualToString:@"FF"]||[[self.data.statuCode substringWithRange:NSMakeRange(6, 2)] isEqualToString:@"01"]) {
+        if (self.data.device_status.length >= 8) {
+            if ([[self.data.device_status substringWithRange:NSMakeRange(6, 2)] isEqualToString:@"FF"]||[[self.data.device_status substringWithRange:NSMakeRange(6, 2)] isEqualToString:@"01"]) {
                 [_deviceSwitch setOn:YES];
             }else{
                 [_deviceSwitch setOn:NO];
             }
         }
     }
-    else if([self.data.title isEqualToString:@"PIR探测器"] ||
-            [self.data.title isEqualToString:@"门磁"] ||
-            [self.data.title isEqualToString:@"SOS按钮"] ||
-            [self.data.title isEqualToString:@"按键"]) {
+    else if([devicename isEqualToString:@"PIR探测器"] ||
+            [devicename isEqualToString:@"门磁"] ||
+            [devicename isEqualToString:@"SOS按钮"] ||
+            [devicename isEqualToString:@"按键"]) {
         //探测器显示紧急电话
         [_deviceSwitch setHidden:YES];
         [_TestBtn setHidden:YES];
 
     }
-    else if ([self.data.title isEqualToString:@"温湿度探测器"]) {
+    else if ([devicename isEqualToString:@"温湿度探测器"]) {
         [_deviceSwitch setHidden:YES];
         [_TestBtn setHidden:NO];
         [self.PhoneBtn setHidden:NO];
         
-        NSString *temp = [self.data.statuCode substringWithRange:NSMakeRange(4, 2)];
+        NSString *temp = [self.data.device_status substringWithRange:NSMakeRange(4, 2)];
         NSString *one = [BatterHelp getBinaryByhex:temp];
         one = one.length < 8 ? [@"0000" stringByAppendingString:one] : one;
         one = [one substringWithRange:NSMakeRange(0, 1)];
         NSNumber *tempNum = [BatterHelp numberHexString:temp];
         
-        NSString *hum = [self.data.statuCode substringWithRange:NSMakeRange(6, 2)];
+        NSString *hum = [self.data.device_status substringWithRange:NSMakeRange(6, 2)];
         NSNumber *humNum = [BatterHelp numberHexString:hum];
         if ([one isEqualToString:@"1"]) {
             int ttemp = [tempNum intValue] - 256;
@@ -425,18 +367,18 @@
         _TestBtn.userInteractionEnabled = NO;
         self.PhoneBtn.userInteractionEnabled = NO;
     }
-    else if ([self.data.title isEqualToString:@"门锁"]) {
+    else if ([devicename isEqualToString:@"门锁"]) {
         [_deviceSwitch setHidden:YES];
         [_PhoneBtn setHidden:NO];
         [_TestBtn setHidden:NO];
         [_TestBtn setTitle:NSLocalizedString(@"开锁", nil) forState:UIControlStateNormal];
     }
-    else if ([self.data.title isEqualToString:@"气体探测器"]) {
+    else if ([devicename isEqualToString:@"气体探测器"]) {
         [_deviceSwitch setHidden:YES];
         [_TestBtn setHidden:NO];
         [self.PhoneBtn setHidden:NO];
     }
-    else if ([self.data.title isEqualToString:@"双路开关"]) {
+    else if ([devicename isEqualToString:@"双路开关"]) {
         [_deviceSwitch setHidden:YES];
         [_TestBtn setHidden:YES];
         [self.PhoneBtn setHidden:YES];
@@ -463,24 +405,33 @@
  设备背景图片
  */
 -(void)setPageBackground{
-    if ([_data.status isEqualToString:@"aq"]) {
+    NSString * desc = @"";
+    if(self.data.device_status.length==8){
+       desc = [self.data.device_status substringWithRange:NSMakeRange(4, 2)];
+    }
+    NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+    NSDictionary * _names = [dic valueForKey:@"names"];
+    NSString * devicename = [_names objectForKey:self.data.device_name];
+    
+    if ([_data.image hasPrefix:@"aq"]) {
         [_bgImageView setImage:[UIImage imageNamed:@"sbgreen_bg"]];
-        if ([_data.title isEqualToString:@"智能插座"]) {
+        if ([devicename isEqualToString:@"智能插座"]) {
             _MainLabel.text = NSLocalizedString(@"插座关",nil);
             [_deviceSwitch setOn:NO animated:YES];
         }
-        else if ([_data.title isEqualToString:@"门锁"]) {
-            if ([_data.desc isEqualToString:@"AA"] || [_data.desc isEqualToString:@"60"] ) {
+        else if ([devicename isEqualToString:@"门锁"]) {
+            if ([desc isEqualToString:@"AA"] || [desc isEqualToString:@"60"] ) {
                 _MainLabel.text = NSLocalizedString(@"正常",nil);
-            } else if ([_data.desc isEqualToString:@"AB"]) {
+            } else if ([desc isEqualToString:@"AB"]) {
                 _MainLabel.text = NSLocalizedString(@"已激活",nil);
-            } else if ([_data.desc isEqualToString:@"55"]) {
+            } else if ([desc isEqualToString:@"55"]) {
                 _MainLabel.text = NSLocalizedString(@"远程密码开锁成功", nil);
                 _MainLabel.textColor = RGB(245, 52, 35);
                 _centerLine.backgroundColor = RGB(245, 52, 35);
                 [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];
                 return;
-            } else if ([_data.desc isEqualToString:@"56"]) {
+            } else if ([desc isEqualToString:@"56"]) {
                 _MainLabel.text = NSLocalizedString(@"密码错误", nil);
                 _MainLabel.textColor = RGB(245, 52, 35);
                 _centerLine.backgroundColor = RGB(245, 52, 35);
@@ -489,8 +440,8 @@
             }
             
         }
-        else if ([_data.title isEqualToString:@"双路开关"]) {
-            NSString *switchStatus = [_data.statuCode substringWithRange:NSMakeRange(6, 2)];
+        else if ([devicename isEqualToString:@"双路开关"]) {
+            NSString *switchStatus = [_data.device_status substringWithRange:NSMakeRange(6, 2)];
             if ([switchStatus isEqualToString:@"00"]) {
                 [_switch1 setOn:NO animated:YES];
                 [_switch2 setOn:NO animated:YES];
@@ -515,9 +466,9 @@
         _MainLabel.textColor = RGB(0, 191, 102);
         _centerLine.backgroundColor = RGB(0, 191, 102);
     }
-    else if ([_data.status isEqualToString:@"gz"]){
+    else if ([_data.image hasPrefix:@"gz"]){
         [_bgImageView setImage:[UIImage imageNamed:@"sborange_bg"]];
-        if ([_data.title isEqualToString:@"温湿度探测器"] || [_data.title isEqualToString:@"门锁"]) {
+        if ([devicename isEqualToString:@"温湿度探测器"] || [devicename isEqualToString:@"门锁"]) {
             _MainLabel.text = NSLocalizedString(@"低电压",nil);
         } else {
             _MainLabel.text = NSLocalizedString(@"故障",nil);
@@ -526,54 +477,54 @@
         _centerLine.backgroundColor = RGB(255, 179, 0);
         
     }
-    else if ([_data.status isEqualToString:@"bj"]){
+    else if ([_data.image hasPrefix:@"bj"]){
         
-        if ([_data.title isEqualToString:@"智能插座"]) {
+        if ([devicename isEqualToString:@"智能插座"]) {
             [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];//
             _MainLabel.text = NSLocalizedString(@"插座开",nil);
             [_deviceSwitch setOn:YES animated:YES];
         }
-        else if([_data.title isEqualToString:@"门磁"]){
+        else if([devicename isEqualToString:@"门磁"]){
             [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];//
             _MainLabel.text = NSLocalizedString(@"门打开",nil);
         }
-        else if ([_data.title isEqualToString:@"复合型烟感"]) {
-            if ([_data.desc isEqualToString:@"17"]) {
+        else if ([devicename isEqualToString:@"复合型烟感"]) {
+            if ([desc isEqualToString:@"17"]) {
                 [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];//
                 _MainLabel.text = NSLocalizedString(@"测试报警", nil);
-            } else if ([_data.desc isEqualToString:@"12"]) {
+            } else if ([desc isEqualToString:@"12"]) {
                 [_bgImageView setImage:[UIImage imageNamed:@"sborange_bg"]];//
                 _MainLabel.text = NSLocalizedString(@"故障", nil);
-            } else if ([_data.desc isEqualToString:@"15"]) {
+            } else if ([desc isEqualToString:@"15"]) {
                 [_bgImageView setImage:[UIImage imageNamed:@"sborange_bg"]];//
                 _MainLabel.text = NSLocalizedString(@"免打扰", nil);
-            }else if ([_data.desc isEqualToString:@"19"]) {
+            }else if ([desc isEqualToString:@"19"]) {
                 [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];//
                 _MainLabel.text = NSLocalizedString(@"火灾报警", nil);
-            } else if ([_data.desc isEqualToString:@"1B"]) {
+            } else if ([desc isEqualToString:@"1B"]) {
                 [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];//
                 _MainLabel.text = NSLocalizedString(@"静音", nil);
             }
         }
-        else if ([_data.title isEqualToString:@"门锁"]) {
-            if ([_data.desc isEqualToString:@"10"]) {
+        else if ([devicename isEqualToString:@"门锁"]) {
+            if ([desc isEqualToString:@"10"]) {
                 _MainLabel.text = NSLocalizedString(@"非法操作", nil);
-            } else if ([_data.desc isEqualToString:@"20"]) {
+            } else if ([desc isEqualToString:@"20"]) {
                 _MainLabel.text = NSLocalizedString(@"强拆", nil);
-            } else if ([_data.desc isEqualToString:@"30"]) {
+            } else if ([desc isEqualToString:@"30"]) {
                 _MainLabel.text = NSLocalizedString(@"胁迫", nil);
-            } else if ([_data.desc isEqualToString:@"51"]) {
+            } else if ([desc isEqualToString:@"51"]) {
                 _MainLabel.text = NSLocalizedString(@"密码开锁", nil);
-            } else if ([_data.desc isEqualToString:@"52"]) {
+            } else if ([desc isEqualToString:@"52"]) {
                 _MainLabel.text = NSLocalizedString(@"卡开锁", nil);
-            } else if ([_data.desc isEqualToString:@"53"]) {
+            } else if ([desc isEqualToString:@"53"]) {
                 _MainLabel.text = NSLocalizedString(@"指纹开锁", nil);
             }
             
             [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];
         }
-        else if ([_data.title isEqualToString:@"双路开关"]) {
-            NSString *switchStatus = [_data.statuCode substringWithRange:NSMakeRange(6, 2)];
+        else if ([devicename isEqualToString:@"双路开关"]) {
+            NSString *switchStatus = [_data.device_status substringWithRange:NSMakeRange(6, 2)];
             if ([switchStatus isEqualToString:@"01"]) {
                 [_switch1 setOn:YES animated:YES];
                 [_switch2 setOn:NO animated:YES];
@@ -603,14 +554,14 @@
             [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];
             _MainLabel.text = NSLocalizedString(@"报警",nil);
         }
-        if (![_data.title isEqualToString:@"双路开关"]) {
+        if (![devicename isEqualToString:@"双路开关"]) {
             _MainLabel.textColor = RGB(245, 52, 35);
         }
         _centerLine.backgroundColor = RGB(245, 52, 35);
     }
-    else if ([_data.status isEqualToString:@"no"]){
+    else if ([_data.image hasPrefix:@"no"]){
         [_bgImageView setImage:[UIImage imageNamed:@"sbgray_bg"]];
-        _MainLabel.text = NSLocalizedString(@"NO",nil);
+        _MainLabel.text = NSLocalizedString(@"离线",nil);
         _MainLabel.textColor = RGB(192, 203, 223);
         _centerLine.backgroundColor = RGB(192, 203, 223);
     }
@@ -621,9 +572,14 @@
  */
 - (void)analysisStatus{
     
-    if (![self.data.status isEqualToString:@"no"]) {
+    NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+    NSDictionary * _names = [dic valueForKey:@"names"];
+    NSString * devicename = [_names objectForKey:self.data.device_name];
+    
+    if (![self.data.image hasPrefix:@"no"]) {
         
-        NSString *signal = [_data.statuCode substringWithRange:NSMakeRange(0, 2)];
+        NSString *signal = [_data.device_status substringWithRange:NSMakeRange(0, 2)];
         if ([signal isEqualToString:@"04"]) {
             [self.wifiImgV setImage:[UIImage imageNamed:@"wifi04"]];
         }
@@ -640,8 +596,8 @@
             [self.wifiImgV setImage:[UIImage imageNamed:@"wifi01"]];
         }
         
-        NSString *battery = [_data.statuCode substringWithRange:NSMakeRange(2, 2)];
-        if (![self.data.title containsString:@"插座"] && ![self.data.title containsString:@"双路开关"]) {
+        NSString *battery = [_data.device_status substringWithRange:NSMakeRange(2, 2)];
+        if (![devicename containsString:@"插座"] && ![devicename containsString:@"双路开关"]) {
             if ([battery isEqualToString:@"FF"]) {
             }
             else if ([battery isEqualToString:@"80"]){
@@ -665,15 +621,15 @@
             }
         }
         
-        NSString *switchStatus = [_data.statuCode substringWithRange:NSMakeRange(6, 2)];
-        if ([self.data.title containsString:@"插座"]) {
+        NSString *switchStatus = [_data.device_status substringWithRange:NSMakeRange(6, 2)];
+        if ([devicename containsString:@"插座"]) {
             if ([switchStatus isEqualToString:@"FF"] || [switchStatus isEqualToString:@"01"]) {
                 [_deviceSwitch setOn:YES animated:YES];
             }else{
                 [_deviceSwitch setOn:NO animated:YES];
             }
         }
-        else if ([self.data.title containsString:@"双路开关"]) {
+        else if ([devicename containsString:@"双路开关"]) {
             if ([switchStatus isEqualToString:@"00"]) {
                 [_switch1 setOn:NO animated:YES];
                 [_switch2 setOn:NO animated:YES];
@@ -707,155 +663,152 @@
     }
 }
 
-- (IBAction)switchAction:(id)sender {
-    UISwitch *mswitch = sender;
-    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
-    DeviceListModel *model = [[DeviceListModel alloc] initWithDictionary:[config objectForKey:DeviceInfo] error:nil];
-    
-    if (!_isSwitching) {
-        PostControllerApi *api;
-        _isSwitching = YES;
-        [MBProgressHUD showLoadToView:GetWindow];
-        __block NSObject *obj = [[NSObject alloc] init];
-
-        if (mswitch.tag == 11) {
-            if (!mswitch.isOn) {
-                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"01000000"];
-            } else if (mswitch.isOn) {
-                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"01010000"];
-            }
-        }
-        else if (mswitch.tag == 22) {
-            if (!mswitch.isOn) {
-                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"02000000"];
-            } else if (mswitch.isOn) {
-                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"02020000"];
-            }
-        }
-        else {
-            if ([mswitch isOn]) {
-                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"0101"];
-            }else{
-                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"0100"];
-            }
-        }
-    
-        [api startWithObject:obj CompletionBlockWithSuccess:^(id data, NSError *error) {
-            [MBProgressHUD hideHUDForView:GetWindow animated:YES];
-            _isSwitching = NO;
-            [obj class];
-            obj = nil;
-        } failure:^(id data, NSError *error) {
-            [MBProgressHUD hideHUDForView:GetWindow animated:YES];
-            _isSwitching = NO;
-            [mswitch setOn:!mswitch.isOn animated:YES];
-            [obj class];
-            obj = nil;
-        }];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (_isSwitching) {
-                [MBProgressHUD hideHUDForView:GetWindow animated:YES];
-                _isSwitching = NO;
-                [mswitch setOn:!mswitch.isOn animated:YES];
-                obj = nil;
-            }
-        });
-    }
+-(void)switchAction:(id)sender {
+//    UISwitch *mswitch = sender;
+//    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+//    DeviceListModel *model = [[DeviceListModel alloc] initWithDictionary:[config objectForKey:DeviceInfo] error:nil];
+//
+//    if (!_isSwitching) {
+//        PostControllerApi *api;
+//        _isSwitching = YES;
+//        [MBProgressHUD showLoadToView:GetWindow];
+//        __block NSObject *obj = [[NSObject alloc] init];
+//
+//        if (mswitch.tag == 11) {
+//            if (!mswitch.isOn) {
+//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"01000000"];
+//            } else if (mswitch.isOn) {
+//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"01010000"];
+//            }
+//        }
+//        else if (mswitch.tag == 22) {
+//            if (!mswitch.isOn) {
+//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"02000000"];
+//            } else if (mswitch.isOn) {
+//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"02020000"];
+//            }
+//        }
+//        else {
+//            if ([mswitch isOn]) {
+//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"0101"];
+//            }else{
+//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"0100"];
+//            }
+//        }
+//
+//        [api startWithObject:obj CompletionBlockWithSuccess:^(id data, NSError *error) {
+//            [MBProgressHUD hideHUDForView:GetWindow animated:YES];
+//            _isSwitching = NO;
+//            [obj class];
+//            obj = nil;
+//        } failure:^(id data, NSError *error) {
+//            [MBProgressHUD hideHUDForView:GetWindow animated:YES];
+//            _isSwitching = NO;
+//            [mswitch setOn:!mswitch.isOn animated:YES];
+//            [obj class];
+//            obj = nil;
+//        }];
+//
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            if (_isSwitching) {
+//                [MBProgressHUD hideHUDForView:GetWindow animated:YES];
+//                _isSwitching = NO;
+//                [mswitch setOn:!mswitch.isOn animated:YES];
+//                obj = nil;
+//            }
+//        });
+//    }
 }
 
-- (IBAction)testAction:(id)sender {
-    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
-    DeviceListModel *model = [[DeviceListModel alloc] initWithDictionary:[config objectForKey:DeviceInfo] error:nil];
-    
-    if ([self.data.title isEqualToString:@"复合型烟感"]) {
-        PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"17000000"];
-        [api startWithObject:nil CompletionBlockWithSuccess:^(id data, NSError *error) {} failure:^(id data, NSError *error) {}];
-    }
-    else if ([self.data.title isEqualToString:@"按键"]) {
-        PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"00000100"];
-        [api startWithObject:nil CompletionBlockWithSuccess:^(id data, NSError *error) {} failure:^(id data, NSError *error) {}];
-    }
-    else if ([self.data.title isEqualToString:@"门锁"]) {
-        UIButton *rememberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rememberBtn setTitle:NSLocalizedString(@"记住密码", nil) forState:UIControlStateNormal];
-        rememberBtn.titleLabel.font = [UIFont systemFontOfSize:12.5];
-        [rememberBtn setImage:[UIImage imageNamed:@"jzmm_noselect"] forState:UIControlStateNormal];
-        [rememberBtn setImage:[UIImage imageNamed:@"jzmm_select"] forState:UIControlStateSelected];
-        [rememberBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        [rememberBtn setTitleColor:RGB(57, 166, 240) forState:UIControlStateNormal];
-        [rememberBtn setFrame:CGRectMake(0, 0, 150, 20)];
-        NSString *suoPsd = [[NSUserDefaults standardUserDefaults] objectForKey:@"suoPsd"];
-        if (suoPsd && suoPsd.length != 0) {
-            [rememberBtn setSelected:YES];
-        } else {
-            [rememberBtn setSelected:NO];
-        }
-        [rememberBtn addTarget:self action:@selector(rememberPassword:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIButton *eyeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [eyeBtn setImage:[UIImage imageNamed:@"close_eyes_icon"] forState:UIControlStateNormal];
-        [eyeBtn setImage:[UIImage imageNamed:@"eyes_icon"] forState:UIControlStateSelected];
-        [eyeBtn setFrame:CGRectMake(0, 0, 20, 15)];
-        [eyeBtn addTarget:self action:@selector(lookPsd:) forControlEvents:UIControlEventTouchUpInside];
-//        self.isShowTip = NO;
-        
-        [LEEAlert alert].config
-        .LeeAddTitle(^(UILabel *label) {
-            label.text = NSLocalizedString(@"请输入开锁密码", nil);
-            label.textColor = RGB(57, 166, 240);
-            label.font = [UIFont systemFontOfSize:15];
-        })
-        .LeeAddTextField(^(UITextField *textField) {
-            textField.placeholder = NSLocalizedString(@"请输入开锁密码", nil);
-            textField.borderStyle = UITextBorderStyleNone;
-            textField.font = [UIFont systemFontOfSize:14];
-            textField.rightView = eyeBtn;
-            textField.secureTextEntry = YES;
-            textField.rightViewMode = UITextFieldViewModeAlways;
-            textField.text = suoPsd;
-            self.textf = textField;
-        })
-        .LeeAddCustomView(^(LEECustomView *custom) {
-            custom.positionType = LEECustomViewPositionTypeLeft;
-            custom.view = rememberBtn;
-        })
-        .LeeAddAction(^(LEEAction *action) {
-            action.type = LEEActionTypeCancel;
-            action.title = NSLocalizedString(@"取消", nil);
-            action.titleColor = [UIColor lightGrayColor];
-            action.font = [UIFont systemFontOfSize:14];
-        })
-        .LeeAddAction(^(LEEAction *action) {
-            action.type = LEEActionTypeDefault;
-            action.title = NSLocalizedString(@"确定", nil);
-            action.titleColor = RGB(57, 166, 240);
-            action.font = [UIFont systemFontOfSize:14];
-            __weak typeof(self) weakSelf = self;
-            action.clickBlock = ^{
-                [[NSUserDefaults standardUserDefaults] setObject:weakSelf.textf.text forKey:@"suoPsd"];
-                PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:[NSString stringWithFormat:@"%@00", weakSelf.textf.text]];
-                [api startWithObject:weakSelf CompletionBlockWithSuccess:^(id data, NSError *error) {
-                    NSLog(@"成功了啊");
-//                    if ([_data.desc isEqualToString:@"AB"]) {
-//                        weakSelf.isShowTip = YES;
-//                        [MBProgressHUD showMessage:NSLocalizedString(@"操作成功，等待设备响应", nil) ToView:[UIApplication sharedApplication].keyWindow RemainTime:1.0];
-//                    }
-//                    else {
-//                        [MBProgressHUD showMessage:NSLocalizedString(@"门锁未激活", nil) ToView:[UIApplication sharedApplication].keyWindow RemainTime:0.8];
-//                    }
-                } failure:^(id data, NSError *error) {
-                    NSLog(@"失败了啊");
-                }];
-            };
-        })
-        .LeeShow();
-        
-    }
-    else{
-        PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"BB000000"];
-        [api startWithObject:nil CompletionBlockWithSuccess:^(id data, NSError *error) {} failure:^(id data, NSError *error) {}];
-    }
+- (void)testAction:(id)sender {
+//    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
+//    NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+//    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+//    NSDictionary * _names = [dic valueForKey:@"names"];
+//    NSString * devicename = [_names objectForKey:self.data.device_name];
+//
+//    if ([devicename isEqualToString:@"复合型烟感"]) {
+//        PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"17000000"];
+//        [api startWithObject:nil CompletionBlockWithSuccess:^(id data, NSError *error) {} failure:^(id data, NSError *error) {}];
+//    }
+//    else if ([devicename isEqualToString:@"按键"]) {
+//        PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"00000100"];
+//        [api startWithObject:nil CompletionBlockWithSuccess:^(id data, NSError *error) {} failure:^(id data, NSError *error) {}];
+//    }
+//    else if ([devicename isEqualToString:@"门锁"]) {
+//        UIButton *rememberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [rememberBtn setTitle:NSLocalizedString(@"记住密码", nil) forState:UIControlStateNormal];
+//        rememberBtn.titleLabel.font = [UIFont systemFontOfSize:12.5];
+//        [rememberBtn setImage:[UIImage imageNamed:@"jzmm_noselect"] forState:UIControlStateNormal];
+//        [rememberBtn setImage:[UIImage imageNamed:@"jzmm_select"] forState:UIControlStateSelected];
+//        [rememberBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+//        [rememberBtn setTitleColor:RGB(57, 166, 240) forState:UIControlStateNormal];
+//        [rememberBtn setFrame:CGRectMake(0, 0, 150, 20)];
+//        NSString *suoPsd = [[NSUserDefaults standardUserDefaults] objectForKey:@"suoPsd"];
+//        if (suoPsd && suoPsd.length != 0) {
+//            [rememberBtn setSelected:YES];
+//        } else {
+//            [rememberBtn setSelected:NO];
+//        }
+//        [rememberBtn addTarget:self action:@selector(rememberPassword:) forControlEvents:UIControlEventTouchUpInside];
+//
+//        UIButton *eyeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [eyeBtn setImage:[UIImage imageNamed:@"close_eyes_icon"] forState:UIControlStateNormal];
+//        [eyeBtn setImage:[UIImage imageNamed:@"eyes_icon"] forState:UIControlStateSelected];
+//        [eyeBtn setFrame:CGRectMake(0, 0, 20, 15)];
+//        [eyeBtn addTarget:self action:@selector(lookPsd:) forControlEvents:UIControlEventTouchUpInside];
+////        self.isShowTip = NO;
+//
+//        [LEEAlert alert].config
+//        .LeeAddTitle(^(UILabel *label) {
+//            label.text = NSLocalizedString(@"请输入开锁密码", nil);
+//            label.textColor = RGB(57, 166, 240);
+//            label.font = [UIFont systemFontOfSize:15];
+//        })
+//        .LeeAddTextField(^(UITextField *textField) {
+//            textField.placeholder = NSLocalizedString(@"请输入开锁密码", nil);
+//            textField.borderStyle = UITextBorderStyleNone;
+//            textField.font = [UIFont systemFontOfSize:14];
+//            textField.rightView = eyeBtn;
+//            textField.secureTextEntry = YES;
+//            textField.rightViewMode = UITextFieldViewModeAlways;
+//            textField.text = suoPsd;
+//            self.textf = textField;
+//        })
+//        .LeeAddCustomView(^(LEECustomView *custom) {
+//            custom.positionType = LEECustomViewPositionTypeLeft;
+//            custom.view = rememberBtn;
+//        })
+//        .LeeAddAction(^(LEEAction *action) {
+//            action.type = LEEActionTypeCancel;
+//            action.title = NSLocalizedString(@"取消", nil);
+//            action.titleColor = [UIColor lightGrayColor];
+//            action.font = [UIFont systemFontOfSize:14];
+//        })
+//        .LeeAddAction(^(LEEAction *action) {
+//            action.type = LEEActionTypeDefault;
+//            action.title = NSLocalizedString(@"确定", nil);
+//            action.titleColor = RGB(57, 166, 240);
+//            action.font = [UIFont systemFontOfSize:14];
+//            __weak typeof(self) weakSelf = self;
+//            action.clickBlock = ^{
+//                [[NSUserDefaults standardUserDefaults] setObject:weakSelf.textf.text forKey:@"suoPsd"];
+//                PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.device_ID intValue] DeviceStatus:[NSString stringWithFormat:@"%@00", weakSelf.textf.text]];
+//                [api startWithObject:weakSelf CompletionBlockWithSuccess:^(id data, NSError *error) {
+//                    NSLog(@"成功了啊");
+//
+//                } failure:^(id data, NSError *error) {
+//                    NSLog(@"失败了啊");
+//                }];
+//            };
+//        })
+//        .LeeShow();
+//
+//    }
+//    else{
+//        PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"BB000000"];
+//        [api startWithObject:nil CompletionBlockWithSuccess:^(id data, NSError *error) {} failure:^(id data, NSError *error) {}];
+//    }
 }
 
 - (void)rememberPassword:(UIButton *)sender {
@@ -867,13 +820,13 @@
     self.textf.secureTextEntry = !sender.selected;
 }
 
-- (IBAction)phoneAction:(id)sender {
+- (void)phoneAction:(id)sender {
     NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
     UserInfoModel *model = [[UserInfoModel alloc] initWithDictionary:[config objectForKey:UserInfos] error:nil];
     
-    if (model.user_des) {
+    if ([NSString isBlankString:model.emergencyNumber]) {
 
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",model.user_des];
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",model.emergencyNumber];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }else{
         UIAlertController *alertVc =[UIAlertController alertControllerWithTitle:NSLocalizedString(@"未设置紧急号码",nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -884,13 +837,9 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    RenameVC *vc = segue.destinationViewController;
-    vc.deviceId = self.data.devID;
-}
 
 - (void)lodaData{
-    self.data = [[DeviceDataBase sharedDataBase] selectDevice:self.data.devID];
+    self.data = [[DBDeviceManager sharedInstanced] queryDeviceModel:self.data.device_ID withDevTid:_gatewaymodel.devTid];
     [self analysisStatus];
     [self tarnslateBackgroundImageView];
 }
@@ -901,7 +850,11 @@
     if (!_wifiImgV) {
         _wifiImgV = [[UIImageView alloc] init];
         [self.bgView addSubview:_wifiImgV];
-        if ([self.data.title containsString:@"插座"]) {
+        NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+        NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+        NSDictionary * _names = [dic valueForKey:@"names"];
+        NSString * devicename = [_names objectForKey:self.data.device_name];
+        if ([devicename containsString:@"插座"]) {
             [_wifiImgV mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(0);
                 make.top.equalTo(_centerLine.mas_bottom).offset(15);
@@ -1008,6 +961,121 @@
     return _bottomview;
 }
 
+-(UIImageView *)bgImageView{
+    if(_bgImageView==nil){
+        _bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height)];
+        [_bgImageView setImage:[UIImage imageNamed:@"sbgreen_bg"]];
+        [self.view addSubview:_bgImageView];
+    }
+    return _bgImageView;
+}
+
+-(UIView *)borderView{
+    if(_borderView==nil){
+        _borderView = [[UIView alloc] initWithFrame:CGRectZero];
+        _borderView.layer.cornerRadius = 100.0f;
+        _borderView.layer.borderColor = [[UIColor whiteColor] CGColor];
+        _borderView.layer.borderWidth = 1.0f;
+        [self.view addSubview:_borderView];
+        [_borderView makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(200);
+            make.centerX.mas_equalTo(self.view.mas_centerX);
+            make.centerY.mas_equalTo(self.view.mas_centerY).offset(-85);
+        }];
+        
+    }
+    return _borderView;
+}
+
+-(UIView *)bgView{
+    if(_bgView==nil){
+        _bgView = [[UIView alloc] initWithFrame:CGRectZero];
+        _bgView.layer.cornerRadius = 90.0f;
+        _bgView.backgroundColor = [UIColor whiteColor];
+        [self.borderView addSubview:_bgView];
+        [_bgView makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(180);
+            make.centerX.mas_equalTo(self.borderView.mas_centerX);
+            make.centerY.mas_equalTo(self.borderView.mas_centerY);
+        }];
+    }
+    return _bgView;
+}
+
+-(UIView *)centerLine{
+    if(_centerLine==nil){
+        _centerLine = [[UIView alloc] initWithFrame:CGRectZero];
+        [self.bgView addSubview:_centerLine];
+        [_centerLine makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(0.6);
+            make.right.mas_equalTo(self.bgView.mas_right).offset(-8);
+            make.left.mas_equalTo(self.bgView.mas_left).offset(8);
+            make.centerX.mas_equalTo(self.bgView.centerX);
+            make.centerY.mas_equalTo(self.bgView.centerY);
+        }];
+    }
+    return _centerLine;
+}
+
+-(UILabel *)MainLabel{
+    if(_MainLabel==nil){
+        _MainLabel = [[UILabel alloc] init];
+        [self.bgView addSubview:_MainLabel];
+        [_MainLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(self.bgView.mas_centerX);
+            make.centerY.mas_equalTo(self.bgView.mas_centerY).offset(-40);
+        }];
+    }
+    return _MainLabel;
+}
+
+-(UISwitch *)deviceSwitch{
+    if(_deviceSwitch==nil){
+        _deviceSwitch = [[UISwitch alloc] init];
+        _deviceSwitch.onTintColor = RGB(5, 128, 255);
+        [self.view addSubview:_deviceSwitch];
+        [_deviceSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(0);
+            make.top.equalTo(self.view.centerY).offset(80);
+        }];
+        [_deviceSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _deviceSwitch;
+}
+
+-(UIButton *)TestBtn{
+    if(_TestBtn==nil){
+        _TestBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+        _TestBtn.layer.cornerRadius = 22.0f;
+        [self.view addSubview:_TestBtn];
+        [_TestBtn makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(self.bgView.mas_width);
+            make.height.mas_equalTo(44);
+            make.centerX.equalTo(0);
+            make.centerY.mas_equalTo(self.view.mas_centerY).offset(120);
+        }];
+        [_TestBtn addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _TestBtn;
+}
+
+-(UIButton *)PhoneBtn{
+    if(_PhoneBtn==nil){
+        _PhoneBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+        _PhoneBtn.layer.cornerRadius = 22.0f;
+        [self.view addSubview:_PhoneBtn];
+        [_PhoneBtn makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(self.bgView.mas_width);
+            make.height.mas_equalTo(44);
+            make.centerX.equalTo(0);
+            make.top.mas_equalTo(self.TestBtn.mas_bottom).offset(16.5);
+        }];
+        [_PhoneBtn addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _TestBtn;
+}
+
+
 #pragma -mark method
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer {
 //    DeviceWarningListViewController *wl = [[DeviceWarningListViewController alloc] init];
@@ -1035,5 +1103,13 @@
             [ws.bottomview.layer pop_addAnimation:dropAnamation forKey:@"dropAnamation"];
         };
     }
+}
+
+-(void) goBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)onAnswerOK{
+    
 }
 @end

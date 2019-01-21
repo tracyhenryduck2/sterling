@@ -15,6 +15,7 @@
 #import "BookShelfGroupMainView.h"
 #import "UICollectionView+MathIndexPath.h"
 #import "ItemData.h"
+#import "DeviceDetailVC.h"
 
 /**
  *  一： 打开分组的方式有3种：
@@ -160,23 +161,24 @@
     
     }else{
 
-//        ItemData *data = itemData;
-//        if ([data.title isEqualToString:@"情景开关"]) {
-//            SceneDetailVC *sdVC = [[SceneDetailVC alloc] init];
-//            sdVC.data = data;
-//            [self.subVC.navigationController pushViewController:sdVC animated:YES];
-//        }
-//        else if ([data.title isEqualToString:@"调光模块"]) {
-//            LightDetailVC *ldVC = [[LightDetailVC alloc] init];
-//            ldVC.data = data;
-//            [self.subVC.navigationController pushViewController:ldVC animated:YES];
-//        }
-//        else {
-//            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"DeviceStoryboard" bundle:nil];
-//            DeviceDetailVC *vc = [mainStoryBoard instantiateViewControllerWithIdentifier:@"DeviceDetailVC"];
-//            vc.data = data;
-//            [self.subVC.navigationController pushViewController:vc animated:YES];
-//        }
+        ItemData *data = itemData;
+        NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
+        NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
+        NSDictionary * _names = [dic valueForKey:@"names"];
+        NSString * devicename = [_names objectForKey:data.device_name];
+        if ([devicename isEqualToString:@"情景开关"]) {
+
+        }
+        else if ([devicename isEqualToString:@"调光模块"]) {
+        }
+        else if ([devicename isEqualToString:@"温控器"]) {
+        }
+        else {
+            
+            DeviceDetailVC *vc = [[DeviceDetailVC alloc ] init];
+            vc.data = itemData;
+            [self.subVC.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
