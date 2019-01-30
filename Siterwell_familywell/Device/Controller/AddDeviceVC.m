@@ -24,15 +24,16 @@
     [super viewDidLoad];
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
     NSString * currentgateway2 = [config2 objectForKey:[NSString stringWithFormat:CurrentGateway,[config2 objectForKey:@"UserName"]]];
-    GatewayModel * gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
-    AddDeviceApi *api = [[AddDeviceApi alloc] initWithDevTid:gateway.devTid CtrlKey:gateway.ctrlKey ConnectHost:gateway.connectHost];
-    [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
-        
-    }];
+
     if ([_type isEqualToString:@"update"]) {
         self.title = NSLocalizedString(@"替换设备",nil);
     }else{
         self.title = NSLocalizedString(@"添加设备",nil);
+        GatewayModel * gateway = [[DBGatewayManager sharedInstanced] queryForChosedGateway:currentgateway2];
+        AddDeviceApi *api = [[AddDeviceApi alloc] initWithDevTid:gateway.devTid CtrlKey:gateway.ctrlKey ConnectHost:gateway.connectHost];
+        [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+            
+        }];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss:) name:@"addDeviceSuccess" object:nil];

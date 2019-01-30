@@ -24,6 +24,8 @@
 #import "LEEAlert.h"
 #import "Encryptools.h"
 #import "TXScrollLabelView.h"
+#import "RenameVC.h"
+#import "Single.h"
 @interface DeviceDetailVC ()
 @property (strong, nonatomic) UIView *borderView;
 @property (strong, nonatomic) UIView *bgView;
@@ -122,7 +124,6 @@
     self.navigationItem.rightBarButtonItem = [self itemWithTarget:self action:@selector(clickItem) Title:NSLocalizedString(@"管理",nil) withTintColor:[UIColor whiteColor]];
     self.navigationItem.leftBarButtonItem = [self itemWithTarget:self action:@selector(goBack) image:@"back_white_icon" highImage:nil withTintColor:[UIColor whiteColor]];
     [self analysisStatus];
-//    [self currentDevice];
     
     //弹动一下
     BOOL animated = [self.bottomview.layer pop_animationKeys] > 0;
@@ -143,16 +144,14 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
-    
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    self.isShowTip = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -168,20 +167,25 @@
  管理按钮点击
  */
 -(void)clickItem{
-    deleteDeviceApi *deleteApi = [[deleteDeviceApi alloc] initWithDevTid:_gatewaymodel.devTid CtrlKey:_gatewaymodel.ctrlKey mDeviceID:[self.data.device_ID integerValue] ConnectHost:_gatewaymodel.connectHost];
-    replaceDeviceApi *replaceApi = [[replaceDeviceApi alloc] initWithDevTid:_gatewaymodel.devTid CtrlKey:_gatewaymodel.ctrlKey mDeviceID:self.data.device_ID ConnectHost:_gatewaymodel.connectHost];
+
+
     LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:NSLocalizedString(@"取消",nil) clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-        WS(ws)
-
         if (buttonIndex == 2) {
-       
+            [Single sharedInstanced].command = DeleteDevice;
+            deleteDeviceApi *deleteApi = [[deleteDeviceApi alloc] initWithDevTid:_gatewaymodel.devTid CtrlKey:_gatewaymodel.ctrlKey mDeviceID:[self.data.device_ID integerValue] ConnectHost:_gatewaymodel.connectHost];
+            [deleteApi startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+                
+            }];
         }else if (buttonIndex == 1){
-
-
+                [Single sharedInstanced].command = ReplaceDevice;
+        replaceDeviceApi *replaceApi = [[replaceDeviceApi alloc] initWithDevTid:_gatewaymodel.devTid CtrlKey:_gatewaymodel.ctrlKey mDeviceID:self.data.device_ID ConnectHost:_gatewaymodel.connectHost];
+            [replaceApi startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+                
+            }];
         }else if(buttonIndex == 3){
-
-        }else{
-            
+            RenameVC *renameVc = [[RenameVC alloc] init];
+            renameVc.deviceId = _data.device_ID;
+            [self.navigationController pushViewController:renameVc animated:YES];
         }
 
     } otherButtonTitles:NSLocalizedString(@"替换设备",nil),NSLocalizedString(@"删除设备",nil),NSLocalizedString(@"重命名",nil), nil];
@@ -451,15 +455,6 @@
                 [_MainLabel setText:statusString];
             }
         }
-//        else if ([_data.title isEqualToString:@"门锁"]) {
-//            if ([_data.desc isEqualToString:@"55"]) {
-//                _MainLabel.text = NSLocalizedString(@"远程密码开锁成功", nil);
-//            } else if ([_data.desc isEqualToString:@"56"]) {
-//                _MainLabel.text = NSLocalizedString(@"密码错误", nil);
-//            }
-//            [_bgImageView setImage:[UIImage imageNamed:@"sbred_bg"]];
-//            return;
-//        }
         else{
             _MainLabel.text = NSLocalizedString(@"正常",nil);
         }
@@ -664,69 +659,40 @@
 }
 
 -(void)switchAction:(id)sender {
-//    UISwitch *mswitch = sender;
-//    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
-//    DeviceListModel *model = [[DeviceListModel alloc] initWithDictionary:[config objectForKey:DeviceInfo] error:nil];
-//
-//    if (!_isSwitching) {
-//        PostControllerApi *api;
-//        _isSwitching = YES;
-//        [MBProgressHUD showLoadToView:GetWindow];
-//        __block NSObject *obj = [[NSObject alloc] init];
-//
-//        if (mswitch.tag == 11) {
-//            if (!mswitch.isOn) {
-//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"01000000"];
-//            } else if (mswitch.isOn) {
-//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"01010000"];
-//            }
-//        }
-//        else if (mswitch.tag == 22) {
-//            if (!mswitch.isOn) {
-//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"02000000"];
-//            } else if (mswitch.isOn) {
-//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"02020000"];
-//            }
-//        }
-//        else {
-//            if ([mswitch isOn]) {
-//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"0101"];
-//            }else{
-//                api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"0100"];
-//            }
-//        }
-//
-//        [api startWithObject:obj CompletionBlockWithSuccess:^(id data, NSError *error) {
-//            [MBProgressHUD hideHUDForView:GetWindow animated:YES];
-//            _isSwitching = NO;
-//            [obj class];
-//            obj = nil;
-//        } failure:^(id data, NSError *error) {
-//            [MBProgressHUD hideHUDForView:GetWindow animated:YES];
-//            _isSwitching = NO;
-//            [mswitch setOn:!mswitch.isOn animated:YES];
-//            [obj class];
-//            obj = nil;
-//        }];
-//
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            if (_isSwitching) {
-//                [MBProgressHUD hideHUDForView:GetWindow animated:YES];
-//                _isSwitching = NO;
-//                [mswitch setOn:!mswitch.isOn animated:YES];
-//                obj = nil;
-//            }
-//        });
-//    }
+    UISwitch *mswitch = sender;
+
+    PostControllerApi *api;
+    [MBProgressHUD showLoadToView:GetWindow];
+    [Single sharedInstanced].command = ControllDevice;
+        if (mswitch.tag == 11) {
+            if (!mswitch.isOn) {
+                api = [[PostControllerApi alloc] initWithDrivce:_gatewaymodel.devTid andCtrlKey:_gatewaymodel.ctrlKey DeviceID:_data.device_ID DeviceStatus:@"01000000" ConnectHost:_gatewaymodel.connectHost];
+            } else if (mswitch.isOn) {
+                api = [[PostControllerApi alloc] initWithDrivce:_gatewaymodel.devTid andCtrlKey:_gatewaymodel.ctrlKey DeviceID:_data.device_ID DeviceStatus:@"01010000" ConnectHost:_gatewaymodel.connectHost];
+            }
+        }
+        else if (mswitch.tag == 22) {
+            if (!mswitch.isOn) {
+                api = [[PostControllerApi alloc] initWithDrivce:_gatewaymodel.devTid andCtrlKey:_gatewaymodel.ctrlKey DeviceID:_data.device_ID DeviceStatus:@"02000000" ConnectHost:_gatewaymodel.connectHost];
+            } else if (mswitch.isOn) {
+                api = [[PostControllerApi alloc] initWithDrivce:_gatewaymodel.devTid andCtrlKey:_gatewaymodel.ctrlKey DeviceID:_data.device_ID DeviceStatus:@"02020000" ConnectHost:_gatewaymodel.connectHost];
+            }
+        }
+        else {
+            if ([mswitch isOn]) {
+                api = [[PostControllerApi alloc] initWithDrivce:_gatewaymodel.devTid andCtrlKey:_gatewaymodel.ctrlKey DeviceID:_data.device_ID DeviceStatus:@"01010000" ConnectHost:_gatewaymodel.connectHost];
+            }else{
+                api = [[PostControllerApi alloc] initWithDrivce:_gatewaymodel.devTid andCtrlKey:_gatewaymodel.ctrlKey DeviceID:_data.device_ID DeviceStatus:@"01000000" ConnectHost:_gatewaymodel.connectHost];
+            }
+        }
+
+    [api startWithObject:self CompletionBlockWithSuccess:^(id data, NSError *error) {
+        
+    }];
 }
 
 - (void)testAction:(id)sender {
-//    NSUserDefaults *config = [NSUserDefaults standardUserDefaults];
-//    NSString *namePath = [[NSBundle mainBundle] pathForResource:@"device" ofType:@"plist"];
-//    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:namePath];
-//    NSDictionary * _names = [dic valueForKey:@"names"];
-//    NSString * devicename = [_names objectForKey:self.data.device_name];
-//
+
 //    if ([devicename isEqualToString:@"复合型烟感"]) {
 //        PostControllerApi *api = [[PostControllerApi alloc] initWithDevTid:model.devTid CtrlKey:model.ctrlKey DeviceId:[_data.devID intValue] DeviceStatus:@"17000000"];
 //        [api startWithObject:nil CompletionBlockWithSuccess:^(id data, NSError *error) {} failure:^(id data, NSError *error) {}];
@@ -1110,6 +1076,17 @@
 }
 
 -(void)onAnswerOK{
-    
+    if([Single sharedInstanced].command == DeleteDevice){
+        [Single sharedInstanced].command = -1;
+        [self deleteDevice];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else     if([Single sharedInstanced].command == ReplaceDevice){
+        [Single sharedInstanced].command = -1;
+        AddDeviceVC *adddevice = [[AddDeviceVC alloc] init];
+        adddevice.type=@"update";
+        [self.navigationController pushViewController:adddevice animated:YES];
+    }else if([Single sharedInstanced].command == ControllDevice){
+        [MBProgressHUD hideHUDForView:GetWindow animated:YES];
+    }
 }
 @end
