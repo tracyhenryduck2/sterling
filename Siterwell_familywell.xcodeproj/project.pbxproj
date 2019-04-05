@@ -26,6 +26,46 @@
 		8899B4A2211540BE00716BEA /* SceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8899B4A0211540BE00716BEA /* SceneCell.m */; };
 		8899B4A6211540FF00716BEA /* NameHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8899B4A5211540FF00716BEA /* NameHelper.m */; };
 		8899B4A92115414300716BEA /* CRCqueueHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8899B4A82115414200716BEA /* CRCqueueHelp.m */; };
+		88A15B0F21BAA08200175FFA /* NormalStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B0E21BAA08200175FFA /* NormalStatusVC.m */; };
+		88A15B1A21BAA0A400175FFA /* TimerToModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B1021BAA0A200175FFA /* TimerToModeCell.m */; };
+		88A15B1B21BAA0A400175FFA /* DelayPickViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B1121BAA0A200175FFA /* DelayPickViewCell.m */; };
+		88A15B1C21BAA0A400175FFA /* PickViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B1521BAA0A300175FFA /* PickViewCell.m */; };
+		88A15B1D21BAA0A400175FFA /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B1721BAA0A300175FFA /* WeekCell.m */; };
+		88A15B1E21BAA0A400175FFA /* TimerSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B1921BAA0A300175FFA /* TimerSwitchCell.m */; };
+		88A15B2121BAA0AE00175FFA /* ModelListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B2021BAA0AE00175FFA /* ModelListVC.m */; };
+		88A15B2E21BAA0C800175FFA /* DeleteSystemSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B2221BAA0C700175FFA /* DeleteSystemSceneApi.m */; };
+		88A15B2F21BAA0C800175FFA /* AddSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B2421BAA0C700175FFA /* AddSceneApi.m */; };
+		88A15B3021BAA0C800175FFA /* SyncTimerSwitchApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B2521BAA0C700175FFA /* SyncTimerSwitchApi.m */; };
+		88A15B3121BAA0C800175FFA /* DeleteSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B2621BAA0C700175FFA /* DeleteSceneApi.m */; };
+		88A15B3221BAA0C800175FFA /* DeleteTimerSwitchApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B2921BAA0C700175FFA /* DeleteTimerSwitchApi.m */; };
+		88A15B3321BAA0C800175FFA /* AddTimerSwitchApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B2C21BAA0C800175FFA /* AddTimerSwitchApi.m */; };
+		88A15B5021BAA13C00175FFA /* BeforeConfigurationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B3621BAA13C00175FFA /* BeforeConfigurationVC.m */; };
+		88A15B5121BAA13C00175FFA /* connectWifiVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B3821BAA13C00175FFA /* connectWifiVC.m */; };
+		88A15B5221BAA13C00175FFA /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B3A21BAA13C00175FFA /* QuestionViewController.m */; };
+		88A15B5321BAA13C00175FFA /* SuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B3C21BAA13C00175FFA /* SuccessVC.m */; };
+		88A15B5421BAA13C00175FFA /* WifiConfigureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B3E21BAA13C00175FFA /* WifiConfigureVC.m */; };
+		88A15B5521BAA13C00175FFA /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B4121BAA13C00175FFA /* AboutVC.m */; };
+		88A15B5621BAA13C00175FFA /* ChangeGatewayNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B4321BAA13C00175FFA /* ChangeGatewayNameVC.m */; };
+		88A15B5721BAA13C00175FFA /* ChangePsdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B4521BAA13C00175FFA /* ChangePsdVC.m */; };
+		88A15B5821BAA13C00175FFA /* ChooseLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B4721BAA13C00175FFA /* ChooseLocationVC.m */; };
+		88A15B5921BAA13C00175FFA /* EditEmergentPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B4921BAA13C00175FFA /* EditEmergentPhoneVC.m */; };
+		88A15B5A21BAA13C00175FFA /* EmergentPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B4B21BAA13C00175FFA /* EmergentPhoneVC.m */; };
+		88A15B5B21BAA13C00175FFA /* GatewayListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B4D21BAA13C00175FFA /* GatewayListVC.m */; };
+		88A15B5C21BAA13C00175FFA /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B4F21BAA13C00175FFA /* SettingController.m */; };
+		88A15B6B21BAA17600175FFA /* HWCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B5F21BAA17500175FFA /* HWCircleView.m */; };
+		88A15B6C21BAA17600175FFA /* WifiContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B6421BAA17500175FFA /* WifiContentCell.m */; };
+		88A15B6D21BAA17600175FFA /* GatewayListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B6521BAA17600175FFA /* GatewayListView.m */; };
+		88A15B6E21BAA17600175FFA /* EditPhoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B6721BAA17600175FFA /* EditPhoneCell.m */; };
+		88A15B6F21BAA17600175FFA /* QuesSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B6821BAA17600175FFA /* QuesSectionHeader.m */; };
+		88A15B7021BAA17600175FFA /* SuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B6921BAA17600175FFA /* SuccessView.m */; };
+		88A15B7121BAA17600175FFA /* ChangePsdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B6A21BAA17600175FFA /* ChangePsdCell.m */; };
+		88A15B7721BAA19C00175FFA /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B7421BAA19B00175FFA /* TXScrollLabelView.m */; };
+		88A15B7821BAA19C00175FFA /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B7621BAA19B00175FFA /* UIView+TXFrame.m */; };
+		88A15B7D21BAA1C400175FFA /* QuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B7921BAA1C300175FFA /* QuesModel.m */; };
+		88A15B7E21BAA1C400175FFA /* GatewayVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B7B21BAA1C300175FFA /* GatewayVersionModel.m */; };
+		88A15B8321BAA1CE00175FFA /* TimeZoneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B8121BAA1CD00175FFA /* TimeZoneApi.m */; };
+		88A15B8421BAA1CE00175FFA /* UploadTimeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B8221BAA1CE00175FFA /* UploadTimeApi.m */; };
+		88A15B8721BAA20300175FFA /* MyUdp.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A15B8521BAA20200175FFA /* MyUdp.m */; };
 		88A5AE152026A87D00F89C51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE142026A87D00F89C51 /* AppDelegate.m */; };
 		88A5AE1B2026A87D00F89C51 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A5AE192026A87D00F89C51 /* User.storyboard */; };
 		88A5AE202026A87D00F89C51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A5AE1E2026A87D00F89C51 /* LaunchScreen.storyboard */; };
@@ -34,9 +74,7 @@
 		88A5AE382026A87D00F89C51 /* mytest4UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5AE372026A87D00F89C51 /* mytest4UITests.m */; };
 		88A7CFD22054FE3B00F82C96 /* LanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A7CFD12054FE3B00F82C96 /* LanguageVC.m */; };
 		88A8EDD6210C0DB4006D46CB /* ScynDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EDD5210C0DB4006D46CB /* ScynDeviceApi.m */; };
-		88A8EDDC210C0E0E006D46CB /* DeviceAlarmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EDDB210C0E0E006D46CB /* DeviceAlarmDetailVC.m */; };
 		88A8EDDE210C0E49006D46CB /* DimmingmoduleDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EDDD210C0E49006D46CB /* DimmingmoduleDetailVC.m */; };
-		88A8EDE2210C0EA0006D46CB /* SocketDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EDE1210C0EA0006D46CB /* SocketDetailVC.m */; };
 		88B0365F203583DD00F18EFE /* ESP_ByteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03642203583DD00F18EFE /* ESP_ByteUtil.m */; };
 		88B03660203583DD00F18EFE /* ESP_CRC8.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03644203583DD00F18EFE /* ESP_CRC8.m */; };
 		88B03661203583DD00F18EFE /* ESP_NetUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B03646203583DD00F18EFE /* ESP_NetUtil.m */; };
@@ -323,6 +361,16 @@
 		88B762AB2029E1D800FC87A0 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B762AA2029E1D800FC87A0 /* Register.m */; };
 		88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B90D32203D50AA007E2A9C /* ResetCode.m */; };
 		88DF4FAD20763A2800232BF8 /* DeviceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF4FAC20763A2800232BF8 /* DeviceListVC.m */; };
+		88F0EA5322580EF700C0BB38 /* ClickApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA5122580EF600C0BB38 /* ClickApi.m */; };
+		88F0EA5822580F2200C0BB38 /* DeviceDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA5522580F2100C0BB38 /* DeviceDetailVC.m */; };
+		88F0EA5922580F2200C0BB38 /* RenameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA5622580F2100C0BB38 /* RenameVC.m */; };
+		88F0EA5F22580F5300C0BB38 /* LEEAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA5A22580F5200C0BB38 /* LEEAlert.m */; };
+		88F0EA6022580F5300C0BB38 /* RenameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA5B22580F5200C0BB38 /* RenameCell.m */; };
+		88F0EA6322580F7A00C0BB38 /* DBVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA6222580F7900C0BB38 /* DBVideoManager.m */; };
+		88F0EA6822580F9400C0BB38 /* WarningModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA6522580F9300C0BB38 /* WarningModel.m */; };
+		88F0EA6922580F9400C0BB38 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA6722580F9400C0BB38 /* VideoModel.m */; };
+		88F0EA6C22580FB500C0BB38 /* VoiceHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA6A22580FB400C0BB38 /* VoiceHelp.m */; };
+		88F0EA6F2258102C00C0BB38 /* WarningListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F0EA6D2258102B00C0BB38 /* WarningListViewController.m */; };
 		C408076A21070DDF0064F4B7 /* BaseDriveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408076321070DDF0064F4B7 /* BaseDriveApi.m */; };
 		C408077621070FD20064F4B7 /* ChooseSystemSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408077021070FD00064F4B7 /* ChooseSystemSceneApi.m */; };
 		C408077721070FD20064F4B7 /* SycnSceneApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C408077321070FD10064F4B7 /* SycnSceneApi.m */; };
@@ -332,7 +380,6 @@
 		C42E6BBB20C1249D00784B75 /* device.plist in Resources */ = {isa = PBXBuildFile; fileRef = C42E6BBA20C1249D00784B75 /* device.plist */; };
 		C42E6BBF20C12F0A00784B75 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E6BBD20C12F0900784B75 /* DBManager.m */; };
 		C42E6BC120C1327500784B75 /* DBDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E6BC020C1327500784B75 /* DBDeviceManager.m */; };
-		C43158EC2109BA5A0089A222 /* TimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C43158EB2109BA590089A222 /* TimeModel.m */; };
 		C43158EF2109BF600089A222 /* SceneListItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = C43158ED2109BF5F0089A222 /* SceneListItemData.m */; };
 		C43158F32109C6920089A222 /* ItemDataHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = C43158F22109C6920089A222 /* ItemDataHelp.m */; };
 		C43412F820F34D030006F207 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = C43412F720F34D030006F207 /* WeatherView.m */; };
@@ -399,7 +446,6 @@
 		C46C23CC20FF2E0100D9350F /* DoubleSocketController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23CB20FF2E0100D9350F /* DoubleSocketController.m */; };
 		C46C23CF20FF2E4800D9350F /* CollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23CE20FF2E4800D9350F /* CollectionController.m */; };
 		C46C23D220FF2E6E00D9350F /* GS240SetController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23D120FF2E6E00D9350F /* GS240SetController.m */; };
-		C46C23D520FF308900D9350F /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46C23D420FF308900D9350F /* SettingController.m */; };
 		C4A176B720CF720F002AE3F7 /* RegistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A176B620CF720F002AE3F7 /* RegistCell.m */; };
 		C4BC2B6221379D520079862B /* AddSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BC2B6121379D520079862B /* AddSceneCell.m */; };
 		C4BC2B652137A2830079862B /* Encryptools.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BC2B642137A2830079862B /* Encryptools.m */; };
@@ -418,7 +464,6 @@
 		C4E35C2220F4A34F00B806C8 /* BaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C1E20F4A34E00B806C8 /* BaseNetManager.m */; };
 		C4E35C2320F4A34F00B806C8 /* DevNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C1F20F4A34E00B806C8 /* DevNetManager.m */; };
 		C4E35C2620F4A42400B806C8 /* CYNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C2420F4A42400B806C8 /* CYNetManager.m */; };
-		C4E35C2920F4A49E00B806C8 /* DevVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */; };
 		C4ED2EBF20F5CBD300B4E008 /* ModeCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED2EBE20F5CBD300B4E008 /* ModeCircleView.m */; };
 		C4ED2EC520F5CDD000B4E008 /* AutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED2EC220F5CDD000B4E008 /* AutoScrollLabel.m */; };
 		C4ED2EC620F5CDD000B4E008 /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED2EC420F5CDD000B4E008 /* KYCircleMenu.m */; };
@@ -490,6 +535,86 @@
 		8899B4A5211540FF00716BEA /* NameHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameHelper.m; sourceTree = "<group>"; };
 		8899B4A72115414200716BEA /* CRCqueueHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCqueueHelp.h; sourceTree = "<group>"; };
 		8899B4A82115414200716BEA /* CRCqueueHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCqueueHelp.m; sourceTree = "<group>"; };
+		88A15B0D21BAA08100175FFA /* NormalStatusVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalStatusVC.h; sourceTree = "<group>"; };
+		88A15B0E21BAA08200175FFA /* NormalStatusVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalStatusVC.m; sourceTree = "<group>"; };
+		88A15B1021BAA0A200175FFA /* TimerToModeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerToModeCell.m; sourceTree = "<group>"; };
+		88A15B1121BAA0A200175FFA /* DelayPickViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayPickViewCell.m; sourceTree = "<group>"; };
+		88A15B1221BAA0A200175FFA /* PickViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickViewCell.h; sourceTree = "<group>"; };
+		88A15B1321BAA0A300175FFA /* TimerSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerSwitchCell.h; sourceTree = "<group>"; };
+		88A15B1421BAA0A300175FFA /* TimerToModeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerToModeCell.h; sourceTree = "<group>"; };
+		88A15B1521BAA0A300175FFA /* PickViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickViewCell.m; sourceTree = "<group>"; };
+		88A15B1621BAA0A300175FFA /* WeekCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCell.h; sourceTree = "<group>"; };
+		88A15B1721BAA0A300175FFA /* WeekCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCell.m; sourceTree = "<group>"; };
+		88A15B1821BAA0A300175FFA /* DelayPickViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayPickViewCell.h; sourceTree = "<group>"; };
+		88A15B1921BAA0A300175FFA /* TimerSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerSwitchCell.m; sourceTree = "<group>"; };
+		88A15B1F21BAA0AE00175FFA /* ModelListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelListVC.h; sourceTree = "<group>"; };
+		88A15B2021BAA0AE00175FFA /* ModelListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelListVC.m; sourceTree = "<group>"; };
+		88A15B2221BAA0C700175FFA /* DeleteSystemSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteSystemSceneApi.m; sourceTree = "<group>"; };
+		88A15B2321BAA0C700175FFA /* AddSceneApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSceneApi.h; sourceTree = "<group>"; };
+		88A15B2421BAA0C700175FFA /* AddSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSceneApi.m; sourceTree = "<group>"; };
+		88A15B2521BAA0C700175FFA /* SyncTimerSwitchApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTimerSwitchApi.m; sourceTree = "<group>"; };
+		88A15B2621BAA0C700175FFA /* DeleteSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteSceneApi.m; sourceTree = "<group>"; };
+		88A15B2721BAA0C700175FFA /* AddTimerSwitchApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTimerSwitchApi.h; sourceTree = "<group>"; };
+		88A15B2821BAA0C700175FFA /* DeleteTimerSwitchApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteTimerSwitchApi.h; sourceTree = "<group>"; };
+		88A15B2921BAA0C700175FFA /* DeleteTimerSwitchApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteTimerSwitchApi.m; sourceTree = "<group>"; };
+		88A15B2A21BAA0C800175FFA /* SyncTimerSwitchApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncTimerSwitchApi.h; sourceTree = "<group>"; };
+		88A15B2B21BAA0C800175FFA /* DeleteSystemSceneApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteSystemSceneApi.h; sourceTree = "<group>"; };
+		88A15B2C21BAA0C800175FFA /* AddTimerSwitchApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTimerSwitchApi.m; sourceTree = "<group>"; };
+		88A15B2D21BAA0C800175FFA /* DeleteSceneApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteSceneApi.h; sourceTree = "<group>"; };
+		88A15B3521BAA13C00175FFA /* BeforeConfigurationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeforeConfigurationVC.h; sourceTree = "<group>"; };
+		88A15B3621BAA13C00175FFA /* BeforeConfigurationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeforeConfigurationVC.m; sourceTree = "<group>"; };
+		88A15B3721BAA13C00175FFA /* connectWifiVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectWifiVC.h; sourceTree = "<group>"; };
+		88A15B3821BAA13C00175FFA /* connectWifiVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectWifiVC.m; sourceTree = "<group>"; };
+		88A15B3921BAA13C00175FFA /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		88A15B3A21BAA13C00175FFA /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
+		88A15B3B21BAA13C00175FFA /* SuccessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessVC.h; sourceTree = "<group>"; };
+		88A15B3C21BAA13C00175FFA /* SuccessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessVC.m; sourceTree = "<group>"; };
+		88A15B3D21BAA13C00175FFA /* WifiConfigureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiConfigureVC.h; sourceTree = "<group>"; };
+		88A15B3E21BAA13C00175FFA /* WifiConfigureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiConfigureVC.m; sourceTree = "<group>"; };
+		88A15B4021BAA13C00175FFA /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutVC.h; sourceTree = "<group>"; };
+		88A15B4121BAA13C00175FFA /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutVC.m; sourceTree = "<group>"; };
+		88A15B4221BAA13C00175FFA /* ChangeGatewayNameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGatewayNameVC.h; sourceTree = "<group>"; };
+		88A15B4321BAA13C00175FFA /* ChangeGatewayNameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGatewayNameVC.m; sourceTree = "<group>"; };
+		88A15B4421BAA13C00175FFA /* ChangePsdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePsdVC.h; sourceTree = "<group>"; };
+		88A15B4521BAA13C00175FFA /* ChangePsdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePsdVC.m; sourceTree = "<group>"; };
+		88A15B4621BAA13C00175FFA /* ChooseLocationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLocationVC.h; sourceTree = "<group>"; };
+		88A15B4721BAA13C00175FFA /* ChooseLocationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLocationVC.m; sourceTree = "<group>"; };
+		88A15B4821BAA13C00175FFA /* EditEmergentPhoneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEmergentPhoneVC.h; sourceTree = "<group>"; };
+		88A15B4921BAA13C00175FFA /* EditEmergentPhoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEmergentPhoneVC.m; sourceTree = "<group>"; };
+		88A15B4A21BAA13C00175FFA /* EmergentPhoneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergentPhoneVC.h; sourceTree = "<group>"; };
+		88A15B4B21BAA13C00175FFA /* EmergentPhoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergentPhoneVC.m; sourceTree = "<group>"; };
+		88A15B4C21BAA13C00175FFA /* GatewayListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatewayListVC.h; sourceTree = "<group>"; };
+		88A15B4D21BAA13C00175FFA /* GatewayListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatewayListVC.m; sourceTree = "<group>"; };
+		88A15B4E21BAA13C00175FFA /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		88A15B4F21BAA13C00175FFA /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		88A15B5D21BAA17400175FFA /* EditPhoneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhoneCell.h; sourceTree = "<group>"; };
+		88A15B5E21BAA17400175FFA /* ChangePsdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePsdCell.h; sourceTree = "<group>"; };
+		88A15B5F21BAA17500175FFA /* HWCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWCircleView.m; sourceTree = "<group>"; };
+		88A15B6021BAA17500175FFA /* GatewayListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatewayListView.h; sourceTree = "<group>"; };
+		88A15B6121BAA17500175FFA /* QuesSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuesSectionHeader.h; sourceTree = "<group>"; };
+		88A15B6221BAA17500175FFA /* HWCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWCircleView.h; sourceTree = "<group>"; };
+		88A15B6321BAA17500175FFA /* SuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessView.h; sourceTree = "<group>"; };
+		88A15B6421BAA17500175FFA /* WifiContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiContentCell.m; sourceTree = "<group>"; };
+		88A15B6521BAA17600175FFA /* GatewayListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatewayListView.m; sourceTree = "<group>"; };
+		88A15B6621BAA17600175FFA /* WifiContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiContentCell.h; sourceTree = "<group>"; };
+		88A15B6721BAA17600175FFA /* EditPhoneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhoneCell.m; sourceTree = "<group>"; };
+		88A15B6821BAA17600175FFA /* QuesSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuesSectionHeader.m; sourceTree = "<group>"; };
+		88A15B6921BAA17600175FFA /* SuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessView.m; sourceTree = "<group>"; };
+		88A15B6A21BAA17600175FFA /* ChangePsdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePsdCell.m; sourceTree = "<group>"; };
+		88A15B7321BAA19B00175FFA /* TXScrollLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXScrollLabelView.h; sourceTree = "<group>"; };
+		88A15B7421BAA19B00175FFA /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
+		88A15B7521BAA19B00175FFA /* UIView+TXFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TXFrame.h"; sourceTree = "<group>"; };
+		88A15B7621BAA19B00175FFA /* UIView+TXFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TXFrame.m"; sourceTree = "<group>"; };
+		88A15B7921BAA1C300175FFA /* QuesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuesModel.m; sourceTree = "<group>"; };
+		88A15B7A21BAA1C300175FFA /* GatewayVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatewayVersionModel.h; sourceTree = "<group>"; };
+		88A15B7B21BAA1C300175FFA /* GatewayVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatewayVersionModel.m; sourceTree = "<group>"; };
+		88A15B7C21BAA1C400175FFA /* QuesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuesModel.h; sourceTree = "<group>"; };
+		88A15B7F21BAA1CD00175FFA /* TimeZoneApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeZoneApi.h; sourceTree = "<group>"; };
+		88A15B8021BAA1CD00175FFA /* UploadTimeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadTimeApi.h; sourceTree = "<group>"; };
+		88A15B8121BAA1CD00175FFA /* TimeZoneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeZoneApi.m; sourceTree = "<group>"; };
+		88A15B8221BAA1CE00175FFA /* UploadTimeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadTimeApi.m; sourceTree = "<group>"; };
+		88A15B8521BAA20200175FFA /* MyUdp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUdp.m; sourceTree = "<group>"; };
+		88A15B8621BAA20300175FFA /* MyUdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUdp.h; sourceTree = "<group>"; };
 		88A5AE102026A87D00F89C51 /* Siterwell_familywell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siterwell_familywell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A5AE132026A87D00F89C51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88A5AE142026A87D00F89C51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -507,12 +632,8 @@
 		88A7CFD32054FE4E00F82C96 /* LanguageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageVC.h; sourceTree = "<group>"; };
 		88A8EDD4210C0DB4006D46CB /* ScynDeviceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScynDeviceApi.h; sourceTree = "<group>"; };
 		88A8EDD5210C0DB4006D46CB /* ScynDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScynDeviceApi.m; sourceTree = "<group>"; };
-		88A8EDDA210C0DFE006D46CB /* DeviceAlarmDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceAlarmDetailVC.h; sourceTree = "<group>"; };
-		88A8EDDB210C0E0E006D46CB /* DeviceAlarmDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceAlarmDetailVC.m; sourceTree = "<group>"; };
 		88A8EDDD210C0E49006D46CB /* DimmingmoduleDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DimmingmoduleDetailVC.m; sourceTree = "<group>"; };
 		88A8EDDF210C0E5F006D46CB /* DimmingmoduleDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DimmingmoduleDetailVC.h; sourceTree = "<group>"; };
-		88A8EDE0210C0E79006D46CB /* SocketDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketDetailVC.h; sourceTree = "<group>"; };
-		88A8EDE1210C0EA0006D46CB /* SocketDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketDetailVC.m; sourceTree = "<group>"; };
 		88AAE3E2204C123300D5A3A5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		88B03641203583DD00F18EFE /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
 		88B03642203583DD00F18EFE /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
@@ -1092,6 +1213,27 @@
 		88B90D34203D50BF007E2A9C /* ResetCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetCode.h; sourceTree = "<group>"; };
 		88DF4FAC20763A2800232BF8 /* DeviceListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceListVC.m; sourceTree = "<group>"; };
 		88DF4FAE20763A3C00232BF8 /* DeviceListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceListVC.h; sourceTree = "<group>"; };
+		88F0EA5122580EF600C0BB38 /* ClickApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickApi.m; sourceTree = "<group>"; };
+		88F0EA5222580EF600C0BB38 /* ClickApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickApi.h; sourceTree = "<group>"; };
+		88F0EA5422580F2100C0BB38 /* DeviceDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDetailVC.h; sourceTree = "<group>"; };
+		88F0EA5522580F2100C0BB38 /* DeviceDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDetailVC.m; sourceTree = "<group>"; };
+		88F0EA5622580F2100C0BB38 /* RenameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameVC.m; sourceTree = "<group>"; };
+		88F0EA5722580F2100C0BB38 /* RenameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameVC.h; sourceTree = "<group>"; };
+		88F0EA5A22580F5200C0BB38 /* LEEAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEAlert.m; sourceTree = "<group>"; };
+		88F0EA5B22580F5200C0BB38 /* RenameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameCell.m; sourceTree = "<group>"; };
+		88F0EA5C22580F5200C0BB38 /* LEEAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlert.h; sourceTree = "<group>"; };
+		88F0EA5D22580F5200C0BB38 /* LEEAlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlertHelper.h; sourceTree = "<group>"; };
+		88F0EA5E22580F5200C0BB38 /* RenameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameCell.h; sourceTree = "<group>"; };
+		88F0EA6122580F7900C0BB38 /* DBVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBVideoManager.h; sourceTree = "<group>"; };
+		88F0EA6222580F7900C0BB38 /* DBVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBVideoManager.m; sourceTree = "<group>"; };
+		88F0EA6422580F9300C0BB38 /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
+		88F0EA6522580F9300C0BB38 /* WarningModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningModel.m; sourceTree = "<group>"; };
+		88F0EA6622580F9400C0BB38 /* WarningModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningModel.h; sourceTree = "<group>"; };
+		88F0EA6722580F9400C0BB38 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
+		88F0EA6A22580FB400C0BB38 /* VoiceHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceHelp.m; sourceTree = "<group>"; };
+		88F0EA6B22580FB400C0BB38 /* VoiceHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceHelp.h; sourceTree = "<group>"; };
+		88F0EA6D2258102B00C0BB38 /* WarningListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningListViewController.m; sourceTree = "<group>"; };
+		88F0EA6E2258102C00C0BB38 /* WarningListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningListViewController.h; sourceTree = "<group>"; };
 		C408076221070DDF0064F4B7 /* BaseDriveApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDriveApi.h; sourceTree = "<group>"; };
 		C408076321070DDF0064F4B7 /* BaseDriveApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDriveApi.m; sourceTree = "<group>"; };
 		C408077021070FD00064F4B7 /* ChooseSystemSceneApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSystemSceneApi.m; sourceTree = "<group>"; };
@@ -1109,8 +1251,6 @@
 		C42E6BBE20C12F0900784B75 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		C42E6BC020C1327500784B75 /* DBDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBDeviceManager.m; sourceTree = "<group>"; };
 		C42E6BC220C1328400784B75 /* DBDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBDeviceManager.h; sourceTree = "<group>"; };
-		C43158EA2109BA590089A222 /* TimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeModel.h; sourceTree = "<group>"; };
-		C43158EB2109BA590089A222 /* TimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeModel.m; sourceTree = "<group>"; };
 		C43158ED2109BF5F0089A222 /* SceneListItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneListItemData.m; sourceTree = "<group>"; };
 		C43158EE2109BF5F0089A222 /* SceneListItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneListItemData.h; sourceTree = "<group>"; };
 		C43158F12109C6920089A222 /* ItemDataHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDataHelp.h; sourceTree = "<group>"; };
@@ -1235,8 +1375,6 @@
 		C46C23CE20FF2E4800D9350F /* CollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionController.m; sourceTree = "<group>"; };
 		C46C23D020FF2E6400D9350F /* GS240SetController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GS240SetController.h; sourceTree = "<group>"; };
 		C46C23D120FF2E6E00D9350F /* GS240SetController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GS240SetController.m; sourceTree = "<group>"; };
-		C46C23D320FF307F00D9350F /* SettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
-		C46C23D420FF308900D9350F /* SettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		C4A176B520CF71FB002AE3F7 /* RegistCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistCell.h; sourceTree = "<group>"; };
 		C4A176B620CF720F002AE3F7 /* RegistCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistCell.m; sourceTree = "<group>"; };
 		C4A3F8D120BEBD1E00213F5E /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1275,8 +1413,6 @@
 		C4E35C2120F4A34F00B806C8 /* BaseNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetManager.h; sourceTree = "<group>"; };
 		C4E35C2420F4A42400B806C8 /* CYNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYNetManager.m; sourceTree = "<group>"; };
 		C4E35C2520F4A42400B806C8 /* CYNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNetManager.h; sourceTree = "<group>"; };
-		C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevVersionModel.m; sourceTree = "<group>"; };
-		C4E35C2820F4A49E00B806C8 /* DevVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevVersionModel.h; sourceTree = "<group>"; };
 		C4ED2EBD20F5CBC600B4E008 /* ModeCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModeCircleView.h; sourceTree = "<group>"; };
 		C4ED2EBE20F5CBD300B4E008 /* ModeCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModeCircleView.m; sourceTree = "<group>"; };
 		C4ED2EC120F5CDD000B4E008 /* AutoScrollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoScrollLabel.h; sourceTree = "<group>"; };
@@ -1331,6 +1467,11 @@
 		8815136C213286B100CB2FD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				88F0EA5C22580F5200C0BB38 /* LEEAlert.h */,
+				88F0EA5A22580F5200C0BB38 /* LEEAlert.m */,
+				88F0EA5D22580F5200C0BB38 /* LEEAlertHelper.h */,
+				88F0EA5E22580F5200C0BB38 /* RenameCell.h */,
+				88F0EA5B22580F5200C0BB38 /* RenameCell.m */,
 				8815136D213286B100CB2FD4 /* AddDeviceCell.h */,
 				8815136E213286B100CB2FD4 /* AddDeviceCell.m */,
 			);
@@ -1352,12 +1493,16 @@
 		88694BAD2075B5100092B6A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				88F0EA6422580F9300C0BB38 /* VideoModel.h */,
+				88F0EA6722580F9400C0BB38 /* VideoModel.m */,
+				88F0EA6622580F9400C0BB38 /* WarningModel.h */,
+				88F0EA6522580F9300C0BB38 /* WarningModel.m */,
+				88A15B7A21BAA1C300175FFA /* GatewayVersionModel.h */,
+				88A15B7B21BAA1C300175FFA /* GatewayVersionModel.m */,
+				88A15B7C21BAA1C400175FFA /* QuesModel.h */,
+				88A15B7921BAA1C300175FFA /* QuesModel.m */,
 				C43158EE2109BF5F0089A222 /* SceneListItemData.h */,
 				C43158ED2109BF5F0089A222 /* SceneListItemData.m */,
-				C43158EA2109BA590089A222 /* TimeModel.h */,
-				C43158EB2109BA590089A222 /* TimeModel.m */,
-				C4E35C2820F4A49E00B806C8 /* DevVersionModel.h */,
-				C4E35C2720F4A49E00B806C8 /* DevVersionModel.m */,
 				C43412F920F34D840006F207 /* NewWeatherModel.h */,
 				C43412FA20F34D840006F207 /* NewWeatherModel.m */,
 				C43846A520C6789500FF8725 /* ItemData.h */,
@@ -1395,6 +1540,57 @@
 				881513742132A2D100CB2FD4 /* ContentHepler.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		88A15B3421BAA13C00175FFA /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				88A15B3521BAA13C00175FFA /* BeforeConfigurationVC.h */,
+				88A15B3621BAA13C00175FFA /* BeforeConfigurationVC.m */,
+				88A15B3721BAA13C00175FFA /* connectWifiVC.h */,
+				88A15B3821BAA13C00175FFA /* connectWifiVC.m */,
+				88A15B3921BAA13C00175FFA /* QuestionViewController.h */,
+				88A15B3A21BAA13C00175FFA /* QuestionViewController.m */,
+				88A15B3B21BAA13C00175FFA /* SuccessVC.h */,
+				88A15B3C21BAA13C00175FFA /* SuccessVC.m */,
+				88A15B3D21BAA13C00175FFA /* WifiConfigureVC.h */,
+				88A15B3E21BAA13C00175FFA /* WifiConfigureVC.m */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		88A15B3F21BAA13C00175FFA /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				88A15B4021BAA13C00175FFA /* AboutVC.h */,
+				88A15B4121BAA13C00175FFA /* AboutVC.m */,
+				88A15B4221BAA13C00175FFA /* ChangeGatewayNameVC.h */,
+				88A15B4321BAA13C00175FFA /* ChangeGatewayNameVC.m */,
+				88A15B4421BAA13C00175FFA /* ChangePsdVC.h */,
+				88A15B4521BAA13C00175FFA /* ChangePsdVC.m */,
+				88A15B4621BAA13C00175FFA /* ChooseLocationVC.h */,
+				88A15B4721BAA13C00175FFA /* ChooseLocationVC.m */,
+				88A15B4821BAA13C00175FFA /* EditEmergentPhoneVC.h */,
+				88A15B4921BAA13C00175FFA /* EditEmergentPhoneVC.m */,
+				88A15B4A21BAA13C00175FFA /* EmergentPhoneVC.h */,
+				88A15B4B21BAA13C00175FFA /* EmergentPhoneVC.m */,
+				88A15B4C21BAA13C00175FFA /* GatewayListVC.h */,
+				88A15B4D21BAA13C00175FFA /* GatewayListVC.m */,
+				88A15B4E21BAA13C00175FFA /* SettingController.h */,
+				88A15B4F21BAA13C00175FFA /* SettingController.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		88A15B7221BAA19B00175FFA /* TXScrollLabelView */ = {
+			isa = PBXGroup;
+			children = (
+				88A15B7321BAA19B00175FFA /* TXScrollLabelView.h */,
+				88A15B7421BAA19B00175FFA /* TXScrollLabelView.m */,
+				88A15B7521BAA19B00175FFA /* UIView+TXFrame.h */,
+				88A15B7621BAA19B00175FFA /* UIView+TXFrame.m */,
+			);
+			path = TXScrollLabelView;
 			sourceTree = "<group>";
 		};
 		88A5AE072026A87D00F89C51 = {
@@ -1462,14 +1658,14 @@
 		88A8EDD9210C0DE6006D46CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				88F0EA5422580F2100C0BB38 /* DeviceDetailVC.h */,
+				88F0EA5522580F2100C0BB38 /* DeviceDetailVC.m */,
+				88F0EA5722580F2100C0BB38 /* RenameVC.h */,
+				88F0EA5622580F2100C0BB38 /* RenameVC.m */,
 				881513672132866800CB2FD4 /* AddDeviceVC.h */,
 				881513662132866700CB2FD4 /* AddDeviceVC.m */,
-				88A8EDDA210C0DFE006D46CB /* DeviceAlarmDetailVC.h */,
-				88A8EDDB210C0E0E006D46CB /* DeviceAlarmDetailVC.m */,
 				88A8EDDD210C0E49006D46CB /* DimmingmoduleDetailVC.m */,
 				88A8EDDF210C0E5F006D46CB /* DimmingmoduleDetailVC.h */,
-				88A8EDE0210C0E79006D46CB /* SocketDetailVC.h */,
-				88A8EDE1210C0EA0006D46CB /* SocketDetailVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2118,6 +2314,7 @@
 		88B03A952035E5DF00F18EFE /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				88A15B7221BAA19B00175FFA /* TXScrollLabelView */,
 				88B03A962035E5DF00F18EFE /* UIAlertView */,
 				88B03A992035E5DF00F18EFE /* UIApplication */,
 				88B03AA22035E5DF00F18EFE /* UIBarButtonItem */,
@@ -2643,6 +2840,8 @@
 		88B03BBA2035E5DF00F18EFE /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				88A15B8621BAA20300175FFA /* MyUdp.h */,
+				88A15B8521BAA20200175FFA /* MyUdp.m */,
 				88B03BBB2035E5DF00F18EFE /* AppStatusHelp.h */,
 				88B03BBC2035E5DF00F18EFE /* AppStatusHelp.m */,
 				88B03BBD2035E5DF00F18EFE /* HekrConfig.h */,
@@ -2858,6 +3057,20 @@
 		C408076E21070F8D0064F4B7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				88F0EA5222580EF600C0BB38 /* ClickApi.h */,
+				88F0EA5122580EF600C0BB38 /* ClickApi.m */,
+				88A15B2321BAA0C700175FFA /* AddSceneApi.h */,
+				88A15B2421BAA0C700175FFA /* AddSceneApi.m */,
+				88A15B2721BAA0C700175FFA /* AddTimerSwitchApi.h */,
+				88A15B2C21BAA0C800175FFA /* AddTimerSwitchApi.m */,
+				88A15B2D21BAA0C800175FFA /* DeleteSceneApi.h */,
+				88A15B2621BAA0C700175FFA /* DeleteSceneApi.m */,
+				88A15B2B21BAA0C800175FFA /* DeleteSystemSceneApi.h */,
+				88A15B2221BAA0C700175FFA /* DeleteSystemSceneApi.m */,
+				88A15B2821BAA0C700175FFA /* DeleteTimerSwitchApi.h */,
+				88A15B2921BAA0C700175FFA /* DeleteTimerSwitchApi.m */,
+				88A15B2A21BAA0C800175FFA /* SyncTimerSwitchApi.h */,
+				88A15B2521BAA0C700175FFA /* SyncTimerSwitchApi.m */,
 				8835551D21342B4A0044A58E /* AddSystemSceneApi.h */,
 				8835551B21342B4A0044A58E /* AddSystemSceneApi.m */,
 				8835551C21342B4A0044A58E /* PushSystemSceneApi.h */,
@@ -2873,6 +3086,8 @@
 		C42E6BBC20C12EE500784B75 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				88F0EA6122580F7900C0BB38 /* DBVideoManager.h */,
+				88F0EA6222580F7900C0BB38 /* DBVideoManager.m */,
 				C4FF15E420CF936A00DA3026 /* DBWarnManager.h */,
 				C4FF15E520CF936A00DA3026 /* DBWarnManager.m */,
 				C438467F20C66C7700FF8725 /* DBTimerManager.h */,
@@ -2928,6 +3143,20 @@
 		C438469920C677D900FF8725 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				88A15B5E21BAA17400175FFA /* ChangePsdCell.h */,
+				88A15B6A21BAA17600175FFA /* ChangePsdCell.m */,
+				88A15B5D21BAA17400175FFA /* EditPhoneCell.h */,
+				88A15B6721BAA17600175FFA /* EditPhoneCell.m */,
+				88A15B6021BAA17500175FFA /* GatewayListView.h */,
+				88A15B6521BAA17600175FFA /* GatewayListView.m */,
+				88A15B6221BAA17500175FFA /* HWCircleView.h */,
+				88A15B5F21BAA17500175FFA /* HWCircleView.m */,
+				88A15B6121BAA17500175FFA /* QuesSectionHeader.h */,
+				88A15B6821BAA17600175FFA /* QuesSectionHeader.m */,
+				88A15B6321BAA17500175FFA /* SuccessView.h */,
+				88A15B6921BAA17600175FFA /* SuccessView.m */,
+				88A15B6621BAA17600175FFA /* WifiContentCell.h */,
+				88A15B6421BAA17500175FFA /* WifiContentCell.m */,
 				C4ED2ECB20F5FC1900B4E008 /* HomeHeadView.h */,
 				C4ED2ECA20F5FC1900B4E008 /* HomeHeadView.m */,
 				C43412FF20F353F20006F207 /* CYMarquee.h */,
@@ -3072,6 +3301,10 @@
 		C43D517C203FDC9F00DE5FF3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				88F0EA6E2258102C00C0BB38 /* WarningListViewController.h */,
+				88F0EA6D2258102B00C0BB38 /* WarningListViewController.m */,
+				88A15B3421BAA13C00175FFA /* Configuration */,
+				88A15B3F21BAA13C00175FFA /* Setting */,
 				C4080779210712F80064F4B7 /* InitController.h */,
 				C4080778210712F40064F4B7 /* InitController.m */,
 				C4ED2EC820F5F20D00B4E008 /* CircleMenuVc.h */,
@@ -3082,8 +3315,6 @@
 				C43D5184203FE6D200DE5FF3 /* SceneVC.m */,
 				C43D5180203FDD1800DE5FF3 /* HomeVC.h */,
 				C43D5181203FDD1800DE5FF3 /* HomeVC.m */,
-				C46C23D320FF307F00D9350F /* SettingController.h */,
-				C46C23D420FF308900D9350F /* SettingController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3113,6 +3344,16 @@
 		C46C23AF20FF29BC00D9350F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				88A15B1821BAA0A300175FFA /* DelayPickViewCell.h */,
+				88A15B1121BAA0A200175FFA /* DelayPickViewCell.m */,
+				88A15B1221BAA0A200175FFA /* PickViewCell.h */,
+				88A15B1521BAA0A300175FFA /* PickViewCell.m */,
+				88A15B1321BAA0A300175FFA /* TimerSwitchCell.h */,
+				88A15B1921BAA0A300175FFA /* TimerSwitchCell.m */,
+				88A15B1421BAA0A300175FFA /* TimerToModeCell.h */,
+				88A15B1021BAA0A200175FFA /* TimerToModeCell.m */,
+				88A15B1621BAA0A300175FFA /* WeekCell.h */,
+				88A15B1721BAA0A300175FFA /* WeekCell.m */,
 				C4BC2B6021379D520079862B /* AddSceneCell.h */,
 				C4BC2B6121379D520079862B /* AddSceneCell.m */,
 				881513712132871200CB2FD4 /* colorItemCell.h */,
@@ -3136,6 +3377,8 @@
 		C46C23B020FF29C700D9350F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				88A15B1F21BAA0AE00175FFA /* ModelListVC.h */,
+				88A15B2021BAA0AE00175FFA /* ModelListVC.m */,
 				C46C23C020FF2C0B00D9350F /* StatusChoose */,
 				C46C23B120FF2A1200D9350F /* TimerEditController.m */,
 				C46C23B320FF2A1F00D9350F /* TimerEditController.h */,
@@ -3154,6 +3397,8 @@
 		C46C23C020FF2C0B00D9350F /* StatusChoose */ = {
 			isa = PBXGroup;
 			children = (
+				88A15B0D21BAA08100175FFA /* NormalStatusVC.h */,
+				88A15B0E21BAA08200175FFA /* NormalStatusVC.m */,
 				C46C23C120FF2D2E00D9350F /* SetTimeController.h */,
 				C46C23C220FF2D3C00D9350F /* SetTimeController.m */,
 				C46C23C420FF2D5600D9350F /* SetDelayController.h */,
@@ -3173,6 +3418,12 @@
 		C4C5B9DE20CE092B009A3E2D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				88F0EA6B22580FB400C0BB38 /* VoiceHelp.h */,
+				88F0EA6A22580FB400C0BB38 /* VoiceHelp.m */,
+				88A15B7F21BAA1CD00175FFA /* TimeZoneApi.h */,
+				88A15B8121BAA1CD00175FFA /* TimeZoneApi.m */,
+				88A15B8021BAA1CD00175FFA /* UploadTimeApi.h */,
+				88A15B8221BAA1CE00175FFA /* UploadTimeApi.m */,
 				C4FF15F320CFD82200DA3026 /* ErrorCodeUtil.h */,
 				C4FF15F420CFD82200DA3026 /* ErrorCodeUtil.m */,
 				C4FF15E320CF935300DA3026 /* HekrHttpsApi.h */,
@@ -3465,6 +3716,7 @@
 				88DF4FAD20763A2800232BF8 /* DeviceListVC.m in Sources */,
 				88B03C022035E5E000F18EFE /* NSArray+Block.m in Sources */,
 				88B03C252035E5E000F18EFE /* NSNotificationCenter+MainThread.m in Sources */,
+				88A15B1E21BAA0A400175FFA /* TimerSwitchCell.m in Sources */,
 				88B03CE92035E5E000F18EFE /* YTKBatchRequest.m in Sources */,
 				C43A054620C76D8F00B2E5FC /* MJRefreshComponent.m in Sources */,
 				8846065F2116D245005981D8 /* SceneHeaderView.m in Sources */,
@@ -3473,13 +3725,17 @@
 				88B03CC42035E5E000F18EFE /* UIView+Debug.m in Sources */,
 				88B03C062035E5E000F18EFE /* NSBundle+Language.m in Sources */,
 				88B03C212035E5E000F18EFE /* NSHTTPCookieStorage+FreezeDry.m in Sources */,
+				88A15B8321BAA1CE00175FFA /* TimeZoneApi.m in Sources */,
 				88B03CC62035E5E000F18EFE /* UIView+FDCollapsibleConstraints.m in Sources */,
 				88B03C962035E5E000F18EFE /* UIImageView+GeometryConversion.m in Sources */,
+				88A15B1A21BAA0A400175FFA /* TimerToModeCell.m in Sources */,
 				88B03C0F2035E5E000F18EFE /* NSDate+CupertinoYankee.m in Sources */,
 				C4A176B720CF720F002AE3F7 /* RegistCell.m in Sources */,
+				88A15B5221BAA13C00175FFA /* QuestionViewController.m in Sources */,
+				88F0EA6F2258102C00C0BB38 /* WarningListViewController.m in Sources */,
+				88F0EA5F22580F5300C0BB38 /* LEEAlert.m in Sources */,
 				C438466A20C62DA900FF8725 /* SceneModel.m in Sources */,
 				88B03CCF2035E5E000F18EFE /* UIView+ViewController.m in Sources */,
-				88A8EDE2210C0EA0006D46CB /* SocketDetailVC.m in Sources */,
 				88B03C222035E5E000F18EFE /* NSIndexPath+Offset.m in Sources */,
 				88B03C472035E5E000F18EFE /* NSString+Size.m in Sources */,
 				88B0398C2035E04400F18EFE /* UIPlaceHolderTextView.m in Sources */,
@@ -3488,6 +3744,7 @@
 				88B03C4C2035E5E000F18EFE /* NSTimer+Addition.m in Sources */,
 				88B03CF02035E5E000F18EFE /* YTKRequest.m in Sources */,
 				88B03C2C2035E5E000F18EFE /* NSObject+AppInfo.m in Sources */,
+				88A15B7E21BAA1C400175FFA /* GatewayVersionModel.m in Sources */,
 				C43A054B20C76D8F00B2E5FC /* MJRefreshAutoStateFooter.m in Sources */,
 				88B03CAB2035E5E000F18EFE /* UIScrollView+Addition.m in Sources */,
 				88B03C932035E5E000F18EFE /* UIImageView+Addition.m in Sources */,
@@ -3500,11 +3757,14 @@
 				C46C23B220FF2A1200D9350F /* TimerEditController.m in Sources */,
 				88B03C942035E5E000F18EFE /* UIImageView+BetterFace.m in Sources */,
 				88B03C342035E5E000F18EFE /* NSObject+Reflection.m in Sources */,
+				88A15B6B21BAA17600175FFA /* HWCircleView.m in Sources */,
+				88A15B6E21BAA17600175FFA /* EditPhoneCell.m in Sources */,
 				88B03C622035E5E000F18EFE /* CAMediaTimingFunction+AdditionalEquations.m in Sources */,
 				88B03CD62035E5E000F18EFE /* UIViewController+MJPopupViewController.m in Sources */,
 				88A5AE232026A87D00F89C51 /* main.m in Sources */,
 				88B03CA02035E5E000F18EFE /* UINavigationController+JZExtension.m in Sources */,
 				88B03C3F2035E5E000F18EFE /* NSString+Hash.m in Sources */,
+				88A15B5421BAA13C00175FFA /* WifiConfigureVC.m in Sources */,
 				88B03C152035E5E000F18EFE /* NSDate+Utilities.m in Sources */,
 				88B03BFD2035E5E000F18EFE /* NSManagedObjectContext+FetchRequestsConstructors.m in Sources */,
 				88B03C5D2035E5E000F18EFE /* UITextField+Extension.m in Sources */,
@@ -3514,6 +3774,7 @@
 				88B03C6A2035E5E000F18EFE /* UIBarButtonItem+Action.m in Sources */,
 				88B03C262035E5E000F18EFE /* NSDecimalNumber+CalculatingByString.m in Sources */,
 				88B03C992035E5E000F18EFE /* UILabel+AutomaticWriting.m in Sources */,
+				88A15B5921BAA13C00175FFA /* EditEmergentPhoneVC.m in Sources */,
 				C43A054720C76D8F00B2E5FC /* MJRefreshFooter.m in Sources */,
 				883720212127C37800A516D7 /* Single.m in Sources */,
 				88B03CC72035E5E000F18EFE /* UIView+Find.m in Sources */,
@@ -3522,6 +3783,7 @@
 				C4BC2B652137A2830079862B /* Encryptools.m in Sources */,
 				88B03C802035E5E000F18EFE /* UIFont+DynamicFontControl.m in Sources */,
 				88B03CEF2035E5E000F18EFE /* YTKNetworkPrivate.m in Sources */,
+				88A15B1C21BAA0A400175FFA /* PickViewCell.m in Sources */,
 				C43846A120C6780B00FF8725 /* BookCollectionViewCell.m in Sources */,
 				88B03C1A2035E5E000F18EFE /* NSDictionary+Merge.m in Sources */,
 				88B03C742035E5E000F18EFE /* UIButton+MiddleAligning.m in Sources */,
@@ -3536,8 +3798,8 @@
 				88B03C382035E5E000F18EFE /* NSMutableString+Ruby.m in Sources */,
 				C4C5B9FF20CE1757009A3E2D /* RenameDeviceApi.m in Sources */,
 				88B03C3B2035E5E000F18EFE /* NSString+Contains.m in Sources */,
-				88A8EDDC210C0E0E006D46CB /* DeviceAlarmDetailVC.m in Sources */,
 				88B03CB12035E5E000F18EFE /* UITableView+iOS7Style.m in Sources */,
+				88F0EA6C22580FB500C0BB38 /* VoiceHelp.m in Sources */,
 				88B03C842035E5E000F18EFE /* UIImage+animatedGIF.m in Sources */,
 				88B03C282035E5E000F18EFE /* NSNumber+CGFloat.m in Sources */,
 				88B03C7D2035E5E000F18EFE /* UIControl+Block.m in Sources */,
@@ -3562,10 +3824,13 @@
 				88B03C5A2035E5E000F18EFE /* NSString+Additions.m in Sources */,
 				881513722132871200CB2FD4 /* colorItemCell.m in Sources */,
 				88B03C502035E5E000F18EFE /* NSURLConnection+SelfSigned.m in Sources */,
+				88A15B7821BAA19C00175FFA /* UIView+TXFrame.m in Sources */,
 				888BF278203B9BF5008E2A37 /* SiterTools.m in Sources */,
 				88A8EDD6210C0DB4006D46CB /* ScynDeviceApi.m in Sources */,
 				88B03BFF2035E5E000F18EFE /* NSPersistentStoreCoordinator+Custom.m in Sources */,
 				88B03BF82035E5E000F18EFE /* NSFetchRequest+Extensions.m in Sources */,
+				88A15B1B21BAA0A400175FFA /* DelayPickViewCell.m in Sources */,
+				88F0EA5922580F2200C0BB38 /* RenameVC.m in Sources */,
 				88B03C9D2035E5E000F18EFE /* UINavigationBar+Awesome.m in Sources */,
 				C4C9D9A920FDB68600C89AD9 /* GS584RelationShip.m in Sources */,
 				C43A054420C76D8F00B2E5FC /* MJRefreshAutoFooter.m in Sources */,
@@ -3574,6 +3839,7 @@
 				88B03BFA2035E5E000F18EFE /* NSManagedObject+Extensions.m in Sources */,
 				88B03CD82035E5E000F18EFE /* UIViewController+TopBarMessage.m in Sources */,
 				88B03CEB2035E5E000F18EFE /* YTKChainRequest.m in Sources */,
+				88A15B8421BAA1CE00175FFA /* UploadTimeApi.m in Sources */,
 				88B03C9C2035E5E000F18EFE /* UILabel+SuggestSize.m in Sources */,
 				88B03CDB2035E5E000F18EFE /* UIWebView+Blocks.m in Sources */,
 				88B03C362035E5E000F18EFE /* NSRunLoop+PerformBlock.m in Sources */,
@@ -3590,11 +3856,13 @@
 				C4FF15EC20CFB27800DA3026 /* NSString+JJ.m in Sources */,
 				C46C23CF20FF2E4800D9350F /* CollectionController.m in Sources */,
 				88B03C232035E5E000F18EFE /* NSInvocation+Bb.m in Sources */,
+				88F0EA6322580F7A00C0BB38 /* DBVideoManager.m in Sources */,
 				8899B4A2211540BE00716BEA /* SceneCell.m in Sources */,
 				88B03C1E2035E5E000F18EFE /* NSException+Trace.m in Sources */,
 				88B03C5F2035E5E000F18EFE /* CAAnimation+Blocks.m in Sources */,
 				C4C5BA0020CE1757009A3E2D /* replaceDeviceApi.m in Sources */,
 				88B03CE52035E5E000F18EFE /* HekrConfig.m in Sources */,
+				88F0EA6922580F9400C0BB38 /* VideoModel.m in Sources */,
 				88B03CE02035E5E000F18EFE /* UIWebView+Style.m in Sources */,
 				88B03C102035E5E000F18EFE /* NSDate+Extension.m in Sources */,
 				C438469720C676A300FF8725 /* ShelfModel.m in Sources */,
@@ -3611,11 +3879,13 @@
 				C43A055020C76D8F00B2E5FC /* MJRefreshNormalHeader.m in Sources */,
 				88B03CA72035E5E000F18EFE /* UIResponder+Chain.m in Sources */,
 				88B03C5B2035E5E000F18EFE /* JRSwizzle.m in Sources */,
+				88A15B3321BAA0C800175FFA /* AddTimerSwitchApi.m in Sources */,
 				C4C5BA0220CE1757009A3E2D /* CancelAddingApi.m in Sources */,
 				88B03C982035E5E000F18EFE /* UIImageView+Reflect.m in Sources */,
 				88B03CD42035E5E000F18EFE /* UIViewController+BlockSegue.m in Sources */,
 				C438468120C66C7800FF8725 /* DBTimerManager.m in Sources */,
 				88B03C2B2035E5E000F18EFE /* NSObject+AddProperty.m in Sources */,
+				88A15B8721BAA20300175FFA /* MyUdp.m in Sources */,
 				C43A054920C76D8F00B2E5FC /* MJRefreshAutoGifFooter.m in Sources */,
 				88B03667203583DD00F18EFE /* ESPTouchGenerator.m in Sources */,
 				88B03C392035E5E000F18EFE /* NSString+ArryValue.m in Sources */,
@@ -3625,6 +3895,8 @@
 				C43A055120C76D8F00B2E5FC /* MJRefreshStateHeader.m in Sources */,
 				88B03CDA2035E5E000F18EFE /* UIWebView+Alert.m in Sources */,
 				88B03CA12035E5E000F18EFE /* UINavigationController+KeyboardFix.m in Sources */,
+				88A15B5521BAA13C00175FFA /* AboutVC.m in Sources */,
+				88A15B5A21BAA13C00175FFA /* EmergentPhoneVC.m in Sources */,
 				88B03C8F2035E5E000F18EFE /* UIImage+RemoteSize.m in Sources */,
 				88B03CDE2035E5E000F18EFE /* UIWebView+Load.m in Sources */,
 				88B03C312035E5E000F18EFE /* NSObject+GCD.m in Sources */,
@@ -3633,16 +3905,18 @@
 				88B039882035DA6800F18EFE /* GVUserDefaults.m in Sources */,
 				88B03C702035E5E000F18EFE /* UIButton+BackgroundColor.m in Sources */,
 				88B03CD32035E5E000F18EFE /* UIViewController+BackButtonTouched.m in Sources */,
+				88A15B7D21BAA1C400175FFA /* QuesModel.m in Sources */,
 				88B03CFB2035E5E000F18EFE /* UITapImageView.m in Sources */,
 				881513612132862000CB2FD4 /* AddSystemScenCell.m in Sources */,
+				88A15B7721BAA19C00175FFA /* TXScrollLabelView.m in Sources */,
 				88B03CBA2035E5E000F18EFE /* UITextField+History.m in Sources */,
+				88A15B5321BAA13C00175FFA /* SuccessVC.m in Sources */,
 				C408077621070FD20064F4B7 /* ChooseSystemSceneApi.m in Sources */,
 				88B03CF82035E5E000F18EFE /* MyMD5.m in Sources */,
 				88B90D33203D50AA007E2A9C /* ResetCode.m in Sources */,
 				88B762AB2029E1D800FC87A0 /* Register.m in Sources */,
 				8815136B2132868600CB2FD4 /* PostControllerApi.m in Sources */,
 				88B03661203583DD00F18EFE /* ESP_NetUtil.m in Sources */,
-				C43158EC2109BA5A0089A222 /* TimeModel.m in Sources */,
 				C438469120C676A300FF8725 /* BookshelfCollectionViewFlowLayout.m in Sources */,
 				88B03C322035E5E000F18EFE /* NSObject+KVOBlocks.m in Sources */,
 				C4E35C2220F4A34F00B806C8 /* BaseNetManager.m in Sources */,
@@ -3653,6 +3927,7 @@
 				88B03C512035E5E000F18EFE /* NSMutableURLRequest+Upload.m in Sources */,
 				C4C9D9AC20FDB7C800C89AD9 /* SceneRelationShip.m in Sources */,
 				88B03C8A2035E5E000F18EFE /* UIImage+FX.m in Sources */,
+				88A15B2121BAA0AE00175FFA /* ModelListVC.m in Sources */,
 				88B03C782035E5E000F18EFE /* UIColor+HEX.m in Sources */,
 				88B03CAF2035E5E000F18EFE /* UISearchBar+Blocks.m in Sources */,
 				88B03CBD2035E5E000F18EFE /* UITextView+PinchZoom.m in Sources */,
@@ -3660,6 +3935,7 @@
 				88B03C302035E5E000F18EFE /* NSObject+EasyCopy.m in Sources */,
 				88B03C592035E5E000F18EFE /* MBProgressHUD+MP.m in Sources */,
 				88B03C372035E5E000F18EFE /* NSSet+Block.m in Sources */,
+				88A15B7121BAA17600175FFA /* ChangePsdCell.m in Sources */,
 				88B03C862035E5E000F18EFE /* UIImage+Blur.m in Sources */,
 				88B03C3C2035E5E000F18EFE /* NSString+DictionaryValue.m in Sources */,
 				88B03CEE2035E5E000F18EFE /* YTKNetworkConfig.m in Sources */,
@@ -3672,6 +3948,7 @@
 				88B03C402035E5E000F18EFE /* NSString+Matcher.m in Sources */,
 				C4ED2EC520F5CDD000B4E008 /* AutoScrollLabel.m in Sources */,
 				88B03CFE2035E5E000F18EFE /* YYFPSLabel.m in Sources */,
+				88A15B5B21BAA13C00175FFA /* GatewayListVC.m in Sources */,
 				C4ED2EC620F5CDD000B4E008 /* KYCircleMenu.m in Sources */,
 				88B03CF52035E5E000F18EFE /* MPFileManager.m in Sources */,
 				C46BDCC820FDBEA700796E61 /* DBGS584RelationShipManager.m in Sources */,
@@ -3692,12 +3969,14 @@
 				C43D5182203FDD1800DE5FF3 /* HomeVC.m in Sources */,
 				88B03C8D2035E5E000F18EFE /* UIImage+Orientation.m in Sources */,
 				88B03C7C2035E5E000F18EFE /* UIControl+ActionBlocks.m in Sources */,
+				88A15B2E21BAA0C800175FFA /* DeleteSystemSceneApi.m in Sources */,
 				88B03C092035E5E000F18EFE /* NSData+CRC16.m in Sources */,
 				88B03C912035E5E000F18EFE /* UIImage+RoundedCorner.m in Sources */,
 				88B03C882035E5E000F18EFE /* UIImage+Color.m in Sources */,
 				C408077D210713750064F4B7 /* SiterwellReceiver.m in Sources */,
 				C438467720C65C4100FF8725 /* GatewayModel.m in Sources */,
 				88B03C6E2035E5E000F18EFE /* UIBezierPath+SVG.m in Sources */,
+				88F0EA6022580F5300C0BB38 /* RenameCell.m in Sources */,
 				88B03C432035E5E000F18EFE /* NSString+RegexCategory.m in Sources */,
 				C4BC2B6221379D520079862B /* AddSceneCell.m in Sources */,
 				88B03CFA2035E5E000F18EFE /* dateTimeHelper.m in Sources */,
@@ -3729,6 +4008,7 @@
 				8899B4A1211540BE00716BEA /* SystemSceneCell.m in Sources */,
 				88B03CF62035E5E000F18EFE /* MPLoggerFormatter.m in Sources */,
 				88B03C542035E5E000F18EFE /* NSUserDefaults+SafeAccess.m in Sources */,
+				88F0EA6822580F9400C0BB38 /* WarningModel.m in Sources */,
 				88B0366A203583DD00F18EFE /* ESPTouchTaskParameter.m in Sources */,
 				C43A054C20C76D8F00B2E5FC /* MJRefreshBackGifFooter.m in Sources */,
 				88B03C852035E5E000F18EFE /* UIImage+BetterFace.m in Sources */,
@@ -3750,6 +4030,8 @@
 				C4C5BA0420CE1757009A3E2D /* ScynDeviceName.m in Sources */,
 				88B03CE42035E5E000F18EFE /* AppStatusHelp.m in Sources */,
 				C4ED2EBF20F5CBD300B4E008 /* ModeCircleView.m in Sources */,
+				88A15B6C21BAA17600175FFA /* WifiContentCell.m in Sources */,
+				88A15B5721BAA13C00175FFA /* ChangePsdVC.m in Sources */,
 				88B03C6F2035E5E000F18EFE /* UIBezierPath+Symbol.m in Sources */,
 				88B03CFC2035E5E000F18EFE /* BatterHelp.m in Sources */,
 				C438469820C676A300FF8725 /* UICollectionView+MathIndexPath.m in Sources */,
@@ -3761,6 +4043,8 @@
 				88B03CB92035E5E000F18EFE /* UITextField+Blocks.m in Sources */,
 				C4E35C2620F4A42400B806C8 /* CYNetManager.m in Sources */,
 				C4C5BA0320CE1757009A3E2D /* AddDeviceApi.m in Sources */,
+				88A15B3221BAA0C800175FFA /* DeleteTimerSwitchApi.m in Sources */,
+				88A15B1D21BAA0A400175FFA /* WeekCell.m in Sources */,
 				8815136F213286B100CB2FD4 /* AddDeviceCell.m in Sources */,
 				88B03C1D2035E5E000F18EFE /* NSDictionary+XML.m in Sources */,
 				88B03CE32035E5E000F18EFE /* UIWindow+Hierarchy.m in Sources */,
@@ -3769,10 +4053,12 @@
 				88B03CBB2035E5E000F18EFE /* UITextField+Select.m in Sources */,
 				88B03C652035E5E000F18EFE /* UIAlertView+Block.m in Sources */,
 				C43A055320C76D8F00B2E5FC /* MJRefreshConst.m in Sources */,
+				88A15B5C21BAA13C00175FFA /* SettingController.m in Sources */,
 				88B03C1F2035E5E000F18EFE /* NSFileHandle+readLine.m in Sources */,
 				C42E6BBF20C12F0A00784B75 /* DBManager.m in Sources */,
 				88B03C292035E5E000F18EFE /* NSNumber+RomanNumerals.m in Sources */,
 				C43158EF2109BF600089A222 /* SceneListItemData.m in Sources */,
+				88A15B3121BAA0C800175FFA /* DeleteSceneApi.m in Sources */,
 				88B03CB82035E5E000F18EFE /* UITableViewCell+TS_delaysContentTouches.m in Sources */,
 				88B03CAE2035E5E000F18EFE /* UIScrollView+Pages.m in Sources */,
 				88B03C002035E5E000F18EFE /* CLLocation+CH1903.m in Sources */,
@@ -3785,14 +4071,21 @@
 				88B03C892035E5E000F18EFE /* UIImage+FileName.m in Sources */,
 				88B03CF92035E5E000F18EFE /* cameraHelper.m in Sources */,
 				88B03C1B2035E5E000F18EFE /* NSDictionary+SafeAccess.m in Sources */,
+				88A15B2F21BAA0C800175FFA /* AddSceneApi.m in Sources */,
 				88B03CAD2035E5E000F18EFE /* UIScrollView+EmptyDataSet.m in Sources */,
+				88A15B6D21BAA17600175FFA /* GatewayListView.m in Sources */,
+				88A15B5021BAA13C00175FFA /* BeforeConfigurationVC.m in Sources */,
 				88B03CCB2035E5E000F18EFE /* UIView+Recursion.m in Sources */,
 				88B03CE62035E5E000F18EFE /* NetWorkBaseUrlConfig.m in Sources */,
 				C43A054520C76D8F00B2E5FC /* MJRefreshBackFooter.m in Sources */,
 				C43A055520C76D8F00B2E5FC /* UIScrollView+MJRefresh.m in Sources */,
-				C46C23D520FF308900D9350F /* SettingController.m in Sources */,
+				88A15B0F21BAA08200175FFA /* NormalStatusVC.m in Sources */,
+				88A15B5621BAA13C00175FFA /* ChangeGatewayNameVC.m in Sources */,
 				88B03CA32035E5E000F18EFE /* UINavigationItem+Loading.m in Sources */,
 				88B03CA42035E5E000F18EFE /* UINavigationItem+Lock.m in Sources */,
+				88F0EA5822580F2200C0BB38 /* DeviceDetailVC.m in Sources */,
+				88A15B6F21BAA17600175FFA /* QuesSectionHeader.m in Sources */,
+				88A15B7021BAA17600175FFA /* SuccessView.m in Sources */,
 				C4BC2B682137BD180079862B /* InOutputAddSceneCell.m in Sources */,
 				88B03C182035E5E000F18EFE /* NSDictionary+Block.m in Sources */,
 				88B03CB62035E5E000F18EFE /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
@@ -3836,13 +4129,14 @@
 				88B03CAA2035E5E000F18EFE /* UIScreen+Frame.m in Sources */,
 				C43A054F20C76D8F00B2E5FC /* MJRefreshGifHeader.m in Sources */,
 				88A8EDDE210C0E49006D46CB /* DimmingmoduleDetailVC.m in Sources */,
-				C4E35C2920F4A49E00B806C8 /* DevVersionModel.m in Sources */,
 				88B03CBF2035E5E000F18EFE /* UITextView+Select.m in Sources */,
 				88B7629D2029D3BC00FC87A0 /* Loginvc.m in Sources */,
+				88F0EA5322580EF700C0BB38 /* ClickApi.m in Sources */,
 				88B03C4D2035E5E000F18EFE /* NSTimer+Blocks.m in Sources */,
 				88B03C7E2035E5E000F18EFE /* UIDevice+Hardware.m in Sources */,
 				88B03C2A2035E5E000F18EFE /* NSNumber+Round.m in Sources */,
 				88B03CCD2035E5E000F18EFE /* UIView+Shake.m in Sources */,
+				88A15B5821BAA13C00175FFA /* ChooseLocationVC.m in Sources */,
 				88B03C5E2035E5E000F18EFE /* UIView+Extension.m in Sources */,
 				88B03C762035E5E000F18EFE /* UIButton+TouchAreaInsets.m in Sources */,
 				88B03CA62035E5E000F18EFE /* UIPopoverController+iPhone.m in Sources */,
@@ -3854,7 +4148,9 @@
 				88B03BFC2035E5E000F18EFE /* NSManagedObjectContext+Fetching.m in Sources */,
 				88B03CDF2035E5E000F18EFE /* UIWebView+MetaParser.m in Sources */,
 				88B03C462035E5E000F18EFE /* NSString+Score.m in Sources */,
+				88A15B3021BAA0C800175FFA /* SyncTimerSwitchApi.m in Sources */,
 				C4FF15F220CFD78D00DA3026 /* ErrorModel.m in Sources */,
+				88A15B5121BAA13C00175FFA /* connectWifiVC.m in Sources */,
 				88B03CE12035E5E000F18EFE /* UIWebVIew+SwipeGesture.m in Sources */,
 				C43A054E20C76D8F00B2E5FC /* MJRefreshBackStateFooter.m in Sources */,
 				88B03C9E2035E5E000F18EFE /* UINavigationController+BATransitions.m in Sources */,
