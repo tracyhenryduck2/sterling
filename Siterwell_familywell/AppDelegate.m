@@ -29,21 +29,21 @@
 #pragma mark - life
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSString *lan;
-    NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
-    NSString *languageName = [appLanguages objectAtIndex:0];
-    if ([languageName containsString:@"zh"]) {
-        lan = @"zh";
-    } else if ([languageName containsString:@"de"]) {
-        lan = @"de";
-    } else if ([languageName containsString:@"fr"]) {
-        lan = @"fr";
-    }else if ([languageName containsString:@"es"]) {
-        lan = @"es";
-    } else {
-        lan = @"en";
-    }
-    [NSBundle setLanguage:lan];
+//    NSString *lan;
+//    NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+//    NSString *languageName = [appLanguages objectAtIndex:0];
+//    if ([languageName containsString:@"zh"]) {
+//        lan = @"zh";
+//    } else if ([languageName containsString:@"de"]) {
+//        lan = @"de";
+//    } else if ([languageName containsString:@"fr"]) {
+//        lan = @"fr";
+//    }else if ([languageName containsString:@"es"]) {
+//        lan = @"es";
+//    } else {
+//        lan = @"en";
+//    }
+//    [NSBundle setLanguage:lan];
     
     
     NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"json"]];
