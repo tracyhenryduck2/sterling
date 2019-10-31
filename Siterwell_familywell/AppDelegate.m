@@ -67,38 +67,38 @@
     [self registerRemoteNotification];
     
 
-    self.tcpClient = [[HekrSimpleTcpClient alloc] init];
-    [self.tcpClient createTcpSocket:@"info.hekr.me" onPort:91 connect:^(HekrSimpleTcpClient *client ,BOOL isConnect) {
-        if (isConnect) {
-            [client writeDict:@{@"action":@"getAppDomain"}];
-        }else{
-            //            NSLog(@"get domain error:TCP连接不成功");
-                NSUserDefaults *config =  [NSUserDefaults standardUserDefaults];
-           NSString *ds =  [config objectForKey:@"domain"];
-            if(ds==nil || ds.length ==0){
-                //        自己本地保存domain的参数
-                [[NSUserDefaults standardUserDefaults] setObject:@"hekr.me" forKey:@"hekr_domain"];
-                
-                ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:@"hekr.me"],
-                           @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:@"hekr.me"],
-                           @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:@"hekr.me"]};
-                
-              [[NSUserDefaults standardUserDefaults] setObject:@"hekr.me" forKey:@"hekr_domain"];
-            }else{
-                ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:ds],
-                           @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:ds],
-                           @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:ds]};
-            }
-        }
-    } successCallback:^(HekrSimpleTcpClient *client, NSDictionary *data) {
-        NSString* domain = [[data objectForKey:@"dcInfo"] objectForKey:@"domain"];
-        //        自己本地保存domain的参数
-        [[NSUserDefaults standardUserDefaults] setObject:domain forKey:@"hekr_domain"];
-        
-        ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:domain],
-                   @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:domain],
-                   @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:domain]};
-    }];
+//    self.tcpClient = [[HekrSimpleTcpClient alloc] init];
+//    [self.tcpClient createTcpSocket:@"info.hekr.me" onPort:91 connect:^(HekrSimpleTcpClient *client ,BOOL isConnect) {
+//        if (isConnect) {
+//            [client writeDict:@{@"action":@"getAppDomain"}];
+//        }else{
+//            //            NSLog(@"get domain error:TCP连接不成功");
+//                NSUserDefaults *config =  [NSUserDefaults standardUserDefaults];
+//           NSString *ds =  [config objectForKey:@"domain"];
+//            if(ds==nil || ds.length ==0){
+//                //        自己本地保存domain的参数
+//                [[NSUserDefaults standardUserDefaults] setObject:@"hekr.me" forKey:@"hekr_domain"];
+//                
+//                ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:@"hekr.me"],
+//                           @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:@"hekr.me"],
+//                           @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:@"hekr.me"]};
+//                
+//              [[NSUserDefaults standardUserDefaults] setObject:@"hekr.me" forKey:@"hekr_domain"];
+//            }else{
+//                ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:ds],
+//                           @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:ds],
+//                           @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:ds]};
+//            }
+//        }
+//    } successCallback:^(HekrSimpleTcpClient *client, NSDictionary *data) {
+//        NSString* domain = [[data objectForKey:@"dcInfo"] objectForKey:@"domain"];
+//        //        自己本地保存domain的参数
+//        [[NSUserDefaults standardUserDefaults] setObject:domain forKey:@"hekr_domain"];
+//        
+//        ApiMap = @{@"user-openapi.hekr.me":[@"https://user-openapi." stringByAppendingString:domain],
+//                   @"uaa-openapi.hekr.me":[@"https://uaa-openapi." stringByAppendingString:domain],
+//                   @"console-openapi.hekr.me":[@"https://console-openapi." stringByAppendingString:domain]};
+//    }];
     
     
     NSUserDefaults *config2 = [NSUserDefaults standardUserDefaults];
