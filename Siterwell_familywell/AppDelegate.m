@@ -29,7 +29,7 @@
 #pragma mark - life
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//    NSString *lan;
+//    NSString *lan111;
 //    NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
 //    NSString *languageName = [appLanguages objectAtIndex:0];
 //    if ([languageName containsString:@"zh"]) {
